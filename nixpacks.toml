@@ -2,10 +2,10 @@
 nixPkgs = ['nodejs-18_x']
 
 [phases.install]
-cmds = ['npm ci --workspace=client']
+cmds = ['cd client && npm ci']
 
 [phases.build]
-cmds = ['npm run build --workspace=client']
+cmds = ['cd client && npm run build']
 
 [start]
-cmd = 'npm start --workspace=client'
+cmd = 'cd client && npm start'
