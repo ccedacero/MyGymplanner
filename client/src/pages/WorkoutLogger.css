@@ -1,0 +1,291 @@
+.workout-logger {
+  min-height: 100vh;
+  background: var(--bg);
+  padding-bottom: 6rem;
+}
+
+/* Rest Timer Overlay */
+.rest-timer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.rest-timer-content {
+  text-align: center;
+  color: white;
+}
+
+.rest-timer-content h2 {
+  color: white;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+.timer-display {
+  font-size: 5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--secondary);
+}
+
+/* Progress Bar */
+.workout-progress-bar {
+  position: sticky;
+  top: 0;
+  height: 4px;
+  background: var(--border);
+  z-index: 100;
+}
+
+.workout-progress-fill {
+  height: 100%;
+  background: var(--secondary);
+  transition: width 0.3s ease;
+}
+
+/* Header */
+.workout-logger-header {
+  padding: 1.5rem 1rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1rem;
+}
+
+.exercise-counter {
+  font-size: 0.875rem;
+  color: var(--text-light);
+  margin-bottom: 0.5rem;
+}
+
+.current-exercise-name {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.target-volume {
+  color: var(--text-light);
+  font-size: 1rem;
+}
+
+/* Sets Container - Mobile Optimized */
+.sets-container {
+  padding: 1rem;
+}
+
+.set-row {
+  display: grid;
+  grid-template-columns: 60px 1fr 1fr 60px;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 1rem;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  transition: all 0.2s;
+}
+
+.set-row.set-completed {
+  background: #D1FAE5;
+  border-color: var(--secondary);
+}
+
+.set-number {
+  font-weight: 600;
+  color: var(--text-light);
+  font-size: 1rem;
+}
+
+/* Large Touch-Friendly Inputs */
+.set-input {
+  width: 100%;
+  padding: 1rem 0.75rem;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-align: center;
+  background: white;
+  transition: border-color 0.2s;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+}
+
+.set-input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* Hide number input spinners */
+.set-input::-webkit-outer-spin-button,
+.set-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Large Complete Button - Mobile Optimized */
+.complete-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 3px solid var(--border);
+  background: white;
+  font-size: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.complete-btn:active {
+  transform: scale(0.95);
+}
+
+.complete-btn.completed {
+  background: var(--secondary);
+  border-color: var(--secondary);
+  color: white;
+}
+
+/* Cardio Logger */
+.cardio-logger {
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 12px;
+}
+
+.cardio-instruction {
+  font-size: 1.125rem;
+  margin-bottom: 1.5rem;
+  color: var(--text);
+}
+
+/* Navigation Buttons */
+.workout-nav-buttons {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 0.75rem;
+  z-index: 50;
+}
+
+.workout-nav-buttons .btn {
+  flex: 1;
+  padding: 1rem;
+  font-size: 1.125rem;
+  min-height: 52px;
+}
+
+/* Completion Screen */
+.completion-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg);
+  padding: 2rem 1rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.completion-title {
+  text-align: center;
+  color: var(--secondary);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.rpe-slider {
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--border);
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.rpe-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+}
+
+.rpe-slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+  border: none;
+}
+
+.rpe-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text-light);
+}
+
+/* Responsive Adjustments */
+@media (min-width: 640px) {
+  .workout-logger-header {
+    padding: 2rem;
+  }
+
+  .sets-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .workout-nav-buttons {
+    max-width: 600px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .completion-screen {
+    padding: 3rem 2rem;
+  }
+
+  .completion-screen .card {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+/* Ensure large touch targets on mobile */
+@media (max-width: 640px) {
+  .set-input {
+    min-height: 48px;
+    font-size: 1.25rem;
+  }
+
+  .complete-btn {
+    width: 56px;
+    height: 56px;
+  }
+}
