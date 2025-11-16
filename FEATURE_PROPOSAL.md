@@ -11,7 +11,7 @@
 
 Based on comprehensive market research analyzing user pain points across strength training and cardio apps, this document proposes **5 core features** that directly address the most critical user frustrations while fulfilling the app's unique value proposition.
 
-**Key Differentiator:** Unlike existing apps with generic exercise databases, this app uses **user-provided exercise lists**, giving users complete control over their training vocabulary based on their available equipment and preferences.
+**Key Differentiator:** This app offers a **dual-mode exercise system** - it includes a comprehensive built-in exercise database for instant recommendations (upper/lower/whole body splits, etc.) AND allows users to optionally customize their exercise library for personalized programming. Best of both worlds: fast onboarding with built-in exercises, deep personalization when desired.
 
 ---
 
@@ -33,8 +33,8 @@ From the market research, these pain points scored highest in severity and user 
 
 ---
 
-## Feature #1: Custom Exercise Library Manager 🎯
-### *MANDATORY REQUIREMENT*
+## Feature #1: Dual-Mode Exercise Library System 🎯
+### *FLEXIBLE APPROACH: Built-In + Custom*
 
 ### Problem Solved
 **From Research:**
@@ -42,28 +42,60 @@ From the market research, these pain points scored highest in severity and user 
 - "Claiming over 1,300 exercises means nothing if the majority are worthless"
 - "Apps are just not great at tracking activities like Pilates or weightlifting"
 - Generic exercise databases don't match user's available equipment
+- Beginners need quick start, advanced users want customization
 
-**User Pain:** Users have specific equipment (home gym, commercial gym, limited equipment) but apps force them to scroll through 1000+ irrelevant exercises.
+**User Pain:** Two competing needs - beginners want instant recommendations without setup friction, while experienced users have specific equipment and want control over their exercise vocabulary.
 
 ### Feature Description
 
-**User-Controlled Exercise Database**
+**Dual-Mode System: Built-In Database + Optional Customization**
 
-Users define their own exercise vocabulary by uploading a structured file (CSV/Excel) containing:
+The app provides TWO ways to work with exercises:
+
+#### **Mode A: Built-In Exercise Database (Default - Zero Setup)**
+
+The app includes a comprehensive, curated exercise database covering:
+- **Strength exercises:** Organized by movement patterns and muscle groups
+  - Upper body: Bench press, rows, overhead press, pull-ups, etc.
+  - Lower body: Squats, deadlifts, lunges, leg press, etc.
+  - Full body: Compound movements, Olympic lifts, bodyweight exercises
+- **Cardio exercises:** Running, cycling, rowing, swimming, HIIT, etc.
+- **Metadata for each exercise:**
+  - Primary & secondary muscle groups
+  - Equipment required (barbell, dumbbells, machine, bodyweight, etc.)
+  - Difficulty level (beginner/intermediate/advanced)
+  - Movement type (compound/isolation/cardio)
+
+**Equipment Filtering:**
+- During onboarding, users select their available equipment
+- App filters database to show only relevant exercises
+- Example: "I have: barbell, dumbbells, pull-up bar" → sees 50-100 relevant exercises, not 1000
+
+**Pre-Built Templates:**
+- Upper/Lower split exercises
+- Push/Pull/Legs exercises
+- Whole body workout exercises
+- Beginner-friendly exercise sets
+- Home gym vs. commercial gym exercises
+
+#### **Mode B: Custom Exercise Library (Optional - Full Control)**
+
+Users can optionally customize their exercise vocabulary by uploading structured files (CSV/Excel) containing:
 - Exercise names (as they prefer to call them)
 - Exercise category (strength/cardio)
 - Primary muscle groups
 - Required equipment
-- Optional: Video URL, notes, difficulty level
+- Optional: Video URL, notes, difficulty level, personal RPE targets
 
-**Core Capabilities:**
+**Custom Library Capabilities:**
 
-1. **Multiple Upload Formats**
+1. **Multiple Input Methods**
    - CSV upload (simple, universal)
    - Excel upload (.xlsx)
-   - Manual entry form (for small additions)
+   - Manual entry form (one-by-one)
+   - Start with built-in database, then customize (add/remove/rename)
 
-2. **Required Data Structure**
+2. **Required Data Structure (for uploads)**
    ```
    Exercise Name, Category, Muscle Groups, Equipment, Type
    "Barbell Squat", "Strength", "Legs, Glutes", "Barbell", "Compound"
@@ -72,11 +104,12 @@ Users define their own exercise vocabulary by uploading a structured file (CSV/E
    ```
 
 3. **Library Management**
-   - View all exercises in sortable/filterable table
-   - Edit existing exercises
+   - View all exercises (built-in + custom) in sortable/filterable table
+   - Edit exercise details
    - Delete exercises (with warning if used in active plans)
+   - Mark exercises as "favorites" for prioritization in plans
    - Export library (backup/sharing)
-   - Import from template (starter templates: "Home Gym", "Commercial Gym", "Minimal Equipment")
+   - Import from template OR start from built-in database
 
 4. **Validation & Feedback**
    - Check for required fields
@@ -84,58 +117,110 @@ Users define their own exercise vocabulary by uploading a structured file (CSV/E
    - Suggest corrections for common typos
    - Preview before import
 
-5. **Equipment Filtering**
-   - Users can tag their available equipment
-   - App only generates plans using available equipment
-   - Example: "I have: barbell, dumbbells, pull-up bar" → app never suggests machines
+#### **Hybrid Mode: Built-In + Custom (Best of Both)**
+
+Users can mix and match:
+- Start with built-in database (instant access to 200-300 exercises)
+- Add custom exercises (e.g., specialty equipment in their gym)
+- Remove exercises they don't like or can't do
+- Rename exercises to their preferred terminology
+- App generates plans using the combined library
 
 ### Why This Matters
 
-**Personalization at the Foundation:**
-- Respects that users know their gym/equipment better than any algorithm
-- No scrolling through irrelevant exercises
+**Removes Onboarding Friction:**
+- Beginners can start immediately with built-in database (no setup required)
+- Generate first workout in under 60 seconds
+- Lower barrier to entry = higher conversion
+
+**Enables Deep Personalization:**
+- Advanced users get full control when they want it
+- Home gym users can perfectly match their equipment
 - Users can use their preferred terminology ("Front Squat" vs "Barbell Front Squat")
-- Perfect for home gym users with specific equipment
+- Perfect for specialty equipment (unusual machines, unique setup)
 
 **Competitive Advantage:**
-- No other major app requires user-provided exercises
-- Creates immediate investment/ownership in the app
-- Makes generated plans instantly relevant
+- Only app offering both instant recommendations AND full customization
+- Serves both beginner and advanced markets
+- Equipment filtering makes even 300-exercise database feel curated
 
 **Technical Benefits:**
-- No need to maintain massive exercise database
-- No copyright issues with exercise descriptions/videos
-- Users can link their own instructional videos
+- Built-in database ensures quality, consistency, proper categorization
+- User customization creates ownership and investment
+- Can gradually improve built-in database based on user modifications
+- Users who customize are more likely to be retained (invested effort)
 
 ### User Flow
 
+**Path A: Quick Start (Built-In Database)**
 ```
-1. Sign up → 2. Welcome screen: "Let's build your exercise library"
+1. Sign up
    ↓
-3. Choose:
-   - Upload CSV/Excel
-   - Start with template (Home Gym / Commercial Gym / Bodyweight)
-   - Enter manually
+2. "What equipment do you have access to?"
+   - Select from checklist: Barbell, Dumbbells, Machines, Bodyweight, etc.
    ↓
-4. Review & validate uploaded exercises
+3. Built-in database filtered to match equipment
    ↓
-5. Confirm equipment availability
+4. "Ready to generate your plan!" → Proceed immediately
+
+   Time to first plan: 60 seconds
+```
+
+**Path B: Custom Setup (Upload Own Exercises)**
+```
+1. Sign up
+   ↓
+2. "Do you want to use our exercise database or upload your own?"
+   → Choose "Upload my own"
+   ↓
+3. Upload CSV/Excel OR enter manually
+   ↓
+4. Review & validate exercises
+   ↓
+5. Confirm equipment
    ↓
 6. Library ready → Proceed to plan generation
+
+   Time to first plan: 5-10 minutes (worth it for advanced users)
+```
+
+**Path C: Hybrid (Start Built-In, Customize Later)**
+```
+1. Start with Path A (built-in, quick)
+   ↓
+2. Generate and use plans for a few weeks
+   ↓
+3. Later: "Customize My Exercises"
+   ↓
+4. Add specialty exercises, remove disliked ones, rename exercises
+   ↓
+5. Future plans use customized library
 ```
 
 ### Edge Cases & Considerations
 
-- **What if user uploads 5 exercises?** → Warn that limited library = limited plan variety, suggest minimum 15-20
-- **What if user uploads 1000 exercises?** → Allow but recommend curating to exercises they actually do
-- **What if no cardio exercises?** → Flag and suggest adding at least 3-5 cardio options for hybrid plans
-- **What if exercise names are unclear?** → App doesn't judge, uses exactly what user provides
+**Built-In Database:**
+- **User has very limited equipment** → Filter shows only 10-20 exercises → Warn user that plan variety may be limited, suggest bodyweight alternatives
+- **User unchecks all equipment** → App requires at least "bodyweight" selected
+- **Uncommon equipment combinations** → Built-in database may not cover specialty equipment → Prompt to add custom exercises
+
+**Custom Library:**
+- **User uploads 5 exercises** → Warn that limited library = limited plan variety, suggest minimum 15-20
+- **User uploads 1000 exercises** → Allow but recommend curating to exercises they actually do
+- **No cardio exercises in custom library** → Flag and suggest adding at least 3-5 cardio options for hybrid plans
+- **Exercise names are unclear** → App doesn't judge, uses exactly what user provides
+- **Duplicate exercises** → Flag: "You have 'Bench Press' and 'Barbell Bench Press' - are these the same?"
+
+**Hybrid:**
+- **User modifies built-in exercise name** → Create custom version, preserve original in database
+- **User deletes built-in exercise** → Hide from their view, don't actually delete (can restore later)
+- **Conflicts between built-in and custom** → Custom always takes priority in plan generation
 
 ### Success Metrics
-- % of users who complete library setup within first session
-- Average library size (target: 20-50 exercises)
-- % of users using templates vs. custom uploads
-- Library edit frequency (healthy engagement indicator)
+- % of users choosing each path (Quick Start vs. Custom vs. Hybrid)
+- Time to first generated plan (target: <2 min for Quick Start, <10 min for Custom)
+- % of Quick Start users who later customize (indicates product maturity)
+- Average library size: Built-in users (~100-150 after filtering), Custom users (target: 20-50)
 
 ---
 
@@ -153,9 +238,14 @@ Users define their own exercise vocabulary by uploading a structured file (CSV/E
 
 ### Feature Description
 
-**AI-Powered Plan Generation Using User's Exercise Library**
+**Intelligent Plan Generation Using Built-In OR Custom Exercise Library**
 
-The app generates personalized training plans that intelligently combine strength training and cardiovascular work using ONLY the exercises the user has provided.
+The app generates personalized training plans that intelligently combine strength training and cardiovascular work. It can use:
+- **Built-in exercise database** (filtered by user's equipment)
+- **User's custom exercise library** (uploaded/manually entered)
+- **Hybrid combination** (built-in + custom exercises)
+
+The plan generator works identically regardless of exercise source - it understands exercise metadata (muscle groups, equipment, type) and creates balanced, progressive programs.
 
 **Core Capabilities:**
 
@@ -248,20 +338,39 @@ The app generates personalized training plans that intelligently combine strengt
 
 ### User Flow
 
+**Using Built-In Database:**
 ```
-1. Complete exercise library (Feature #1)
+1. Select equipment during onboarding (Feature #1 - Path A)
    ↓
 2. Click "Generate Training Plan"
    ↓
 3. Answer configuration questions (5 questions, ~1 minute)
    ↓
-4. View generated plan (full week preview)
+4. View generated plan using filtered built-in exercises (full week preview)
    ↓
 5. Options:
    - Accept plan → Start training
    - Tweak parameters → Regenerate
    - Manually edit specific workouts
 ```
+
+**Using Custom Library:**
+```
+1. Upload/create exercise library (Feature #1 - Path B)
+   ↓
+2. Click "Generate Training Plan"
+   ↓
+3. Answer configuration questions (5 questions, ~1 minute)
+   ↓
+4. View generated plan using custom exercises (full week preview)
+   ↓
+5. Options:
+   - Accept plan → Start training
+   - Tweak parameters → Regenerate
+   - Manually edit specific workouts
+```
+
+**Result:** Same smooth experience regardless of exercise source
 
 ### Edge Cases & Considerations
 
@@ -813,17 +922,20 @@ User sees visual proof of progress → Motivated to continue
 
 **Must-Have for Launch:**
 
-1. ✅ **Feature #1: Custom Exercise Library Manager** ← MANDATORY
-   - CSV/Excel upload
+1. ✅ **Feature #1: Dual-Mode Exercise Library System** ← FOUNDATION
+   - **Built-in database** (200-300 exercises, properly categorized)
+   - Equipment filtering
+   - CSV/Excel upload support (for custom exercises)
    - Basic validation
    - Manual entry
-   - Edit/delete exercises
+   - Edit/delete exercises (built-in: hide; custom: delete)
 
 2. ✅ **Feature #2: Intelligent Hybrid Training Plan Generator** ← CORE VALUE
    - Basic questionnaire
-   - Rule-based plan generation
+   - Rule-based plan generation (works with built-in OR custom exercises)
    - 4-12 week plans
    - Strength + cardio integration
+   - Support for common split types (upper/lower, push/pull/legs, whole body, cardio-focused)
 
 3. ✅ **Feature #3: Lightning-Fast Workout Logger** ← CRITICAL PAIN POINT
    - Today's workout view
@@ -832,9 +944,11 @@ User sees visual proof of progress → Motivated to continue
    - Offline mode
 
 **MVP Success Criteria:**
-- User can upload exercises, generate a plan, and start logging workouts in <10 minutes
+- **Quick Start users:** Can generate first plan in <2 minutes (built-in database path)
+- **Custom users:** Can upload exercises, generate a plan, and start logging workouts in <10 minutes
 - Logging a set takes <5 seconds
 - Generated plans are balanced and make sense (manual QA testing)
+- Built-in database covers all major movement patterns and muscle groups
 
 ---
 
@@ -878,20 +992,22 @@ User sees visual proof of progress → Motivated to continue
 
 | Feature | Our App | Strong | Hevy | JEFIT | Strava |
 |---------|---------|--------|------|-------|--------|
-| **User-provided exercise library** | ✅ | ❌ | ❌ | ❌ | ❌ |
+| **Built-in exercise database** | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Custom exercise library support** | ✅ Full support | ❌ | ❌ | ❌ | ❌ |
+| **Equipment-based filtering** | ✅ | ❌ | ❌ | ⚠️ Basic | ❌ |
 | **Generates training plans** | ✅ | ❌ | ❌ | ⚠️ Templates only | ❌ |
 | **Hybrid strength + cardio** | ✅ | ❌ | ❌ | ⚠️ Weak cardio | ⚠️ Weak strength |
 | **Adaptive programming** | ✅ | ❌ | ❌ | ❌ | ❌ |
 | **Sub-5-second logging** | ✅ | ⚠️ Good but slower | ⚠️ Good but slower | ❌ Cluttered | N/A |
 | **Web app (not just mobile)** | ✅ | ❌ | ⚠️ Limited | ✅ | ✅ |
-| **No generic exercise database** | ✅ Advantage | ❌ | ❌ | ❌ | ❌ |
 | **Unified progress dashboard** | ✅ | ⚠️ Strength only | ⚠️ Strength only | ⚠️ Basic | ⚠️ Cardio only |
 
 **Key Differentiators:**
-1. **Only app requiring user-provided exercises** = Perfect for home gyms, specific equipment
+1. **Dual-mode exercise system** = Instant start with built-in database OR full customization - only app offering both
 2. **Only app generating hybrid strength + cardio plans** = All-in-one solution
-3. **Fastest logging in the industry** = Respects user's time
-4. **Adaptive, not static programming** = Meets users where they are
+3. **Equipment-smart recommendations** = Built-in database filtered to your actual equipment (not overwhelming)
+4. **Fastest logging in the industry** = Respects user's time
+5. **Adaptive, not static programming** = Meets users where they are
 
 ---
 
@@ -965,13 +1081,13 @@ User sees visual proof of progress → Motivated to continue
 
 These 5 features directly address the most critical pain points discovered in market research:
 
-1. **Custom Exercise Library** → Solves equipment mismatch and irrelevant exercise databases
-2. **Hybrid Plan Generator** → Solves lack of programming and multi-app problem
+1. **Dual-Mode Exercise Library** → Solves both onboarding friction (built-in database) AND equipment mismatch (custom exercises) - serves beginners AND advanced users
+2. **Hybrid Plan Generator** → Solves lack of programming and multi-app problem - creates strength + cardio plans from any exercise source
 3. **Lightning-Fast Logger** → Solves workflow interruption and slow logging
 4. **Adaptive Engine** → Solves unrealistic goals and demotivation
 5. **Unified Dashboard** → Solves data fragmentation and multi-app subscriptions
 
-**Competitive Moat:** No existing app combines all 5 features. This creates a unique position in the market for users who want intelligent, personalized hybrid training without juggling multiple apps.
+**Competitive Moat:** No existing app combines all 5 features. The dual-mode exercise system (built-in + custom) is particularly unique - it removes onboarding friction for beginners while enabling deep personalization for advanced users. This creates a unique position in the market for users who want intelligent, personalized hybrid training without juggling multiple apps.
 
 **Next Steps:**
 1. Validate features with user interviews (10-15 target users)
