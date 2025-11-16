@@ -1,0 +1,141 @@
+{
+  "timestamp": "2025-11-16T18:16:32.580Z",
+  "total": 100,
+  "valid": 78,
+  "invalid": 22,
+  "missing": 0,
+  "invalidExercises": [
+    {
+      "id": "ex010",
+      "name": "Goblet Squat",
+      "url": "https://www.youtube.com/watch?v=qaQPfi8f5Q0",
+      "issue": "HTTP 404"
+    },
+    {
+      "id": "ex015",
+      "name": "Sumo Deadlift",
+      "url": "https://www.youtube.com/watch?v=TjZrmfcOq24",
+      "issue": "HTTP 404"
+    },
+    {
+      "id": "ex035",
+      "name": "Rear Delt Flyes",
+      "url": "https://www.youtube.com/watch?v=tCziNvaIgj8",
+      "issue": "HTTP 404"
+    },
+    {
+      "id": "ex036",
+      "name": "Upright Row",
+      "url": "https://www.youtube.com/watch?v=aGFF9wR49zs",
+      "issue": "HTTP 404"
+    },
+    {
+      "id": "ex041",
+      "name": "Cable Curl",
+      "url": "https://www.youtube.com/watch?v=NFz4d5NvmZw",
+      "issue": "HTTP 404"
+    },
+    {
+      "id": "ex054",
+      "name": "Cable Crunches",
+      "url": "https://www.youtube.com/watch?v=IC-CSkI64x8",
+      "issue": "HTTP 404"
+    },
+    {
+      "id": "ex063",
+      "name": "Rack Pulls",
+      "url": "https://www.youtube.com/watch?v=dc8-AD2ZoYo",
+      "issue": "HTTP 404"
+    },
+    {
+      "id": "ex073",
+      "name": "Running (Intervals)",
+      "url": "https://www.youtube.com/watch?v=Y9A7qVAaI_E",
+      "issue": "HTTP 404"
+    },
+    {
+      "id": "ex075",
+      "name": "Sprints",
+      "url": "https://www.youtube.com/watch?v=GELfbHMR1MM",
+      "issue": "HTTP 404"
+    },
+    {
+      "id": "ex076",
+      "name": "Cycling (Easy)",
+      "url": "https://www.youtube.com/watch?v=qeWSuKUUlHQ",
+      "issue": "HTTP 404"
+    },
+    {
+      "id": "ex077",
+      "name": "Cycling (Intervals)",
+      "url": "https://www.youtube.com/watch?v=OXupQ3NQiIg",
+      "issue": "HTTP 404"
+    },
+    {
+      "id": "ex078",
+      "name": "Cycling (Tempo)",
+      "url": "https://www.youtube.com/watch?v=qeWSuKUUlHQ",
+      "issue": "HTTP 404"
+    },
+    {
+      "id": "ex084",
+      "name": "Stair Climber",
+      "url": "https://www.youtube.com/watch?v=mDuIRPS8t0w",
+      "issue": "HTTP 404"
+    },
+    {
+      "id": "ex085",
+      "name": "Elliptical",
+      "url": "https://www.youtube.com/watch?v=Dzstb2BkZzg",
+      "issue": "HTTP 404"
+    },
+    {
+      "id": "ex086",
+      "name": "Battle Ropes",
+      "url": "https://www.youtube.com/watch?v=wKAYvg7CKvI",
+      "issue": "HTTP 404"
+    },
+    {
+      "id": "ex087",
+      "name": "Assault Bike",
+      "url": "https://www.youtube.com/watch?v=LSJU2CX6wMk",
+      "issue": "HTTP 404"
+    },
+    {
+      "id": "ex088",
+      "name": "Ski Erg",
+      "url": "https://www.youtube.com/watch?v=6kcK2w0rD8I",
+      "issue": "HTTP 404"
+    },
+    {
+      "id": "ex089",
+      "name": "Sled Push",
+      "url": "https://www.youtube.com/watch?v=nUr7RXlDHg4",
+      "issue": "HTTP 404"
+    },
+    {
+      "id": "ex090",
+      "name": "Sled Pull",
+      "url": "https://www.youtube.com/watch?v=FgjPxzaM0CI",
+      "issue": "HTTP 404"
+    },
+    {
+      "id": "ex092",
+      "name": "Tabata",
+      "url": "https://www.youtube.com/watch?v=bO7vKi7Q6Vs",
+      "issue": "HTTP 404"
+    },
+    {
+      "id": "ex098",
+      "name": "Muscle-Ups",
+      "url": "https://www.youtube.com/watch?v=tVH4y5d0W-0",
+      "issue": "HTTP 404"
+    },
+    {
+      "id": "ex099",
+      "name": "L-Sit",
+      "url": "https://www.youtube.com/watch?v=RtYsQ0w_dPM",
+      "issue": "HTTP 404"
+    }
+  ]
+}

@@ -42,15 +42,32 @@ function Progress({ user }) {
   const calculateStreak = () => {
     if (workouts.length === 0) return 0
 
-    let streak = 0
+    // Get unique workout dates sorted by most recent first
     const now = new Date()
-    const sortedWorkouts = [...workouts].sort((a, b) => new Date(b.date) - new Date(a.date))
+    now.setHours(0, 0, 0, 0)
 
-    for (const workout of sortedWorkouts) {
-      const workoutDate = new Date(workout.date)
-      const daysDiff = Math.floor((now - workoutDate) / (1000 * 60 * 60 * 24))
+    const workoutDates = [...new Set(
+      workouts.map(w => {
+        const d = new Date(w.date)
+        d.setHours(0, 0, 0, 0)
+        return d.getTime()
+      })
+    )].sort((a, b) => b - a)
 
-      if (daysDiff <= streak + 1) {
+    // Check if most recent workout was today or yesterday
+    const mostRecent = new Date(workoutDates[0])
+    const daysSinceLastWorkout = Math.floor((now - mostRecent) / (1000 * 60 * 60 * 24))
+
+    if (daysSinceLastWorkout > 1) return 0 // Streak broken
+
+    // Count consecutive days
+    let streak = 1
+    for (let i = 1; i < workoutDates.length; i++) {
+      const current = new Date(workoutDates[i])
+      const previous = new Date(workoutDates[i - 1])
+      const diff = Math.floor((previous - current) / (1000 * 60 * 60 * 24))
+
+      if (diff === 1) {
         streak++
       } else {
         break

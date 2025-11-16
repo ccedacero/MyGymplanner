@@ -95,6 +95,16 @@ export const getPlanById = async (planId) => {
   return res.json()
 }
 
+export const updatePlan = async (planId, updates) => {
+  const res = await fetch(`${API_BASE}/plans/${planId}`, {
+    method: 'PUT',
+    headers: getHeaders(),
+    body: JSON.stringify(updates)
+  })
+  if (!res.ok) throw new Error('Failed to update plan')
+  return res.json()
+}
+
 // Workouts
 export const logWorkout = async (workoutData) => {
   const res = await fetch(`${API_BASE}/workouts/log`, {

@@ -1,7 +1,66 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import * as api from '../services/api'
+import { DndContext, closestCenter, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
+import { SortableContext, verticalListSortingStrategy, useSortable } from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
 import './PlanGenerator.css'
+
+// Sortable Day Card Component
+function SortableDay({ day, index }) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging
+  } = useSortable({ id: day.day })
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+    cursor: 'grab'
+  }
+
+  return (
+    <div
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+      className={`day-card ${isDragging ? 'dragging' : ''}`}
+    >
+      <div className="day-header">
+        <strong>{day.day}</strong>
+        <span className={`badge ${day.type === 'rest' ? 'badge-secondary' : 'badge-primary'}`}>
+          {day.type}
+        </span>
+      </div>
+      {day.exercises.length > 0 && (
+        <div className="exercises-list">
+          {day.exercises.slice(0, 3).map((ex, i) => (
+            <div key={i} className="exercise-preview">
+              • {ex.name}
+              {ex.volume && ex.volume.sets && (
+                <span className="volume-info">
+                  {' '}({ex.volume.sets}x{ex.volume.reps})
+                </span>
+              )}
+            </div>
+          ))}
+          {day.exercises.length > 3 && (
+            <div className="text-muted text-small">
+              +{day.exercises.length - 3} more
+            </div>
+          )}
+        </div>
+      )}
+      <div className="drag-indicator">⋮⋮</div>
+    </div>
+  )
+}
 
 function PlanGenerator({ user }) {
   const navigate = useNavigate()
@@ -14,6 +73,14 @@ function PlanGenerator({ user }) {
     strengthCardioRatio: 'balanced',
     experienceLevel: 'beginner'
   })
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8,
+      },
+    })
+  )
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -43,12 +110,50 @@ function PlanGenerator({ user }) {
     }
   }
 
-  const handleSaveAndContinue = () => {
-    navigate('/dashboard')
+  const handleSaveAndContinue = async () => {
+    try {
+      // Update the plan with the customized schedule
+      await api.updatePlan(generatedPlan.id, {
+        weekSchedule: generatedPlan.weekSchedule
+      })
+      navigate('/dashboard')
+    } catch (error) {
+      alert('Error saving customized schedule: ' + error.message)
+    }
   }
 
   const handleGenerateAnother = () => {
     setGeneratedPlan(null)
+  }
+
+  const handleDragEnd = (event) => {
+    const { active, over } = event
+
+    if (!over || active.id === over.id) {
+      return
+    }
+
+    setGeneratedPlan((prev) => {
+      const oldIndex = prev.weekSchedule.findIndex((day) => day.day === active.id)
+      const newIndex = prev.weekSchedule.findIndex((day) => day.day === over.id)
+
+      const newSchedule = [...prev.weekSchedule]
+      const [movedItem] = newSchedule.splice(oldIndex, 1)
+      newSchedule.splice(newIndex, 0, movedItem)
+
+      // Update day names to match new positions
+      // This ensures "today's workout" works correctly after reordering
+      const dayNames = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+      const updatedSchedule = newSchedule.map((workout, index) => ({
+        ...workout,
+        day: dayNames[index]
+      }))
+
+      return {
+        ...prev,
+        weekSchedule: updatedSchedule
+      }
+    })
   }
 
   if (generatedPlan) {
@@ -69,37 +174,23 @@ function PlanGenerator({ user }) {
           </div>
 
           <h3 className="mt-3">Weekly Schedule:</h3>
-          <div className="schedule-preview">
-            {generatedPlan.weekSchedule.map((day, index) => (
-              <div key={index} className="day-card">
-                <div className="day-header">
-                  <strong>{day.day}</strong>
-                  <span className={`badge ${day.type === 'rest' ? 'badge-secondary' : 'badge-primary'}`}>
-                    {day.type}
-                  </span>
-                </div>
-                {day.exercises.length > 0 && (
-                  <div className="exercises-list">
-                    {day.exercises.slice(0, 3).map((ex, i) => (
-                      <div key={i} className="exercise-preview">
-                        • {ex.name}
-                        {ex.volume && ex.volume.sets && (
-                          <span className="volume-info">
-                            {' '}({ex.volume.sets}x{ex.volume.reps})
-                          </span>
-                        )}
-                      </div>
-                    ))}
-                    {day.exercises.length > 3 && (
-                      <div className="text-muted text-small">
-                        +{day.exercises.length - 3} more
-                      </div>
-                    )}
-                  </div>
-                )}
+          <p className="text-muted text-small mb-2">💡 Drag and drop to reorder days</p>
+          <DndContext
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            onDragEnd={handleDragEnd}
+          >
+            <SortableContext
+              items={generatedPlan.weekSchedule.map(day => day.day)}
+              strategy={verticalListSortingStrategy}
+            >
+              <div className="schedule-preview">
+                {generatedPlan.weekSchedule.map((day, index) => (
+                  <SortableDay key={day.day} day={day} index={index} />
+                ))}
               </div>
-            ))}
-          </div>
+            </SortableContext>
+          </DndContext>
 
           <div className="button-group mt-3">
             <button

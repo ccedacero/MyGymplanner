@@ -1,6 +1,7 @@
 const fs = require('fs').promises;
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
+const { generateAIWorkoutPlan } = require('../services/aiWorkoutGenerator');
 
 const EXERCISES_DB_PATH = path.join(__dirname, '../data/exercises-database.json');
 const CUSTOM_EXERCISES_PATH = path.join(__dirname, '../data/custom-exercises.json');
@@ -46,6 +47,13 @@ function filterByEquipment(exercises, equipmentList) {
   });
 }
 
+// Helper: Randomly select from array (for exercise variety)
+function randomSelect(array) {
+  if (!array || array.length === 0) return null;
+  const randomIndex = Math.floor(Math.random() * array.length);
+  return array[randomIndex];
+}
+
 // Select exercises for upper body workout
 function selectUpperBodyExercises(exercises, experienceLevel) {
   const upper = exercises.filter(ex => {
@@ -55,28 +63,54 @@ function selectUpperBodyExercises(exercises, experienceLevel) {
 
   const selected = [];
 
-  // Select compound movements first
+  // Select compound movements first (prioritize based on research)
   const compounds = upper.filter(ex => ex.type === 'compound');
 
-  // Chest exercise
-  const chest = compounds.find(ex => ex.muscleGroups.includes('chest'));
+  // 1. Horizontal Push - Bench Press (research-backed fundamental)
+  const chestOptions = compounds.filter(ex =>
+    ex.muscleGroups.includes('chest') &&
+    (ex.name.toLowerCase().includes('bench press') || ex.name.toLowerCase().includes('push'))
+  );
+  const chest = randomSelect(chestOptions);
   if (chest) selected.push(chest);
 
-  // Back exercise
-  const back = compounds.find(ex => ex.muscleGroups.includes('back'));
-  if (back) selected.push(back);
+  // 2. Vertical Pull - Pull-ups/Chin-ups (critical per r/Fitness wiki)
+  const pullupOptions = compounds.filter(ex =>
+    ex.name.toLowerCase().includes('pull-up') ||
+    ex.name.toLowerCase().includes('chin-up')
+  );
+  const pullup = randomSelect(pullupOptions);
+  if (pullup) {
+    selected.push(pullup);
+  } else {
+    // Fallback to lat pulldown for beginners
+    const latPulldownOptions = upper.filter(ex => ex.name.toLowerCase().includes('lat pulldown'));
+    const latPulldown = randomSelect(latPulldownOptions);
+    if (latPulldown) selected.push(latPulldown);
+  }
 
-  // Shoulder exercise
-  const shoulder = compounds.find(ex => ex.muscleGroups.includes('shoulders'));
+  // 3. Horizontal Pull - Rows (research-backed fundamental)
+  const rowOptions = compounds.filter(ex =>
+    ex.muscleGroups.includes('back') &&
+    ex.name.toLowerCase().includes('row')
+  );
+  const row = randomSelect(rowOptions);
+  if (row) selected.push(row);
+
+  // 4. Vertical Push - Overhead Press (research-backed fundamental)
+  const shoulderOptions = compounds.filter(ex =>
+    ex.muscleGroups.includes('shoulders') &&
+    (ex.name.toLowerCase().includes('overhead press') || ex.name.toLowerCase().includes('press'))
+  );
+  const shoulder = randomSelect(shoulderOptions);
   if (shoulder) selected.push(shoulder);
 
-  // Arms - biceps
-  const biceps = upper.find(ex => ex.muscleGroups.includes('biceps'));
-  if (biceps) selected.push(biceps);
-
-  // Arms - triceps
-  const triceps = upper.find(ex => ex.muscleGroups.includes('triceps'));
-  if (triceps) selected.push(triceps);
+  // 5. Arms - only for intermediate/advanced (beginners get enough from compounds)
+  if (experienceLevel !== 'beginner') {
+    const bicepsOptions = upper.filter(ex => ex.muscleGroups.includes('biceps') && ex.type === 'isolation');
+    const biceps = randomSelect(bicepsOptions);
+    if (biceps) selected.push(biceps);
+  }
 
   return selected.filter(Boolean);
 }
@@ -90,72 +124,126 @@ function selectLowerBodyExercises(exercises, experienceLevel) {
 
   const selected = [];
 
-  // Main compound - squat variation
-  const squat = lower.find(ex =>
-    ex.muscleGroups.includes('quads') && ex.type === 'compound' && ex.name.toLowerCase().includes('squat')
-  );
+  // 1. Knee Dominant - Squat variation (research-backed fundamental)
+  // Prioritize barbell squat for intermediate/advanced, goblet for beginners
+  let squatOptions;
+  if (experienceLevel === 'beginner') {
+    squatOptions = lower.filter(ex =>
+      ex.type === 'compound' &&
+      (ex.name.toLowerCase().includes('goblet squat') || ex.name.toLowerCase().includes('bodyweight squat'))
+    );
+  }
+  if (!squatOptions || squatOptions.length === 0) {
+    squatOptions = lower.filter(ex =>
+      ex.muscleGroups.includes('quads') && ex.type === 'compound' && ex.name.toLowerCase().includes('squat')
+    );
+  }
+  const squat = randomSelect(squatOptions);
   if (squat) selected.push(squat);
 
-  // Hip hinge - deadlift variation
-  const deadlift = lower.find(ex =>
-    ex.muscleGroups.includes('hamstrings') && (ex.name.toLowerCase().includes('deadlift') || ex.name.toLowerCase().includes('hip'))
-  );
+  // 2. Hip Hinge - Deadlift variation (research-backed fundamental)
+  // Romanian deadlift for beginners is safer
+  let deadliftOptions;
+  if (experienceLevel === 'beginner') {
+    deadliftOptions = lower.filter(ex => ex.name.toLowerCase().includes('romanian deadlift'));
+  }
+  if (!deadliftOptions || deadliftOptions.length === 0) {
+    deadliftOptions = lower.filter(ex =>
+      ex.muscleGroups.includes('hamstrings') && ex.name.toLowerCase().includes('deadlift')
+    );
+  }
+  const deadlift = randomSelect(deadliftOptions);
   if (deadlift) selected.push(deadlift);
 
-  // Unilateral movement
-  const unilateral = lower.find(ex =>
-    ex.type === 'compound' && (ex.name.toLowerCase().includes('lunge') || ex.name.toLowerCase().includes('split'))
+  // 3. Unilateral movement (research shows important for balance and injury prevention)
+  const unilateralOptions = lower.filter(ex =>
+    ex.type === 'compound' &&
+    (ex.name.toLowerCase().includes('lunge') || ex.name.toLowerCase().includes('split squat'))
   );
+  const unilateral = randomSelect(unilateralOptions);
   if (unilateral) selected.push(unilateral);
 
-  // Hamstring isolation
-  const hamstring = lower.find(ex => ex.muscleGroups.includes('hamstrings') && ex.type === 'isolation');
-  if (hamstring) selected.push(hamstring);
+  // 4. Glute isolation (research shows hip thrusts are highly effective)
+  const gluteOptions = lower.filter(ex =>
+    ex.muscleGroups.includes('glutes') &&
+    (ex.name.toLowerCase().includes('hip thrust') || ex.name.toLowerCase().includes('glute bridge'))
+  );
+  const glute = randomSelect(gluteOptions);
+  if (glute) selected.push(glute);
 
-  // Calf exercise
-  const calf = lower.find(ex => ex.muscleGroups.includes('calves'));
-  if (calf) selected.push(calf);
+  // 5. Calves - only for intermediate/advanced
+  if (experienceLevel !== 'beginner') {
+    const calfOptions = lower.filter(ex => ex.muscleGroups.includes('calves'));
+    const calf = randomSelect(calfOptions);
+    if (calf) selected.push(calf);
+  }
 
   return selected.filter(Boolean);
 }
 
-// Select full body exercises
+// Select full body exercises (following StrongLifts/Starting Strength principles)
 function selectFullBodyExercises(exercises, experienceLevel) {
   const selected = [];
 
-  // Upper compound
-  const upperCompound = exercises.find(ex =>
-    ex.type === 'compound' && ex.muscleGroups.some(m => ['chest', 'back', 'shoulders'].includes(m))
-  );
-  if (upperCompound) selected.push(upperCompound);
+  // 1. Squat (barbell for intermediate+, goblet for beginners)
+  let squatOptions;
+  if (experienceLevel === 'beginner') {
+    squatOptions = exercises.filter(ex =>
+      ex.name.toLowerCase().includes('goblet squat') || ex.name.toLowerCase().includes('bodyweight squat')
+    );
+  }
+  if (!squatOptions || squatOptions.length === 0) {
+    squatOptions = exercises.filter(ex =>
+      ex.type === 'compound' && ex.name.toLowerCase().includes('squat')
+    );
+  }
+  const squat = randomSelect(squatOptions);
+  if (squat) selected.push(squat);
 
-  // Lower compound
-  const lowerCompound = exercises.find(ex =>
-    ex.type === 'compound' && ex.muscleGroups.some(m => ['quads', 'hamstrings', 'glutes'].includes(m))
+  // 2. Bench Press or Push variation
+  const benchOptions = exercises.filter(ex =>
+    ex.muscleGroups.includes('chest') && ex.name.toLowerCase().includes('bench press')
   );
-  if (lowerCompound) selected.push(lowerCompound);
+  const bench = randomSelect(benchOptions);
+  if (bench) selected.push(bench);
 
-  // Pull exercise
-  const pull = exercises.find(ex =>
-    ex.type === 'compound' && ex.muscleGroups.includes('back')
+  // 3. Deadlift or Hip Hinge
+  let deadliftOptions;
+  if (experienceLevel === 'beginner') {
+    deadliftOptions = exercises.filter(ex => ex.name.toLowerCase().includes('romanian deadlift'));
+  }
+  if (!deadliftOptions || deadliftOptions.length === 0) {
+    deadliftOptions = exercises.filter(ex => ex.name.toLowerCase().includes('deadlift'));
+  }
+  const deadlift = randomSelect(deadliftOptions);
+  if (deadlift) selected.push(deadlift);
+
+  // 4. Row (horizontal pull)
+  const rowOptions = exercises.filter(ex =>
+    ex.type === 'compound' && ex.muscleGroups.includes('back') && ex.name.toLowerCase().includes('row')
   );
-  if (pull) selected.push(pull);
+  const row = randomSelect(rowOptions);
+  if (row) selected.push(row);
 
-  // Core
-  const core = exercises.find(ex => ex.muscleGroups.includes('core') || ex.muscleGroups.includes('abs'));
-  if (core) selected.push(core);
+  // 5. Overhead Press (vertical push)
+  const pressOptions = exercises.filter(ex =>
+    ex.muscleGroups.includes('shoulders') && ex.name.toLowerCase().includes('overhead press')
+  );
+  const press = randomSelect(pressOptions);
+  if (press) selected.push(press);
 
   return selected.filter(Boolean);
 }
 
-// Select cardio exercises
+// Select cardio exercises with variety
 function selectCardioExercises(exercises, cardioType = 'any') {
   const cardio = exercises.filter(ex => ex.category === 'cardio');
 
   if (cardio.length === 0) return [];
 
-  // Return variety of cardio
-  return cardio.slice(0, 3);
+  // Shuffle and return 3 random cardio exercises for variety
+  const shuffled = [...cardio].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, 3);
 }
 
 // Assign sets, reps, and intensity based on goal and experience
@@ -175,34 +263,85 @@ function assignVolume(exercise, goal, experienceLevel) {
     return cardioVolumes[goal] || cardioVolumes['general-fitness'];
   }
 
-  // Strength exercises
+  // Strength exercises - volumes based on research and experience level
   const volumeSchemes = {
     'strength': {
-      compound: { sets: 4, reps: '4-6', rest: '3 min' },
-      isolation: { sets: 3, reps: '8-10', rest: '2 min' }
+      beginner: {
+        compound: { sets: 3, reps: '5', rest: '3 min' }, // Linear progression like Starting Strength
+        isolation: { sets: 2, reps: '8-10', rest: '90 sec' }
+      },
+      intermediate: {
+        compound: { sets: 4, reps: '4-6', rest: '3 min' },
+        isolation: { sets: 3, reps: '8-10', rest: '2 min' }
+      },
+      advanced: {
+        compound: { sets: 5, reps: '3-5', rest: '3-5 min' },
+        isolation: { sets: 3, reps: '6-8', rest: '2 min' }
+      }
     },
     'muscle-building': {
-      compound: { sets: 4, reps: '6-10', rest: '2 min' },
-      isolation: { sets: 3, reps: '10-12', rest: '90 sec' }
+      beginner: {
+        compound: { sets: 3, reps: '8-12', rest: '90 sec' }, // Hypertrophy range
+        isolation: { sets: 2, reps: '10-12', rest: '60 sec' }
+      },
+      intermediate: {
+        compound: { sets: 4, reps: '6-10', rest: '2 min' },
+        isolation: { sets: 3, reps: '10-12', rest: '90 sec' }
+      },
+      advanced: {
+        compound: { sets: 5, reps: '6-12', rest: '2 min' },
+        isolation: { sets: 4, reps: '10-15', rest: '90 sec' }
+      }
     },
     'endurance': {
-      compound: { sets: 3, reps: '12-15', rest: '60 sec' },
-      isolation: { sets: 2, reps: '15-20', rest: '45 sec' }
+      beginner: {
+        compound: { sets: 2, reps: '12-15', rest: '60 sec' },
+        isolation: { sets: 2, reps: '15-20', rest: '45 sec' }
+      },
+      intermediate: {
+        compound: { sets: 3, reps: '12-15', rest: '60 sec' },
+        isolation: { sets: 3, reps: '15-20', rest: '45 sec' }
+      },
+      advanced: {
+        compound: { sets: 4, reps: '15-20', rest: '45 sec' },
+        isolation: { sets: 3, reps: '20-25', rest: '30 sec' }
+      }
     },
     'weight-loss': {
-      compound: { sets: 3, reps: '10-12', rest: '60 sec' },
-      isolation: { sets: 2, reps: '12-15', rest: '45 sec' }
+      beginner: {
+        compound: { sets: 3, reps: '10-12', rest: '60 sec' },
+        isolation: { sets: 2, reps: '12-15', rest: '45 sec' }
+      },
+      intermediate: {
+        compound: { sets: 3, reps: '10-12', rest: '60 sec' },
+        isolation: { sets: 3, reps: '12-15', rest: '45 sec' }
+      },
+      advanced: {
+        compound: { sets: 4, reps: '12-15', rest: '60 sec' },
+        isolation: { sets: 3, reps: '15-20', rest: '45 sec' }
+      }
     },
     'general-fitness': {
-      compound: { sets: 3, reps: '8-12', rest: '90 sec' },
-      isolation: { sets: 3, reps: '10-15', rest: '60 sec' }
+      beginner: {
+        compound: { sets: 3, reps: '8-12', rest: '90 sec' }, // Most versatile
+        isolation: { sets: 2, reps: '10-15', rest: '60 sec' }
+      },
+      intermediate: {
+        compound: { sets: 3, reps: '8-12', rest: '90 sec' },
+        isolation: { sets: 3, reps: '10-15', rest: '60 sec' }
+      },
+      advanced: {
+        compound: { sets: 4, reps: '8-12', rest: '90 sec' },
+        isolation: { sets: 3, reps: '12-15', rest: '60 sec' }
+      }
     }
   };
 
-  const scheme = volumeSchemes[goal] || volumeSchemes['general-fitness'];
+  const goalScheme = volumeSchemes[goal] || volumeSchemes['general-fitness'];
+  const levelScheme = goalScheme[experienceLevel] || goalScheme['beginner'];
   const isCompound = exercise.type === 'compound';
 
-  return isCompound ? scheme.compound : scheme.isolation;
+  return isCompound ? levelScheme.compound : levelScheme.isolation;
 }
 
 // Generate weekly plan
@@ -215,7 +354,8 @@ exports.generatePlan = async (req, res) => {
       goal,
       strengthCardioRatio,
       experienceLevel,
-      equipment
+      equipment,
+      useAI // New option to force AI generation
     } = req.body;
 
     // Validate inputs
@@ -223,6 +363,28 @@ exports.generatePlan = async (req, res) => {
       return res.status(400).json({
         error: 'Missing required fields: userId, daysPerWeek, goal, equipment'
       });
+    }
+
+    // Use AI generation if requested or as fallback
+    if (useAI) {
+      try {
+        const aiPlan = await generateAIWorkoutPlan(req.body);
+
+        // Save AI-generated plan
+        const plansData = await fs.readFile(PLANS_PATH, 'utf8');
+        const plans = JSON.parse(plansData);
+        plans.plans.push(aiPlan);
+        await fs.writeFile(PLANS_PATH, JSON.stringify(plans, null, 2));
+
+        return res.status(201).json({
+          message: 'AI-powered training plan generated successfully',
+          plan: aiPlan,
+          aiGenerated: true
+        });
+      } catch (aiError) {
+        console.error('AI generation failed, falling back to standard generation:', aiError);
+        // Continue with standard generation below
+      }
     }
 
     // Load exercises
@@ -304,7 +466,31 @@ exports.generatePlan = async (req, res) => {
         { day: 5, type: 'lower' }
       ];
 
-      const schedule = daysPerWeek === 4 ? schedule4Day : schedule5Day;
+      const schedule6Day = [
+        { day: 0, type: 'upper' },
+        { day: 1, type: 'lower' },
+        { day: 2, type: 'cardio' },
+        { day: 3, type: 'upper' },
+        { day: 4, type: 'lower' },
+        { day: 5, type: 'cardio' }
+      ];
+
+      const schedule7Day = [
+        { day: 0, type: 'upper' },
+        { day: 1, type: 'lower' },
+        { day: 2, type: 'cardio' },
+        { day: 3, type: 'rest' },
+        { day: 4, type: 'upper' },
+        { day: 5, type: 'lower' },
+        { day: 6, type: 'rest' }
+      ];
+
+      let schedule;
+      if (daysPerWeek === 4) schedule = schedule4Day;
+      else if (daysPerWeek === 5) schedule = schedule5Day;
+      else if (daysPerWeek === 6) schedule = schedule6Day;
+      else if (daysPerWeek === 7) schedule = schedule7Day;
+      else schedule = schedule5Day; // default
 
       for (let i = 0; i < 7; i++) {
         const workout = schedule.find(s => s.day === i);

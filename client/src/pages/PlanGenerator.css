@@ -31,6 +31,36 @@
   border-radius: 8px;
   padding: 1rem;
   background: var(--bg);
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.day-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.day-card.dragging {
+  opacity: 0.5;
+  cursor: grabbing !important;
+}
+
+.drag-indicator {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-light);
+  font-size: 1.2rem;
+  opacity: 0.5;
+  letter-spacing: -2px;
+  user-select: none;
+  pointer-events: none;
+}
+
+.day-card:hover .drag-indicator {
+  opacity: 1;
+  color: var(--primary);
 }
 
 .day-header {

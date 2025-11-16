@@ -1,0 +1,91 @@
+{
+  "workouts": [
+    {
+      "id": "workout-c86447c2-0661-46d0-9393-be78a620d10e",
+      "userId": "user-b5c6e7e6-b652-41d8-9272-5ff00a81b4fb",
+      "planId": "plan-38a4505c-e4d2-423e-a140-a5e9fa06c87f",
+      "date": "2025-11-16T19:43:15.053Z",
+      "exercises": [
+        {
+          "exerciseId": "ex093",
+          "sets": [
+            {
+              "weight": 0,
+              "reps": 0,
+              "completed": false
+            },
+            {
+              "weight": 0,
+              "reps": 0,
+              "completed": false
+            },
+            {
+              "weight": 0,
+              "reps": 0,
+              "completed": false
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex014",
+          "sets": [
+            {
+              "weight": 0,
+              "reps": 0,
+              "completed": false
+            },
+            {
+              "weight": 0,
+              "reps": 0,
+              "completed": false
+            },
+            {
+              "weight": 0,
+              "reps": 0,
+              "completed": false
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex011",
+          "sets": [
+            {
+              "weight": 0,
+              "reps": 0,
+              "completed": false
+            },
+            {
+              "weight": 0,
+              "reps": 0,
+              "completed": false
+            },
+            {
+              "weight": 0,
+              "reps": 0,
+              "completed": false
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex061",
+          "sets": [
+            {
+              "weight": 0,
+              "reps": 0,
+              "completed": false
+            },
+            {
+              "weight": 0,
+              "reps": 0,
+              "completed": false
+            }
+          ]
+        }
+      ],
+      "duration": null,
+      "notes": "",
+      "rpe": 5,
+      "createdAt": "2025-11-16T19:43:15.063Z"
+    }
+  ]
+}

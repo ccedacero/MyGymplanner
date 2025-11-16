@@ -66,10 +66,46 @@
   margin-bottom: 0.5rem;
 }
 
+.exercise-title-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
 .current-exercise-name {
   font-size: 1.75rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  flex: 1;
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-icon:hover {
+  transform: scale(1.1);
+}
+
+.btn-icon:active {
+  transform: scale(0.95);
+}
+
+.video-btn {
+  background: var(--primary);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .target-volume {
@@ -84,10 +120,10 @@
 
 .set-row {
   display: grid;
-  grid-template-columns: 60px 1fr 1fr 60px;
-  gap: 0.75rem;
+  grid-template-columns: 50px 1fr 1fr 52px 32px;
+  gap: 0.5rem;
   align-items: center;
-  padding: 1rem;
+  padding: 0.75rem;
   background: var(--surface);
   border: 2px solid var(--border);
   border-radius: 12px;
@@ -157,6 +193,34 @@
   background: var(--secondary);
   border-color: var(--secondary);
   color: white;
+}
+
+.remove-set-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  color: var(--text-light);
+  font-size: 1.5rem;
+  line-height: 1;
+  padding: 0;
+  transition: all 0.2s;
+}
+
+.remove-set-btn:hover {
+  background: #fee;
+  border-color: #fcc;
+  color: #c33;
+}
+
+.remove-set-btn:active {
+  transform: scale(0.9);
+}
+
+.add-set-btn {
+  margin-top: 0.5rem;
+  font-weight: 600;
 }
 
 /* Cardio Logger */
@@ -247,6 +311,76 @@
   margin-top: 0.5rem;
   font-size: 0.875rem;
   color: var(--text-light);
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 1rem;
+}
+
+.modal-content {
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.video-modal {
+  max-width: 800px;
+  width: 100%;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--text-light);
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.modal-close:hover {
+  background: var(--border);
+  color: var(--text);
+}
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  margin-top: 1rem;
+  border-radius: 8px;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 /* Responsive Adjustments */

@@ -19,7 +19,7 @@ function Header({ user, onLogout }) {
 
         <nav className="header-nav">
           <Link to="/dashboard" className="nav-link">Dashboard</Link>
-          <Link to="/generate-plan" className="nav-link">New Plan</Link>
+          <Link to="/schedule" className="nav-link">Schedule</Link>
           <Link to="/today" className="nav-link">Today</Link>
           <Link to="/progress" className="nav-link">Progress</Link>
         </nav>

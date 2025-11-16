@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "id": "user-b5c6e7e6-b652-41d8-9272-5ff00a81b4fb",
+      "email": "ccedacero@gmail.com",
+      "password": "$2a$10$3dIt8oxXDM87RZ0lrpYtmOy6Ec0V2LwChlHMRg/PbX6ew5EmDGprO",
+      "name": "cc",
+      "equipment": [
+        "barbell",
+        "bench",
+        "rack",
+        "pull-up-bar",
+        "dumbbells"
+      ],
+      "createdAt": "2025-11-16T18:00:36.784Z",
+      "updatedAt": "2025-11-16T18:00:42.547Z"
+    }
+  ]
+}

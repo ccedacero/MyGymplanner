@@ -127,7 +127,13 @@ function Dashboard({ user }) {
           </div>
           <div className="stat-card">
             <div className="stat-icon">⏱️</div>
-            <div className="stat-value">{stats.totalDuration || stats.avgDuration * stats.totalWorkouts}</div>
+            <div className="stat-value">
+              {stats.totalDuration
+                ? Math.round(stats.totalDuration)
+                : stats.avgDuration && stats.totalWorkouts
+                  ? Math.round(stats.avgDuration * stats.totalWorkouts)
+                  : 0}
+            </div>
             <div className="stat-label">Total Minutes</div>
             <div className="stat-sublabel">Training Time</div>
           </div>

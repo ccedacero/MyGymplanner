@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard'
 import PlanGenerator from './pages/PlanGenerator'
 import TodaysWorkout from './pages/TodaysWorkout'
 import WorkoutLogger from './pages/WorkoutLogger'
+import WeeklySchedule from './pages/WeeklySchedule'
 import Progress from './pages/Progress'
 import Header from './components/Header'
 
@@ -75,6 +76,11 @@ function App() {
           <Route
             path="/log-workout/:planId/:day"
             element={user ? <WorkoutLogger user={user} /> : <Navigate to="/login" />}
+          />
+
+          <Route
+            path="/schedule"
+            element={user ? <WeeklySchedule user={user} /> : <Navigate to="/login" />}
           />
 
           <Route

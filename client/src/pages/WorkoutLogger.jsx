@@ -15,6 +15,7 @@ function WorkoutLogger({ user }) {
   const [notes, setNotes] = useState('')
   const [rpe, setRpe] = useState(5)
   const [loading, setLoading] = useState(true)
+  const [showVideoModal, setShowVideoModal] = useState(false)
 
   useEffect(() => {
     loadWorkout()
@@ -99,7 +100,7 @@ function WorkoutLogger({ user }) {
           setIsResting(true)
         }
       } else {
-        // Default rest
+        // Default rest - 90 seconds
         setRestTimer(90)
         setIsResting(true)
       }
@@ -146,6 +147,29 @@ function WorkoutLogger({ user }) {
     return `${mins}:${secs.toString().padStart(2, '0')}`
   }
 
+  const addSet = (exerciseIndex, e) => {
+    if (e) e.preventDefault()
+    setExercises(prev => {
+      const newExercises = [...prev]
+      newExercises[exerciseIndex].sets.push({
+        weight: '',
+        reps: '',
+        completed: false
+      })
+      return newExercises
+    })
+  }
+
+  const removeSet = (exerciseIndex, setIndex) => {
+    setExercises(prev => {
+      const newExercises = [...prev]
+      if (newExercises[exerciseIndex].sets.length > 1) {
+        newExercises[exerciseIndex].sets.splice(setIndex, 1)
+      }
+      return newExercises
+    })
+  }
+
   if (loading) {
     return (
       <div className="container">
@@ -156,6 +180,58 @@ function WorkoutLogger({ user }) {
 
   const currentExercise = exercises[currentExerciseIndex]
   const isLastExercise = currentExerciseIndex === exercises.length - 1
+  const isCompletionScreen = currentExerciseIndex >= exercises.length
+
+  // Show completion screen
+  if (isCompletionScreen) {
+    return (
+      <div className="workout-logger">
+        <div className="completion-screen">
+          <div className="card">
+            <h2 className="completion-title">🎉 Great Work!</h2>
+            <p className="text-muted mb-3">How did your workout feel?</p>
+
+            <div className="form-group">
+              <label className="form-label">
+                RPE (Rate of Perceived Exertion): {rpe}/10
+              </label>
+              <input
+                type="range"
+                min="1"
+                max="10"
+                value={rpe}
+                onChange={(e) => setRpe(parseInt(e.target.value))}
+                className="rpe-slider"
+              />
+              <div className="rpe-labels">
+                <span>Easy</span>
+                <span>Moderate</span>
+                <span>Hard</span>
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Notes (optional)</label>
+              <textarea
+                className="form-input"
+                rows="3"
+                placeholder="How did you feel? Any PRs?"
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+              />
+            </div>
+
+            <button
+              onClick={handleCompleteWorkout}
+              className="btn btn-primary btn-block btn-lg"
+            >
+              Complete Workout ✓
+            </button>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="workout-logger">
@@ -182,15 +258,50 @@ function WorkoutLogger({ user }) {
         />
       </div>
 
+      {/* Video Modal */}
+      {showVideoModal && currentExercise?.videoUrl && (
+        <div className="modal-overlay" onClick={() => setShowVideoModal(false)}>
+          <div className="modal-content video-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setShowVideoModal(false)}>×</button>
+            <h3>{currentExercise.name}</h3>
+            <div className="video-wrapper">
+              <iframe
+                width="100%"
+                height="315"
+                src={currentExercise.videoUrl.replace('watch?v=', 'embed/')}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+            {currentExercise.description && (
+              <p className="text-muted mt-2">{currentExercise.description}</p>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <div className="workout-logger-header">
         <div className="exercise-counter">
           Exercise {currentExerciseIndex + 1} of {exercises.length}
         </div>
-        <h1 className="current-exercise-name">{currentExercise?.name}</h1>
+        <div className="exercise-title-row">
+          <h1 className="current-exercise-name">{currentExercise?.name}</h1>
+          {currentExercise?.videoUrl && (
+            <button
+              onClick={() => setShowVideoModal(true)}
+              className="btn-icon video-btn"
+              title="Watch form video"
+            >
+              📹
+            </button>
+          )}
+        </div>
         {currentExercise?.category === 'strength' && (
           <div className="target-volume">
             Target: {currentExercise.volume?.sets}x{currentExercise.volume?.reps}
+            {currentExercise.volume?.rest && <span> • Rest: {currentExercise.volume?.rest}</span>}
           </div>
         )}
       </div>
@@ -207,7 +318,7 @@ function WorkoutLogger({ user }) {
                 <div className="set-number">Set {setIndex + 1}</div>
                 <input
                   type="number"
-                  placeholder="Weight"
+                  placeholder="lbs"
                   className="set-input"
                   value={set.weight}
                   onChange={(e) => handleSetChange(currentExerciseIndex, setIndex, 'weight', e.target.value)}
@@ -215,7 +326,7 @@ function WorkoutLogger({ user }) {
                 />
                 <input
                   type="number"
-                  placeholder="Reps"
+                  placeholder="reps"
                   className="set-input"
                   value={set.reps}
                   onChange={(e) => handleSetChange(currentExerciseIndex, setIndex, 'reps', e.target.value)}
@@ -227,8 +338,24 @@ function WorkoutLogger({ user }) {
                 >
                   {set.completed ? '✓' : '○'}
                 </button>
+                {currentExercise.sets.length > 1 && (
+                  <button
+                    onClick={() => removeSet(currentExerciseIndex, setIndex)}
+                    className="btn-icon remove-set-btn"
+                    title="Remove set"
+                  >
+                    ×
+                  </button>
+                )}
               </div>
             ))}
+            <button
+              onClick={(e) => addSet(currentExerciseIndex, e)}
+              className="btn btn-outline btn-block add-set-btn"
+              type="button"
+            >
+              + Add Set
+            </button>
           </>
         ) : (
           <div className="cardio-logger">
@@ -283,53 +410,6 @@ function WorkoutLogger({ user }) {
           </button>
         )}
       </div>
-
-      {/* Completion Screen */}
-      {currentExerciseIndex >= exercises.length && (
-        <div className="completion-screen">
-          <div className="card">
-            <h2 className="completion-title">🎉 Great Work!</h2>
-            <p className="text-muted mb-3">How did your workout feel?</p>
-
-            <div className="form-group">
-              <label className="form-label">
-                RPE (Rate of Perceived Exertion): {rpe}/10
-              </label>
-              <input
-                type="range"
-                min="1"
-                max="10"
-                value={rpe}
-                onChange={(e) => setRpe(parseInt(e.target.value))}
-                className="rpe-slider"
-              />
-              <div className="rpe-labels">
-                <span>Easy</span>
-                <span>Moderate</span>
-                <span>Hard</span>
-              </div>
-            </div>
-
-            <div className="form-group">
-              <label className="form-label">Notes (optional)</label>
-              <textarea
-                className="form-input"
-                rows="3"
-                placeholder="How did you feel? Any PRs?"
-                value={notes}
-                onChange={(e) => setNotes(e.target.value)}
-              />
-            </div>
-
-            <button
-              onClick={handleCompleteWorkout}
-              className="btn btn-primary btn-block btn-lg"
-            >
-              Complete Workout ✓
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   )
 }
