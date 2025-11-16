@@ -47,6 +47,10 @@ function PlanGenerator({ user }) {
     navigate('/dashboard')
   }
 
+  const handleGenerateAnother = () => {
+    setGeneratedPlan(null)
+  }
+
   if (generatedPlan) {
     return (
       <div className="container plan-preview">
@@ -97,12 +101,20 @@ function PlanGenerator({ user }) {
             ))}
           </div>
 
-          <button
-            onClick={handleSaveAndContinue}
-            className="btn btn-primary btn-block btn-lg mt-3"
-          >
-            Save Plan & Go to Dashboard
-          </button>
+          <div className="button-group mt-3">
+            <button
+              onClick={handleSaveAndContinue}
+              className="btn btn-primary btn-lg"
+            >
+              Save Plan & Go to Dashboard
+            </button>
+            <button
+              onClick={handleGenerateAnother}
+              className="btn btn-outline btn-lg"
+            >
+              Generate Another Plan
+            </button>
+          </div>
         </div>
       </div>
     )

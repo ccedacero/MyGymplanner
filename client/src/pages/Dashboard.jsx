@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import * as api from '../services/api'
 import './Dashboard.css'
 
@@ -10,10 +10,11 @@ function Dashboard({ user }) {
   const [weeklyCalendar, setWeeklyCalendar] = useState([])
   const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     loadDashboardData()
-  }, [user.id])
+  }, [user.id, location.pathname])
 
   const loadDashboardData = async () => {
     try {
