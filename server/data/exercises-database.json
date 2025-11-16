@@ -4,1008 +4,1688 @@
       "id": "ex001",
       "name": "Barbell Bench Press",
       "category": "strength",
-      "muscleGroups": ["chest", "triceps", "shoulders"],
-      "equipment": ["barbell", "bench"],
+      "muscleGroups": [
+        "chest",
+        "triceps",
+        "shoulders"
+      ],
+      "equipment": [
+        "barbell",
+        "bench"
+      ],
       "difficulty": "intermediate",
       "type": "compound",
-      "description": "Classic upper body compound movement for chest development"
+      "description": "Classic upper body compound movement for chest development",
+      "videoUrl": "https://www.youtube.com/watch?v=rT7DgCr-3pg"
     },
     {
       "id": "ex002",
       "name": "Dumbbell Bench Press",
       "category": "strength",
-      "muscleGroups": ["chest", "triceps", "shoulders"],
-      "equipment": ["dumbbells", "bench"],
+      "muscleGroups": [
+        "chest",
+        "triceps",
+        "shoulders"
+      ],
+      "equipment": [
+        "dumbbells",
+        "bench"
+      ],
       "difficulty": "beginner",
       "type": "compound",
-      "description": "Dumbbell variation allowing greater range of motion"
+      "description": "Dumbbell variation allowing greater range of motion",
+      "videoUrl": "https://www.youtube.com/watch?v=622ku8i0M14"
     },
     {
       "id": "ex003",
       "name": "Incline Barbell Bench Press",
       "category": "strength",
-      "muscleGroups": ["chest", "triceps", "shoulders"],
-      "equipment": ["barbell", "bench"],
+      "muscleGroups": [
+        "chest",
+        "triceps",
+        "shoulders"
+      ],
+      "equipment": [
+        "barbell",
+        "bench"
+      ],
       "difficulty": "intermediate",
       "type": "compound",
-      "description": "Targets upper chest with incline angle"
+      "description": "Targets upper chest with incline angle",
+      "videoUrl": "https://www.youtube.com/watch?v=IP0RABG34Hw"
     },
     {
       "id": "ex004",
       "name": "Decline Barbell Bench Press",
       "category": "strength",
-      "muscleGroups": ["chest", "triceps"],
-      "equipment": ["barbell", "bench"],
+      "muscleGroups": [
+        "chest",
+        "triceps"
+      ],
+      "equipment": [
+        "barbell",
+        "bench"
+      ],
       "difficulty": "intermediate",
       "type": "compound",
-      "description": "Targets lower chest with decline angle"
+      "description": "Targets lower chest with decline angle",
+      "videoUrl": "https://www.youtube.com/watch?v=LfyQBUKR8SE"
     },
     {
       "id": "ex005",
       "name": "Dumbbell Flyes",
       "category": "strength",
-      "muscleGroups": ["chest"],
-      "equipment": ["dumbbells", "bench"],
+      "muscleGroups": [
+        "chest"
+      ],
+      "equipment": [
+        "dumbbells",
+        "bench"
+      ],
       "difficulty": "beginner",
       "type": "isolation",
-      "description": "Isolation movement for chest stretch and contraction"
+      "description": "Isolation movement for chest stretch and contraction",
+      "videoUrl": "https://www.youtube.com/watch?v=eozdVDA78K0"
     },
     {
       "id": "ex006",
       "name": "Cable Flyes",
       "category": "strength",
-      "muscleGroups": ["chest"],
-      "equipment": ["cable-machine"],
+      "muscleGroups": [
+        "chest"
+      ],
+      "equipment": [
+        "cable-machine"
+      ],
       "difficulty": "beginner",
       "type": "isolation",
-      "description": "Constant tension chest isolation exercise"
+      "description": "Constant tension chest isolation exercise",
+      "videoUrl": "https://www.youtube.com/watch?v=Iwe6AmxVf7o"
     },
     {
       "id": "ex007",
       "name": "Push-Ups",
       "category": "strength",
-      "muscleGroups": ["chest", "triceps", "shoulders", "core"],
-      "equipment": ["bodyweight"],
+      "muscleGroups": [
+        "chest",
+        "triceps",
+        "shoulders",
+        "core"
+      ],
+      "equipment": [
+        "bodyweight"
+      ],
       "difficulty": "beginner",
       "type": "compound",
-      "description": "Bodyweight chest and triceps exercise"
+      "description": "Bodyweight chest and triceps exercise",
+      "videoUrl": "https://www.youtube.com/watch?v=IODxDxX7oi4"
     },
     {
       "id": "ex008",
       "name": "Barbell Squat",
       "category": "strength",
-      "muscleGroups": ["quads", "glutes", "hamstrings", "core"],
-      "equipment": ["barbell", "rack"],
+      "muscleGroups": [
+        "quads",
+        "glutes",
+        "hamstrings",
+        "core"
+      ],
+      "equipment": [
+        "barbell",
+        "rack"
+      ],
       "difficulty": "intermediate",
       "type": "compound",
-      "description": "King of leg exercises - full lower body development"
+      "description": "King of leg exercises - full lower body development",
+      "videoUrl": "https://www.youtube.com/watch?v=ultWZbUMPL8"
     },
     {
       "id": "ex009",
       "name": "Front Squat",
       "category": "strength",
-      "muscleGroups": ["quads", "core", "upper-back"],
-      "equipment": ["barbell", "rack"],
+      "muscleGroups": [
+        "quads",
+        "core",
+        "upper-back"
+      ],
+      "equipment": [
+        "barbell",
+        "rack"
+      ],
       "difficulty": "advanced",
       "type": "compound",
-      "description": "Quad-dominant squat variation with front rack position"
+      "description": "Quad-dominant squat variation with front rack position",
+      "videoUrl": "https://www.youtube.com/watch?v=uYumuL_G_V0"
     },
     {
       "id": "ex010",
       "name": "Goblet Squat",
       "category": "strength",
-      "muscleGroups": ["quads", "glutes", "core"],
-      "equipment": ["dumbbell"],
+      "muscleGroups": [
+        "quads",
+        "glutes",
+        "core"
+      ],
+      "equipment": [
+        "dumbbell"
+      ],
       "difficulty": "beginner",
       "type": "compound",
-      "description": "Beginner-friendly squat with dumbbell or kettlebell"
+      "description": "Beginner-friendly squat with dumbbell or kettlebell",
+      "videoUrl": "https://www.youtube.com/watch?v=MeHbYC32_5c"
     },
     {
       "id": "ex011",
       "name": "Bulgarian Split Squat",
       "category": "strength",
-      "muscleGroups": ["quads", "glutes", "hamstrings"],
-      "equipment": ["dumbbells", "bench"],
+      "muscleGroups": [
+        "quads",
+        "glutes",
+        "hamstrings"
+      ],
+      "equipment": [
+        "dumbbells",
+        "bench"
+      ],
       "difficulty": "intermediate",
       "type": "compound",
-      "description": "Single-leg squat variation for unilateral strength"
+      "description": "Single-leg squat variation for unilateral strength",
+      "videoUrl": "https://www.youtube.com/watch?v=2C-uNgKwPLE"
     },
     {
       "id": "ex012",
       "name": "Leg Press",
       "category": "strength",
-      "muscleGroups": ["quads", "glutes", "hamstrings"],
-      "equipment": ["machine"],
+      "muscleGroups": [
+        "quads",
+        "glutes",
+        "hamstrings"
+      ],
+      "equipment": [
+        "machine"
+      ],
       "difficulty": "beginner",
       "type": "compound",
-      "description": "Machine-based leg development"
+      "description": "Machine-based leg development",
+      "videoUrl": "https://www.youtube.com/watch?v=IZxyjW7MPJQ"
     },
     {
       "id": "ex013",
       "name": "Deadlift",
       "category": "strength",
-      "muscleGroups": ["hamstrings", "glutes", "back", "traps", "forearms"],
-      "equipment": ["barbell"],
+      "muscleGroups": [
+        "hamstrings",
+        "glutes",
+        "back",
+        "traps",
+        "forearms"
+      ],
+      "equipment": [
+        "barbell"
+      ],
       "difficulty": "advanced",
       "type": "compound",
-      "description": "Full posterior chain development"
+      "description": "Full posterior chain development",
+      "videoUrl": "https://www.youtube.com/watch?v=op9kVnSso6Q"
     },
     {
       "id": "ex014",
       "name": "Romanian Deadlift",
       "category": "strength",
-      "muscleGroups": ["hamstrings", "glutes", "lower-back"],
-      "equipment": ["barbell"],
+      "muscleGroups": [
+        "hamstrings",
+        "glutes",
+        "lower-back"
+      ],
+      "equipment": [
+        "barbell"
+      ],
       "difficulty": "intermediate",
       "type": "compound",
-      "description": "Hip-hinge movement targeting hamstrings and glutes"
+      "description": "Hip-hinge movement targeting hamstrings and glutes",
+      "videoUrl": "https://www.youtube.com/watch?v=JCXUYuzwNrM"
     },
     {
       "id": "ex015",
       "name": "Sumo Deadlift",
       "category": "strength",
-      "muscleGroups": ["hamstrings", "glutes", "quads", "back"],
-      "equipment": ["barbell"],
+      "muscleGroups": [
+        "hamstrings",
+        "glutes",
+        "quads",
+        "back"
+      ],
+      "equipment": [
+        "barbell"
+      ],
       "difficulty": "intermediate",
       "type": "compound",
-      "description": "Wide-stance deadlift variation"
+      "description": "Wide-stance deadlift variation",
+      "videoUrl": "https://www.youtube.com/watch?v=NuZq0X8C394"
     },
     {
       "id": "ex016",
       "name": "Leg Curl",
       "category": "strength",
-      "muscleGroups": ["hamstrings"],
-      "equipment": ["machine"],
+      "muscleGroups": [
+        "hamstrings"
+      ],
+      "equipment": [
+        "machine"
+      ],
       "difficulty": "beginner",
       "type": "isolation",
-      "description": "Hamstring isolation exercise"
+      "description": "Hamstring isolation exercise",
+      "videoUrl": "https://www.youtube.com/watch?v=ELOCsoDSmrg"
     },
     {
       "id": "ex017",
       "name": "Leg Extension",
       "category": "strength",
-      "muscleGroups": ["quads"],
-      "equipment": ["machine"],
+      "muscleGroups": [
+        "quads"
+      ],
+      "equipment": [
+        "machine"
+      ],
       "difficulty": "beginner",
       "type": "isolation",
-      "description": "Quad isolation exercise"
+      "description": "Quad isolation exercise",
+      "videoUrl": "https://www.youtube.com/watch?v=YyvSfVjQeL0"
     },
     {
       "id": "ex018",
       "name": "Walking Lunges",
       "category": "strength",
-      "muscleGroups": ["quads", "glutes", "hamstrings", "calves"],
-      "equipment": ["dumbbells"],
+      "muscleGroups": [
+        "quads",
+        "glutes",
+        "hamstrings",
+        "calves"
+      ],
+      "equipment": [
+        "dumbbells"
+      ],
       "difficulty": "beginner",
       "type": "compound",
-      "description": "Dynamic lunge movement"
+      "description": "Dynamic lunge movement",
+      "videoUrl": "https://www.youtube.com/watch?v=L8fvypPrzzs"
     },
     {
       "id": "ex019",
       "name": "Calf Raises",
       "category": "strength",
-      "muscleGroups": ["calves"],
-      "equipment": ["machine", "dumbbells"],
+      "muscleGroups": [
+        "calves"
+      ],
+      "equipment": [
+        "machine",
+        "dumbbells"
+      ],
       "difficulty": "beginner",
       "type": "isolation",
-      "description": "Calf development exercise"
+      "description": "Calf development exercise",
+      "videoUrl": "https://www.youtube.com/watch?v=gwLzBJYoWlI"
     },
     {
       "id": "ex020",
       "name": "Hip Thrust",
       "category": "strength",
-      "muscleGroups": ["glutes", "hamstrings"],
-      "equipment": ["barbell", "bench"],
+      "muscleGroups": [
+        "glutes",
+        "hamstrings"
+      ],
+      "equipment": [
+        "barbell",
+        "bench"
+      ],
       "difficulty": "intermediate",
       "type": "compound",
-      "description": "Primary glute-building exercise"
+      "description": "Primary glute-building exercise",
+      "videoUrl": "https://www.youtube.com/watch?v=xDmFkJxPzeM"
     },
     {
       "id": "ex021",
       "name": "Barbell Row",
       "category": "strength",
-      "muscleGroups": ["back", "biceps", "rear-delts"],
-      "equipment": ["barbell"],
+      "muscleGroups": [
+        "back",
+        "biceps",
+        "rear-delts"
+      ],
+      "equipment": [
+        "barbell"
+      ],
       "difficulty": "intermediate",
       "type": "compound",
-      "description": "Bent-over row for back thickness"
+      "description": "Bent-over row for back thickness",
+      "videoUrl": "https://www.youtube.com/watch?v=9efgcAjQe7E"
     },
     {
       "id": "ex022",
       "name": "Pendlay Row",
       "category": "strength",
-      "muscleGroups": ["back", "biceps"],
-      "equipment": ["barbell"],
+      "muscleGroups": [
+        "back",
+        "biceps"
+      ],
+      "equipment": [
+        "barbell"
+      ],
       "difficulty": "advanced",
       "type": "compound",
-      "description": "Explosive row from floor with strict form"
+      "description": "Explosive row from floor with strict form",
+      "videoUrl": "https://www.youtube.com/watch?v=ZlRrIsoDpKg"
     },
     {
       "id": "ex023",
       "name": "Dumbbell Row",
       "category": "strength",
-      "muscleGroups": ["back", "biceps"],
-      "equipment": ["dumbbells", "bench"],
+      "muscleGroups": [
+        "back",
+        "biceps"
+      ],
+      "equipment": [
+        "dumbbells",
+        "bench"
+      ],
       "difficulty": "beginner",
       "type": "compound",
-      "description": "Single-arm row for unilateral back development"
+      "description": "Single-arm row for unilateral back development",
+      "videoUrl": "https://www.youtube.com/watch?v=roCP6wCXPqo"
     },
     {
       "id": "ex024",
       "name": "T-Bar Row",
       "category": "strength",
-      "muscleGroups": ["back", "biceps"],
-      "equipment": ["barbell"],
+      "muscleGroups": [
+        "back",
+        "biceps"
+      ],
+      "equipment": [
+        "barbell"
+      ],
       "difficulty": "intermediate",
       "type": "compound",
-      "description": "Landmine row variation"
+      "description": "Landmine row variation",
+      "videoUrl": "https://www.youtube.com/watch?v=j3Igk5nyZE4"
     },
     {
       "id": "ex025",
       "name": "Seated Cable Row",
       "category": "strength",
-      "muscleGroups": ["back", "biceps"],
-      "equipment": ["cable-machine"],
+      "muscleGroups": [
+        "back",
+        "biceps"
+      ],
+      "equipment": [
+        "cable-machine"
+      ],
       "difficulty": "beginner",
       "type": "compound",
-      "description": "Cable row for back development"
+      "description": "Cable row for back development",
+      "videoUrl": "https://www.youtube.com/watch?v=xQNrFHEMhI4"
     },
     {
       "id": "ex026",
       "name": "Pull-Ups",
       "category": "strength",
-      "muscleGroups": ["back", "biceps"],
-      "equipment": ["pull-up-bar"],
+      "muscleGroups": [
+        "back",
+        "biceps"
+      ],
+      "equipment": [
+        "pull-up-bar"
+      ],
       "difficulty": "intermediate",
       "type": "compound",
-      "description": "Bodyweight vertical pull"
+      "description": "Bodyweight vertical pull",
+      "videoUrl": "https://www.youtube.com/watch?v=eGo4IYlbE5g"
     },
     {
       "id": "ex027",
       "name": "Chin-Ups",
       "category": "strength",
-      "muscleGroups": ["back", "biceps"],
-      "equipment": ["pull-up-bar"],
+      "muscleGroups": [
+        "back",
+        "biceps"
+      ],
+      "equipment": [
+        "pull-up-bar"
+      ],
       "difficulty": "intermediate",
       "type": "compound",
-      "description": "Supinated grip pull-up emphasizing biceps"
+      "description": "Supinated grip pull-up emphasizing biceps",
+      "videoUrl": "https://www.youtube.com/watch?v=brhRXlOhkAM"
     },
     {
       "id": "ex028",
       "name": "Lat Pulldown",
       "category": "strength",
-      "muscleGroups": ["back", "biceps"],
-      "equipment": ["cable-machine"],
+      "muscleGroups": [
+        "back",
+        "biceps"
+      ],
+      "equipment": [
+        "cable-machine"
+      ],
       "difficulty": "beginner",
       "type": "compound",
-      "description": "Machine-based vertical pull"
+      "description": "Machine-based vertical pull",
+      "videoUrl": "https://www.youtube.com/watch?v=CAwf7n6Luuc"
     },
     {
       "id": "ex029",
       "name": "Face Pulls",
       "category": "strength",
-      "muscleGroups": ["rear-delts", "upper-back"],
-      "equipment": ["cable-machine"],
+      "muscleGroups": [
+        "rear-delts",
+        "upper-back"
+      ],
+      "equipment": [
+        "cable-machine"
+      ],
       "difficulty": "beginner",
       "type": "isolation",
-      "description": "Rear delt and upper back exercise"
+      "description": "Rear delt and upper back exercise",
+      "videoUrl": "https://www.youtube.com/watch?v=rep-qVOkqgk"
     },
     {
       "id": "ex030",
       "name": "Overhead Press",
       "category": "strength",
-      "muscleGroups": ["shoulders", "triceps"],
-      "equipment": ["barbell"],
+      "muscleGroups": [
+        "shoulders",
+        "triceps"
+      ],
+      "equipment": [
+        "barbell"
+      ],
       "difficulty": "intermediate",
       "type": "compound",
-      "description": "Standing shoulder press"
+      "description": "Standing shoulder press",
+      "videoUrl": "https://www.youtube.com/watch?v=2yjwXTZQDDI"
     },
     {
       "id": "ex031",
       "name": "Seated Dumbbell Press",
       "category": "strength",
-      "muscleGroups": ["shoulders", "triceps"],
-      "equipment": ["dumbbells", "bench"],
+      "muscleGroups": [
+        "shoulders",
+        "triceps"
+      ],
+      "equipment": [
+        "dumbbells",
+        "bench"
+      ],
       "difficulty": "beginner",
       "type": "compound",
-      "description": "Seated shoulder press with dumbbells"
+      "description": "Seated shoulder press with dumbbells",
+      "videoUrl": "https://www.youtube.com/watch?v=-4oFxBBKS8w"
     },
     {
       "id": "ex032",
       "name": "Arnold Press",
       "category": "strength",
-      "muscleGroups": ["shoulders"],
-      "equipment": ["dumbbells", "bench"],
+      "muscleGroups": [
+        "shoulders"
+      ],
+      "equipment": [
+        "dumbbells",
+        "bench"
+      ],
       "difficulty": "intermediate",
       "type": "compound",
-      "description": "Rotating dumbbell press for complete shoulder development"
+      "description": "Rotating dumbbell press for complete shoulder development",
+      "videoUrl": "https://www.youtube.com/watch?v=6Z15_WdXmVw"
     },
     {
       "id": "ex033",
       "name": "Lateral Raises",
       "category": "strength",
-      "muscleGroups": ["shoulders"],
-      "equipment": ["dumbbells"],
+      "muscleGroups": [
+        "shoulders"
+      ],
+      "equipment": [
+        "dumbbells"
+      ],
       "difficulty": "beginner",
       "type": "isolation",
-      "description": "Side delt isolation"
+      "description": "Side delt isolation",
+      "videoUrl": "https://www.youtube.com/watch?v=3VcKaXpzqRo"
     },
     {
       "id": "ex034",
       "name": "Front Raises",
       "category": "strength",
-      "muscleGroups": ["shoulders"],
-      "equipment": ["dumbbells"],
+      "muscleGroups": [
+        "shoulders"
+      ],
+      "equipment": [
+        "dumbbells"
+      ],
       "difficulty": "beginner",
       "type": "isolation",
-      "description": "Front delt isolation"
+      "description": "Front delt isolation",
+      "videoUrl": "https://www.youtube.com/watch?v=qAl7jJQ_Z3w"
     },
     {
       "id": "ex035",
       "name": "Rear Delt Flyes",
       "category": "strength",
-      "muscleGroups": ["rear-delts"],
-      "equipment": ["dumbbells"],
+      "muscleGroups": [
+        "rear-delts"
+      ],
+      "equipment": [
+        "dumbbells"
+      ],
       "difficulty": "beginner",
       "type": "isolation",
-      "description": "Rear deltoid isolation"
+      "description": "Rear deltoid isolation",
+      "videoUrl": "https://www.youtube.com/watch?v=EA7u4Q_8jQ0"
     },
     {
       "id": "ex036",
       "name": "Upright Row",
       "category": "strength",
-      "muscleGroups": ["shoulders", "traps"],
-      "equipment": ["barbell", "dumbbells"],
+      "muscleGroups": [
+        "shoulders",
+        "traps"
+      ],
+      "equipment": [
+        "barbell",
+        "dumbbells"
+      ],
       "difficulty": "intermediate",
       "type": "compound",
-      "description": "Shoulder and trap development"
+      "description": "Shoulder and trap development",
+      "videoUrl": "https://www.youtube.com/watch?v=TqwvMQsxFtY"
     },
     {
       "id": "ex037",
       "name": "Barbell Curl",
       "category": "strength",
-      "muscleGroups": ["biceps"],
-      "equipment": ["barbell"],
+      "muscleGroups": [
+        "biceps"
+      ],
+      "equipment": [
+        "barbell"
+      ],
       "difficulty": "beginner",
       "type": "isolation",
-      "description": "Classic bicep exercise"
+      "description": "Classic bicep exercise",
+      "videoUrl": "https://www.youtube.com/watch?v=kwG2ipFRgfo"
     },
     {
       "id": "ex038",
       "name": "Dumbbell Curl",
       "category": "strength",
-      "muscleGroups": ["biceps"],
-      "equipment": ["dumbbells"],
+      "muscleGroups": [
+        "biceps"
+      ],
+      "equipment": [
+        "dumbbells"
+      ],
       "difficulty": "beginner",
       "type": "isolation",
-      "description": "Dumbbell bicep curl"
+      "description": "Dumbbell bicep curl",
+      "videoUrl": "https://www.youtube.com/watch?v=sAq_ocpRh_I"
     },
     {
       "id": "ex039",
       "name": "Hammer Curl",
       "category": "strength",
-      "muscleGroups": ["biceps", "forearms"],
-      "equipment": ["dumbbells"],
+      "muscleGroups": [
+        "biceps",
+        "forearms"
+      ],
+      "equipment": [
+        "dumbbells"
+      ],
       "difficulty": "beginner",
       "type": "isolation",
-      "description": "Neutral grip bicep curl"
+      "description": "Neutral grip bicep curl",
+      "videoUrl": "https://www.youtube.com/watch?v=zC3nLlEvin4"
     },
     {
       "id": "ex040",
       "name": "Preacher Curl",
       "category": "strength",
-      "muscleGroups": ["biceps"],
-      "equipment": ["barbell", "bench"],
+      "muscleGroups": [
+        "biceps"
+      ],
+      "equipment": [
+        "barbell",
+        "bench"
+      ],
       "difficulty": "intermediate",
       "type": "isolation",
-      "description": "Strict bicep curl on preacher bench"
+      "description": "Strict bicep curl on preacher bench",
+      "videoUrl": "https://www.youtube.com/watch?v=fIWP-FRFNU0"
     },
     {
       "id": "ex041",
       "name": "Cable Curl",
       "category": "strength",
-      "muscleGroups": ["biceps"],
-      "equipment": ["cable-machine"],
+      "muscleGroups": [
+        "biceps"
+      ],
+      "equipment": [
+        "cable-machine"
+      ],
       "difficulty": "beginner",
       "type": "isolation",
-      "description": "Cable bicep curl for constant tension"
+      "description": "Cable bicep curl for constant tension",
+      "videoUrl": "https://www.youtube.com/watch?v=NFztyshJbD8"
     },
     {
       "id": "ex042",
       "name": "Tricep Dips",
       "category": "strength",
-      "muscleGroups": ["triceps", "chest", "shoulders"],
-      "equipment": ["dip-bars", "bodyweight"],
+      "muscleGroups": [
+        "triceps",
+        "chest",
+        "shoulders"
+      ],
+      "equipment": [
+        "dip-bars",
+        "bodyweight"
+      ],
       "difficulty": "intermediate",
       "type": "compound",
-      "description": "Bodyweight tricep exercise"
+      "description": "Bodyweight tricep exercise",
+      "videoUrl": "https://www.youtube.com/watch?v=2z8JmcrW-As"
     },
     {
       "id": "ex043",
       "name": "Close-Grip Bench Press",
       "category": "strength",
-      "muscleGroups": ["triceps", "chest"],
-      "equipment": ["barbell", "bench"],
+      "muscleGroups": [
+        "triceps",
+        "chest"
+      ],
+      "equipment": [
+        "barbell",
+        "bench"
+      ],
       "difficulty": "intermediate",
       "type": "compound",
-      "description": "Bench press variation for triceps"
+      "description": "Bench press variation for triceps",
+      "videoUrl": "https://www.youtube.com/watch?v=nEF0bv2FW94"
     },
     {
       "id": "ex044",
       "name": "Skull Crushers",
       "category": "strength",
-      "muscleGroups": ["triceps"],
-      "equipment": ["barbell", "bench"],
+      "muscleGroups": [
+        "triceps"
+      ],
+      "equipment": [
+        "barbell",
+        "bench"
+      ],
       "difficulty": "intermediate",
       "type": "isolation",
-      "description": "Lying tricep extension"
+      "description": "Lying tricep extension",
+      "videoUrl": "https://www.youtube.com/watch?v=d_KZxkY_0cM"
     },
     {
       "id": "ex045",
       "name": "Overhead Tricep Extension",
       "category": "strength",
-      "muscleGroups": ["triceps"],
-      "equipment": ["dumbbells"],
+      "muscleGroups": [
+        "triceps"
+      ],
+      "equipment": [
+        "dumbbells"
+      ],
       "difficulty": "beginner",
       "type": "isolation",
-      "description": "Overhead tricep isolation"
+      "description": "Overhead tricep isolation",
+      "videoUrl": "https://www.youtube.com/watch?v=nRiJVZDpdL0"
     },
     {
       "id": "ex046",
       "name": "Tricep Pushdown",
       "category": "strength",
-      "muscleGroups": ["triceps"],
-      "equipment": ["cable-machine"],
+      "muscleGroups": [
+        "triceps"
+      ],
+      "equipment": [
+        "cable-machine"
+      ],
       "difficulty": "beginner",
       "type": "isolation",
-      "description": "Cable tricep pushdown"
+      "description": "Cable tricep pushdown",
+      "videoUrl": "https://www.youtube.com/watch?v=-xa-6cQaZKY"
     },
     {
       "id": "ex047",
       "name": "Kettlebell Swings",
       "category": "strength",
-      "muscleGroups": ["glutes", "hamstrings", "back", "core"],
-      "equipment": ["kettlebell"],
+      "muscleGroups": [
+        "glutes",
+        "hamstrings",
+        "back",
+        "core"
+      ],
+      "equipment": [
+        "kettlebell"
+      ],
       "difficulty": "intermediate",
       "type": "compound",
-      "description": "Ballistic hip hinge movement"
+      "description": "Ballistic hip hinge movement",
+      "videoUrl": "https://www.youtube.com/watch?v=YSxHifyI6s8"
     },
     {
       "id": "ex048",
       "name": "Turkish Get-Up",
       "category": "strength",
-      "muscleGroups": ["full-body", "core", "shoulders"],
-      "equipment": ["kettlebell"],
+      "muscleGroups": [
+        "full-body",
+        "core",
+        "shoulders"
+      ],
+      "equipment": [
+        "kettlebell"
+      ],
       "difficulty": "advanced",
       "type": "compound",
-      "description": "Complex full-body movement"
+      "description": "Complex full-body movement",
+      "videoUrl": "https://www.youtube.com/watch?v=0bWRPC49-KI"
     },
     {
       "id": "ex049",
       "name": "Burpees",
       "category": "strength",
-      "muscleGroups": ["full-body", "cardio"],
-      "equipment": ["bodyweight"],
+      "muscleGroups": [
+        "full-body",
+        "cardio"
+      ],
+      "equipment": [
+        "bodyweight"
+      ],
       "difficulty": "intermediate",
       "type": "compound",
-      "description": "Full-body conditioning exercise"
+      "description": "Full-body conditioning exercise",
+      "videoUrl": "https://www.youtube.com/watch?v=dZgVxmf6jkA"
     },
     {
       "id": "ex050",
       "name": "Plank",
       "category": "strength",
-      "muscleGroups": ["core", "abs"],
-      "equipment": ["bodyweight"],
+      "muscleGroups": [
+        "core",
+        "abs"
+      ],
+      "equipment": [
+        "bodyweight"
+      ],
       "difficulty": "beginner",
       "type": "isometric",
-      "description": "Core stability exercise"
+      "description": "Core stability exercise",
+      "videoUrl": "https://www.youtube.com/watch?v=ASdvN_XEl_c"
     },
     {
       "id": "ex051",
       "name": "Side Plank",
       "category": "strength",
-      "muscleGroups": ["core", "obliques"],
-      "equipment": ["bodyweight"],
+      "muscleGroups": [
+        "core",
+        "obliques"
+      ],
+      "equipment": [
+        "bodyweight"
+      ],
       "difficulty": "beginner",
       "type": "isometric",
-      "description": "Lateral core stability"
+      "description": "Lateral core stability",
+      "videoUrl": "https://www.youtube.com/watch?v=K2VljzCC16g"
     },
     {
       "id": "ex052",
       "name": "Crunches",
       "category": "strength",
-      "muscleGroups": ["abs"],
-      "equipment": ["bodyweight"],
+      "muscleGroups": [
+        "abs"
+      ],
+      "equipment": [
+        "bodyweight"
+      ],
       "difficulty": "beginner",
       "type": "isolation",
-      "description": "Basic ab exercise"
+      "description": "Basic ab exercise",
+      "videoUrl": "https://www.youtube.com/watch?v=Xyd_fa5zoEU"
     },
     {
       "id": "ex053",
       "name": "Hanging Leg Raises",
       "category": "strength",
-      "muscleGroups": ["abs", "hip-flexors"],
-      "equipment": ["pull-up-bar"],
+      "muscleGroups": [
+        "abs",
+        "hip-flexors"
+      ],
+      "equipment": [
+        "pull-up-bar"
+      ],
       "difficulty": "advanced",
       "type": "compound",
-      "description": "Advanced ab exercise"
+      "description": "Advanced ab exercise",
+      "videoUrl": "https://www.youtube.com/watch?v=hdng3Nm1x_E"
     },
     {
       "id": "ex054",
       "name": "Cable Crunches",
       "category": "strength",
-      "muscleGroups": ["abs"],
-      "equipment": ["cable-machine"],
+      "muscleGroups": [
+        "abs"
+      ],
+      "equipment": [
+        "cable-machine"
+      ],
       "difficulty": "beginner",
       "type": "isolation",
-      "description": "Weighted ab crunches"
+      "description": "Weighted ab crunches",
+      "videoUrl": "https://www.youtube.com/watch?v=sEqYbG0sbE0"
     },
     {
       "id": "ex055",
       "name": "Russian Twists",
       "category": "strength",
-      "muscleGroups": ["obliques", "abs"],
-      "equipment": ["bodyweight", "medicine-ball"],
+      "muscleGroups": [
+        "obliques",
+        "abs"
+      ],
+      "equipment": [
+        "bodyweight",
+        "medicine-ball"
+      ],
       "difficulty": "beginner",
       "type": "isolation",
-      "description": "Rotational core exercise"
+      "description": "Rotational core exercise",
+      "videoUrl": "https://www.youtube.com/watch?v=wkD8rjkodUI"
     },
     {
       "id": "ex056",
       "name": "Mountain Climbers",
       "category": "strength",
-      "muscleGroups": ["core", "cardio"],
-      "equipment": ["bodyweight"],
+      "muscleGroups": [
+        "core",
+        "cardio"
+      ],
+      "equipment": [
+        "bodyweight"
+      ],
       "difficulty": "beginner",
       "type": "compound",
-      "description": "Dynamic core and cardio exercise"
+      "description": "Dynamic core and cardio exercise",
+      "videoUrl": "https://www.youtube.com/watch?v=nmwgirgXLYM"
     },
     {
       "id": "ex057",
       "name": "Farmer's Walk",
       "category": "strength",
-      "muscleGroups": ["forearms", "traps", "core", "full-body"],
-      "equipment": ["dumbbells", "kettlebells"],
+      "muscleGroups": [
+        "forearms",
+        "traps",
+        "core",
+        "full-body"
+      ],
+      "equipment": [
+        "dumbbells",
+        "kettlebells"
+      ],
       "difficulty": "beginner",
       "type": "compound",
-      "description": "Loaded carry for grip and core strength"
+      "description": "Loaded carry for grip and core strength",
+      "videoUrl": "https://www.youtube.com/watch?v=rt17lmnaLSM"
     },
     {
       "id": "ex058",
       "name": "Shrugs",
       "category": "strength",
-      "muscleGroups": ["traps"],
-      "equipment": ["barbell", "dumbbells"],
+      "muscleGroups": [
+        "traps"
+      ],
+      "equipment": [
+        "barbell",
+        "dumbbells"
+      ],
       "difficulty": "beginner",
       "type": "isolation",
-      "description": "Trap development"
+      "description": "Trap development",
+      "videoUrl": "https://www.youtube.com/watch?v=g6qbq4Lf1FI"
     },
     {
       "id": "ex059",
       "name": "Box Jumps",
       "category": "strength",
-      "muscleGroups": ["quads", "glutes", "calves", "power"],
-      "equipment": ["box", "bodyweight"],
+      "muscleGroups": [
+        "quads",
+        "glutes",
+        "calves",
+        "power"
+      ],
+      "equipment": [
+        "box",
+        "bodyweight"
+      ],
       "difficulty": "intermediate",
       "type": "plyometric",
-      "description": "Explosive lower body power"
+      "description": "Explosive lower body power",
+      "videoUrl": "https://www.youtube.com/watch?v=NBY9-kTuHEk"
     },
     {
       "id": "ex060",
       "name": "Step-Ups",
       "category": "strength",
-      "muscleGroups": ["quads", "glutes"],
-      "equipment": ["box", "dumbbells"],
+      "muscleGroups": [
+        "quads",
+        "glutes"
+      ],
+      "equipment": [
+        "box",
+        "dumbbells"
+      ],
       "difficulty": "beginner",
       "type": "compound",
-      "description": "Single-leg stepping movement"
+      "description": "Single-leg stepping movement",
+      "videoUrl": "https://www.youtube.com/watch?v=dQqApCGd5Ss"
     },
     {
       "id": "ex061",
       "name": "Glute Bridge",
       "category": "strength",
-      "muscleGroups": ["glutes", "hamstrings"],
-      "equipment": ["bodyweight"],
+      "muscleGroups": [
+        "glutes",
+        "hamstrings"
+      ],
+      "equipment": [
+        "bodyweight"
+      ],
       "difficulty": "beginner",
       "type": "isolation",
-      "description": "Glute activation exercise"
+      "description": "Glute activation exercise",
+      "videoUrl": "https://www.youtube.com/watch?v=wPM8icPu6H8"
     },
     {
       "id": "ex062",
       "name": "Good Mornings",
       "category": "strength",
-      "muscleGroups": ["hamstrings", "glutes", "lower-back"],
-      "equipment": ["barbell"],
+      "muscleGroups": [
+        "hamstrings",
+        "glutes",
+        "lower-back"
+      ],
+      "equipment": [
+        "barbell"
+      ],
       "difficulty": "intermediate",
       "type": "compound",
-      "description": "Hip hinge movement for posterior chain"
+      "description": "Hip hinge movement for posterior chain",
+      "videoUrl": "https://www.youtube.com/watch?v=YA-h3n9L4YU"
     },
     {
       "id": "ex063",
       "name": "Rack Pulls",
       "category": "strength",
-      "muscleGroups": ["back", "traps", "hamstrings"],
-      "equipment": ["barbell", "rack"],
+      "muscleGroups": [
+        "back",
+        "traps",
+        "hamstrings"
+      ],
+      "equipment": [
+        "barbell",
+        "rack"
+      ],
       "difficulty": "intermediate",
       "type": "compound",
-      "description": "Partial deadlift from elevated position"
+      "description": "Partial deadlift from elevated position",
+      "videoUrl": "https://www.youtube.com/watch?v=lVHrRx1vDBw"
     },
     {
       "id": "ex064",
       "name": "Clean and Press",
       "category": "strength",
-      "muscleGroups": ["full-body", "shoulders", "legs", "back"],
-      "equipment": ["barbell"],
+      "muscleGroups": [
+        "full-body",
+        "shoulders",
+        "legs",
+        "back"
+      ],
+      "equipment": [
+        "barbell"
+      ],
       "difficulty": "advanced",
       "type": "compound",
-      "description": "Olympic lift variation"
+      "description": "Olympic lift variation",
+      "videoUrl": "https://www.youtube.com/watch?v=KwYJTpQ_x5A"
     },
     {
       "id": "ex065",
       "name": "Power Clean",
       "category": "strength",
-      "muscleGroups": ["full-body", "power", "legs", "back"],
-      "equipment": ["barbell"],
+      "muscleGroups": [
+        "full-body",
+        "power",
+        "legs",
+        "back"
+      ],
+      "equipment": [
+        "barbell"
+      ],
       "difficulty": "advanced",
       "type": "compound",
-      "description": "Explosive Olympic lift"
+      "description": "Explosive Olympic lift",
+      "videoUrl": "https://www.youtube.com/watch?v=mPsxlNjv7Aw"
     },
     {
       "id": "ex066",
       "name": "Snatch",
       "category": "strength",
-      "muscleGroups": ["full-body", "power", "shoulders"],
-      "equipment": ["barbell"],
+      "muscleGroups": [
+        "full-body",
+        "power",
+        "shoulders"
+      ],
+      "equipment": [
+        "barbell"
+      ],
       "difficulty": "advanced",
       "type": "compound",
-      "description": "Technical Olympic lift"
+      "description": "Technical Olympic lift",
+      "videoUrl": "https://www.youtube.com/watch?v=9xQp2sldyts"
     },
     {
       "id": "ex067",
       "name": "Thruster",
       "category": "strength",
-      "muscleGroups": ["full-body", "quads", "shoulders"],
-      "equipment": ["barbell", "dumbbells"],
+      "muscleGroups": [
+        "full-body",
+        "quads",
+        "shoulders"
+      ],
+      "equipment": [
+        "barbell",
+        "dumbbells"
+      ],
       "difficulty": "intermediate",
       "type": "compound",
-      "description": "Front squat to overhead press"
+      "description": "Front squat to overhead press",
+      "videoUrl": "https://www.youtube.com/watch?v=L219ltL15zk"
     },
     {
       "id": "ex068",
       "name": "Wall Balls",
       "category": "strength",
-      "muscleGroups": ["full-body", "quads", "shoulders", "cardio"],
-      "equipment": ["medicine-ball"],
+      "muscleGroups": [
+        "full-body",
+        "quads",
+        "shoulders",
+        "cardio"
+      ],
+      "equipment": [
+        "medicine-ball"
+      ],
       "difficulty": "intermediate",
       "type": "compound",
-      "description": "Squat and throw conditioning exercise"
+      "description": "Squat and throw conditioning exercise",
+      "videoUrl": "https://www.youtube.com/watch?v=fpUD0mcFp_0"
     },
     {
       "id": "ex069",
       "name": "Pistol Squats",
       "category": "strength",
-      "muscleGroups": ["quads", "glutes", "core", "balance"],
-      "equipment": ["bodyweight"],
+      "muscleGroups": [
+        "quads",
+        "glutes",
+        "core",
+        "balance"
+      ],
+      "equipment": [
+        "bodyweight"
+      ],
       "difficulty": "advanced",
       "type": "compound",
-      "description": "Single-leg squat requiring strength and balance"
+      "description": "Single-leg squat requiring strength and balance",
+      "videoUrl": "https://www.youtube.com/watch?v=vq5-vdgJc0I"
     },
     {
       "id": "ex070",
       "name": "Jump Squats",
       "category": "strength",
-      "muscleGroups": ["quads", "glutes", "calves", "power"],
-      "equipment": ["bodyweight"],
+      "muscleGroups": [
+        "quads",
+        "glutes",
+        "calves",
+        "power"
+      ],
+      "equipment": [
+        "bodyweight"
+      ],
       "difficulty": "intermediate",
       "type": "plyometric",
-      "description": "Explosive squat variation"
+      "description": "Explosive squat variation",
+      "videoUrl": "https://www.youtube.com/watch?v=CVaEhXotL7M"
     },
     {
       "id": "ex071",
       "name": "Running (Easy)",
       "category": "cardio",
-      "muscleGroups": ["full-body", "legs", "cardio"],
-      "equipment": ["none"],
+      "muscleGroups": [
+        "full-body",
+        "legs",
+        "cardio"
+      ],
+      "equipment": [
+        "none"
+      ],
       "difficulty": "beginner",
       "type": "cardio-steady",
-      "description": "Easy conversational pace running"
+      "description": "Easy conversational pace running",
+      "videoUrl": "https://www.youtube.com/watch?v=brFHyOtTwH4"
     },
     {
       "id": "ex072",
       "name": "Running (Tempo)",
       "category": "cardio",
-      "muscleGroups": ["full-body", "legs", "cardio"],
-      "equipment": ["none"],
+      "muscleGroups": [
+        "full-body",
+        "legs",
+        "cardio"
+      ],
+      "equipment": [
+        "none"
+      ],
       "difficulty": "intermediate",
       "type": "cardio-threshold",
-      "description": "Comfortably hard pace running"
+      "description": "Comfortably hard pace running",
+      "videoUrl": "https://www.youtube.com/watch?v=M6r4ey-AWr4"
     },
     {
       "id": "ex073",
       "name": "Running (Intervals)",
       "category": "cardio",
-      "muscleGroups": ["full-body", "legs", "cardio"],
-      "equipment": ["none"],
+      "muscleGroups": [
+        "full-body",
+        "legs",
+        "cardio"
+      ],
+      "equipment": [
+        "none"
+      ],
       "difficulty": "intermediate",
       "type": "cardio-interval",
-      "description": "High-intensity interval running"
+      "description": "High-intensity interval running",
+      "videoUrl": "https://www.youtube.com/watch?v=l3MzxKy_Ee8"
     },
     {
       "id": "ex074",
       "name": "Running (Long)",
       "category": "cardio",
-      "muscleGroups": ["full-body", "legs", "cardio", "endurance"],
-      "equipment": ["none"],
+      "muscleGroups": [
+        "full-body",
+        "legs",
+        "cardio",
+        "endurance"
+      ],
+      "equipment": [
+        "none"
+      ],
       "difficulty": "intermediate",
       "type": "cardio-endurance",
-      "description": "Long steady-state run for aerobic base"
+      "description": "Long steady-state run for aerobic base",
+      "videoUrl": "https://www.youtube.com/watch?v=brFHyOtTwH4"
     },
     {
       "id": "ex075",
       "name": "Sprints",
       "category": "cardio",
-      "muscleGroups": ["full-body", "legs", "power"],
-      "equipment": ["none"],
+      "muscleGroups": [
+        "full-body",
+        "legs",
+        "power"
+      ],
+      "equipment": [
+        "none"
+      ],
       "difficulty": "advanced",
       "type": "cardio-interval",
-      "description": "Maximum effort short-distance running"
+      "description": "Maximum effort short-distance running",
+      "videoUrl": "https://www.youtube.com/watch?v=bYcYRz1kBCg"
     },
     {
       "id": "ex076",
       "name": "Cycling (Easy)",
       "category": "cardio",
-      "muscleGroups": ["legs", "cardio"],
-      "equipment": ["bike"],
+      "muscleGroups": [
+        "legs",
+        "cardio"
+      ],
+      "equipment": [
+        "bike"
+      ],
       "difficulty": "beginner",
       "type": "cardio-steady",
-      "description": "Easy conversational pace cycling"
+      "description": "Easy conversational pace cycling",
+      "videoUrl": "https://www.youtube.com/watch?v=8DHF5Z9LqYk"
     },
     {
       "id": "ex077",
       "name": "Cycling (Intervals)",
       "category": "cardio",
-      "muscleGroups": ["legs", "cardio"],
-      "equipment": ["bike"],
+      "muscleGroups": [
+        "legs",
+        "cardio"
+      ],
+      "equipment": [
+        "bike"
+      ],
       "difficulty": "intermediate",
       "type": "cardio-interval",
-      "description": "High-intensity interval cycling"
+      "description": "High-intensity interval cycling",
+      "videoUrl": "https://www.youtube.com/watch?v=dUr7J0s6xWc"
     },
     {
       "id": "ex078",
       "name": "Cycling (Tempo)",
       "category": "cardio",
-      "muscleGroups": ["legs", "cardio"],
-      "equipment": ["bike"],
+      "muscleGroups": [
+        "legs",
+        "cardio"
+      ],
+      "equipment": [
+        "bike"
+      ],
       "difficulty": "intermediate",
       "type": "cardio-threshold",
-      "description": "Sustained hard effort cycling"
+      "description": "Sustained hard effort cycling",
+      "videoUrl": "https://www.youtube.com/watch?v=8DHF5Z9LqYk"
     },
     {
       "id": "ex079",
       "name": "Rowing (Steady)",
       "category": "cardio",
-      "muscleGroups": ["full-body", "back", "legs", "cardio"],
-      "equipment": ["rowing-machine"],
+      "muscleGroups": [
+        "full-body",
+        "back",
+        "legs",
+        "cardio"
+      ],
+      "equipment": [
+        "rowing-machine"
+      ],
       "difficulty": "beginner",
       "type": "cardio-steady",
-      "description": "Steady-state rowing"
+      "description": "Steady-state rowing",
+      "videoUrl": "https://www.youtube.com/watch?v=zQ82RYIFLN8"
     },
     {
       "id": "ex080",
       "name": "Rowing (Intervals)",
       "category": "cardio",
-      "muscleGroups": ["full-body", "back", "legs", "cardio"],
-      "equipment": ["rowing-machine"],
+      "muscleGroups": [
+        "full-body",
+        "back",
+        "legs",
+        "cardio"
+      ],
+      "equipment": [
+        "rowing-machine"
+      ],
       "difficulty": "intermediate",
       "type": "cardio-interval",
-      "description": "High-intensity interval rowing"
+      "description": "High-intensity interval rowing",
+      "videoUrl": "https://www.youtube.com/watch?v=oP6OR-G7AxM"
     },
     {
       "id": "ex081",
       "name": "Swimming (Easy)",
       "category": "cardio",
-      "muscleGroups": ["full-body", "cardio"],
-      "equipment": ["pool"],
+      "muscleGroups": [
+        "full-body",
+        "cardio"
+      ],
+      "equipment": [
+        "pool"
+      ],
       "difficulty": "intermediate",
       "type": "cardio-steady",
-      "description": "Easy continuous swimming"
+      "description": "Easy continuous swimming",
+      "videoUrl": "https://www.youtube.com/watch?v=5HLW2AI1Ink"
     },
     {
       "id": "ex082",
       "name": "Swimming (Intervals)",
       "category": "cardio",
-      "muscleGroups": ["full-body", "cardio"],
-      "equipment": ["pool"],
+      "muscleGroups": [
+        "full-body",
+        "cardio"
+      ],
+      "equipment": [
+        "pool"
+      ],
       "difficulty": "advanced",
       "type": "cardio-interval",
-      "description": "High-intensity interval swimming"
+      "description": "High-intensity interval swimming",
+      "videoUrl": "https://www.youtube.com/watch?v=5HLW2AI1Ink"
     },
     {
       "id": "ex083",
       "name": "Jump Rope",
       "category": "cardio",
-      "muscleGroups": ["calves", "cardio", "coordination"],
-      "equipment": ["jump-rope"],
+      "muscleGroups": [
+        "calves",
+        "cardio",
+        "coordination"
+      ],
+      "equipment": [
+        "jump-rope"
+      ],
       "difficulty": "beginner",
       "type": "cardio-interval",
-      "description": "Cardiovascular conditioning with rope"
+      "description": "Cardiovascular conditioning with rope",
+      "videoUrl": "https://www.youtube.com/watch?v=FJmRQ5iTXKE"
     },
     {
       "id": "ex084",
       "name": "Stair Climber",
       "category": "cardio",
-      "muscleGroups": ["legs", "glutes", "cardio"],
-      "equipment": ["machine"],
+      "muscleGroups": [
+        "legs",
+        "glutes",
+        "cardio"
+      ],
+      "equipment": [
+        "machine"
+      ],
       "difficulty": "beginner",
       "type": "cardio-steady",
-      "description": "Stair climbing machine"
+      "description": "Stair climbing machine",
+      "videoUrl": "https://www.youtube.com/watch?v=fDsXDD3xmj4"
     },
     {
       "id": "ex085",
       "name": "Elliptical",
       "category": "cardio",
-      "muscleGroups": ["full-body", "cardio"],
-      "equipment": ["machine"],
+      "muscleGroups": [
+        "full-body",
+        "cardio"
+      ],
+      "equipment": [
+        "machine"
+      ],
       "difficulty": "beginner",
       "type": "cardio-steady",
-      "description": "Low-impact cardio machine"
+      "description": "Low-impact cardio machine",
+      "videoUrl": "https://www.youtube.com/watch?v=8wKLWl9bTbc"
     },
     {
       "id": "ex086",
       "name": "Battle Ropes",
       "category": "cardio",
-      "muscleGroups": ["full-body", "shoulders", "cardio"],
-      "equipment": ["battle-ropes"],
+      "muscleGroups": [
+        "full-body",
+        "shoulders",
+        "cardio"
+      ],
+      "equipment": [
+        "battle-ropes"
+      ],
       "difficulty": "intermediate",
       "type": "cardio-interval",
-      "description": "High-intensity rope conditioning"
+      "description": "High-intensity rope conditioning",
+      "videoUrl": "https://www.youtube.com/watch?v=3VjyeU9G5lk"
     },
     {
       "id": "ex087",
       "name": "Assault Bike",
       "category": "cardio",
-      "muscleGroups": ["full-body", "cardio"],
-      "equipment": ["assault-bike"],
+      "muscleGroups": [
+        "full-body",
+        "cardio"
+      ],
+      "equipment": [
+        "assault-bike"
+      ],
       "difficulty": "intermediate",
       "type": "cardio-interval",
-      "description": "Air bike for full-body conditioning"
+      "description": "Air bike for full-body conditioning",
+      "videoUrl": "https://www.youtube.com/watch?v=OM2p_qWDXFI"
     },
     {
       "id": "ex088",
       "name": "Ski Erg",
       "category": "cardio",
-      "muscleGroups": ["full-body", "back", "core", "cardio"],
-      "equipment": ["ski-erg"],
+      "muscleGroups": [
+        "full-body",
+        "back",
+        "core",
+        "cardio"
+      ],
+      "equipment": [
+        "ski-erg"
+      ],
       "difficulty": "intermediate",
       "type": "cardio-interval",
-      "description": "Skiing motion cardio machine"
+      "description": "Skiing motion cardio machine",
+      "videoUrl": "https://www.youtube.com/watch?v=WVDRO-5GM_U"
     },
     {
       "id": "ex089",
       "name": "Sled Push",
       "category": "strength",
-      "muscleGroups": ["quads", "glutes", "calves", "cardio"],
-      "equipment": ["sled"],
+      "muscleGroups": [
+        "quads",
+        "glutes",
+        "calves",
+        "cardio"
+      ],
+      "equipment": [
+        "sled"
+      ],
       "difficulty": "intermediate",
       "type": "compound",
-      "description": "Loaded sled pushing"
+      "description": "Loaded sled pushing",
+      "videoUrl": "https://www.youtube.com/watch?v=D17O-9P48UE"
     },
     {
       "id": "ex090",
       "name": "Sled Pull",
       "category": "strength",
-      "muscleGroups": ["back", "hamstrings", "cardio"],
-      "equipment": ["sled"],
+      "muscleGroups": [
+        "back",
+        "hamstrings",
+        "cardio"
+      ],
+      "equipment": [
+        "sled"
+      ],
       "difficulty": "intermediate",
       "type": "compound",
-      "description": "Loaded sled pulling"
+      "description": "Loaded sled pulling",
+      "videoUrl": "https://www.youtube.com/watch?v=1Yv88KudrFE"
     },
     {
       "id": "ex091",
       "name": "HIIT Circuit",
       "category": "cardio",
-      "muscleGroups": ["full-body", "cardio"],
-      "equipment": ["bodyweight"],
+      "muscleGroups": [
+        "full-body",
+        "cardio"
+      ],
+      "equipment": [
+        "bodyweight"
+      ],
       "difficulty": "intermediate",
       "type": "cardio-interval",
-      "description": "High-intensity interval training circuit"
+      "description": "High-intensity interval training circuit",
+      "videoUrl": "https://www.youtube.com/watch?v=ml6cT4AZdqI"
     },
     {
       "id": "ex092",
       "name": "Tabata",
       "category": "cardio",
-      "muscleGroups": ["full-body", "cardio"],
-      "equipment": ["bodyweight"],
+      "muscleGroups": [
+        "full-body",
+        "cardio"
+      ],
+      "equipment": [
+        "bodyweight"
+      ],
       "difficulty": "advanced",
       "type": "cardio-interval",
-      "description": "20 seconds on, 10 seconds off interval protocol"
+      "description": "20 seconds on, 10 seconds off interval protocol",
+      "videoUrl": "https://www.youtube.com/watch?v=dHIQZ7YvDHQ"
     },
     {
       "id": "ex093",
       "name": "Bodyweight Squats",
       "category": "strength",
-      "muscleGroups": ["quads", "glutes"],
-      "equipment": ["bodyweight"],
+      "muscleGroups": [
+        "quads",
+        "glutes"
+      ],
+      "equipment": [
+        "bodyweight"
+      ],
       "difficulty": "beginner",
       "type": "compound",
-      "description": "No-weight squat movement"
+      "description": "No-weight squat movement",
+      "videoUrl": "https://www.youtube.com/watch?v=aclHkVaku9U"
     },
     {
       "id": "ex094",
       "name": "Inverted Row",
       "category": "strength",
-      "muscleGroups": ["back", "biceps"],
-      "equipment": ["bodyweight", "bar"],
+      "muscleGroups": [
+        "back",
+        "biceps"
+      ],
+      "equipment": [
+        "bodyweight",
+        "bar"
+      ],
       "difficulty": "beginner",
       "type": "compound",
-      "description": "Horizontal bodyweight pull"
+      "description": "Horizontal bodyweight pull",
+      "videoUrl": "https://www.youtube.com/watch?v=hXTc1mDnZCw"
     },
     {
       "id": "ex095",
       "name": "Handstand Push-Ups",
       "category": "strength",
-      "muscleGroups": ["shoulders", "triceps", "core"],
-      "equipment": ["bodyweight"],
+      "muscleGroups": [
+        "shoulders",
+        "triceps",
+        "core"
+      ],
+      "equipment": [
+        "bodyweight"
+      ],
       "difficulty": "advanced",
       "type": "compound",
-      "description": "Inverted shoulder press"
+      "description": "Inverted shoulder press",
+      "videoUrl": "https://www.youtube.com/watch?v=tQhrk6WMcKw"
     },
     {
       "id": "ex096",
       "name": "Ring Dips",
       "category": "strength",
-      "muscleGroups": ["triceps", "chest", "shoulders"],
-      "equipment": ["rings", "bodyweight"],
+      "muscleGroups": [
+        "triceps",
+        "chest",
+        "shoulders"
+      ],
+      "equipment": [
+        "rings",
+        "bodyweight"
+      ],
       "difficulty": "advanced",
       "type": "compound",
-      "description": "Unstable dip variation on rings"
+      "description": "Unstable dip variation on rings",
+      "videoUrl": "https://www.youtube.com/watch?v=e6F1iLj-Y2o"
     },
     {
       "id": "ex097",
       "name": "Ring Rows",
       "category": "strength",
-      "muscleGroups": ["back", "biceps"],
-      "equipment": ["rings", "bodyweight"],
+      "muscleGroups": [
+        "back",
+        "biceps"
+      ],
+      "equipment": [
+        "rings",
+        "bodyweight"
+      ],
       "difficulty": "intermediate",
       "type": "compound",
-      "description": "Adjustable-angle row on rings"
+      "description": "Adjustable-angle row on rings",
+      "videoUrl": "https://www.youtube.com/watch?v=hXTc1mDnZCw"
     },
     {
       "id": "ex098",
       "name": "Muscle-Ups",
       "category": "strength",
-      "muscleGroups": ["back", "chest", "triceps", "shoulders"],
-      "equipment": ["pull-up-bar", "bodyweight"],
+      "muscleGroups": [
+        "back",
+        "chest",
+        "triceps",
+        "shoulders"
+      ],
+      "equipment": [
+        "pull-up-bar",
+        "bodyweight"
+      ],
       "difficulty": "advanced",
       "type": "compound",
-      "description": "Advanced pull-up to dip transition"
+      "description": "Advanced pull-up to dip transition",
+      "videoUrl": "https://www.youtube.com/watch?v=p7pXQJjooRs"
     },
     {
       "id": "ex099",
       "name": "L-Sit",
       "category": "strength",
-      "muscleGroups": ["core", "hip-flexors", "shoulders"],
-      "equipment": ["bodyweight", "parallettes"],
+      "muscleGroups": [
+        "core",
+        "hip-flexors",
+        "shoulders"
+      ],
+      "equipment": [
+        "bodyweight",
+        "parallettes"
+      ],
       "difficulty": "advanced",
       "type": "isometric",
-      "description": "Static hold with legs extended"
+      "description": "Static hold with legs extended",
+      "videoUrl": "https://www.youtube.com/watch?v=IUu91W8cOdc"
     },
     {
       "id": "ex100",
       "name": "Dragon Flag",
       "category": "strength",
-      "muscleGroups": ["core", "abs"],
-      "equipment": ["bodyweight", "bench"],
+      "muscleGroups": [
+        "core",
+        "abs"
+      ],
+      "equipment": [
+        "bodyweight",
+        "bench"
+      ],
       "difficulty": "advanced",
       "type": "compound",
-      "description": "Advanced core exercise"
+      "description": "Advanced core exercise",
+      "videoUrl": "https://www.youtube.com/watch?v=pvz7k5gO-DE"
     }
   ],
   "metadata": {
-    "version": "1.0",
+    "version": "1.1",
     "totalExercises": 100,
     "lastUpdated": "2025-11-16",
-    "categories": ["strength", "cardio"],
+    "categories": [
+      "strength",
+      "cardio"
+    ],
     "equipmentTypes": [
       "barbell",
       "dumbbells",
@@ -1053,7 +1733,11 @@
       "full-body",
       "cardio"
     ],
-    "difficulties": ["beginner", "intermediate", "advanced"],
+    "difficulties": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
     "types": [
       "compound",
       "isolation",

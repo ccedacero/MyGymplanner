@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import * as api from '../services/api'
+import ExerciseDetail from '../components/ExerciseDetail'
 import './TodaysWorkout.css'
 
 function TodaysWorkout({ user }) {
@@ -8,6 +9,7 @@ function TodaysWorkout({ user }) {
   const [todaysWorkout, setTodaysWorkout] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [selectedExercise, setSelectedExercise] = useState(null)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -125,10 +127,18 @@ function TodaysWorkout({ user }) {
         <h3 className="mb-3">Exercises ({workout.exercises.length})</h3>
         <div className="exercises-today">
           {workout.exercises.map((exercise, index) => (
-            <div key={index} className="exercise-card-today">
+            <div
+              key={index}
+              className="exercise-card-today"
+              onClick={() => setSelectedExercise(exercise)}
+              style={{ cursor: 'pointer' }}
+            >
               <div className="exercise-number">{index + 1}</div>
               <div className="exercise-details">
-                <h4 className="exercise-name">{exercise.name}</h4>
+                <h4 className="exercise-name">
+                  {exercise.name}
+                  {exercise.videoUrl && <span className="video-icon">📹</span>}
+                </h4>
                 {exercise.category === 'strength' ? (
                   <div className="exercise-volume">
                     <span className="volume-badge">
@@ -172,6 +182,19 @@ function TodaysWorkout({ user }) {
           Start Workout 🚀
         </button>
       </div>
+
+      {/* Exercise Detail Modal */}
+      {selectedExercise && (
+        <ExerciseDetail
+          exercise={{
+            ...selectedExercise,
+            sets: selectedExercise.volume?.sets,
+            reps: selectedExercise.volume?.reps,
+            restTime: selectedExercise.volume?.rest ? parseInt(selectedExercise.volume.rest) : null
+          }}
+          onClose={() => setSelectedExercise(null)}
+        />
+      )}
     </div>
   )
 }

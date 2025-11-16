@@ -8,6 +8,74 @@
   color: var(--text);
 }
 
+/* Weekly Calendar */
+.weekly-calendar-card {
+  margin-bottom: 1.5rem;
+}
+
+.weekly-calendar-card h3 {
+  font-size: 1.125rem;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.weekly-calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+}
+
+.calendar-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.75rem 0.5rem;
+  border-radius: 12px;
+  background: var(--background);
+  border: 2px solid var(--border);
+  transition: all 0.2s;
+}
+
+.calendar-day.has-workout {
+  background: linear-gradient(135deg, #10b981, #059669);
+  border-color: #10b981;
+  color: white;
+}
+
+.calendar-day.is-today {
+  border-color: var(--primary);
+  border-width: 3px;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.calendar-day.missed {
+  opacity: 0.4;
+}
+
+.day-name {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+  opacity: 0.8;
+}
+
+.calendar-day.has-workout .day-name {
+  opacity: 1;
+}
+
+.day-number {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.day-indicator {
+  font-size: 1.25rem;
+  line-height: 1;
+  min-height: 1.25rem;
+}
+
 /* Stats Grid - Mobile First */
 .stats-grid {
   display: grid;
@@ -31,6 +99,12 @@
   box-shadow: var(--shadow);
 }
 
+.stat-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+}
+
 .stat-value {
   font-size: 2rem;
   font-weight: 700;
@@ -38,8 +112,15 @@
 }
 
 .stat-label {
-  font-size: 0.875rem;
-  opacity: 0.9;
+  font-size: 0.9rem;
+  font-weight: 600;
+  opacity: 0.95;
+  margin-bottom: 0.125rem;
+}
+
+.stat-sublabel {
+  font-size: 0.75rem;
+  opacity: 0.75;
 }
 
 /* Card Header */

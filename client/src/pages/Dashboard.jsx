@@ -7,6 +7,7 @@ function Dashboard({ user }) {
   const [plans, setPlans] = useState([])
   const [recentWorkouts, setRecentWorkouts] = useState([])
   const [stats, setStats] = useState(null)
+  const [weeklyCalendar, setWeeklyCalendar] = useState([])
   const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
 
@@ -26,11 +27,48 @@ function Dashboard({ user }) {
       setPlans(plansData.plans)
       setRecentWorkouts(workoutsData.workouts)
       setStats(statsData.stats)
+
+      // Generate weekly calendar
+      generateWeeklyCalendar(workoutsData.workouts)
     } catch (error) {
       console.error('Error loading dashboard:', error)
     } finally {
       setLoading(false)
     }
+  }
+
+  const generateWeeklyCalendar = (workouts) => {
+    const today = new Date()
+    const dayOfWeek = today.getDay() // 0 = Sunday
+    const startOfWeek = new Date(today)
+    startOfWeek.setDate(today.getDate() - dayOfWeek)
+
+    const calendar = []
+    const workoutDates = new Set(
+      workouts.map(w => new Date(w.date).toDateString())
+    )
+
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(startOfWeek)
+      date.setDate(startOfWeek.getDate() + i)
+
+      const isToday = date.toDateString() === today.toDateString()
+      const hasWorkout = workoutDates.has(date.toDateString())
+      const isPast = date < today && !isToday
+      const isFuture = date > today
+
+      calendar.push({
+        date,
+        day: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][i],
+        dayNum: date.getDate(),
+        isToday,
+        hasWorkout,
+        isPast,
+        isFuture
+      })
+    }
+
+    setWeeklyCalendar(calendar)
   }
 
   // Check if user needs onboarding
@@ -54,20 +92,49 @@ function Dashboard({ user }) {
     <div className="container dashboard">
       <h1 className="dashboard-title">Welcome back, {user.name}! 💪</h1>
 
+      {/* Weekly Check-In Calendar */}
+      {weeklyCalendar.length > 0 && (
+        <div className="card weekly-calendar-card">
+          <h3>This Week's Activity</h3>
+          <div className="weekly-calendar">
+            {weeklyCalendar.map((day, index) => (
+              <div
+                key={index}
+                className={`calendar-day ${day.hasWorkout ? 'has-workout' : ''} ${
+                  day.isToday ? 'is-today' : ''
+                } ${day.isPast && !day.hasWorkout ? 'missed' : ''}`}
+              >
+                <div className="day-name">{day.day}</div>
+                <div className="day-number">{day.dayNum}</div>
+                <div className="day-indicator">
+                  {day.hasWorkout ? '✓' : day.isPast ? '•' : ''}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Quick Stats */}
       {stats && (
         <div className="stats-grid">
           <div className="stat-card">
+            <div className="stat-icon">🏋️</div>
             <div className="stat-value">{stats.totalWorkouts}</div>
-            <div className="stat-label">Workouts This Week</div>
+            <div className="stat-label">Gym Visits</div>
+            <div className="stat-sublabel">This Week</div>
           </div>
           <div className="stat-card">
+            <div className="stat-icon">⏱️</div>
+            <div className="stat-value">{stats.totalDuration || stats.avgDuration * stats.totalWorkouts}</div>
+            <div className="stat-label">Total Minutes</div>
+            <div className="stat-sublabel">Training Time</div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-icon">💪</div>
             <div className="stat-value">{stats.totalVolume.toLocaleString()}</div>
             <div className="stat-label">lbs Lifted</div>
-          </div>
-          <div className="stat-card">
-            <div className="stat-value">{stats.avgDuration}</div>
-            <div className="stat-label">Avg Duration (min)</div>
+            <div className="stat-sublabel">Total Volume</div>
           </div>
         </div>
       )}
