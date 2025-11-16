@@ -1,0 +1,32 @@
+{
+  "name": "mygymplanner",
+  "version": "1.0.0",
+  "description": "Hybrid training plan generator for strength and cardio",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
+    "server:dev": "cd server && npm run dev",
+    "client:dev": "cd client && npm run dev",
+    "build": "npm run client:build && npm run server:build",
+    "client:build": "cd client && npm run build",
+    "server:build": "cd server && npm run build",
+    "start": "npm run server:start",
+    "server:start": "cd server && npm start"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "keywords": [
+    "fitness",
+    "gym",
+    "workout",
+    "training",
+    "planner"
+  ],
+  "author": "",
+  "license": "MIT"
+}

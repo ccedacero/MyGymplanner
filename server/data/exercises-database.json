@@ -1,0 +1,1068 @@
+{
+  "exercises": [
+    {
+      "id": "ex001",
+      "name": "Barbell Bench Press",
+      "category": "strength",
+      "muscleGroups": ["chest", "triceps", "shoulders"],
+      "equipment": ["barbell", "bench"],
+      "difficulty": "intermediate",
+      "type": "compound",
+      "description": "Classic upper body compound movement for chest development"
+    },
+    {
+      "id": "ex002",
+      "name": "Dumbbell Bench Press",
+      "category": "strength",
+      "muscleGroups": ["chest", "triceps", "shoulders"],
+      "equipment": ["dumbbells", "bench"],
+      "difficulty": "beginner",
+      "type": "compound",
+      "description": "Dumbbell variation allowing greater range of motion"
+    },
+    {
+      "id": "ex003",
+      "name": "Incline Barbell Bench Press",
+      "category": "strength",
+      "muscleGroups": ["chest", "triceps", "shoulders"],
+      "equipment": ["barbell", "bench"],
+      "difficulty": "intermediate",
+      "type": "compound",
+      "description": "Targets upper chest with incline angle"
+    },
+    {
+      "id": "ex004",
+      "name": "Decline Barbell Bench Press",
+      "category": "strength",
+      "muscleGroups": ["chest", "triceps"],
+      "equipment": ["barbell", "bench"],
+      "difficulty": "intermediate",
+      "type": "compound",
+      "description": "Targets lower chest with decline angle"
+    },
+    {
+      "id": "ex005",
+      "name": "Dumbbell Flyes",
+      "category": "strength",
+      "muscleGroups": ["chest"],
+      "equipment": ["dumbbells", "bench"],
+      "difficulty": "beginner",
+      "type": "isolation",
+      "description": "Isolation movement for chest stretch and contraction"
+    },
+    {
+      "id": "ex006",
+      "name": "Cable Flyes",
+      "category": "strength",
+      "muscleGroups": ["chest"],
+      "equipment": ["cable-machine"],
+      "difficulty": "beginner",
+      "type": "isolation",
+      "description": "Constant tension chest isolation exercise"
+    },
+    {
+      "id": "ex007",
+      "name": "Push-Ups",
+      "category": "strength",
+      "muscleGroups": ["chest", "triceps", "shoulders", "core"],
+      "equipment": ["bodyweight"],
+      "difficulty": "beginner",
+      "type": "compound",
+      "description": "Bodyweight chest and triceps exercise"
+    },
+    {
+      "id": "ex008",
+      "name": "Barbell Squat",
+      "category": "strength",
+      "muscleGroups": ["quads", "glutes", "hamstrings", "core"],
+      "equipment": ["barbell", "rack"],
+      "difficulty": "intermediate",
+      "type": "compound",
+      "description": "King of leg exercises - full lower body development"
+    },
+    {
+      "id": "ex009",
+      "name": "Front Squat",
+      "category": "strength",
+      "muscleGroups": ["quads", "core", "upper-back"],
+      "equipment": ["barbell", "rack"],
+      "difficulty": "advanced",
+      "type": "compound",
+      "description": "Quad-dominant squat variation with front rack position"
+    },
+    {
+      "id": "ex010",
+      "name": "Goblet Squat",
+      "category": "strength",
+      "muscleGroups": ["quads", "glutes", "core"],
+      "equipment": ["dumbbell"],
+      "difficulty": "beginner",
+      "type": "compound",
+      "description": "Beginner-friendly squat with dumbbell or kettlebell"
+    },
+    {
+      "id": "ex011",
+      "name": "Bulgarian Split Squat",
+      "category": "strength",
+      "muscleGroups": ["quads", "glutes", "hamstrings"],
+      "equipment": ["dumbbells", "bench"],
+      "difficulty": "intermediate",
+      "type": "compound",
+      "description": "Single-leg squat variation for unilateral strength"
+    },
+    {
+      "id": "ex012",
+      "name": "Leg Press",
+      "category": "strength",
+      "muscleGroups": ["quads", "glutes", "hamstrings"],
+      "equipment": ["machine"],
+      "difficulty": "beginner",
+      "type": "compound",
+      "description": "Machine-based leg development"
+    },
+    {
+      "id": "ex013",
+      "name": "Deadlift",
+      "category": "strength",
+      "muscleGroups": ["hamstrings", "glutes", "back", "traps", "forearms"],
+      "equipment": ["barbell"],
+      "difficulty": "advanced",
+      "type": "compound",
+      "description": "Full posterior chain development"
+    },
+    {
+      "id": "ex014",
+      "name": "Romanian Deadlift",
+      "category": "strength",
+      "muscleGroups": ["hamstrings", "glutes", "lower-back"],
+      "equipment": ["barbell"],
+      "difficulty": "intermediate",
+      "type": "compound",
+      "description": "Hip-hinge movement targeting hamstrings and glutes"
+    },
+    {
+      "id": "ex015",
+      "name": "Sumo Deadlift",
+      "category": "strength",
+      "muscleGroups": ["hamstrings", "glutes", "quads", "back"],
+      "equipment": ["barbell"],
+      "difficulty": "intermediate",
+      "type": "compound",
+      "description": "Wide-stance deadlift variation"
+    },
+    {
+      "id": "ex016",
+      "name": "Leg Curl",
+      "category": "strength",
+      "muscleGroups": ["hamstrings"],
+      "equipment": ["machine"],
+      "difficulty": "beginner",
+      "type": "isolation",
+      "description": "Hamstring isolation exercise"
+    },
+    {
+      "id": "ex017",
+      "name": "Leg Extension",
+      "category": "strength",
+      "muscleGroups": ["quads"],
+      "equipment": ["machine"],
+      "difficulty": "beginner",
+      "type": "isolation",
+      "description": "Quad isolation exercise"
+    },
+    {
+      "id": "ex018",
+      "name": "Walking Lunges",
+      "category": "strength",
+      "muscleGroups": ["quads", "glutes", "hamstrings", "calves"],
+      "equipment": ["dumbbells"],
+      "difficulty": "beginner",
+      "type": "compound",
+      "description": "Dynamic lunge movement"
+    },
+    {
+      "id": "ex019",
+      "name": "Calf Raises",
+      "category": "strength",
+      "muscleGroups": ["calves"],
+      "equipment": ["machine", "dumbbells"],
+      "difficulty": "beginner",
+      "type": "isolation",
+      "description": "Calf development exercise"
+    },
+    {
+      "id": "ex020",
+      "name": "Hip Thrust",
+      "category": "strength",
+      "muscleGroups": ["glutes", "hamstrings"],
+      "equipment": ["barbell", "bench"],
+      "difficulty": "intermediate",
+      "type": "compound",
+      "description": "Primary glute-building exercise"
+    },
+    {
+      "id": "ex021",
+      "name": "Barbell Row",
+      "category": "strength",
+      "muscleGroups": ["back", "biceps", "rear-delts"],
+      "equipment": ["barbell"],
+      "difficulty": "intermediate",
+      "type": "compound",
+      "description": "Bent-over row for back thickness"
+    },
+    {
+      "id": "ex022",
+      "name": "Pendlay Row",
+      "category": "strength",
+      "muscleGroups": ["back", "biceps"],
+      "equipment": ["barbell"],
+      "difficulty": "advanced",
+      "type": "compound",
+      "description": "Explosive row from floor with strict form"
+    },
+    {
+      "id": "ex023",
+      "name": "Dumbbell Row",
+      "category": "strength",
+      "muscleGroups": ["back", "biceps"],
+      "equipment": ["dumbbells", "bench"],
+      "difficulty": "beginner",
+      "type": "compound",
+      "description": "Single-arm row for unilateral back development"
+    },
+    {
+      "id": "ex024",
+      "name": "T-Bar Row",
+      "category": "strength",
+      "muscleGroups": ["back", "biceps"],
+      "equipment": ["barbell"],
+      "difficulty": "intermediate",
+      "type": "compound",
+      "description": "Landmine row variation"
+    },
+    {
+      "id": "ex025",
+      "name": "Seated Cable Row",
+      "category": "strength",
+      "muscleGroups": ["back", "biceps"],
+      "equipment": ["cable-machine"],
+      "difficulty": "beginner",
+      "type": "compound",
+      "description": "Cable row for back development"
+    },
+    {
+      "id": "ex026",
+      "name": "Pull-Ups",
+      "category": "strength",
+      "muscleGroups": ["back", "biceps"],
+      "equipment": ["pull-up-bar"],
+      "difficulty": "intermediate",
+      "type": "compound",
+      "description": "Bodyweight vertical pull"
+    },
+    {
+      "id": "ex027",
+      "name": "Chin-Ups",
+      "category": "strength",
+      "muscleGroups": ["back", "biceps"],
+      "equipment": ["pull-up-bar"],
+      "difficulty": "intermediate",
+      "type": "compound",
+      "description": "Supinated grip pull-up emphasizing biceps"
+    },
+    {
+      "id": "ex028",
+      "name": "Lat Pulldown",
+      "category": "strength",
+      "muscleGroups": ["back", "biceps"],
+      "equipment": ["cable-machine"],
+      "difficulty": "beginner",
+      "type": "compound",
+      "description": "Machine-based vertical pull"
+    },
+    {
+      "id": "ex029",
+      "name": "Face Pulls",
+      "category": "strength",
+      "muscleGroups": ["rear-delts", "upper-back"],
+      "equipment": ["cable-machine"],
+      "difficulty": "beginner",
+      "type": "isolation",
+      "description": "Rear delt and upper back exercise"
+    },
+    {
+      "id": "ex030",
+      "name": "Overhead Press",
+      "category": "strength",
+      "muscleGroups": ["shoulders", "triceps"],
+      "equipment": ["barbell"],
+      "difficulty": "intermediate",
+      "type": "compound",
+      "description": "Standing shoulder press"
+    },
+    {
+      "id": "ex031",
+      "name": "Seated Dumbbell Press",
+      "category": "strength",
+      "muscleGroups": ["shoulders", "triceps"],
+      "equipment": ["dumbbells", "bench"],
+      "difficulty": "beginner",
+      "type": "compound",
+      "description": "Seated shoulder press with dumbbells"
+    },
+    {
+      "id": "ex032",
+      "name": "Arnold Press",
+      "category": "strength",
+      "muscleGroups": ["shoulders"],
+      "equipment": ["dumbbells", "bench"],
+      "difficulty": "intermediate",
+      "type": "compound",
+      "description": "Rotating dumbbell press for complete shoulder development"
+    },
+    {
+      "id": "ex033",
+      "name": "Lateral Raises",
+      "category": "strength",
+      "muscleGroups": ["shoulders"],
+      "equipment": ["dumbbells"],
+      "difficulty": "beginner",
+      "type": "isolation",
+      "description": "Side delt isolation"
+    },
+    {
+      "id": "ex034",
+      "name": "Front Raises",
+      "category": "strength",
+      "muscleGroups": ["shoulders"],
+      "equipment": ["dumbbells"],
+      "difficulty": "beginner",
+      "type": "isolation",
+      "description": "Front delt isolation"
+    },
+    {
+      "id": "ex035",
+      "name": "Rear Delt Flyes",
+      "category": "strength",
+      "muscleGroups": ["rear-delts"],
+      "equipment": ["dumbbells"],
+      "difficulty": "beginner",
+      "type": "isolation",
+      "description": "Rear deltoid isolation"
+    },
+    {
+      "id": "ex036",
+      "name": "Upright Row",
+      "category": "strength",
+      "muscleGroups": ["shoulders", "traps"],
+      "equipment": ["barbell", "dumbbells"],
+      "difficulty": "intermediate",
+      "type": "compound",
+      "description": "Shoulder and trap development"
+    },
+    {
+      "id": "ex037",
+      "name": "Barbell Curl",
+      "category": "strength",
+      "muscleGroups": ["biceps"],
+      "equipment": ["barbell"],
+      "difficulty": "beginner",
+      "type": "isolation",
+      "description": "Classic bicep exercise"
+    },
+    {
+      "id": "ex038",
+      "name": "Dumbbell Curl",
+      "category": "strength",
+      "muscleGroups": ["biceps"],
+      "equipment": ["dumbbells"],
+      "difficulty": "beginner",
+      "type": "isolation",
+      "description": "Dumbbell bicep curl"
+    },
+    {
+      "id": "ex039",
+      "name": "Hammer Curl",
+      "category": "strength",
+      "muscleGroups": ["biceps", "forearms"],
+      "equipment": ["dumbbells"],
+      "difficulty": "beginner",
+      "type": "isolation",
+      "description": "Neutral grip bicep curl"
+    },
+    {
+      "id": "ex040",
+      "name": "Preacher Curl",
+      "category": "strength",
+      "muscleGroups": ["biceps"],
+      "equipment": ["barbell", "bench"],
+      "difficulty": "intermediate",
+      "type": "isolation",
+      "description": "Strict bicep curl on preacher bench"
+    },
+    {
+      "id": "ex041",
+      "name": "Cable Curl",
+      "category": "strength",
+      "muscleGroups": ["biceps"],
+      "equipment": ["cable-machine"],
+      "difficulty": "beginner",
+      "type": "isolation",
+      "description": "Cable bicep curl for constant tension"
+    },
+    {
+      "id": "ex042",
+      "name": "Tricep Dips",
+      "category": "strength",
+      "muscleGroups": ["triceps", "chest", "shoulders"],
+      "equipment": ["dip-bars", "bodyweight"],
+      "difficulty": "intermediate",
+      "type": "compound",
+      "description": "Bodyweight tricep exercise"
+    },
+    {
+      "id": "ex043",
+      "name": "Close-Grip Bench Press",
+      "category": "strength",
+      "muscleGroups": ["triceps", "chest"],
+      "equipment": ["barbell", "bench"],
+      "difficulty": "intermediate",
+      "type": "compound",
+      "description": "Bench press variation for triceps"
+    },
+    {
+      "id": "ex044",
+      "name": "Skull Crushers",
+      "category": "strength",
+      "muscleGroups": ["triceps"],
+      "equipment": ["barbell", "bench"],
+      "difficulty": "intermediate",
+      "type": "isolation",
+      "description": "Lying tricep extension"
+    },
+    {
+      "id": "ex045",
+      "name": "Overhead Tricep Extension",
+      "category": "strength",
+      "muscleGroups": ["triceps"],
+      "equipment": ["dumbbells"],
+      "difficulty": "beginner",
+      "type": "isolation",
+      "description": "Overhead tricep isolation"
+    },
+    {
+      "id": "ex046",
+      "name": "Tricep Pushdown",
+      "category": "strength",
+      "muscleGroups": ["triceps"],
+      "equipment": ["cable-machine"],
+      "difficulty": "beginner",
+      "type": "isolation",
+      "description": "Cable tricep pushdown"
+    },
+    {
+      "id": "ex047",
+      "name": "Kettlebell Swings",
+      "category": "strength",
+      "muscleGroups": ["glutes", "hamstrings", "back", "core"],
+      "equipment": ["kettlebell"],
+      "difficulty": "intermediate",
+      "type": "compound",
+      "description": "Ballistic hip hinge movement"
+    },
+    {
+      "id": "ex048",
+      "name": "Turkish Get-Up",
+      "category": "strength",
+      "muscleGroups": ["full-body", "core", "shoulders"],
+      "equipment": ["kettlebell"],
+      "difficulty": "advanced",
+      "type": "compound",
+      "description": "Complex full-body movement"
+    },
+    {
+      "id": "ex049",
+      "name": "Burpees",
+      "category": "strength",
+      "muscleGroups": ["full-body", "cardio"],
+      "equipment": ["bodyweight"],
+      "difficulty": "intermediate",
+      "type": "compound",
+      "description": "Full-body conditioning exercise"
+    },
+    {
+      "id": "ex050",
+      "name": "Plank",
+      "category": "strength",
+      "muscleGroups": ["core", "abs"],
+      "equipment": ["bodyweight"],
+      "difficulty": "beginner",
+      "type": "isometric",
+      "description": "Core stability exercise"
+    },
+    {
+      "id": "ex051",
+      "name": "Side Plank",
+      "category": "strength",
+      "muscleGroups": ["core", "obliques"],
+      "equipment": ["bodyweight"],
+      "difficulty": "beginner",
+      "type": "isometric",
+      "description": "Lateral core stability"
+    },
+    {
+      "id": "ex052",
+      "name": "Crunches",
+      "category": "strength",
+      "muscleGroups": ["abs"],
+      "equipment": ["bodyweight"],
+      "difficulty": "beginner",
+      "type": "isolation",
+      "description": "Basic ab exercise"
+    },
+    {
+      "id": "ex053",
+      "name": "Hanging Leg Raises",
+      "category": "strength",
+      "muscleGroups": ["abs", "hip-flexors"],
+      "equipment": ["pull-up-bar"],
+      "difficulty": "advanced",
+      "type": "compound",
+      "description": "Advanced ab exercise"
+    },
+    {
+      "id": "ex054",
+      "name": "Cable Crunches",
+      "category": "strength",
+      "muscleGroups": ["abs"],
+      "equipment": ["cable-machine"],
+      "difficulty": "beginner",
+      "type": "isolation",
+      "description": "Weighted ab crunches"
+    },
+    {
+      "id": "ex055",
+      "name": "Russian Twists",
+      "category": "strength",
+      "muscleGroups": ["obliques", "abs"],
+      "equipment": ["bodyweight", "medicine-ball"],
+      "difficulty": "beginner",
+      "type": "isolation",
+      "description": "Rotational core exercise"
+    },
+    {
+      "id": "ex056",
+      "name": "Mountain Climbers",
+      "category": "strength",
+      "muscleGroups": ["core", "cardio"],
+      "equipment": ["bodyweight"],
+      "difficulty": "beginner",
+      "type": "compound",
+      "description": "Dynamic core and cardio exercise"
+    },
+    {
+      "id": "ex057",
+      "name": "Farmer's Walk",
+      "category": "strength",
+      "muscleGroups": ["forearms", "traps", "core", "full-body"],
+      "equipment": ["dumbbells", "kettlebells"],
+      "difficulty": "beginner",
+      "type": "compound",
+      "description": "Loaded carry for grip and core strength"
+    },
+    {
+      "id": "ex058",
+      "name": "Shrugs",
+      "category": "strength",
+      "muscleGroups": ["traps"],
+      "equipment": ["barbell", "dumbbells"],
+      "difficulty": "beginner",
+      "type": "isolation",
+      "description": "Trap development"
+    },
+    {
+      "id": "ex059",
+      "name": "Box Jumps",
+      "category": "strength",
+      "muscleGroups": ["quads", "glutes", "calves", "power"],
+      "equipment": ["box", "bodyweight"],
+      "difficulty": "intermediate",
+      "type": "plyometric",
+      "description": "Explosive lower body power"
+    },
+    {
+      "id": "ex060",
+      "name": "Step-Ups",
+      "category": "strength",
+      "muscleGroups": ["quads", "glutes"],
+      "equipment": ["box", "dumbbells"],
+      "difficulty": "beginner",
+      "type": "compound",
+      "description": "Single-leg stepping movement"
+    },
+    {
+      "id": "ex061",
+      "name": "Glute Bridge",
+      "category": "strength",
+      "muscleGroups": ["glutes", "hamstrings"],
+      "equipment": ["bodyweight"],
+      "difficulty": "beginner",
+      "type": "isolation",
+      "description": "Glute activation exercise"
+    },
+    {
+      "id": "ex062",
+      "name": "Good Mornings",
+      "category": "strength",
+      "muscleGroups": ["hamstrings", "glutes", "lower-back"],
+      "equipment": ["barbell"],
+      "difficulty": "intermediate",
+      "type": "compound",
+      "description": "Hip hinge movement for posterior chain"
+    },
+    {
+      "id": "ex063",
+      "name": "Rack Pulls",
+      "category": "strength",
+      "muscleGroups": ["back", "traps", "hamstrings"],
+      "equipment": ["barbell", "rack"],
+      "difficulty": "intermediate",
+      "type": "compound",
+      "description": "Partial deadlift from elevated position"
+    },
+    {
+      "id": "ex064",
+      "name": "Clean and Press",
+      "category": "strength",
+      "muscleGroups": ["full-body", "shoulders", "legs", "back"],
+      "equipment": ["barbell"],
+      "difficulty": "advanced",
+      "type": "compound",
+      "description": "Olympic lift variation"
+    },
+    {
+      "id": "ex065",
+      "name": "Power Clean",
+      "category": "strength",
+      "muscleGroups": ["full-body", "power", "legs", "back"],
+      "equipment": ["barbell"],
+      "difficulty": "advanced",
+      "type": "compound",
+      "description": "Explosive Olympic lift"
+    },
+    {
+      "id": "ex066",
+      "name": "Snatch",
+      "category": "strength",
+      "muscleGroups": ["full-body", "power", "shoulders"],
+      "equipment": ["barbell"],
+      "difficulty": "advanced",
+      "type": "compound",
+      "description": "Technical Olympic lift"
+    },
+    {
+      "id": "ex067",
+      "name": "Thruster",
+      "category": "strength",
+      "muscleGroups": ["full-body", "quads", "shoulders"],
+      "equipment": ["barbell", "dumbbells"],
+      "difficulty": "intermediate",
+      "type": "compound",
+      "description": "Front squat to overhead press"
+    },
+    {
+      "id": "ex068",
+      "name": "Wall Balls",
+      "category": "strength",
+      "muscleGroups": ["full-body", "quads", "shoulders", "cardio"],
+      "equipment": ["medicine-ball"],
+      "difficulty": "intermediate",
+      "type": "compound",
+      "description": "Squat and throw conditioning exercise"
+    },
+    {
+      "id": "ex069",
+      "name": "Pistol Squats",
+      "category": "strength",
+      "muscleGroups": ["quads", "glutes", "core", "balance"],
+      "equipment": ["bodyweight"],
+      "difficulty": "advanced",
+      "type": "compound",
+      "description": "Single-leg squat requiring strength and balance"
+    },
+    {
+      "id": "ex070",
+      "name": "Jump Squats",
+      "category": "strength",
+      "muscleGroups": ["quads", "glutes", "calves", "power"],
+      "equipment": ["bodyweight"],
+      "difficulty": "intermediate",
+      "type": "plyometric",
+      "description": "Explosive squat variation"
+    },
+    {
+      "id": "ex071",
+      "name": "Running (Easy)",
+      "category": "cardio",
+      "muscleGroups": ["full-body", "legs", "cardio"],
+      "equipment": ["none"],
+      "difficulty": "beginner",
+      "type": "cardio-steady",
+      "description": "Easy conversational pace running"
+    },
+    {
+      "id": "ex072",
+      "name": "Running (Tempo)",
+      "category": "cardio",
+      "muscleGroups": ["full-body", "legs", "cardio"],
+      "equipment": ["none"],
+      "difficulty": "intermediate",
+      "type": "cardio-threshold",
+      "description": "Comfortably hard pace running"
+    },
+    {
+      "id": "ex073",
+      "name": "Running (Intervals)",
+      "category": "cardio",
+      "muscleGroups": ["full-body", "legs", "cardio"],
+      "equipment": ["none"],
+      "difficulty": "intermediate",
+      "type": "cardio-interval",
+      "description": "High-intensity interval running"
+    },
+    {
+      "id": "ex074",
+      "name": "Running (Long)",
+      "category": "cardio",
+      "muscleGroups": ["full-body", "legs", "cardio", "endurance"],
+      "equipment": ["none"],
+      "difficulty": "intermediate",
+      "type": "cardio-endurance",
+      "description": "Long steady-state run for aerobic base"
+    },
+    {
+      "id": "ex075",
+      "name": "Sprints",
+      "category": "cardio",
+      "muscleGroups": ["full-body", "legs", "power"],
+      "equipment": ["none"],
+      "difficulty": "advanced",
+      "type": "cardio-interval",
+      "description": "Maximum effort short-distance running"
+    },
+    {
+      "id": "ex076",
+      "name": "Cycling (Easy)",
+      "category": "cardio",
+      "muscleGroups": ["legs", "cardio"],
+      "equipment": ["bike"],
+      "difficulty": "beginner",
+      "type": "cardio-steady",
+      "description": "Easy conversational pace cycling"
+    },
+    {
+      "id": "ex077",
+      "name": "Cycling (Intervals)",
+      "category": "cardio",
+      "muscleGroups": ["legs", "cardio"],
+      "equipment": ["bike"],
+      "difficulty": "intermediate",
+      "type": "cardio-interval",
+      "description": "High-intensity interval cycling"
+    },
+    {
+      "id": "ex078",
+      "name": "Cycling (Tempo)",
+      "category": "cardio",
+      "muscleGroups": ["legs", "cardio"],
+      "equipment": ["bike"],
+      "difficulty": "intermediate",
+      "type": "cardio-threshold",
+      "description": "Sustained hard effort cycling"
+    },
+    {
+      "id": "ex079",
+      "name": "Rowing (Steady)",
+      "category": "cardio",
+      "muscleGroups": ["full-body", "back", "legs", "cardio"],
+      "equipment": ["rowing-machine"],
+      "difficulty": "beginner",
+      "type": "cardio-steady",
+      "description": "Steady-state rowing"
+    },
+    {
+      "id": "ex080",
+      "name": "Rowing (Intervals)",
+      "category": "cardio",
+      "muscleGroups": ["full-body", "back", "legs", "cardio"],
+      "equipment": ["rowing-machine"],
+      "difficulty": "intermediate",
+      "type": "cardio-interval",
+      "description": "High-intensity interval rowing"
+    },
+    {
+      "id": "ex081",
+      "name": "Swimming (Easy)",
+      "category": "cardio",
+      "muscleGroups": ["full-body", "cardio"],
+      "equipment": ["pool"],
+      "difficulty": "intermediate",
+      "type": "cardio-steady",
+      "description": "Easy continuous swimming"
+    },
+    {
+      "id": "ex082",
+      "name": "Swimming (Intervals)",
+      "category": "cardio",
+      "muscleGroups": ["full-body", "cardio"],
+      "equipment": ["pool"],
+      "difficulty": "advanced",
+      "type": "cardio-interval",
+      "description": "High-intensity interval swimming"
+    },
+    {
+      "id": "ex083",
+      "name": "Jump Rope",
+      "category": "cardio",
+      "muscleGroups": ["calves", "cardio", "coordination"],
+      "equipment": ["jump-rope"],
+      "difficulty": "beginner",
+      "type": "cardio-interval",
+      "description": "Cardiovascular conditioning with rope"
+    },
+    {
+      "id": "ex084",
+      "name": "Stair Climber",
+      "category": "cardio",
+      "muscleGroups": ["legs", "glutes", "cardio"],
+      "equipment": ["machine"],
+      "difficulty": "beginner",
+      "type": "cardio-steady",
+      "description": "Stair climbing machine"
+    },
+    {
+      "id": "ex085",
+      "name": "Elliptical",
+      "category": "cardio",
+      "muscleGroups": ["full-body", "cardio"],
+      "equipment": ["machine"],
+      "difficulty": "beginner",
+      "type": "cardio-steady",
+      "description": "Low-impact cardio machine"
+    },
+    {
+      "id": "ex086",
+      "name": "Battle Ropes",
+      "category": "cardio",
+      "muscleGroups": ["full-body", "shoulders", "cardio"],
+      "equipment": ["battle-ropes"],
+      "difficulty": "intermediate",
+      "type": "cardio-interval",
+      "description": "High-intensity rope conditioning"
+    },
+    {
+      "id": "ex087",
+      "name": "Assault Bike",
+      "category": "cardio",
+      "muscleGroups": ["full-body", "cardio"],
+      "equipment": ["assault-bike"],
+      "difficulty": "intermediate",
+      "type": "cardio-interval",
+      "description": "Air bike for full-body conditioning"
+    },
+    {
+      "id": "ex088",
+      "name": "Ski Erg",
+      "category": "cardio",
+      "muscleGroups": ["full-body", "back", "core", "cardio"],
+      "equipment": ["ski-erg"],
+      "difficulty": "intermediate",
+      "type": "cardio-interval",
+      "description": "Skiing motion cardio machine"
+    },
+    {
+      "id": "ex089",
+      "name": "Sled Push",
+      "category": "strength",
+      "muscleGroups": ["quads", "glutes", "calves", "cardio"],
+      "equipment": ["sled"],
+      "difficulty": "intermediate",
+      "type": "compound",
+      "description": "Loaded sled pushing"
+    },
+    {
+      "id": "ex090",
+      "name": "Sled Pull",
+      "category": "strength",
+      "muscleGroups": ["back", "hamstrings", "cardio"],
+      "equipment": ["sled"],
+      "difficulty": "intermediate",
+      "type": "compound",
+      "description": "Loaded sled pulling"
+    },
+    {
+      "id": "ex091",
+      "name": "HIIT Circuit",
+      "category": "cardio",
+      "muscleGroups": ["full-body", "cardio"],
+      "equipment": ["bodyweight"],
+      "difficulty": "intermediate",
+      "type": "cardio-interval",
+      "description": "High-intensity interval training circuit"
+    },
+    {
+      "id": "ex092",
+      "name": "Tabata",
+      "category": "cardio",
+      "muscleGroups": ["full-body", "cardio"],
+      "equipment": ["bodyweight"],
+      "difficulty": "advanced",
+      "type": "cardio-interval",
+      "description": "20 seconds on, 10 seconds off interval protocol"
+    },
+    {
+      "id": "ex093",
+      "name": "Bodyweight Squats",
+      "category": "strength",
+      "muscleGroups": ["quads", "glutes"],
+      "equipment": ["bodyweight"],
+      "difficulty": "beginner",
+      "type": "compound",
+      "description": "No-weight squat movement"
+    },
+    {
+      "id": "ex094",
+      "name": "Inverted Row",
+      "category": "strength",
+      "muscleGroups": ["back", "biceps"],
+      "equipment": ["bodyweight", "bar"],
+      "difficulty": "beginner",
+      "type": "compound",
+      "description": "Horizontal bodyweight pull"
+    },
+    {
+      "id": "ex095",
+      "name": "Handstand Push-Ups",
+      "category": "strength",
+      "muscleGroups": ["shoulders", "triceps", "core"],
+      "equipment": ["bodyweight"],
+      "difficulty": "advanced",
+      "type": "compound",
+      "description": "Inverted shoulder press"
+    },
+    {
+      "id": "ex096",
+      "name": "Ring Dips",
+      "category": "strength",
+      "muscleGroups": ["triceps", "chest", "shoulders"],
+      "equipment": ["rings", "bodyweight"],
+      "difficulty": "advanced",
+      "type": "compound",
+      "description": "Unstable dip variation on rings"
+    },
+    {
+      "id": "ex097",
+      "name": "Ring Rows",
+      "category": "strength",
+      "muscleGroups": ["back", "biceps"],
+      "equipment": ["rings", "bodyweight"],
+      "difficulty": "intermediate",
+      "type": "compound",
+      "description": "Adjustable-angle row on rings"
+    },
+    {
+      "id": "ex098",
+      "name": "Muscle-Ups",
+      "category": "strength",
+      "muscleGroups": ["back", "chest", "triceps", "shoulders"],
+      "equipment": ["pull-up-bar", "bodyweight"],
+      "difficulty": "advanced",
+      "type": "compound",
+      "description": "Advanced pull-up to dip transition"
+    },
+    {
+      "id": "ex099",
+      "name": "L-Sit",
+      "category": "strength",
+      "muscleGroups": ["core", "hip-flexors", "shoulders"],
+      "equipment": ["bodyweight", "parallettes"],
+      "difficulty": "advanced",
+      "type": "isometric",
+      "description": "Static hold with legs extended"
+    },
+    {
+      "id": "ex100",
+      "name": "Dragon Flag",
+      "category": "strength",
+      "muscleGroups": ["core", "abs"],
+      "equipment": ["bodyweight", "bench"],
+      "difficulty": "advanced",
+      "type": "compound",
+      "description": "Advanced core exercise"
+    }
+  ],
+  "metadata": {
+    "version": "1.0",
+    "totalExercises": 100,
+    "lastUpdated": "2025-11-16",
+    "categories": ["strength", "cardio"],
+    "equipmentTypes": [
+      "barbell",
+      "dumbbells",
+      "kettlebells",
+      "bodyweight",
+      "bench",
+      "rack",
+      "pull-up-bar",
+      "dip-bars",
+      "cable-machine",
+      "machine",
+      "box",
+      "medicine-ball",
+      "jump-rope",
+      "bike",
+      "rowing-machine",
+      "pool",
+      "sled",
+      "battle-ropes",
+      "assault-bike",
+      "ski-erg",
+      "rings",
+      "parallettes",
+      "none"
+    ],
+    "muscleGroups": [
+      "chest",
+      "back",
+      "shoulders",
+      "biceps",
+      "triceps",
+      "forearms",
+      "quads",
+      "hamstrings",
+      "glutes",
+      "calves",
+      "core",
+      "abs",
+      "obliques",
+      "traps",
+      "rear-delts",
+      "lower-back",
+      "upper-back",
+      "hip-flexors",
+      "full-body",
+      "cardio"
+    ],
+    "difficulties": ["beginner", "intermediate", "advanced"],
+    "types": [
+      "compound",
+      "isolation",
+      "cardio-steady",
+      "cardio-interval",
+      "cardio-threshold",
+      "cardio-endurance",
+      "plyometric",
+      "isometric"
+    ]
+  }
+}
