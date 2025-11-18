@@ -19,6 +19,13 @@ function WorkoutLogger({ user }) {
   const [cardioDuration, setCardioDuration] = useState('')
   const [cardioDistance, setCardioDistance] = useState('')
 
+  // Extract YouTube video ID from URL
+  const getYouTubeId = (url) => {
+    if (!url) return null
+    const match = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/)
+    return match ? match[1] : null
+  }
+
   useEffect(() => {
     loadWorkout()
   }, [planId, day]) // Add day to dependencies to reload when day changes
@@ -305,14 +312,17 @@ function WorkoutLogger({ user }) {
             <button className="modal-close" onClick={() => setShowVideoModal(false)}>×</button>
             <h3>{currentExercise.name}</h3>
             <div className="video-wrapper">
-              <iframe
-                width="100%"
-                height="315"
-                src={currentExercise.videoUrl.replace('watch?v=', 'embed/')}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
+              {getYouTubeId(currentExercise.videoUrl) && (
+                <iframe
+                  width="100%"
+                  height="315"
+                  src={`https://www.youtube.com/embed/${getYouTubeId(currentExercise.videoUrl)}`}
+                  title={`${currentExercise.name} Tutorial`}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              )}
             </div>
             {currentExercise.description && (
               <p className="text-muted mt-2">{currentExercise.description}</p>
