@@ -109,10 +109,19 @@ function WorkoutLogger({ user }) {
     if (newCompleted && exercise.category === 'strength') {
       const restTime = exercise.volume?.rest
       if (restTime) {
-        // Parse rest time (e.g., "2 min" -> 120 seconds)
-        const minutes = parseInt(restTime)
-        if (!isNaN(minutes)) {
-          setRestTimer(minutes * 60)
+        // Parse rest time (e.g., "2 min" -> 120 seconds, "60 sec" -> 60 seconds)
+        const value = parseInt(restTime)
+        if (!isNaN(value)) {
+          if (restTime.toLowerCase().includes('sec')) {
+            // Already in seconds
+            setRestTimer(value)
+          } else if (restTime.toLowerCase().includes('min')) {
+            // Convert minutes to seconds
+            setRestTimer(value * 60)
+          } else {
+            // Default 90 seconds if format is unclear
+            setRestTimer(90)
+          }
           setIsResting(true)
         } else {
           // Default 90 seconds
