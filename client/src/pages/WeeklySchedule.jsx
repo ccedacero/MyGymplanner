@@ -214,6 +214,13 @@ function WeeklySchedule({ user }) {
       {saveSuccess && (
         <div className="status-notice success">
           ✅ Changes saved successfully!
+          <button
+            onClick={() => navigate('/today', { replace: true, state: { refresh: Date.now() } })}
+            className="btn btn-sm btn-primary"
+            style={{ marginLeft: '1rem' }}
+          >
+            View Today's Workout →
+          </button>
         </div>
       )}
     </div>

@@ -15,7 +15,21 @@ function TodaysWorkout({ user }) {
 
   useEffect(() => {
     loadTodaysWorkout()
-  }, [user.id, location.key]) // Reload when navigating back to this page
+  }, [user.id, location.pathname, location.key, location.state]) // Reload when navigating back to this page
+
+  // Also reload when the page becomes visible (e.g., after drag/drop changes)
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        loadTodaysWorkout()
+      }
+    }
+
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+    }
+  }, [])
 
   const loadTodaysWorkout = async () => {
     try {
