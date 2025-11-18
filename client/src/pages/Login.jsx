@@ -69,9 +69,18 @@ function Login({ onLogin }) {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
+            {isRegister && (
+              <small className="text-muted" style={{ fontSize: '0.85rem', display: 'block', marginTop: '0.5rem' }}>
+                Password must contain at least 8 characters, including uppercase, lowercase, number, and special character
+              </small>
+            )}
           </div>
 
-          {error && <div className="form-error mb-2">{error}</div>}
+          {error && (
+            <div className="form-error mb-2" style={{ whiteSpace: 'pre-line' }}>
+              {error}
+            </div>
+          )}
 
           <button
             type="submit"
