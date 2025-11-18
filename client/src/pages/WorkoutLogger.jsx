@@ -16,10 +16,12 @@ function WorkoutLogger({ user }) {
   const [rpe, setRpe] = useState(5)
   const [loading, setLoading] = useState(true)
   const [showVideoModal, setShowVideoModal] = useState(false)
+  const [cardioDuration, setCardioDuration] = useState('')
+  const [cardioDistance, setCardioDistance] = useState('')
 
   useEffect(() => {
     loadWorkout()
-  }, [planId])
+  }, [planId, day]) // Add day to dependencies to reload when day changes
 
   // Rest timer countdown
   useEffect(() => {
@@ -46,15 +48,25 @@ function WorkoutLogger({ user }) {
       const todayData = await api.getTodaysWorkout(planId)
       setWorkout(todayData.workout)
 
-      // Initialize exercise state with sets
-      const exercisesWithSets = todayData.workout.exercises.map(ex => ({
-        ...ex,
-        sets: Array(ex.volume?.sets || 3).fill(null).map(() => ({
-          weight: '',
-          reps: '',
-          completed: false
-        }))
-      }))
+      // Initialize exercise state with sets or cardio data
+      const exercisesWithSets = todayData.workout.exercises.map(ex => {
+        if (ex.category === 'cardio') {
+          return {
+            ...ex,
+            cardioDuration: '',
+            cardioDistance: ''
+          }
+        } else {
+          return {
+            ...ex,
+            sets: Array(ex.volume?.sets || 3).fill(null).map(() => ({
+              weight: '',
+              reps: '',
+              completed: false
+            }))
+          }
+        }
+      })
       setExercises(exercisesWithSets)
     } catch (error) {
       alert('Error loading workout: ' + error.message)
@@ -68,6 +80,14 @@ function WorkoutLogger({ user }) {
     setExercises(prev => {
       const newExercises = [...prev]
       newExercises[exerciseIndex].sets[setIndex][field] = value
+      return newExercises
+    })
+  }
+
+  const handleCardioChange = (exerciseIndex, field, value) => {
+    setExercises(prev => {
+      const newExercises = [...prev]
+      newExercises[exerciseIndex][field] = value
       return newExercises
     })
   }
@@ -114,14 +134,25 @@ function WorkoutLogger({ user }) {
       userId: user.id,
       planId,
       date: new Date().toISOString(),
-      exercises: exercises.map(ex => ({
-        exerciseId: ex.id,
-        sets: ex.sets.map(s => ({
-          weight: parseFloat(s.weight) || 0,
-          reps: parseInt(s.reps) || 0,
-          completed: s.completed
-        }))
-      })),
+      exercises: exercises.map(ex => {
+        if (ex.category === 'cardio') {
+          return {
+            exerciseId: ex.id,
+            cardioDuration: parseFloat(ex.cardioDuration) || 0,
+            cardioDistance: parseFloat(ex.cardioDistance) || 0,
+            completed: true
+          }
+        } else {
+          return {
+            exerciseId: ex.id,
+            sets: ex.sets.map(s => ({
+              weight: parseFloat(s.weight) || 0,
+              reps: parseInt(s.reps) || 0,
+              completed: s.completed
+            }))
+          }
+        }
+      }),
       duration,
       notes,
       rpe
@@ -369,6 +400,8 @@ function WorkoutLogger({ user }) {
                 className="form-input"
                 placeholder="Enter duration"
                 inputMode="numeric"
+                value={currentExercise.cardioDuration || ''}
+                onChange={(e) => handleCardioChange(currentExerciseIndex, 'cardioDuration', e.target.value)}
               />
             </div>
             <div className="form-group">
@@ -376,8 +409,10 @@ function WorkoutLogger({ user }) {
               <input
                 type="number"
                 className="form-input"
-                placeholder="Enter distance"
+                placeholder="Enter distance (miles)"
                 inputMode="decimal"
+                value={currentExercise.cardioDistance || ''}
+                onChange={(e) => handleCardioChange(currentExerciseIndex, 'cardioDistance', e.target.value)}
               />
             </div>
           </div>

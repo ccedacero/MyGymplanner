@@ -67,7 +67,7 @@ function WeeklySchedule({ user }) {
   const [plan, setPlan] = useState(null)
   const [weekSchedule, setWeekSchedule] = useState([])
   const [saving, setSaving] = useState(false)
-  const [hasChanges, setHasChanges] = useState(false)
+  const [saveSuccess, setSaveSuccess] = useState(false)
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -101,12 +101,14 @@ function WeeklySchedule({ user }) {
     }
   }
 
-  const handleDragEnd = (event) => {
+  const handleDragEnd = async (event) => {
     const { active, over } = event
 
     if (!over || active.id === over.id) {
       return
     }
+
+    let updatedSchedule
 
     setWeekSchedule(prev => {
       const oldIndex = prev.findIndex((day) => day.day === active.id)
@@ -118,35 +120,27 @@ function WeeklySchedule({ user }) {
 
       // Update day names to match new positions
       const dayNames = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-      const updatedSchedule = newSchedule.map((workout, index) => ({
+      updatedSchedule = newSchedule.map((workout, index) => ({
         ...workout,
         day: dayNames[index]
       }))
 
-      setHasChanges(true)
       return updatedSchedule
     })
-  }
 
-  const handleSave = async () => {
+    // Auto-save changes immediately after drag-and-drop
     try {
       setSaving(true)
       await api.updatePlan(plan.id, {
-        weekSchedule: weekSchedule
+        weekSchedule: updatedSchedule
       })
-      setHasChanges(false)
-      alert('✅ Schedule saved successfully!')
+      setSaveSuccess(true)
+      // Hide success message after 2 seconds
+      setTimeout(() => setSaveSuccess(false), 2000)
     } catch (error) {
       alert('Error saving schedule: ' + error.message)
     } finally {
       setSaving(false)
-    }
-  }
-
-  const handleReset = () => {
-    if (confirm('Reset schedule to saved version?')) {
-      setWeekSchedule([...plan.weekSchedule])
-      setHasChanges(false)
     }
   }
 
@@ -176,7 +170,7 @@ function WeeklySchedule({ user }) {
     <div className="container weekly-schedule-page">
       <div className="page-header">
         <h1>Weekly Schedule</h1>
-        <p className="text-muted">Drag and drop to reorder your workout days</p>
+        <p className="text-muted">Drag and drop to reorder your workout days - changes save automatically</p>
       </div>
 
       <div className="plan-info-card">
@@ -211,26 +205,15 @@ function WeeklySchedule({ user }) {
         </SortableContext>
       </DndContext>
 
-      <div className="action-buttons">
-        <button
-          onClick={handleReset}
-          className="btn btn-outline"
-          disabled={!hasChanges || saving}
-        >
-          Reset
-        </button>
-        <button
-          onClick={handleSave}
-          className="btn btn-primary"
-          disabled={!hasChanges || saving}
-        >
-          {saving ? 'Saving...' : 'Save Changes'}
-        </button>
-      </div>
-
-      {hasChanges && (
-        <div className="changes-notice">
-          ⚠️ You have unsaved changes
+      {/* Status indicator */}
+      {saving && (
+        <div className="status-notice saving">
+          💾 Saving changes...
+        </div>
+      )}
+      {saveSuccess && (
+        <div className="status-notice success">
+          ✅ Changes saved successfully!
         </div>
       )}
     </div>
