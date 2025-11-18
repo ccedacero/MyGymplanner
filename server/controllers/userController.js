@@ -46,6 +46,7 @@ exports.register = async (req, res) => {
       password: hashedPassword,
       name: name || email.split('@')[0],
       equipment: [], // User's available equipment
+      exercisePreference: 'both', // Default to using both default and known exercises
       createdAt: new Date().toISOString()
     };
 
@@ -215,5 +216,45 @@ exports.updateEquipment = async (req, res) => {
   } catch (error) {
     console.error('Error updating equipment:', error);
     res.status(500).json({ error: 'Failed to update equipment' });
+  }
+};
+
+// Update user exercise preference
+exports.updateExercisePreference = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const { exercisePreference } = req.body;
+
+    // Validate preference value
+    const validPreferences = ['default', 'known', 'both'];
+    if (!validPreferences.includes(exercisePreference)) {
+      return res.status(400).json({
+        error: `exercisePreference must be one of: ${validPreferences.join(', ')}`
+      });
+    }
+
+    const usersData = await fs.readFile(USERS_PATH, 'utf8');
+    const users = JSON.parse(usersData);
+
+    const index = users.users.findIndex(u => u.id === userId);
+
+    if (index === -1) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    users.users[index].exercisePreference = exercisePreference;
+    users.users[index].updatedAt = new Date().toISOString();
+
+    await fs.writeFile(USERS_PATH, JSON.stringify(users, null, 2));
+
+    const { password: _, ...userWithoutPassword } = users.users[index];
+
+    res.json({
+      message: 'Exercise preference updated successfully',
+      user: userWithoutPassword
+    });
+  } catch (error) {
+    console.error('Error updating exercise preference:', error);
+    res.status(500).json({ error: 'Failed to update exercise preference' });
   }
 };

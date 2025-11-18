@@ -4,7 +4,9 @@ const { v4: uuidv4 } = require('uuid');
 const { generateAIWorkoutPlan } = require('../services/aiWorkoutGenerator');
 
 const EXERCISES_DB_PATH = path.join(__dirname, '../data/exercises-database.json');
+const KNOWN_EXERCISES_PATH = path.join(__dirname, '../data/known-exercises.json');
 const CUSTOM_EXERCISES_PATH = path.join(__dirname, '../data/custom-exercises.json');
+const USERS_PATH = path.join(__dirname, '../data/users.json');
 const PLANS_PATH = path.join(__dirname, '../data/plans.json');
 
 // Initialize plans file
@@ -18,12 +20,39 @@ async function initPlans() {
 
 initPlans();
 
+// Helper: Get user's exercise preference
+async function getUserExercisePreference(userId) {
+  if (!userId) return 'both';
+
+  try {
+    const usersData = await fs.readFile(USERS_PATH, 'utf8');
+    const users = JSON.parse(usersData);
+    const user = users.users.find(u => u.id === userId);
+    return user?.exercisePreference || 'both';
+  } catch (error) {
+    return 'both';
+  }
+}
+
 // Load all available exercises for a user
 async function loadUserExercises(userId) {
-  // Load built-in exercises
-  const builtInData = await fs.readFile(EXERCISES_DB_PATH, 'utf8');
-  const builtIn = JSON.parse(builtInData);
-  let exercises = [...builtIn.exercises];
+  let exercises = [];
+
+  // Get user's exercise preference
+  const preference = await getUserExercisePreference(userId);
+
+  // Load built-in exercises based on preference
+  if (preference === 'default' || preference === 'both') {
+    const defaultData = await fs.readFile(EXERCISES_DB_PATH, 'utf8');
+    const defaultExercises = JSON.parse(defaultData);
+    exercises = [...exercises, ...defaultExercises.exercises];
+  }
+
+  if (preference === 'known' || preference === 'both') {
+    const knownData = await fs.readFile(KNOWN_EXERCISES_PATH, 'utf8');
+    const knownExercises = JSON.parse(knownData);
+    exercises = [...exercises, ...knownExercises.exercises];
+  }
 
   // Load custom exercises if userId provided
   if (userId) {

@@ -39,6 +39,16 @@ export const updateEquipment = async (userId, equipment) => {
   return res.json()
 }
 
+export const updateExercisePreference = async (userId, exercisePreference) => {
+  const res = await fetch(`${API_BASE}/users/${userId}/exercise-preference`, {
+    method: 'PUT',
+    headers: getHeaders(),
+    body: JSON.stringify({ exercisePreference })
+  })
+  if (!res.ok) throw new Error('Failed to update exercise preference')
+  return res.json()
+}
+
 // Exercises
 export const getExercises = async (userId, equipment) => {
   let url = `${API_BASE}/exercises?userId=${userId}`

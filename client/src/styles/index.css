@@ -207,6 +207,50 @@ body {
   background-color: #EEF2FF;
 }
 
+/* Radio */
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.radio-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem;
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.radio-item input[type="radio"] {
+  margin-right: 0.75rem;
+  margin-top: 0.25rem;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.radio-item.checked {
+  border-color: var(--primary);
+  background-color: #EEF2FF;
+}
+
+.radio-item:hover {
+  border-color: var(--primary);
+}
+
+.radio-item div {
+  flex: 1;
+}
+
+.radio-item strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--text);
+}
+
 /* Grid */
 .grid {
   display: grid;

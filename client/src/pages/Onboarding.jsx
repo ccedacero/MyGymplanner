@@ -10,6 +10,7 @@ const EQUIPMENT_OPTIONS = [
 
 function Onboarding({ user, setUser }) {
   const [selectedEquipment, setSelectedEquipment] = useState(user.equipment || [])
+  const [exercisePreference, setExercisePreference] = useState(user.exercisePreference || 'both')
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
@@ -29,12 +30,17 @@ function Onboarding({ user, setUser }) {
 
     setLoading(true)
     try {
-      const data = await api.updateEquipment(user.id, selectedEquipment)
-      setUser(data.user)
-      localStorage.setItem('user', JSON.stringify(data.user))
+      // Update equipment
+      const equipmentData = await api.updateEquipment(user.id, selectedEquipment)
+
+      // Update exercise preference
+      const preferenceData = await api.updateExercisePreference(user.id, exercisePreference)
+
+      setUser(preferenceData.user)
+      localStorage.setItem('user', JSON.stringify(preferenceData.user))
       navigate('/dashboard')
     } catch (err) {
-      alert('Failed to save equipment: ' + err.message)
+      alert('Failed to save settings: ' + err.message)
     } finally {
       setLoading(false)
     }
@@ -62,6 +68,57 @@ function Onboarding({ user, setUser }) {
               {eq.replace(/-/g, ' ')}
             </label>
           ))}
+        </div>
+
+        <div className="mt-4 mb-3">
+          <h3 className="card-title" style={{ fontSize: '1.2rem' }}>Exercise Database Preference</h3>
+          <p className="text-muted mb-2" style={{ fontSize: '0.9rem' }}>
+            Choose which exercises to include in your workouts
+          </p>
+
+          <div className="radio-group">
+            <label className={`radio-item ${exercisePreference === 'default' ? 'checked' : ''}`}>
+              <input
+                type="radio"
+                name="exercisePreference"
+                value="default"
+                checked={exercisePreference === 'default'}
+                onChange={(e) => setExercisePreference(e.target.value)}
+              />
+              <div>
+                <strong>Default Exercises Only</strong>
+                <p className="text-small text-muted">Standard exercise library</p>
+              </div>
+            </label>
+
+            <label className={`radio-item ${exercisePreference === 'known' ? 'checked' : ''}`}>
+              <input
+                type="radio"
+                name="exercisePreference"
+                value="known"
+                checked={exercisePreference === 'known'}
+                onChange={(e) => setExercisePreference(e.target.value)}
+              />
+              <div>
+                <strong>My Known Exercises Only</strong>
+                <p className="text-small text-muted">64 exercises you're familiar with from your training history</p>
+              </div>
+            </label>
+
+            <label className={`radio-item ${exercisePreference === 'both' ? 'checked' : ''}`}>
+              <input
+                type="radio"
+                name="exercisePreference"
+                value="both"
+                checked={exercisePreference === 'both'}
+                onChange={(e) => setExercisePreference(e.target.value)}
+              />
+              <div>
+                <strong>Both (Recommended)</strong>
+                <p className="text-small text-muted">Maximum variety with both default and your known exercises</p>
+              </div>
+            </label>
+          </div>
         </div>
 
         <div className="mt-4">

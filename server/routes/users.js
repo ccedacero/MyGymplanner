@@ -17,4 +17,7 @@ router.put('/:userId', userController.updateUserProfile);
 // Update user equipment
 router.put('/:userId/equipment', userController.updateEquipment);
 
+// Update user exercise preference
+router.put('/:userId/exercise-preference', userController.updateExercisePreference);
+
 module.exports = router;

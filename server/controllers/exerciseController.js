@@ -4,9 +4,11 @@ const csv = require('csv-parse/sync');
 const xlsx = require('xlsx');
 const { v4: uuidv4 } = require('uuid');
 
-// Load built-in exercise database
+// Load built-in exercise databases
 const EXERCISES_DB_PATH = path.join(__dirname, '../data/exercises-database.json');
+const KNOWN_EXERCISES_PATH = path.join(__dirname, '../data/known-exercises.json');
 const CUSTOM_EXERCISES_PATH = path.join(__dirname, '../data/custom-exercises.json');
+const USERS_PATH = path.join(__dirname, '../data/users.json');
 
 // Initialize custom exercises file if it doesn't exist
 async function initCustomExercises() {
@@ -19,15 +21,51 @@ async function initCustomExercises() {
 
 initCustomExercises();
 
+// Helper: Get user's exercise preference
+async function getUserExercisePreference(userId) {
+  if (!userId) return 'both'; // Default if no userId
+
+  try {
+    const usersData = await fs.readFile(USERS_PATH, 'utf8');
+    const users = JSON.parse(usersData);
+    const user = users.users.find(u => u.id === userId);
+
+    return user?.exercisePreference || 'both'; // Default to 'both'
+  } catch (error) {
+    console.error('Error reading user preference:', error);
+    return 'both';
+  }
+}
+
+// Helper: Load built-in exercises based on preference
+async function loadBuiltInExercises(preference) {
+  let exercises = [];
+
+  if (preference === 'default' || preference === 'both') {
+    const defaultData = await fs.readFile(EXERCISES_DB_PATH, 'utf8');
+    const defaultExercises = JSON.parse(defaultData);
+    exercises = [...exercises, ...defaultExercises.exercises];
+  }
+
+  if (preference === 'known' || preference === 'both') {
+    const knownData = await fs.readFile(KNOWN_EXERCISES_PATH, 'utf8');
+    const knownExercises = JSON.parse(knownData);
+    exercises = [...exercises, ...knownExercises.exercises];
+  }
+
+  return exercises;
+}
+
 // Get all exercises (built-in + user's custom)
 exports.getAllExercises = async (req, res) => {
   try {
     const { userId, equipment } = req.query;
 
-    // Load built-in exercises
-    const builtInData = await fs.readFile(EXERCISES_DB_PATH, 'utf8');
-    const builtIn = JSON.parse(builtInData);
-    let exercises = [...builtIn.exercises];
+    // Get user's exercise preference
+    const preference = await getUserExercisePreference(userId);
+
+    // Load built-in exercises based on preference
+    let exercises = await loadBuiltInExercises(preference);
 
     // Load custom exercises if userId provided
     if (userId) {
@@ -47,7 +85,11 @@ exports.getAllExercises = async (req, res) => {
 
     res.json({
       exercises,
-      metadata: builtIn.metadata
+      metadata: {
+        totalExercises: exercises.length,
+        preference,
+        source: preference === 'both' ? 'default + known + custom' : `${preference} + custom`
+      }
     });
   } catch (error) {
     console.error('Error fetching exercises:', error);
@@ -59,11 +101,19 @@ exports.getAllExercises = async (req, res) => {
 exports.getExerciseById = async (req, res) => {
   try {
     const { id } = req.params;
+    let exercise = null;
 
-    // Check built-in exercises
+    // Check default exercises
     const builtInData = await fs.readFile(EXERCISES_DB_PATH, 'utf8');
     const builtIn = JSON.parse(builtInData);
-    let exercise = builtIn.exercises.find(ex => ex.id === id);
+    exercise = builtIn.exercises.find(ex => ex.id === id);
+
+    // If not found, check known exercises
+    if (!exercise) {
+      const knownData = await fs.readFile(KNOWN_EXERCISES_PATH, 'utf8');
+      const known = JSON.parse(knownData);
+      exercise = known.exercises.find(ex => ex.id === id);
+    }
 
     // If not found, check custom exercises
     if (!exercise) {
@@ -94,9 +144,12 @@ exports.filterByEquipment = async (req, res) => {
 
     const equipmentArray = equipment.split(',').map(e => e.trim());
 
-    const builtInData = await fs.readFile(EXERCISES_DB_PATH, 'utf8');
-    const builtIn = JSON.parse(builtInData);
-    let exercises = builtIn.exercises.filter(ex => {
+    // Get user's exercise preference
+    const preference = await getUserExercisePreference(userId);
+
+    // Load built-in exercises based on preference
+    const builtInExercises = await loadBuiltInExercises(preference);
+    let exercises = builtInExercises.filter(ex => {
       return ex.equipment.some(eq => equipmentArray.includes(eq));
     });
 
@@ -110,7 +163,11 @@ exports.filterByEquipment = async (req, res) => {
       exercises = [...exercises, ...userCustom];
     }
 
-    res.json({ exercises, count: exercises.length });
+    res.json({
+      exercises,
+      count: exercises.length,
+      preference
+    });
   } catch (error) {
     console.error('Error filtering exercises:', error);
     res.status(500).json({ error: 'Failed to filter exercises' });
