@@ -141,6 +141,22 @@ function selectUpperBodyExercises(exercises, experienceLevel) {
     if (biceps) selected.push(biceps);
   }
 
+  // 6. Core work to ensure minimum 4-5 exercises per session
+  const coreOptions = exercises.filter(ex =>
+    ex.muscleGroups.includes('abs') || ex.muscleGroups.includes('core')
+  );
+  const core = randomSelect(coreOptions);
+  if (core && selected.length < 5) {
+    selected.push(core);
+  }
+
+  // Ensure minimum 4 exercises (add accessory if needed)
+  if (selected.length < 4) {
+    const remainingOptions = upper.filter(ex => !selected.includes(ex));
+    const extra = randomSelect(remainingOptions);
+    if (extra) selected.push(extra);
+  }
+
   return selected.filter(Boolean);
 }
 
@@ -207,6 +223,22 @@ function selectLowerBodyExercises(exercises, experienceLevel) {
     if (calf) selected.push(calf);
   }
 
+  // 6. Core/abs work to ensure minimum 4-5 exercises per session
+  const coreOptions = exercises.filter(ex =>
+    ex.muscleGroups.includes('abs') || ex.muscleGroups.includes('core')
+  );
+  const core = randomSelect(coreOptions);
+  if (core && selected.length < 5) {
+    selected.push(core);
+  }
+
+  // Ensure minimum 4 exercises (add accessory if needed)
+  if (selected.length < 4) {
+    const remainingOptions = lower.filter(ex => !selected.includes(ex));
+    const extra = randomSelect(remainingOptions);
+    if (extra) selected.push(extra);
+  }
+
   return selected.filter(Boolean);
 }
 
@@ -270,9 +302,10 @@ function selectCardioExercises(exercises, cardioType = 'any') {
 
   if (cardio.length === 0) return [];
 
-  // Shuffle and return 3 random cardio exercises for variety
+  // Shuffle and return 4-5 random cardio exercises for variety and adequate volume
   const shuffled = [...cardio].sort(() => Math.random() - 0.5);
-  return shuffled.slice(0, 3);
+  const count = Math.min(5, Math.max(4, cardio.length)); // 4-5 exercises, or all available if less
+  return shuffled.slice(0, count);
 }
 
 // Assign sets, reps, and intensity based on goal and experience

@@ -40,6 +40,8 @@ async function generateAIWorkoutPlan(config) {
 4. Assign appropriate sets, reps, and rest periods
 5. Balance muscle groups and prevent overtraining
 6. Include warm-up recommendations
+7. **IMPORTANT: Each training session must include 4-5 exercises minimum (not counting warm-up)**
+8. Include core/abs work in most sessions for balanced development
 
 **Output Format (JSON):**
 Return a valid JSON object with this structure:
