@@ -15,7 +15,13 @@ export const register = async (email, password, name) => {
     headers: getHeaders(),
     body: JSON.stringify({ email, password, name })
   })
-  if (!res.ok) throw new Error('Registration failed')
+  if (!res.ok) {
+    const errorData = await res.json()
+    if (errorData.requirements && errorData.requirements.length > 0) {
+      throw new Error(`${errorData.error}:\n• ${errorData.requirements.join('\n• ')}`)
+    }
+    throw new Error(errorData.error || 'Registration failed')
+  }
   return res.json()
 }
 
@@ -25,7 +31,10 @@ export const login = async (email, password) => {
     headers: getHeaders(),
     body: JSON.stringify({ email, password })
   })
-  if (!res.ok) throw new Error('Login failed')
+  if (!res.ok) {
+    const errorData = await res.json()
+    throw new Error(errorData.error || 'Login failed')
+  }
   return res.json()
 }
 

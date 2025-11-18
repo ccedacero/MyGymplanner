@@ -6,6 +6,49 @@ const { v4: uuidv4 } = require('uuid');
 
 const USERS_PATH = path.join(__dirname, '../data/users.json');
 
+// Validation functions
+function validateEmail(email) {
+  // RFC 5322 compliant email regex
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+function validatePassword(password) {
+  // Password must be at least 8 characters and contain:
+  // - At least one uppercase letter
+  // - At least one lowercase letter
+  // - At least one number
+  // - At least one special character
+  const minLength = 8;
+  const hasUpperCase = /[A-Z]/.test(password);
+  const hasLowerCase = /[a-z]/.test(password);
+  const hasNumber = /[0-9]/.test(password);
+  const hasSpecialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
+
+  const errors = [];
+
+  if (password.length < minLength) {
+    errors.push(`at least ${minLength} characters`);
+  }
+  if (!hasUpperCase) {
+    errors.push('at least one uppercase letter');
+  }
+  if (!hasLowerCase) {
+    errors.push('at least one lowercase letter');
+  }
+  if (!hasNumber) {
+    errors.push('at least one number');
+  }
+  if (!hasSpecialChar) {
+    errors.push('at least one special character (!@#$%^&*()_+-=[]{};\':"\\|,.<>/?)');
+  }
+
+  return {
+    isValid: errors.length === 0,
+    errors
+  };
+}
+
 // Initialize users file
 async function initUsers() {
   try {
@@ -24,6 +67,20 @@ exports.register = async (req, res) => {
 
     if (!email || !password) {
       return res.status(400).json({ error: 'Email and password are required' });
+    }
+
+    // Validate email format
+    if (!validateEmail(email)) {
+      return res.status(400).json({ error: 'Invalid email format' });
+    }
+
+    // Validate password strength
+    const passwordValidation = validatePassword(password);
+    if (!passwordValidation.isValid) {
+      return res.status(400).json({
+        error: 'Password does not meet security requirements',
+        requirements: passwordValidation.errors
+      });
     }
 
     // Load existing users
