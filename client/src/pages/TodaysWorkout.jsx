@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import * as api from '../services/api'
 import ExerciseDetail from '../components/ExerciseDetail'
 import './TodaysWorkout.css'
@@ -11,10 +11,11 @@ function TodaysWorkout({ user }) {
   const [error, setError] = useState(null)
   const [selectedExercise, setSelectedExercise] = useState(null)
   const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     loadTodaysWorkout()
-  }, [user.id])
+  }, [user.id, location.key]) // Reload when navigating back to this page
 
   const loadTodaysWorkout = async () => {
     try {
