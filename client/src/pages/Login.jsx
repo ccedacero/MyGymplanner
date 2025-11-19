@@ -19,9 +19,42 @@ function Login({ onLogin }) {
     }
   }, [])
 
+  const validatePassword = (pwd) => {
+    const hasUpperCase = /[A-Z]/.test(pwd)
+    const hasLowerCase = /[a-z]/.test(pwd)
+    const hasNumber = /[0-9]/.test(pwd)
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(pwd)
+    const hasMinLength = pwd.length >= 8
+
+    return hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar && hasMinLength
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
+
+    // Client-side validation
+    if (isRegister) {
+      if (!name.trim()) {
+        setError('Name is required')
+        return
+      }
+      if (!validatePassword(password)) {
+        setError('Password must contain at least 8 characters, including uppercase, lowercase, number, and special character')
+        return
+      }
+    }
+
+    if (!email.trim()) {
+      setError('Email is required')
+      return
+    }
+
+    if (!password) {
+      setError('Password is required')
+      return
+    }
+
     setLoading(true)
 
     try {

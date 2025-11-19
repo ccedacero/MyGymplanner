@@ -44,8 +44,15 @@ function Onboarding({ user, setUser }) {
       // Update exercise preference
       const preferenceData = await api.updateExercisePreference(user.id, exercisePreference)
 
-      setUser(preferenceData.user)
-      localStorage.setItem('user', JSON.stringify(preferenceData.user))
+      // Merge both updates to ensure we have all the latest data
+      const updatedUser = {
+        ...user,
+        equipment: equipmentData.user.equipment,
+        exercisePreference: preferenceData.user.exercisePreference
+      }
+
+      setUser(updatedUser)
+      localStorage.setItem('user', JSON.stringify(updatedUser))
       navigate('/dashboard')
     } catch (err) {
       alert('Failed to save settings: ' + err.message)

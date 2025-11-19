@@ -620,7 +620,7 @@ function WorkoutLogger({ user }) {
         ) : (
           <div className="cardio-logger">
             <p className="cardio-instruction">
-              Complete: {currentExercise.volume?.duration} at {currentExercise.volume?.intensity} intensity
+              Complete: {currentExercise.volume?.duration || 'N/A'} at {currentExercise.volume?.intensity || 'moderate'} intensity
             </p>
             <div className="form-group">
               <label className="form-label">Time (minutes)</label>

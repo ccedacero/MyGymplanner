@@ -17,13 +17,36 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [isOnline, setIsOnline] = useState(navigator.onLine)
 
+  // Check if JWT token is expired
+  const isTokenExpired = (token) => {
+    try {
+      const base64Url = token.split('.')[1]
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
+      const payload = JSON.parse(window.atob(base64))
+
+      // Check if token has expired (exp is in seconds, Date.now() is in milliseconds)
+      return payload.exp * 1000 < Date.now()
+    } catch (error) {
+      // If token is malformed, consider it expired
+      return true
+    }
+  }
+
   useEffect(() => {
     // Check if user is logged in
     const token = localStorage.getItem('token')
     const userData = localStorage.getItem('user')
 
     if (token && userData) {
-      setUser(JSON.parse(userData))
+      // Check if token is expired
+      if (isTokenExpired(token)) {
+        // Token expired, clear storage
+        localStorage.removeItem('token')
+        localStorage.removeItem('user')
+        setUser(null)
+      } else {
+        setUser(JSON.parse(userData))
+      }
     }
 
     setLoading(false)

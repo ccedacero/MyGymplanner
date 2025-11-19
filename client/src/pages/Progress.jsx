@@ -110,11 +110,11 @@ function Progress({ user }) {
             </div>
             <div className="stat-row">
               <span className="stat-label-text">Total Volume</span>
-              <span className="stat-value-text">{weekStats.totalVolume.toLocaleString()} lbs</span>
+              <span className="stat-value-text">{weekStats.totalVolume ? weekStats.totalVolume.toLocaleString() : 0} lbs</span>
             </div>
             <div className="stat-row">
               <span className="stat-label-text">Avg Duration</span>
-              <span className="stat-value-text">{weekStats.avgDuration} min</span>
+              <span className="stat-value-text">{Math.round(weekStats.avgDuration || 0)} min</span>
             </div>
             {weekStats.avgRpe && (
               <div className="stat-row">
@@ -137,11 +137,11 @@ function Progress({ user }) {
             </div>
             <div className="stat-row">
               <span className="stat-label-text">Total Volume</span>
-              <span className="stat-value-text">{monthStats.totalVolume.toLocaleString()} lbs</span>
+              <span className="stat-value-text">{monthStats.totalVolume ? monthStats.totalVolume.toLocaleString() : 0} lbs</span>
             </div>
             <div className="stat-row">
               <span className="stat-label-text">Avg Duration</span>
-              <span className="stat-value-text">{monthStats.avgDuration} min</span>
+              <span className="stat-value-text">{Math.round(monthStats.avgDuration || 0)} min</span>
             </div>
             {monthStats.avgRpe && (
               <div className="stat-row">
@@ -225,7 +225,7 @@ function Progress({ user }) {
               <div className="achievement-name">7 Day Streak</div>
             </div>
           )}
-          {monthStats && monthStats.totalVolume > 50000 && (
+          {monthStats && monthStats.totalVolume && monthStats.totalVolume > 50000 && (
             <div className="achievement-badge">
               <div className="achievement-icon">💎</div>
               <div className="achievement-name">50K lbs Lifted</div>

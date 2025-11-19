@@ -205,7 +205,7 @@ function TodaysWorkout({ user }) {
             ...selectedExercise,
             sets: selectedExercise.volume?.sets,
             reps: selectedExercise.volume?.reps,
-            restTime: selectedExercise.volume?.rest ? parseInt(selectedExercise.volume.rest) : null
+            restTime: selectedExercise.volume?.rest ? (parseInt(selectedExercise.volume.rest) || null) : null
           }}
           onClose={() => setSelectedExercise(null)}
         />

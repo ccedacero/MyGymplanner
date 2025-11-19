@@ -93,7 +93,7 @@ function WeeklySchedule({ user }) {
       const plansData = await api.getUserPlans(user.id)
 
       if (plansData.plans.length === 0) {
-        navigate('/plan-generator')
+        navigate('/generate-plan')
         return
       }
 
@@ -164,7 +164,7 @@ function WeeklySchedule({ user }) {
         <div className="card">
           <h2>No Active Plan</h2>
           <p>You don't have an active workout plan yet.</p>
-          <button onClick={() => navigate('/plan-generator')} className="btn btn-primary">
+          <button onClick={() => navigate('/generate-plan')} className="btn btn-primary">
             Generate Plan
           </button>
         </div>
