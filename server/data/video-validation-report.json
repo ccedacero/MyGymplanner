@@ -1,141 +1,609 @@
 {
-  "timestamp": "2025-11-16T18:16:32.580Z",
+  "timestamp": "2025-11-19T14:41:58.999Z",
   "total": 100,
-  "valid": 78,
-  "invalid": 22,
+  "valid": 0,
+  "invalid": 100,
   "missing": 0,
   "invalidExercises": [
     {
+      "id": "ex001",
+      "name": "Barbell Bench Press",
+      "url": "https://www.youtube.com/watch?v=rT7DgCr-3pg",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex002",
+      "name": "Dumbbell Bench Press",
+      "url": "https://www.youtube.com/watch?v=622ku8i0M14",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex003",
+      "name": "Incline Barbell Bench Press",
+      "url": "https://www.youtube.com/watch?v=SrqOu55lrYU",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex004",
+      "name": "Decline Barbell Bench Press",
+      "url": "https://www.youtube.com/watch?v=LfyQBUKR8SE",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex005",
+      "name": "Dumbbell Flyes",
+      "url": "https://www.youtube.com/watch?v=eozdVDA78K0",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex006",
+      "name": "Cable Flyes",
+      "url": "https://www.youtube.com/watch?v=Iwe6AmxVf7o",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex007",
+      "name": "Push-Ups",
+      "url": "https://www.youtube.com/watch?v=IODxDxX7oi4",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex008",
+      "name": "Barbell Squat",
+      "url": "https://www.youtube.com/watch?v=ultWZbUMPL8",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex009",
+      "name": "Front Squat",
+      "url": "https://www.youtube.com/watch?v=uYumuL_G_V0",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
       "id": "ex010",
       "name": "Goblet Squat",
-      "url": "https://www.youtube.com/watch?v=qaQPfi8f5Q0",
-      "issue": "HTTP 404"
+      "url": "https://www.youtube.com/watch?v=MeIiIdhvXT4",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex011",
+      "name": "Bulgarian Split Squat",
+      "url": "https://www.youtube.com/watch?v=2C-uNgKwPLE",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex012",
+      "name": "Leg Press",
+      "url": "https://www.youtube.com/watch?v=IZxyjW7MPJQ",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex013",
+      "name": "Deadlift",
+      "url": "https://www.youtube.com/watch?v=op9kVnSso6Q",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex014",
+      "name": "Romanian Deadlift",
+      "url": "https://www.youtube.com/watch?v=JCXUYuzwNrM",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
     },
     {
       "id": "ex015",
       "name": "Sumo Deadlift",
-      "url": "https://www.youtube.com/watch?v=TjZrmfcOq24",
-      "issue": "HTTP 404"
+      "url": "https://www.youtube.com/watch?v=4AObAU-EcYE",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex016",
+      "name": "Leg Curl",
+      "url": "https://www.youtube.com/watch?v=ELOCsoDSmrg",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex017",
+      "name": "Leg Extension",
+      "url": "https://www.youtube.com/watch?v=YyvSfVjQeL0",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex018",
+      "name": "Walking Lunges",
+      "url": "https://www.youtube.com/watch?v=L8fvypPrzzs",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex019",
+      "name": "Calf Raises",
+      "url": "https://www.youtube.com/watch?v=gwLzBJYoWlI",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex020",
+      "name": "Hip Thrust",
+      "url": "https://www.youtube.com/watch?v=xDmFkJxPzeM",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex021",
+      "name": "Barbell Row",
+      "url": "https://www.youtube.com/watch?v=9efgcAjQe7E",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex022",
+      "name": "Pendlay Row",
+      "url": "https://www.youtube.com/watch?v=ZlRrIsoDpKg",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex023",
+      "name": "Dumbbell Row",
+      "url": "https://www.youtube.com/watch?v=roCP6wCXPqo",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex024",
+      "name": "T-Bar Row",
+      "url": "https://www.youtube.com/watch?v=j3Igk5nyZE4",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex025",
+      "name": "Seated Cable Row",
+      "url": "https://www.youtube.com/watch?v=xQNrFHEMhI4",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex026",
+      "name": "Pull-Ups",
+      "url": "https://www.youtube.com/watch?v=eGo4IYlbE5g",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex027",
+      "name": "Chin-Ups",
+      "url": "https://www.youtube.com/watch?v=eGo4IYlbE5g",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex028",
+      "name": "Lat Pulldown",
+      "url": "https://www.youtube.com/watch?v=CAwf7n6Luuc",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex029",
+      "name": "Face Pulls",
+      "url": "https://www.youtube.com/watch?v=rep-qVOkqgk",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex030",
+      "name": "Overhead Press",
+      "url": "https://www.youtube.com/watch?v=2yjwXTZQDDI",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex031",
+      "name": "Seated Dumbbell Press",
+      "url": "https://www.youtube.com/watch?v=qEwKCR5JCog",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex032",
+      "name": "Arnold Press",
+      "url": "https://www.youtube.com/watch?v=6Z15_WdXmVw",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex033",
+      "name": "Lateral Raises",
+      "url": "https://www.youtube.com/watch?v=3VcKaXpzqRo",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex034",
+      "name": "Front Raises",
+      "url": "https://www.youtube.com/watch?v=sAq_ocpRh_I",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
     },
     {
       "id": "ex035",
       "name": "Rear Delt Flyes",
-      "url": "https://www.youtube.com/watch?v=tCziNvaIgj8",
-      "issue": "HTTP 404"
+      "url": "https://www.youtube.com/watch?v=EA7u4Q_8kp0",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
     },
     {
       "id": "ex036",
       "name": "Upright Row",
-      "url": "https://www.youtube.com/watch?v=aGFF9wR49zs",
-      "issue": "HTTP 404"
+      "url": "https://www.youtube.com/watch?v=F3QY8V8GJG4",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex037",
+      "name": "Barbell Curl",
+      "url": "https://www.youtube.com/watch?v=kwG2ipFRgfo",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex038",
+      "name": "Dumbbell Curl",
+      "url": "https://www.youtube.com/watch?v=sAq_ocpRh_I",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex039",
+      "name": "Hammer Curl",
+      "url": "https://www.youtube.com/watch?v=zC3nLlEvin4",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex040",
+      "name": "Preacher Curl",
+      "url": "https://www.youtube.com/watch?v=fIWP-FRFNU0",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
     },
     {
       "id": "ex041",
       "name": "Cable Curl",
-      "url": "https://www.youtube.com/watch?v=NFz4d5NvmZw",
-      "issue": "HTTP 404"
+      "url": "https://www.youtube.com/watch?v=_8It_nOzMtE",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex042",
+      "name": "Tricep Dips",
+      "url": "https://www.youtube.com/watch?v=2z8JmcrW-As",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex043",
+      "name": "Close-Grip Bench Press",
+      "url": "https://www.youtube.com/watch?v=nEF0bv2FW94",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex044",
+      "name": "Skull Crushers",
+      "url": "https://www.youtube.com/watch?v=d_KZxkY_0cM",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex045",
+      "name": "Overhead Tricep Extension",
+      "url": "https://www.youtube.com/watch?v=nRiJVZDpdL0",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex046",
+      "name": "Tricep Pushdown",
+      "url": "https://www.youtube.com/watch?v=-xa-6cQaZKY",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex047",
+      "name": "Kettlebell Swings",
+      "url": "https://www.youtube.com/watch?v=YSxHifyI6s8",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex048",
+      "name": "Turkish Get-Up",
+      "url": "https://www.youtube.com/watch?v=0bWRPC49-KI",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex049",
+      "name": "Burpees",
+      "url": "https://www.youtube.com/watch?v=dZgVxmf6jkA",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex050",
+      "name": "Plank",
+      "url": "https://www.youtube.com/watch?v=ASdvN_XEl_c",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex051",
+      "name": "Side Plank",
+      "url": "https://www.youtube.com/watch?v=K2VljzCC16g",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex052",
+      "name": "Crunches",
+      "url": "https://www.youtube.com/watch?v=Xyd_fa5zoEU",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex053",
+      "name": "Hanging Leg Raises",
+      "url": "https://www.youtube.com/watch?v=hdng3Nm1x_E",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
     },
     {
       "id": "ex054",
       "name": "Cable Crunches",
-      "url": "https://www.youtube.com/watch?v=IC-CSkI64x8",
-      "issue": "HTTP 404"
+      "url": "https://www.youtube.com/watch?v=Ud9t2Ev7B-Q",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex055",
+      "name": "Russian Twists",
+      "url": "https://www.youtube.com/watch?v=wkD8rjkodUI",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex056",
+      "name": "Mountain Climbers",
+      "url": "https://www.youtube.com/watch?v=nmwgirgXLYM",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex057",
+      "name": "Farmer's Walk",
+      "url": "https://www.youtube.com/watch?v=rt17lmnaLSM",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex058",
+      "name": "Shrugs",
+      "url": "https://www.youtube.com/watch?v=g6qbq4Lf1FI",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex059",
+      "name": "Box Jumps",
+      "url": "https://www.youtube.com/watch?v=NBY9-kTuHEk",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex060",
+      "name": "Step-Ups",
+      "url": "https://www.youtube.com/watch?v=dQqApCGd5Ss",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex061",
+      "name": "Glute Bridge",
+      "url": "https://www.youtube.com/watch?v=wPM8icPu6H8",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex062",
+      "name": "Good Mornings",
+      "url": "https://www.youtube.com/watch?v=YA-h3n9L4YU",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
     },
     {
       "id": "ex063",
       "name": "Rack Pulls",
-      "url": "https://www.youtube.com/watch?v=dc8-AD2ZoYo",
-      "issue": "HTTP 404"
+      "url": "https://www.youtube.com/watch?v=RiCVXmdUv7g",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex064",
+      "name": "Clean and Press",
+      "url": "https://www.youtube.com/watch?v=KwYJTpQ_x5A",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex065",
+      "name": "Power Clean",
+      "url": "https://www.youtube.com/watch?v=mPsxlNjv7Aw",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex066",
+      "name": "Snatch",
+      "url": "https://www.youtube.com/watch?v=9xQp2sldyts",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex067",
+      "name": "Thruster",
+      "url": "https://www.youtube.com/watch?v=L219ltL15zk",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex068",
+      "name": "Wall Balls",
+      "url": "https://www.youtube.com/watch?v=fpUD0mcFp_0",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex069",
+      "name": "Pistol Squats",
+      "url": "https://www.youtube.com/watch?v=vq5-vdgJc0I",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex070",
+      "name": "Jump Squats",
+      "url": "https://www.youtube.com/watch?v=CVaEhXotL7M",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex071",
+      "name": "Running (Easy)",
+      "url": "https://www.youtube.com/watch?v=brFHyOtTwH4",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex072",
+      "name": "Running (Tempo)",
+      "url": "https://www.youtube.com/watch?v=gLVZ_s6uYOs",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
     },
     {
       "id": "ex073",
       "name": "Running (Intervals)",
-      "url": "https://www.youtube.com/watch?v=Y9A7qVAaI_E",
-      "issue": "HTTP 404"
+      "url": "https://www.youtube.com/watch?v=gn5dRWCN7-0",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex074",
+      "name": "Running (Long)",
+      "url": "https://www.youtube.com/watch?v=brFHyOtTwH4",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
     },
     {
       "id": "ex075",
       "name": "Sprints",
-      "url": "https://www.youtube.com/watch?v=GELfbHMR1MM",
-      "issue": "HTTP 404"
+      "url": "https://www.youtube.com/watch?v=s9zPTQe5bLQ",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
     },
     {
       "id": "ex076",
       "name": "Cycling (Easy)",
-      "url": "https://www.youtube.com/watch?v=qeWSuKUUlHQ",
-      "issue": "HTTP 404"
+      "url": "https://www.youtube.com/watch?v=5bjKpxEfBtg",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
     },
     {
       "id": "ex077",
       "name": "Cycling (Intervals)",
-      "url": "https://www.youtube.com/watch?v=OXupQ3NQiIg",
-      "issue": "HTTP 404"
+      "url": "https://www.youtube.com/watch?v=DZjavdUzHKc",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
     },
     {
       "id": "ex078",
       "name": "Cycling (Tempo)",
-      "url": "https://www.youtube.com/watch?v=qeWSuKUUlHQ",
-      "issue": "HTTP 404"
+      "url": "https://www.youtube.com/watch?v=OBc2OX32F2A",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex079",
+      "name": "Rowing (Steady)",
+      "url": "https://www.youtube.com/watch?v=zQ82RYIFLN8",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex080",
+      "name": "Rowing (Intervals)",
+      "url": "https://www.youtube.com/watch?v=oP6OR-G7AxM",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex081",
+      "name": "Swimming (Easy)",
+      "url": "https://www.youtube.com/watch?v=5HLW2AI1Ink",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex082",
+      "name": "Swimming (Intervals)",
+      "url": "https://www.youtube.com/watch?v=5HLW2AI1Ink",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex083",
+      "name": "Jump Rope",
+      "url": "https://www.youtube.com/watch?v=FJmRQ5iTXKE",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
     },
     {
       "id": "ex084",
       "name": "Stair Climber",
-      "url": "https://www.youtube.com/watch?v=mDuIRPS8t0w",
-      "issue": "HTTP 404"
+      "url": "https://www.youtube.com/watch?v=r2MpAaLO4kE",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
     },
     {
       "id": "ex085",
       "name": "Elliptical",
       "url": "https://www.youtube.com/watch?v=Dzstb2BkZzg",
-      "issue": "HTTP 404"
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
     },
     {
       "id": "ex086",
       "name": "Battle Ropes",
-      "url": "https://www.youtube.com/watch?v=wKAYvg7CKvI",
-      "issue": "HTTP 404"
+      "url": "https://www.youtube.com/watch?v=w8JYfXiSxoc",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
     },
     {
       "id": "ex087",
       "name": "Assault Bike",
-      "url": "https://www.youtube.com/watch?v=LSJU2CX6wMk",
-      "issue": "HTTP 404"
+      "url": "https://www.youtube.com/watch?v=PvYq5dj2_sE",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
     },
     {
       "id": "ex088",
       "name": "Ski Erg",
-      "url": "https://www.youtube.com/watch?v=6kcK2w0rD8I",
-      "issue": "HTTP 404"
+      "url": "https://www.youtube.com/watch?v=w5P47vJE7yg",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
     },
     {
       "id": "ex089",
       "name": "Sled Push",
-      "url": "https://www.youtube.com/watch?v=nUr7RXlDHg4",
-      "issue": "HTTP 404"
+      "url": "https://www.youtube.com/watch?v=ajCITFjVPqs",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
     },
     {
       "id": "ex090",
       "name": "Sled Pull",
-      "url": "https://www.youtube.com/watch?v=FgjPxzaM0CI",
-      "issue": "HTTP 404"
+      "url": "https://www.youtube.com/watch?v=PjV89SJ9z9k",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex091",
+      "name": "HIIT Circuit",
+      "url": "https://www.youtube.com/watch?v=ml6cT4AZdqI",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
     },
     {
       "id": "ex092",
       "name": "Tabata",
-      "url": "https://www.youtube.com/watch?v=bO7vKi7Q6Vs",
-      "issue": "HTTP 404"
+      "url": "https://www.youtube.com/watch?v=mmq5zZfmIws",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex093",
+      "name": "Bodyweight Squats",
+      "url": "https://www.youtube.com/watch?v=aclHkVaku9U",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex094",
+      "name": "Inverted Row",
+      "url": "https://www.youtube.com/watch?v=hXTc1mDnZCw",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex095",
+      "name": "Handstand Push-Ups",
+      "url": "https://www.youtube.com/watch?v=tQhrk6WMcKw",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex096",
+      "name": "Ring Dips",
+      "url": "https://www.youtube.com/watch?v=mRznU6pzez0",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex097",
+      "name": "Ring Rows",
+      "url": "https://www.youtube.com/watch?v=hXTc1mDnZCw",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
     },
     {
       "id": "ex098",
       "name": "Muscle-Ups",
-      "url": "https://www.youtube.com/watch?v=tVH4y5d0W-0",
-      "issue": "HTTP 404"
+      "url": "https://www.youtube.com/watch?v=tBV_qjWxS0Y",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
     },
     {
       "id": "ex099",
       "name": "L-Sit",
-      "url": "https://www.youtube.com/watch?v=RtYsQ0w_dPM",
-      "issue": "HTTP 404"
+      "url": "https://www.youtube.com/watch?v=IUhELDEiJ5g",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
+    },
+    {
+      "id": "ex100",
+      "name": "Dragon Flag",
+      "url": "https://www.youtube.com/watch?v=pvz7k5gO-DE",
+      "issue": "getaddrinfo EAI_AGAIN img.youtube.com"
     }
   ]
 }
