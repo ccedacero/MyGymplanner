@@ -9,6 +9,7 @@ import WorkoutLogger from './pages/WorkoutLogger'
 import WeeklySchedule from './pages/WeeklySchedule'
 import Progress from './pages/Progress'
 import Settings from './pages/Settings'
+import Stretches from './pages/Stretches'
 import Header from './components/Header'
 
 function App() {
@@ -125,6 +126,11 @@ function App() {
           <Route
             path="/settings"
             element={user ? <Settings user={user} setUser={setUser} /> : <Navigate to="/login" />}
+          />
+
+          <Route
+            path="/stretches"
+            element={user ? <Stretches user={user} /> : <Navigate to="/login" />}
           />
 
           <Route
