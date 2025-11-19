@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import * as api from '../services/api'
 import { DndContext, closestCenter, PointerSensor, TouchSensor, MouseSensor, useSensor, useSensors } from '@dnd-kit/core'
 import { SortableContext, verticalListSortingStrategy, useSortable } from '@dnd-kit/sortable'
@@ -63,6 +63,7 @@ function SortableDay({ day, index }) {
 
 function WeeklySchedule({ user }) {
   const navigate = useNavigate()
+  const location = useLocation()
   const [loading, setLoading] = useState(true)
   const [plan, setPlan] = useState(null)
   const [weekSchedule, setWeekSchedule] = useState([])
@@ -85,7 +86,7 @@ function WeeklySchedule({ user }) {
 
   useEffect(() => {
     loadPlan()
-  }, [user])
+  }, [user.id, location.pathname, location.key])
 
   const loadPlan = async () => {
     try {
