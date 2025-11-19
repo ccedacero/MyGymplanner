@@ -36,11 +36,13 @@ const exerciseRoutes = require('./routes/exercises');
 const planRoutes = require('./routes/plans');
 const workoutRoutes = require('./routes/workouts');
 const userRoutes = require('./routes/users');
+const scannerRoutes = require('./routes/scanner');
 
 app.use('/api/exercises', exerciseRoutes);
 app.use('/api/plans', planRoutes);
 app.use('/api/workouts', workoutRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/scanner', scannerRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

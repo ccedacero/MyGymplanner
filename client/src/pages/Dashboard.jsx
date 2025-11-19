@@ -244,6 +244,10 @@ function Dashboard({ user }) {
           <span className="action-icon">🏋️</span>
           <span className="action-label">Today's Workout</span>
         </Link>
+        <Link to="/scan-equipment" className="action-card">
+          <span className="action-icon">📸</span>
+          <span className="action-label">Scan Equipment</span>
+        </Link>
         <Link to="/progress" className="action-card">
           <span className="action-icon">📊</span>
           <span className="action-label">Progress</span>

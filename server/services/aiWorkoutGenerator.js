@@ -194,8 +194,102 @@ Return ONLY the exercise name, nothing else.`;
   }
 }
 
+/**
+ * Identify gym equipment from an image and suggest exercises
+ * Uses Claude Vision API
+ */
+async function identifyEquipmentFromImage(imageBase64, mediaType = 'image/jpeg') {
+  const prompt = `Analyze this gym equipment image and provide detailed information.
+
+**Your Task:**
+1. Identify the gym equipment type (e.g., "Lat Pulldown Machine", "Leg Press", "Cable Crossover", "Smith Machine")
+2. Assess your confidence level (0-100)
+3. List 3-5 exercises that can be performed on this equipment
+4. For each exercise, provide:
+   - Exercise name (be specific, e.g., "Wide Grip Lat Pulldown" not just "Pulldown")
+   - Primary muscle groups targeted
+   - Difficulty level (beginner/intermediate/advanced)
+   - Recommended volume (sets, reps, rest periods)
+5. Provide 3-5 key form tips specific to this equipment
+6. List 3-4 common mistakes people make with this equipment
+
+**Important Guidelines:**
+- Be specific about equipment type (include brand/model if visible)
+- Focus on practical, safe exercises
+- Consider variations for different skill levels
+- Prioritize compound movements over isolation when applicable
+
+**Return Format (JSON only, no explanation):**
+{
+  "equipmentType": "string",
+  "confidence": number (0-100),
+  "brand": "string or null",
+  "exercises": [
+    {
+      "name": "string",
+      "muscleGroups": ["string"],
+      "difficulty": "beginner|intermediate|advanced",
+      "type": "compound|isolation",
+      "recommendedVolume": {
+        "sets": "string (e.g., '3-4')",
+        "reps": "string (e.g., '8-12')",
+        "rest": "string (e.g., '90 sec')"
+      }
+    }
+  ],
+  "formTips": ["string"],
+  "commonMistakes": ["string"]
+}`;
+
+  try {
+    console.log('🔍 Analyzing equipment image with AI vision...');
+
+    const message = await anthropic.messages.create({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 3000,
+      messages: [{
+        role: 'user',
+        content: [
+          {
+            type: 'image',
+            source: {
+              type: 'base64',
+              media_type: mediaType,
+              data: imageBase64
+            }
+          },
+          {
+            type: 'text',
+            text: prompt
+          }
+        ]
+      }]
+    });
+
+    const responseText = message.content[0].text;
+
+    // Extract JSON from response
+    const jsonMatch = responseText.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) {
+      throw new Error('No JSON found in AI response');
+    }
+
+    const result = JSON.parse(jsonMatch[0]);
+
+    console.log(`✅ Equipment identified: ${result.equipmentType} (${result.confidence}% confidence)`);
+    console.log(`📋 Found ${result.exercises.length} exercises`);
+
+    return result;
+
+  } catch (error) {
+    console.error('❌ Equipment identification failed:', error.message);
+    throw new Error(`Equipment identification failed: ${error.message}`);
+  }
+}
+
 module.exports = {
   generateAIWorkoutPlan,
   findExerciseVideo,
-  suggestExerciseSubstitution
+  suggestExerciseSubstitution,
+  identifyEquipmentFromImage
 };
