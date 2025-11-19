@@ -129,6 +129,20 @@ async function enrichWithVideos(exercises) {
  */
 async function identifyEquipment(req, res) {
   try {
+    // Check if API key is configured
+    if (!process.env.ANTHROPIC_API_KEY) {
+      // Clean up uploaded file
+      if (req.file) {
+        fs.unlink(req.file.path).catch(err =>
+          console.error('Failed to delete uploaded file:', err)
+        );
+      }
+      return res.status(503).json({
+        error: 'AI service not configured',
+        message: 'ANTHROPIC_API_KEY is not set. Please configure the API key in your .env file.'
+      });
+    }
+
     if (!req.file) {
       return res.status(400).json({ error: 'No image file provided' });
     }
