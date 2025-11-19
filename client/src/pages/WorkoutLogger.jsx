@@ -285,9 +285,14 @@ function WorkoutLogger({ user }) {
     if (e) e.preventDefault()
     setExercises(prev => {
       const newExercises = [...prev]
+      const currentSets = newExercises[exerciseIndex].sets
+
+      // Get the last set's values to duplicate
+      const lastSet = currentSets.length > 0 ? currentSets[currentSets.length - 1] : null
+
       newExercises[exerciseIndex].sets.push({
-        weight: '',
-        reps: '',
+        weight: lastSet ? lastSet.weight : '',
+        reps: lastSet ? lastSet.reps : '',
         completed: false
       })
       return newExercises
