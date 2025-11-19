@@ -466,16 +466,32 @@ function WorkoutLogger({ user }) {
             <button className="modal-close" onClick={() => setShowVideoModal(false)}>×</button>
             <h3>{currentExercise.name}</h3>
             <div className="video-wrapper">
-              {getYouTubeId(currentExercise.videoUrl) && (
-                <iframe
-                  width="100%"
-                  height="315"
-                  src={`https://www.youtube.com/embed/${getYouTubeId(currentExercise.videoUrl)}`}
-                  title={`${currentExercise.name} Tutorial`}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+              {getYouTubeId(currentExercise.videoUrl) ? (
+                <>
+                  <iframe
+                    width="100%"
+                    height="315"
+                    src={`https://www.youtube.com/embed/${getYouTubeId(currentExercise.videoUrl)}`}
+                    title={`${currentExercise.name} Tutorial`}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                  <div className="video-fallback-link" style={{ marginTop: '0.5rem', textAlign: 'center' }}>
+                    <a
+                      href={currentExercise.videoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: '#3b82f6', textDecoration: 'none', fontSize: '0.9rem' }}
+                    >
+                      Can't see the video? Open directly on YouTube →
+                    </a>
+                  </div>
+                </>
+              ) : (
+                <div className="video-error" style={{ padding: '1rem', textAlign: 'center', background: '#fee', borderRadius: '8px' }}>
+                  <p>Video unavailable. <a href={currentExercise.videoUrl} target="_blank" rel="noopener noreferrer">Watch on YouTube</a></p>
+                </div>
               )}
             </div>
             {currentExercise.description && (
