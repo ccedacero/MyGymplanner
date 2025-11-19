@@ -9,6 +9,7 @@ function Dashboard({ user }) {
   const [stats, setStats] = useState(null)
   const [weeklyCalendar, setWeeklyCalendar] = useState([])
   const [loading, setLoading] = useState(true)
+  const [quickStartLoading, setQuickStartLoading] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -72,6 +73,23 @@ function Dashboard({ user }) {
     setWeeklyCalendar(calendar)
   }
 
+  // Quick start workout - skip preview, go directly to logger
+  const handleQuickStart = async () => {
+    if (!activePlan) return
+
+    setQuickStartLoading(true)
+    try {
+      const todayData = await api.getTodaysWorkout(activePlan.id)
+      // Go directly to workout logger
+      navigate(`/log-workout/${todayData.planId}/${todayData.day}`)
+    } catch (error) {
+      // If it's a rest day or error, go to today's workout page instead
+      navigate('/today')
+    } finally {
+      setQuickStartLoading(false)
+    }
+  }
+
   // Check if user needs onboarding
   useEffect(() => {
     if (!user.equipment || user.equipment.length === 0) {
@@ -92,6 +110,23 @@ function Dashboard({ user }) {
   return (
     <div className="container dashboard">
       <h1 className="dashboard-title">Welcome back, {user.name}! 💪</h1>
+
+      {/* Quick Start - Prominent CTA */}
+      {activePlan && (
+        <button
+          onClick={handleQuickStart}
+          disabled={quickStartLoading}
+          className="btn btn-primary btn-block btn-lg quick-start-btn"
+          style={{
+            marginBottom: '2rem',
+            padding: '1.25rem 2rem',
+            fontSize: '1.25rem',
+            fontWeight: 'bold'
+          }}
+        >
+          {quickStartLoading ? '⏳ Loading...' : '🚀 Start Today\'s Workout'}
+        </button>
+      )}
 
       {/* Weekly Check-In Calendar */}
       {weeklyCalendar.length > 0 && (
@@ -160,11 +195,8 @@ function Dashboard({ user }) {
             <p><strong>Week:</strong> {activePlan.currentWeek}/12</p>
           </div>
           <div className="button-group">
-            <Link to="/today" className="btn btn-primary btn-block">
-              View Today's Workout
-            </Link>
-            <Link to={`/generate-plan`} className="btn btn-outline">
-              Generate New Plan
+            <Link to="/today" className="btn btn-outline btn-block">
+              View Workout Details
             </Link>
           </div>
         </div>

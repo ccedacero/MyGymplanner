@@ -14,6 +14,7 @@ import Header from './components/Header'
 function App() {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [isOnline, setIsOnline] = useState(navigator.onLine)
 
   useEffect(() => {
     // Check if user is logged in
@@ -25,6 +26,20 @@ function App() {
     }
 
     setLoading(false)
+  }, [])
+
+  // Track online/offline status
+  useEffect(() => {
+    const handleOnline = () => setIsOnline(true)
+    const handleOffline = () => setIsOnline(false)
+
+    window.addEventListener('online', handleOnline)
+    window.addEventListener('offline', handleOffline)
+
+    return () => {
+      window.removeEventListener('online', handleOnline)
+      window.removeEventListener('offline', handleOffline)
+    }
   }, [])
 
   const handleLogin = (userData, token) => {
@@ -47,6 +62,24 @@ function App() {
     <Router>
       <div className="app">
         {user && <Header user={user} onLogout={handleLogout} />}
+
+        {/* Offline Indicator */}
+        {!isOnline && (
+          <div style={{
+            position: 'sticky',
+            top: user ? '65px' : '0',
+            zIndex: 99,
+            background: '#FFA500',
+            color: '#000',
+            padding: '0.5rem 1rem',
+            textAlign: 'center',
+            fontSize: '0.875rem',
+            fontWeight: '500',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+          }}>
+            📡 You're offline - Some features may be limited
+          </div>
+        )}
 
         <Routes>
           <Route

@@ -18,6 +18,47 @@
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
 }
 
+/* Dark mode */
+[data-theme="dark"] {
+  --primary: #6366F1;
+  --primary-dark: #4F46E5;
+  --secondary: #10B981;
+  --danger: #EF4444;
+  --bg: #0F172A;
+  --surface: #1E293B;
+  --text: #F1F5F9;
+  --text-light: #94A3B8;
+  --border: #334155;
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.3);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+}
+
+[data-theme="dark"] .checkbox-item.checked,
+[data-theme="dark"] .radio-item.checked {
+  background-color: #1E293B;
+}
+
+[data-theme="dark"] .badge-primary {
+  background-color: #1E293B;
+  color: #A5B4FC;
+}
+
+[data-theme="dark"] .badge-secondary {
+  background-color: #1E293B;
+  color: #6EE7B7;
+}
+
+[data-theme="dark"] .badge-danger {
+  background-color: #1E293B;
+  color: #FCA5A5;
+}
+
+[data-theme="dark"] .form-input,
+[data-theme="dark"] .form-select {
+  background-color: var(--surface);
+  color: var(--text);
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -27,6 +68,11 @@ body {
   background-color: var(--bg);
   color: var(--text);
   line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card, .form-input, .form-select {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 .app {

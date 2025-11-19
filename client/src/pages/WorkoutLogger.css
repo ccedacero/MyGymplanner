@@ -140,6 +140,70 @@
   border-color: var(--secondary);
 }
 
+/* Plate Calculator */
+.plate-calculator {
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--bg);
+  border-radius: 8px;
+  font-size: 0.875rem;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.plate-icon {
+  font-size: 1rem;
+}
+
+/* Last Workout Comparison */
+.last-workout-comparison {
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.comparison-label {
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.comparison-value {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.comparison-indicator {
+  margin-left: auto;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+[data-theme="dark"] .set-row.set-completed {
+  background: #1E3A33;
+  border-color: var(--secondary);
+}
+
+[data-theme="dark"] .set-input {
+  background: var(--surface);
+  color: var(--text);
+}
+
+[data-theme="dark"] .complete-btn {
+  background: var(--surface);
+  color: var(--text);
+}
+
 .set-number {
   font-weight: 600;
   color: var(--text-light);

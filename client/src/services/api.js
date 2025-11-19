@@ -161,3 +161,14 @@ export const getWorkoutStats = async (userId, period = 'month') => {
   if (!res.ok) throw new Error('Failed to fetch stats')
   return res.json()
 }
+
+export const getLastExerciseWorkout = async (userId, exerciseId) => {
+  const res = await fetch(`${API_BASE}/workouts/last/${userId}/${exerciseId}`, {
+    headers: getHeaders()
+  })
+  if (!res.ok) {
+    if (res.status === 404) return null // No previous workout
+    throw new Error('Failed to fetch last exercise workout')
+  }
+  return res.json()
+}
