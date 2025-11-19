@@ -23,4 +23,7 @@ router.delete('/:workoutId', workoutController.deleteWorkout);
 // Get workout stats
 router.get('/stats/:userId', workoutController.getWorkoutStats);
 
+// Get last workout for specific exercise (for comparison)
+router.get('/last/:userId/:exerciseId', workoutController.getLastExerciseWorkout);
+
 module.exports = router;

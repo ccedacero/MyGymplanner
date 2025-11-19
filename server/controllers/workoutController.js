@@ -205,6 +205,42 @@ exports.deleteWorkout = async (req, res) => {
   }
 };
 
+// Get last workout data for a specific exercise (for comparison)
+exports.getLastExerciseWorkout = async (req, res) => {
+  try {
+    const { userId, exerciseId } = req.params;
+
+    const workoutsData = await fs.readFile(WORKOUTS_PATH, 'utf8');
+    const workouts = JSON.parse(workoutsData);
+
+    // Get user's workouts, sorted by date descending
+    const userWorkouts = workouts.workouts
+      .filter(w => w.userId === userId)
+      .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    // Find the most recent workout containing this exercise
+    for (const workout of userWorkouts) {
+      const exercise = workout.exercises.find(ex => ex.exerciseId === exerciseId);
+      if (exercise && exercise.sets && exercise.sets.length > 0) {
+        // Return only the exercise data and workout date
+        return res.json({
+          date: workout.date,
+          exercise: {
+            exerciseId: exercise.exerciseId,
+            sets: exercise.sets
+          }
+        });
+      }
+    }
+
+    // No previous workout found for this exercise
+    res.status(404).json({ error: 'No previous workout found for this exercise' });
+  } catch (error) {
+    console.error('Error fetching last exercise workout:', error);
+    res.status(500).json({ error: 'Failed to fetch last exercise workout' });
+  }
+};
+
 // Get workout statistics for dashboard
 exports.getWorkoutStats = async (req, res) => {
   try {

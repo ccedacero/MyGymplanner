@@ -18,6 +18,7 @@ function WorkoutLogger({ user }) {
   const [showVideoModal, setShowVideoModal] = useState(false)
   const [cardioDuration, setCardioDuration] = useState('')
   const [cardioDistance, setCardioDistance] = useState('')
+  const [lastWorkoutData, setLastWorkoutData] = useState({})
 
   // Extract YouTube video ID from URL
   const getYouTubeId = (url) => {
@@ -75,6 +76,22 @@ function WorkoutLogger({ user }) {
         }
       })
       setExercises(exercisesWithSets)
+
+      // Load last workout data for each exercise
+      const lastWorkouts = {}
+      for (const ex of todayData.workout.exercises) {
+        if (ex.id && ex.category === 'strength') {
+          try {
+            const lastData = await api.getLastExerciseWorkout(user.id, ex.id)
+            if (lastData) {
+              lastWorkouts[ex.id] = lastData
+            }
+          } catch (error) {
+            // Ignore errors - just means no previous workout
+          }
+        }
+      }
+      setLastWorkoutData(lastWorkouts)
     } catch (error) {
       alert('Error loading workout: ' + error.message)
       navigate('/today')
@@ -192,6 +209,76 @@ function WorkoutLogger({ user }) {
     const mins = Math.floor(seconds / 60)
     const secs = seconds % 60
     return `${mins}:${secs.toString().padStart(2, '0')}`
+  }
+
+  // Plate calculator - calculates plates needed per side
+  const calculatePlates = (weight) => {
+    const BAR_WEIGHT = 45 // Standard barbell weight
+    const PLATES = [45, 35, 25, 10, 5, 2.5] // Available plate weights
+
+    const totalWeight = parseFloat(weight)
+    if (isNaN(totalWeight) || totalWeight <= BAR_WEIGHT) {
+      return null
+    }
+
+    const weightPerSide = (totalWeight - BAR_WEIGHT) / 2
+    let remaining = weightPerSide
+    const platesNeeded = []
+
+    for (const plate of PLATES) {
+      const count = Math.floor(remaining / plate)
+      if (count > 0) {
+        platesNeeded.push({ weight: plate, count })
+        remaining = Math.round((remaining - (plate * count)) * 100) / 100 // Round to avoid floating point issues
+      }
+    }
+
+    if (remaining > 0.1) {
+      // If there's still weight remaining, it's not possible with standard plates
+      return { platesNeeded, remainder: remaining }
+    }
+
+    return { platesNeeded, remainder: 0 }
+  }
+
+  const formatPlateCalculation = (weight) => {
+    const result = calculatePlates(weight)
+    if (!result) return null
+
+    const plateText = result.platesNeeded
+      .map(p => `${p.count}×${p.weight}`)
+      .join(' + ')
+
+    return plateText || 'Just the bar'
+  }
+
+  // Compare current set with last workout
+  const getLastSetComparison = (exerciseId, setIndex) => {
+    const lastWorkout = lastWorkoutData[exerciseId]
+    if (!lastWorkout || !lastWorkout.exercise?.sets) return null
+
+    const lastSet = lastWorkout.exercise.sets[setIndex]
+    if (!lastSet) return null
+
+    return {
+      weight: lastSet.weight,
+      reps: lastSet.reps
+    }
+  }
+
+  const getComparisonIndicator = (currentWeight, currentReps, lastWeight, lastReps) => {
+    if (!currentWeight || !currentReps || !lastWeight || !lastReps) return null
+
+    const currentVolume = parseFloat(currentWeight) * parseInt(currentReps)
+    const lastVolume = parseFloat(lastWeight) * parseInt(lastReps)
+
+    if (currentVolume > lastVolume) {
+      return { icon: '↗️', text: `+${Math.round(currentVolume - lastVolume)} lbs`, color: '#10B981' }
+    } else if (currentVolume < lastVolume) {
+      return { icon: '↘️', text: `${Math.round(currentVolume - lastVolume)} lbs`, color: '#EF4444' }
+    } else {
+      return { icon: '→', text: 'Same', color: '#6B7280' }
+    }
   }
 
   const addSet = (exerciseIndex, e) => {
@@ -361,42 +448,67 @@ function WorkoutLogger({ user }) {
         {currentExercise?.category === 'strength' ? (
           <>
             {currentExercise.sets.map((set, setIndex) => (
-              <div
-                key={setIndex}
-                className={`set-row ${set.completed ? 'set-completed' : ''}`}
-              >
-                <div className="set-number">Set {setIndex + 1}</div>
-                <input
-                  type="number"
-                  placeholder="lbs"
-                  className="set-input"
-                  value={set.weight}
-                  onChange={(e) => handleSetChange(currentExerciseIndex, setIndex, 'weight', e.target.value)}
-                  inputMode="decimal"
-                />
-                <input
-                  type="number"
-                  placeholder="reps"
-                  className="set-input"
-                  value={set.reps}
-                  onChange={(e) => handleSetChange(currentExerciseIndex, setIndex, 'reps', e.target.value)}
-                  inputMode="numeric"
-                />
-                <button
-                  onClick={() => handleSetComplete(currentExerciseIndex, setIndex)}
-                  className={`complete-btn ${set.completed ? 'completed' : ''}`}
+              <div key={setIndex}>
+                <div
+                  className={`set-row ${set.completed ? 'set-completed' : ''}`}
                 >
-                  {set.completed ? '✓' : '○'}
-                </button>
-                {currentExercise.sets.length > 1 && (
+                  <div className="set-number">Set {setIndex + 1}</div>
+                  <input
+                    type="number"
+                    placeholder="lbs"
+                    className="set-input"
+                    value={set.weight}
+                    onChange={(e) => handleSetChange(currentExerciseIndex, setIndex, 'weight', e.target.value)}
+                    inputMode="decimal"
+                  />
+                  <input
+                    type="number"
+                    placeholder="reps"
+                    className="set-input"
+                    value={set.reps}
+                    onChange={(e) => handleSetChange(currentExerciseIndex, setIndex, 'reps', e.target.value)}
+                    inputMode="numeric"
+                  />
                   <button
-                    onClick={() => removeSet(currentExerciseIndex, setIndex)}
-                    className="btn-icon remove-set-btn"
-                    title="Remove set"
+                    onClick={() => handleSetComplete(currentExerciseIndex, setIndex)}
+                    className={`complete-btn ${set.completed ? 'completed' : ''}`}
                   >
-                    ×
+                    {set.completed ? '✓' : '○'}
                   </button>
+                  {currentExercise.sets.length > 1 && (
+                    <button
+                      onClick={() => removeSet(currentExerciseIndex, setIndex)}
+                      className="btn-icon remove-set-btn"
+                      title="Remove set"
+                    >
+                      ×
+                    </button>
+                  )}
+                </div>
+                {set.weight && formatPlateCalculation(set.weight) && (
+                  <div className="plate-calculator">
+                    <span className="plate-icon">🏋️</span>
+                    {formatPlateCalculation(set.weight)} per side
+                  </div>
                 )}
+                {(() => {
+                  const lastSet = getLastSetComparison(currentExercise.id, setIndex)
+                  if (lastSet) {
+                    const comparison = getComparisonIndicator(set.weight, set.reps, lastSet.weight, lastSet.reps)
+                    return (
+                      <div className="last-workout-comparison">
+                        <span className="comparison-label">Last time:</span>
+                        <span className="comparison-value">{lastSet.weight} lbs × {lastSet.reps} reps</span>
+                        {comparison && (
+                          <span className="comparison-indicator" style={{ color: comparison.color }}>
+                            {comparison.icon} {comparison.text}
+                          </span>
+                        )}
+                      </div>
+                    )
+                  }
+                  return null
+                })()}
               </div>
             ))}
             <button
