@@ -22,6 +22,14 @@ function Onboarding({ user, setUser }) {
     }
   }
 
+  const toggleSelectAll = () => {
+    if (selectedEquipment.length === EQUIPMENT_OPTIONS.length) {
+      setSelectedEquipment([])
+    } else {
+      setSelectedEquipment([...EQUIPMENT_OPTIONS])
+    }
+  }
+
   const handleSubmit = async () => {
     if (selectedEquipment.length === 0) {
       alert('Please select at least one piece of equipment')
@@ -53,6 +61,14 @@ function Onboarding({ user, setUser }) {
         <p className="text-muted mb-3">
           Select all that apply. We'll only show you exercises you can actually do.
         </p>
+
+        <button
+          onClick={toggleSelectAll}
+          className="btn btn-secondary mb-2"
+          type="button"
+        >
+          {selectedEquipment.length === EQUIPMENT_OPTIONS.length ? 'Deselect All' : 'Select All'}
+        </button>
 
         <div className="checkbox-group">
           {EQUIPMENT_OPTIONS.map(eq => (
