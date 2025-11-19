@@ -5,8 +5,8 @@ import './Header.css'
 function Header({ user, onLogout }) {
   const navigate = useNavigate()
   const [theme, setTheme] = useState(() => {
-    // Get theme from localStorage or default to light
-    return localStorage.getItem('theme') || 'light'
+    // Get theme from localStorage or default to dark
+    return localStorage.getItem('theme') || 'dark'
   })
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false)
   const moreMenuRef = useRef(null)

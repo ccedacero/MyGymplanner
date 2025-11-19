@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import * as api from '../services/api'
 
 function Login({ onLogin }) {
@@ -8,6 +8,16 @@ function Login({ onLogin }) {
   const [name, setName] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [rememberMe, setRememberMe] = useState(false)
+
+  // Load saved email on component mount
+  useEffect(() => {
+    const savedEmail = localStorage.getItem('rememberedEmail')
+    if (savedEmail) {
+      setEmail(savedEmail)
+      setRememberMe(true)
+    }
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -18,6 +28,13 @@ function Login({ onLogin }) {
       const data = isRegister
         ? await api.register(email, password, name)
         : await api.login(email, password)
+
+      // Save or clear email based on rememberMe checkbox
+      if (rememberMe) {
+        localStorage.setItem('rememberedEmail', email)
+      } else {
+        localStorage.removeItem('rememberedEmail')
+      }
 
       onLogin(data.user, data.token)
     } catch (err) {
@@ -75,6 +92,20 @@ function Login({ onLogin }) {
               </small>
             )}
           </div>
+
+          {!isRegister && (
+            <div className="form-group" style={{ marginTop: '1rem', marginBottom: '1rem' }}>
+              <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', fontSize: '0.95rem' }}>
+                <input
+                  type="checkbox"
+                  checked={rememberMe}
+                  onChange={(e) => setRememberMe(e.target.checked)}
+                  style={{ marginRight: '0.5rem', cursor: 'pointer' }}
+                />
+                Remember my email
+              </label>
+            </div>
+          )}
 
           {error && (
             <div className="form-error mb-2" style={{ whiteSpace: 'pre-line' }}>
