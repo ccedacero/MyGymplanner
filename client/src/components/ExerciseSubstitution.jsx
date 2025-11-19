@@ -107,7 +107,7 @@ function ExerciseSubstitution({ exercise, userId, userEquipment, onSubstitute, o
                   <div className="substitute-header">
                     <h4>{substitute.name}</h4>
                     <div className="match-score">
-                      <span className="score-badge">{Math.round(substitute.score / 2)}%</span>
+                      <span className="score-badge">{substitute.score ? Math.round(substitute.score / 2) : 0}%</span>
                     </div>
                   </div>
 
