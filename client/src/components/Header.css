@@ -86,6 +86,85 @@
   transform: scale(0.95);
 }
 
+/* More Menu Dropdown Styles */
+.more-menu {
+  position: relative;
+}
+
+.more-menu-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  /* Minimum touch target size for mobile */
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.more-arrow {
+  font-size: 0.75rem;
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+.more-arrow.open {
+  transform: rotate(180deg);
+}
+
+.more-menu-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  min-width: 160px;
+  z-index: 1000;
+  overflow: hidden;
+  /* Smooth slide-in animation */
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.more-menu-item {
+  display: block;
+  padding: 0.875rem 1.25rem;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  border-bottom: 1px solid var(--border);
+  /* Touch-friendly target size */
+  min-height: 44px;
+}
+
+.more-menu-item:last-child {
+  border-bottom: none;
+}
+
+.more-menu-item:hover,
+.more-menu-item:active {
+  background-color: var(--bg);
+  color: var(--primary);
+}
+
+/* Mobile-specific enhancements */
 @media (max-width: 768px) {
   .header-container {
     flex-wrap: wrap;
@@ -101,5 +180,37 @@
 
   .nav-link {
     font-size: 0.875rem;
+  }
+
+  /* Make dropdown full width on mobile for easier tapping */
+  .more-menu-dropdown {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90vw;
+    max-width: 300px;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+
+  /* Larger touch targets on mobile */
+  .more-menu-item {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  /* Add visual feedback for touch */
+  .more-menu-item:active {
+    background-color: var(--primary);
+    color: white;
   }
 }
