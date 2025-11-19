@@ -1,0 +1,1070 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "lastUpdated": "2025-11-19",
+    "researchBasis": "Meta-analyses from Schoenfeld et al. (2021-2025), Pelland et al. (2024), Renaissance Periodization Volume Landmarks",
+    "description": "Evidence-based workout templates optimized for hypertrophy using 12-20 sets per muscle group per week at 2x frequency"
+  },
+  "researchPrinciples": {
+    "volumePerMusclePerWeek": "12-20 sets (MAV range)",
+    "frequencyPerMuscle": "2x per week optimal",
+    "repRangeHypertrophy": "6-12 reps @ 60-80% 1RM primary, 12-20 reps secondary",
+    "proximityToFailure": "1-3 RIR (RPE 7-9)",
+    "restPeriods": {
+      "compounds": "2-3 minutes",
+      "isolation": "1-2 minutes"
+    },
+    "exerciseDistribution": {
+      "compounds": "70-80%",
+      "isolation": "20-30%"
+    },
+    "deloadFrequency": "Every 6 weeks (reduce volume 50% or full rest)",
+    "progressiveOverload": "Double progression: add reps then weight"
+  },
+  "templates": {
+    "fullBody3Day": {
+      "name": "3-Day Full Body Split",
+      "targetAudience": "Beginners, time-limited individuals",
+      "frequency": "Monday/Wednesday/Friday or similar spacing",
+      "workouts": {
+        "dayA": {
+          "name": "Full Body A",
+          "exercises": [
+            {
+              "exerciseId": "known001",
+              "name": "Barbell Back Squat",
+              "sets": 4,
+              "reps": "6-8",
+              "rest": "3 min",
+              "type": "compound",
+              "order": 1
+            },
+            {
+              "exerciseId": "known002",
+              "name": "Barbell Bench Press",
+              "sets": 4,
+              "reps": "6-8",
+              "rest": "2.5 min",
+              "type": "compound",
+              "order": 2
+            },
+            {
+              "exerciseId": "known006",
+              "name": "Barbell Bent Over Row",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "2.5 min",
+              "type": "compound",
+              "order": 3
+            },
+            {
+              "exerciseId": "known017",
+              "name": "Dumbbell Seated Shoulder Press",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "2 min",
+              "type": "compound",
+              "order": 4
+            },
+            {
+              "exerciseId": "known028",
+              "name": "Machine Lying Leg Curl",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "90 sec",
+              "type": "isolation",
+              "order": 5
+            },
+            {
+              "exerciseId": "known014",
+              "name": "Barbell Bicep Curl",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "90 sec",
+              "type": "isolation",
+              "order": 6
+            },
+            {
+              "exerciseId": "known040",
+              "name": "Cable Straight Bar Tricep Pushdown",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "90 sec",
+              "type": "isolation",
+              "order": 7
+            }
+          ],
+          "estimatedDuration": "60 minutes"
+        },
+        "dayB": {
+          "name": "Full Body B",
+          "exercises": [
+            {
+              "exerciseId": "known004",
+              "name": "Barbell Romanian Deadlift",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "3 min",
+              "type": "compound",
+              "order": 1
+            },
+            {
+              "exerciseId": "known016",
+              "name": "Dumbbell Incline Bench Press",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "2.5 min",
+              "type": "compound",
+              "order": 2
+            },
+            {
+              "exerciseId": "known050",
+              "name": "Pull Up",
+              "sets": 4,
+              "reps": "6-10",
+              "rest": "2.5 min",
+              "type": "compound",
+              "order": 3
+            },
+            {
+              "exerciseId": "known015",
+              "name": "Dumbbell Rear Foot Elevated Split Squat",
+              "sets": 3,
+              "reps": "8-10 per leg",
+              "rest": "2 min",
+              "type": "compound",
+              "order": 4
+            },
+            {
+              "exerciseId": "known018",
+              "name": "Dumbbell Lateral Raise",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "90 sec",
+              "type": "isolation",
+              "order": 5
+            },
+            {
+              "exerciseId": "known044",
+              "name": "Cable Mid Chest Fly",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "90 sec",
+              "type": "isolation",
+              "order": 6
+            },
+            {
+              "exerciseId": "known042",
+              "name": "Standing Cable Rear Delt Fly",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "90 sec",
+              "type": "isolation",
+              "order": 7
+            }
+          ],
+          "estimatedDuration": "65 minutes"
+        },
+        "dayC": {
+          "name": "Full Body C",
+          "exercises": [
+            {
+              "exerciseId": "known003",
+              "name": "Barbell Deadlift",
+              "sets": 4,
+              "reps": "5-6",
+              "rest": "3 min",
+              "type": "compound",
+              "order": 1
+            },
+            {
+              "exerciseId": "known005",
+              "name": "Barbell Overhead Press",
+              "sets": 4,
+              "reps": "6-8",
+              "rest": "2.5 min",
+              "type": "compound",
+              "order": 2
+            },
+            {
+              "exerciseId": "known039",
+              "name": "Close Grip Seated Cable Row",
+              "sets": 4,
+              "reps": "10-12",
+              "rest": "2.5 min",
+              "type": "compound",
+              "order": 3
+            },
+            {
+              "exerciseId": "known027",
+              "name": "Angled Machine Leg Press",
+              "sets": 4,
+              "reps": "10-12",
+              "rest": "2 min",
+              "type": "compound",
+              "order": 4
+            },
+            {
+              "exerciseId": "known030",
+              "name": "Machine Seated Leg Curl",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "90 sec",
+              "type": "isolation",
+              "order": 5
+            },
+            {
+              "exerciseId": "known041",
+              "name": "Cable Bicep Curl",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "90 sec",
+              "type": "isolation",
+              "order": 6
+            },
+            {
+              "exerciseId": "known013",
+              "name": "Barbell Skullcrusher",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "90 sec",
+              "type": "isolation",
+              "order": 7
+            }
+          ],
+          "estimatedDuration": "65 minutes"
+        }
+      },
+      "weeklyVolume": {
+        "chest": 14,
+        "back": 16,
+        "shoulders": 17,
+        "quads": 15,
+        "hamstrings": 13,
+        "biceps": 12,
+        "triceps": 13
+      }
+    },
+    "upperLower4Day": {
+      "name": "4-Day Upper/Lower Split",
+      "targetAudience": "Intermediate lifters",
+      "frequency": "Mon/Thu Upper, Tue/Fri Lower",
+      "workouts": {
+        "upperA": {
+          "name": "Upper A",
+          "day": "Monday",
+          "exercises": [
+            {
+              "exerciseId": "known002",
+              "name": "Barbell Bench Press",
+              "sets": 4,
+              "reps": "6-8",
+              "rest": "3 min",
+              "type": "compound",
+              "order": 1
+            },
+            {
+              "exerciseId": "known006",
+              "name": "Barbell Bent Over Row",
+              "sets": 4,
+              "reps": "6-8",
+              "rest": "2.5 min",
+              "type": "compound",
+              "order": 2
+            },
+            {
+              "exerciseId": "known005",
+              "name": "Barbell Overhead Press",
+              "sets": 4,
+              "reps": "6-8",
+              "rest": "2.5 min",
+              "type": "compound",
+              "order": 3
+            },
+            {
+              "exerciseId": "known050",
+              "name": "Pull Up",
+              "sets": 3,
+              "reps": "6-10",
+              "rest": "2.5 min",
+              "type": "compound",
+              "order": 4
+            },
+            {
+              "exerciseId": "known016",
+              "name": "Dumbbell Incline Bench Press",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "2 min",
+              "type": "compound",
+              "order": 5
+            },
+            {
+              "exerciseId": "known044",
+              "name": "Cable Mid Chest Fly",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "90 sec",
+              "type": "isolation",
+              "order": 6
+            },
+            {
+              "exerciseId": "known018",
+              "name": "Dumbbell Lateral Raise",
+              "sets": 3,
+              "reps": "15-20",
+              "rest": "60 sec",
+              "type": "isolation",
+              "order": 7
+            },
+            {
+              "exerciseId": "known014",
+              "name": "Barbell Bicep Curl",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "90 sec",
+              "type": "isolation",
+              "order": 8
+            },
+            {
+              "exerciseId": "known040",
+              "name": "Cable Straight Bar Tricep Pushdown",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "90 sec",
+              "type": "isolation",
+              "order": 9
+            }
+          ],
+          "estimatedDuration": "70 minutes"
+        },
+        "lowerA": {
+          "name": "Lower A",
+          "day": "Tuesday",
+          "exercises": [
+            {
+              "exerciseId": "known001",
+              "name": "Barbell Back Squat",
+              "sets": 4,
+              "reps": "6-8",
+              "rest": "3 min",
+              "type": "compound",
+              "order": 1
+            },
+            {
+              "exerciseId": "known004",
+              "name": "Barbell Romanian Deadlift",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "3 min",
+              "type": "compound",
+              "order": 2
+            },
+            {
+              "exerciseId": "known015",
+              "name": "Dumbbell Rear Foot Elevated Split Squat",
+              "sets": 3,
+              "reps": "8-10 per leg",
+              "rest": "2 min",
+              "type": "compound",
+              "order": 3
+            },
+            {
+              "exerciseId": "known028",
+              "name": "Machine Lying Leg Curl",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "90 sec",
+              "type": "isolation",
+              "order": 4
+            },
+            {
+              "exerciseId": "known038",
+              "name": "Single Leg Extension",
+              "sets": 3,
+              "reps": "10-12 per leg",
+              "rest": "90 sec",
+              "type": "isolation",
+              "order": 5
+            },
+            {
+              "exerciseId": "known029",
+              "name": "Machine Seated Calf Raise",
+              "sets": 4,
+              "reps": "12-15",
+              "rest": "60 sec",
+              "type": "isolation",
+              "order": 6
+            },
+            {
+              "exerciseId": "known049",
+              "name": "Ab Roller Wheel Abdominal Roll Out",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "90 sec",
+              "type": "core",
+              "order": 7
+            }
+          ],
+          "estimatedDuration": "60 minutes"
+        },
+        "upperB": {
+          "name": "Upper B",
+          "day": "Thursday",
+          "exercises": [
+            {
+              "exerciseId": "known011",
+              "name": "Barbell Incline Bench Press",
+              "sets": 4,
+              "reps": "6-8",
+              "rest": "2.5 min",
+              "type": "compound",
+              "order": 1
+            },
+            {
+              "exerciseId": "known008",
+              "name": "Barbell Underhand Row",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "2.5 min",
+              "type": "compound",
+              "order": 2
+            },
+            {
+              "exerciseId": "known017",
+              "name": "Dumbbell Seated Shoulder Press",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "2 min",
+              "type": "compound",
+              "order": 3
+            },
+            {
+              "exerciseId": "known046",
+              "name": "MAG Bar Lat Pulldown",
+              "sets": 4,
+              "reps": "10-12",
+              "rest": "2 min",
+              "type": "compound",
+              "order": 4
+            },
+            {
+              "exerciseId": "known051",
+              "name": "Dip",
+              "sets": 3,
+              "reps": "8-12",
+              "rest": "2 min",
+              "type": "compound",
+              "order": 5
+            },
+            {
+              "exerciseId": "known042",
+              "name": "Standing Cable Rear Delt Fly",
+              "sets": 3,
+              "reps": "15-20",
+              "rest": "60 sec",
+              "type": "isolation",
+              "order": 6
+            },
+            {
+              "exerciseId": "known043",
+              "name": "Single Arm Cable Lateral Raise",
+              "sets": 3,
+              "reps": "12-15 per arm",
+              "rest": "60 sec",
+              "type": "isolation",
+              "order": 7
+            },
+            {
+              "exerciseId": "known041",
+              "name": "Cable Bicep Curl",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "90 sec",
+              "type": "isolation",
+              "order": 8
+            },
+            {
+              "exerciseId": "known013",
+              "name": "Barbell Skullcrusher",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "90 sec",
+              "type": "isolation",
+              "order": 9
+            }
+          ],
+          "estimatedDuration": "70 minutes"
+        },
+        "lowerB": {
+          "name": "Lower B",
+          "day": "Friday",
+          "exercises": [
+            {
+              "exerciseId": "known003",
+              "name": "Barbell Deadlift",
+              "sets": 4,
+              "reps": "5-6",
+              "rest": "3 min",
+              "type": "compound",
+              "order": 1
+            },
+            {
+              "exerciseId": "known010",
+              "name": "Heel Elevated BB Back Squat",
+              "sets": 4,
+              "reps": "10-12",
+              "rest": "2.5 min",
+              "type": "compound",
+              "order": 2
+            },
+            {
+              "exerciseId": "known021",
+              "name": "Dumbbell RDL",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "2 min",
+              "type": "compound",
+              "order": 3
+            },
+            {
+              "exerciseId": "known027",
+              "name": "Angled Machine Leg Press",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "2 min",
+              "type": "compound",
+              "order": 4
+            },
+            {
+              "exerciseId": "known030",
+              "name": "Machine Seated Leg Curl",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "90 sec",
+              "type": "isolation",
+              "order": 5
+            },
+            {
+              "exerciseId": "known031",
+              "name": "Leg Press Machine Calf Raise",
+              "sets": 4,
+              "reps": "15-20",
+              "rest": "60 sec",
+              "type": "isolation",
+              "order": 6
+            },
+            {
+              "exerciseId": "known059",
+              "name": "Captain Chair Weighted Leg Raises",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "90 sec",
+              "type": "core",
+              "order": 7
+            }
+          ],
+          "estimatedDuration": "60 minutes"
+        }
+      },
+      "weeklyVolume": {
+        "chest": 17,
+        "back": 19,
+        "shoulders": 17,
+        "quads": 18,
+        "hamstrings": 17,
+        "biceps": 14,
+        "triceps": 15
+      }
+    },
+    "pushPullLegs6Day": {
+      "name": "6-Day Push/Pull/Legs Split",
+      "targetAudience": "Advanced lifters",
+      "frequency": "Mon/Thu Push, Tue/Fri Pull, Wed/Sat Legs",
+      "workouts": {
+        "pushA": {
+          "name": "Push A",
+          "day": "Monday",
+          "exercises": [
+            {
+              "exerciseId": "known002",
+              "name": "Barbell Bench Press",
+              "sets": 4,
+              "reps": "6-8",
+              "rest": "3 min",
+              "type": "compound",
+              "order": 1
+            },
+            {
+              "exerciseId": "known005",
+              "name": "Barbell Overhead Press",
+              "sets": 4,
+              "reps": "6-8",
+              "rest": "2.5 min",
+              "type": "compound",
+              "order": 2
+            },
+            {
+              "exerciseId": "known011",
+              "name": "Barbell Incline Bench Press",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "2.5 min",
+              "type": "compound",
+              "order": 3
+            },
+            {
+              "exerciseId": "known017",
+              "name": "Dumbbell Seated Shoulder Press",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "2 min",
+              "type": "compound",
+              "order": 4
+            },
+            {
+              "exerciseId": "known044",
+              "name": "Cable Mid Chest Fly",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "90 sec",
+              "type": "isolation",
+              "order": 5
+            },
+            {
+              "exerciseId": "known018",
+              "name": "Dumbbell Lateral Raise",
+              "sets": 4,
+              "reps": "15-20",
+              "rest": "60 sec",
+              "type": "isolation",
+              "order": 6
+            },
+            {
+              "exerciseId": "known040",
+              "name": "Cable Straight Bar Tricep Pushdown",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "90 sec",
+              "type": "isolation",
+              "order": 7
+            },
+            {
+              "exerciseId": "known013",
+              "name": "Barbell Skullcrusher",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "90 sec",
+              "type": "isolation",
+              "order": 8
+            }
+          ],
+          "estimatedDuration": "70 minutes"
+        },
+        "pullA": {
+          "name": "Pull A",
+          "day": "Tuesday",
+          "exercises": [
+            {
+              "exerciseId": "known003",
+              "name": "Barbell Deadlift",
+              "sets": 4,
+              "reps": "5-6",
+              "rest": "3 min",
+              "type": "compound",
+              "order": 1
+            },
+            {
+              "exerciseId": "known006",
+              "name": "Barbell Bent Over Row",
+              "sets": 4,
+              "reps": "6-8",
+              "rest": "2.5 min",
+              "type": "compound",
+              "order": 2
+            },
+            {
+              "exerciseId": "known050",
+              "name": "Pull Up",
+              "sets": 4,
+              "reps": "6-10",
+              "rest": "2.5 min",
+              "type": "compound",
+              "order": 3
+            },
+            {
+              "exerciseId": "known022",
+              "name": "3-Point Single Arm Dumbbell Row",
+              "sets": 3,
+              "reps": "10-12 per arm",
+              "rest": "2 min",
+              "type": "compound",
+              "order": 4
+            },
+            {
+              "exerciseId": "known046",
+              "name": "MAG Bar Lat Pulldown",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "2 min",
+              "type": "compound",
+              "order": 5
+            },
+            {
+              "exerciseId": "known042",
+              "name": "Standing Cable Rear Delt Fly",
+              "sets": 3,
+              "reps": "15-20",
+              "rest": "60 sec",
+              "type": "isolation",
+              "order": 6
+            },
+            {
+              "exerciseId": "known014",
+              "name": "Barbell Bicep Curl",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "90 sec",
+              "type": "isolation",
+              "order": 7
+            },
+            {
+              "exerciseId": "known041",
+              "name": "Cable Bicep Curl",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "90 sec",
+              "type": "isolation",
+              "order": 8
+            }
+          ],
+          "estimatedDuration": "70 minutes"
+        },
+        "legsA": {
+          "name": "Legs A",
+          "day": "Wednesday",
+          "exercises": [
+            {
+              "exerciseId": "known001",
+              "name": "Barbell Back Squat",
+              "sets": 4,
+              "reps": "6-8",
+              "rest": "3 min",
+              "type": "compound",
+              "order": 1
+            },
+            {
+              "exerciseId": "known004",
+              "name": "Barbell Romanian Deadlift",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "3 min",
+              "type": "compound",
+              "order": 2
+            },
+            {
+              "exerciseId": "known015",
+              "name": "Dumbbell Rear Foot Elevated Split Squat",
+              "sets": 4,
+              "reps": "8-10 per leg",
+              "rest": "2 min",
+              "type": "compound",
+              "order": 3
+            },
+            {
+              "exerciseId": "known028",
+              "name": "Machine Lying Leg Curl",
+              "sets": 4,
+              "reps": "12-15",
+              "rest": "90 sec",
+              "type": "isolation",
+              "order": 4
+            },
+            {
+              "exerciseId": "known038",
+              "name": "Single Leg Extension",
+              "sets": 3,
+              "reps": "10-12 per leg",
+              "rest": "90 sec",
+              "type": "isolation",
+              "order": 5
+            },
+            {
+              "exerciseId": "known029",
+              "name": "Machine Seated Calf Raise",
+              "sets": 4,
+              "reps": "12-15",
+              "rest": "60 sec",
+              "type": "isolation",
+              "order": 6
+            },
+            {
+              "exerciseId": "known049",
+              "name": "Ab Roller Wheel Abdominal Roll Out",
+              "sets": 4,
+              "reps": "10-12",
+              "rest": "90 sec",
+              "type": "core",
+              "order": 7
+            }
+          ],
+          "estimatedDuration": "65 minutes"
+        },
+        "pushB": {
+          "name": "Push B",
+          "day": "Thursday",
+          "exercises": [
+            {
+              "exerciseId": "known016",
+              "name": "Dumbbell Incline Bench Press",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "2.5 min",
+              "type": "compound",
+              "order": 1
+            },
+            {
+              "exerciseId": "known007",
+              "name": "Barbell Z Press",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "2.5 min",
+              "type": "compound",
+              "order": 2
+            },
+            {
+              "exerciseId": "known055",
+              "name": "Slow Eccentric BB Bench Press",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "2 min",
+              "type": "compound",
+              "order": 3
+            },
+            {
+              "exerciseId": "known051",
+              "name": "Dip",
+              "sets": 3,
+              "reps": "8-12",
+              "rest": "2 min",
+              "type": "compound",
+              "order": 4
+            },
+            {
+              "exerciseId": "known032",
+              "name": "Machine Seated Chest Fly",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "90 sec",
+              "type": "isolation",
+              "order": 5
+            },
+            {
+              "exerciseId": "known043",
+              "name": "Single Arm Cable Lateral Raise",
+              "sets": 3,
+              "reps": "12-15 per arm",
+              "rest": "60 sec",
+              "type": "isolation",
+              "order": 6
+            },
+            {
+              "exerciseId": "known033",
+              "name": "Machine Seated Reverse Fly",
+              "sets": 3,
+              "reps": "15-20",
+              "rest": "60 sec",
+              "type": "isolation",
+              "order": 7
+            }
+          ],
+          "estimatedDuration": "65 minutes"
+        },
+        "pullB": {
+          "name": "Pull B",
+          "day": "Friday",
+          "exercises": [
+            {
+              "exerciseId": "known004",
+              "name": "Barbell Romanian Deadlift",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "3 min",
+              "type": "compound",
+              "order": 1
+            },
+            {
+              "exerciseId": "known008",
+              "name": "Barbell Underhand Row",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "2.5 min",
+              "type": "compound",
+              "order": 2
+            },
+            {
+              "exerciseId": "known047",
+              "name": "Reverse Grip Lat Pulldown",
+              "sets": 4,
+              "reps": "8-12",
+              "rest": "2 min",
+              "type": "compound",
+              "order": 3
+            },
+            {
+              "exerciseId": "known039",
+              "name": "Close Grip Seated Cable Row",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "2 min",
+              "type": "compound",
+              "order": 4
+            },
+            {
+              "exerciseId": "known062",
+              "name": "Landmine Row with Close Grip",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "2 min",
+              "type": "compound",
+              "order": 5
+            },
+            {
+              "exerciseId": "known045",
+              "name": "Cable Straight Bar Bicep Curl",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "90 sec",
+              "type": "isolation",
+              "order": 6
+            },
+            {
+              "exerciseId": "known026",
+              "name": "Kettlebell Swing",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "90 sec",
+              "type": "power",
+              "order": 7
+            }
+          ],
+          "estimatedDuration": "65 minutes"
+        },
+        "legsB": {
+          "name": "Legs B",
+          "day": "Saturday",
+          "exercises": [
+            {
+              "exerciseId": "known063",
+              "name": "Heel Elevated BB Back Squat",
+              "sets": 4,
+              "reps": "10-12",
+              "rest": "2.5 min",
+              "type": "compound",
+              "order": 1
+            },
+            {
+              "exerciseId": "known021",
+              "name": "Dumbbell RDL",
+              "sets": 4,
+              "reps": "10-12",
+              "rest": "2.5 min",
+              "type": "compound",
+              "order": 2
+            },
+            {
+              "exerciseId": "known027",
+              "name": "Angled Machine Leg Press",
+              "sets": 4,
+              "reps": "12-15",
+              "rest": "2 min",
+              "type": "compound",
+              "order": 3
+            },
+            {
+              "exerciseId": "known020",
+              "name": "DB Walking Lunge",
+              "sets": 3,
+              "reps": "10-12 per leg",
+              "rest": "2 min",
+              "type": "compound",
+              "order": 4
+            },
+            {
+              "exerciseId": "known030",
+              "name": "Machine Seated Leg Curl",
+              "sets": 4,
+              "reps": "12-15",
+              "rest": "90 sec",
+              "type": "isolation",
+              "order": 5
+            },
+            {
+              "exerciseId": "known031",
+              "name": "Leg Press Machine Calf Raise",
+              "sets": 4,
+              "reps": "15-20",
+              "rest": "60 sec",
+              "type": "isolation",
+              "order": 6
+            },
+            {
+              "exerciseId": "known059",
+              "name": "Captain Chair Weighted Leg Raises",
+              "sets": 4,
+              "reps": "10-12",
+              "rest": "90 sec",
+              "type": "core",
+              "order": 7
+            }
+          ],
+          "estimatedDuration": "65 minutes"
+        }
+      },
+      "weeklyVolume": {
+        "chest": 18,
+        "back": 19,
+        "shoulders": 18,
+        "quads": 19,
+        "hamstrings": 20,
+        "biceps": 12,
+        "triceps": 12
+      }
+    }
+  },
+  "progressionProtocol": {
+    "method": "Double Progression",
+    "description": "Add reps within range, then increase weight and reset to lower reps",
+    "rirTargeting": {
+      "weeks1to5": "2-3 RIR (RPE 7-8)",
+      "week6": "Deload - 50% volume reduction or full rest",
+      "weeks7to11": "1-2 RIR (RPE 8-9)",
+      "week12": "Deload - 50% volume reduction or full rest"
+    },
+    "weightIncreases": {
+      "upperBody": "2.5-5 lbs",
+      "lowerBody": "5-10 lbs"
+    }
+  },
+  "deloadProtocol": {
+    "frequency": "Every 6 weeks",
+    "optionA": {
+      "name": "Volume Deload (Recommended)",
+      "method": "Cut sets in half, maintain intensity and exercises",
+      "example": "4 sets → 2 sets at same weight/reps"
+    },
+    "optionB": {
+      "name": "Full Rest Week",
+      "method": "Complete break from training, active recovery only"
+    }
+  },
+  "exerciseSubstitutionRules": {
+    "principle": "Same muscle group + same movement pattern + similar equipment",
+    "examples": {
+      "barbellBenchPress": ["Dumbbell Bench Press", "Machine Chest Press"],
+      "pullUps": ["Lat Pulldown", "Assisted Pull Ups"],
+      "barbellSquat": ["Leg Press (emergency only)", "Dumbbell Squat"],
+      "barbellRDL": ["Dumbbell RDL", "Machine Leg Curl (partial substitute)"]
+    }
+  }
+}
