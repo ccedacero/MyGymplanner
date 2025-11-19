@@ -65,28 +65,7 @@ function WorkoutLogger({ user }) {
         setUserEquipment(user.equipment)
       }
 
-      // Initialize exercise state with sets or cardio data
-      const exercisesWithSets = todayData.workout.exercises.map(ex => {
-        if (ex.category === 'cardio') {
-          return {
-            ...ex,
-            cardioDuration: '',
-            cardioDistance: ''
-          }
-        } else {
-          return {
-            ...ex,
-            sets: Array(ex.volume?.sets || 3).fill(null).map(() => ({
-              weight: '',
-              reps: '',
-              completed: false
-            }))
-          }
-        }
-      })
-      setExercises(exercisesWithSets)
-
-      // Load last workout data for each exercise
+      // Load last workout data for each exercise FIRST (before initializing sets)
       const lastWorkouts = {}
       for (const ex of todayData.workout.exercises) {
         if (ex.id && ex.category === 'strength') {
@@ -101,6 +80,36 @@ function WorkoutLogger({ user }) {
         }
       }
       setLastWorkoutData(lastWorkouts)
+
+      // Initialize exercise state with sets or cardio data
+      // Prefill sets from last workout if available
+      const exercisesWithSets = todayData.workout.exercises.map(ex => {
+        if (ex.category === 'cardio') {
+          return {
+            ...ex,
+            cardioDuration: '',
+            cardioDistance: ''
+          }
+        } else {
+          // Get last workout data for this exercise
+          const lastWorkout = lastWorkouts[ex.id]
+          const lastSets = lastWorkout?.exercise?.sets || []
+
+          return {
+            ...ex,
+            sets: Array(ex.volume?.sets || 3).fill(null).map((_, index) => {
+              // Prefill from last workout if available
+              const lastSet = lastSets[index]
+              return {
+                weight: lastSet?.weight?.toString() || '',
+                reps: lastSet?.reps?.toString() || '',
+                completed: false
+              }
+            })
+          }
+        }
+      })
+      setExercises(exercisesWithSets)
     } catch (error) {
       alert('Error loading workout: ' + error.message)
       navigate('/today')
@@ -546,6 +555,7 @@ function WorkoutLogger({ user }) {
                     className="set-input"
                     value={set.weight}
                     onChange={(e) => handleSetChange(currentExerciseIndex, setIndex, 'weight', e.target.value)}
+                    onFocus={(e) => e.target.select()}
                     inputMode="decimal"
                   />
                   <input
@@ -554,6 +564,7 @@ function WorkoutLogger({ user }) {
                     className="set-input"
                     value={set.reps}
                     onChange={(e) => handleSetChange(currentExerciseIndex, setIndex, 'reps', e.target.value)}
+                    onFocus={(e) => e.target.select()}
                     inputMode="numeric"
                   />
                   <button
@@ -620,6 +631,7 @@ function WorkoutLogger({ user }) {
                 inputMode="numeric"
                 value={currentExercise.cardioDuration || ''}
                 onChange={(e) => handleCardioChange(currentExerciseIndex, 'cardioDuration', e.target.value)}
+                onFocus={(e) => e.target.select()}
               />
             </div>
             <div className="form-group">
@@ -631,6 +643,7 @@ function WorkoutLogger({ user }) {
                 inputMode="decimal"
                 value={currentExercise.cardioDistance || ''}
                 onChange={(e) => handleCardioChange(currentExerciseIndex, 'cardioDistance', e.target.value)}
+                onFocus={(e) => e.target.select()}
               />
             </div>
           </div>
