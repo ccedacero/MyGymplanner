@@ -127,6 +127,34 @@
   height: 100%;
 }
 
+/* Video Error */
+.video-error {
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border: 1px solid #fbbf24;
+  text-align: center;
+}
+
+.video-error p {
+  margin: 0;
+  color: #92400e;
+  font-weight: 500;
+}
+
+.video-error a {
+  color: #d97706;
+  text-decoration: underline;
+  font-weight: 600;
+  margin-left: 0.5rem;
+  transition: color 0.2s;
+}
+
+.video-error a:hover {
+  color: #b45309;
+}
+
 /* Exercise Info */
 .exercise-info {
   display: flex;
