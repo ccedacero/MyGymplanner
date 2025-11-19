@@ -1,0 +1,59 @@
+{
+  "monitoring": {
+    "routes": [
+      {
+        "name": "Weekend Trip",
+        "origin": "NYP",
+        "destination": "WAS",
+        "date": "2025-12-15",
+        "return_date": "2025-12-17",
+        "preferred_times": ["morning", "afternoon"],
+        "max_price": 150,
+        "alert_on_availability": true,
+        "alert_on_price_drop": true
+      }
+    ],
+    "check_interval_minutes": 30,
+    "notifications": {
+      "email": {
+        "enabled": false,
+        "smtp_server": "smtp.gmail.com",
+        "smtp_port": 587,
+        "sender_email": "your-email@gmail.com",
+        "sender_password": "your-app-password",
+        "recipient_email": "your-email@gmail.com"
+      },
+      "desktop": {
+        "enabled": true
+      },
+      "telegram": {
+        "enabled": false,
+        "bot_token": "your-bot-token",
+        "chat_id": "your-chat-id"
+      },
+      "webhook": {
+        "enabled": false,
+        "url": "https://your-webhook-url.com/notify"
+      }
+    }
+  },
+  "form_filler": {
+    "passenger_info": {
+      "first_name": "John",
+      "last_name": "Doe",
+      "email": "john.doe@email.com",
+      "phone": "555-123-4567",
+      "date_of_birth": "1990-01-01"
+    },
+    "preferences": {
+      "seat_preference": "window",
+      "class": "coach",
+      "loyalty_number": ""
+    },
+    "payment_info": {
+      "note": "NEVER store CVV - enter manually!",
+      "cardholder_name": "John Doe",
+      "billing_zip": "12345"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+# Amtrak Automation - Git Ignore
+
+# Configuration files (may contain sensitive data)
+config/config.json
+
+# Python virtual environment
+monitor/venv/
+monitor/__pycache__/
+monitor/*.pyc
+
+# Database files (contain personal search history)
+monitor/*.db
+monitor/*.sqlite
+monitor/*.sqlite3
+
+# Log files
+monitor/*.log
+monitor/logs/
+
+# Screenshots (may contain personal information)
+monitor/*.png
+monitor/screenshots/
+
+# Environment files
+.env
+.env.local
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.bak
+*.backup
+config/*.bak
+
+# Temporary files
+*.tmp
+temp/
+tmp/
