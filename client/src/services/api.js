@@ -87,6 +87,17 @@ export const uploadExercises = async (userId, file) => {
   return res.json()
 }
 
+export const getExerciseSubstitutes = async (exerciseId, userId, equipment) => {
+  let url = `${API_BASE}/exercises/${exerciseId}/substitutes?userId=${userId}`
+  if (equipment) url += `&equipment=${equipment.join(',')}`
+
+  const res = await fetch(url, {
+    headers: getHeaders()
+  })
+  if (!res.ok) throw new Error('Failed to fetch exercise substitutes')
+  return res.json()
+}
+
 // Plans
 export const generatePlan = async (config) => {
   const res = await fetch(`${API_BASE}/plans/generate`, {
