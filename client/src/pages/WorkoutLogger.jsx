@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import * as api from '../services/api'
+import ExerciseSubstitution from '../components/ExerciseSubstitution'
 import './WorkoutLogger.css'
 
 function WorkoutLogger({ user }) {
@@ -19,6 +20,9 @@ function WorkoutLogger({ user }) {
   const [cardioDuration, setCardioDuration] = useState('')
   const [cardioDistance, setCardioDistance] = useState('')
   const [lastWorkoutData, setLastWorkoutData] = useState({})
+  const [showSubstitutionModal, setShowSubstitutionModal] = useState(false)
+  const [userEquipment, setUserEquipment] = useState([])
+  const [substitutedExercises, setSubstitutedExercises] = useState({})
 
   // Extract YouTube video ID from URL
   const getYouTubeId = (url) => {
@@ -55,6 +59,11 @@ function WorkoutLogger({ user }) {
     try {
       const todayData = await api.getTodaysWorkout(planId)
       setWorkout(todayData.workout)
+
+      // Load user's equipment
+      if (user?.equipment) {
+        setUserEquipment(user.equipment)
+      }
 
       // Initialize exercise state with sets or cardio data
       const exercisesWithSets = todayData.workout.exercises.map(ex => {
@@ -167,17 +176,26 @@ function WorkoutLogger({ user }) {
       userId: user.id,
       planId,
       date: new Date().toISOString(),
-      exercises: exercises.map(ex => {
+      exercises: exercises.map((ex, index) => {
+        const substitution = substitutedExercises[index]
+        const baseData = {
+          exerciseId: ex.id,
+          ...(substitution && {
+            originalExerciseId: substitution.originalExerciseId,
+            substituted: true
+          })
+        }
+
         if (ex.category === 'cardio') {
           return {
-            exerciseId: ex.id,
+            ...baseData,
             cardioDuration: parseFloat(ex.cardioDuration) || 0,
             cardioDistance: parseFloat(ex.cardioDistance) || 0,
             completed: true
           }
         } else {
           return {
-            exerciseId: ex.id,
+            ...baseData,
             sets: ex.sets.map(s => ({
               weight: parseFloat(s.weight) || 0,
               reps: parseInt(s.reps) || 0,
@@ -309,6 +327,41 @@ function WorkoutLogger({ user }) {
     })
   }
 
+  const handleSubstitute = (substitute) => {
+    const currentEx = currentExercise
+    const originalExerciseId = currentEx.id
+
+    // Track the substitution
+    setSubstitutedExercises(prev => ({
+      ...prev,
+      [currentExerciseIndex]: {
+        originalExerciseId,
+        originalExerciseName: currentEx.name,
+        substituteExerciseId: substitute.id,
+        substituteExerciseName: substitute.name
+      }
+    }))
+
+    // Replace the exercise at current index with the substitute
+    setExercises(prev => {
+      const newExercises = [...prev]
+      newExercises[currentExerciseIndex] = {
+        ...substitute,
+        volume: currentEx.volume, // Keep the original volume prescription
+        sets: currentEx.category === 'strength'
+          ? currentEx.sets // Keep existing sets if any were logged
+          : Array(substitute.volume?.sets || currentEx.volume?.sets || 3).fill(null).map(() => ({
+              weight: '',
+              reps: '',
+              completed: false
+            })),
+        cardioDuration: substitute.category === 'cardio' ? '' : undefined,
+        cardioDistance: substitute.category === 'cardio' ? '' : undefined
+      }
+      return newExercises
+    })
+  }
+
   if (loading) {
     return (
       <div className="container">
@@ -423,13 +476,31 @@ function WorkoutLogger({ user }) {
         </div>
       )}
 
+      {/* Exercise Substitution Modal */}
+      {showSubstitutionModal && currentExercise && (
+        <ExerciseSubstitution
+          exercise={currentExercise}
+          userId={user.id}
+          userEquipment={userEquipment}
+          onSubstitute={handleSubstitute}
+          onClose={() => setShowSubstitutionModal(false)}
+        />
+      )}
+
       {/* Header */}
       <div className="workout-logger-header">
         <div className="exercise-counter">
           Exercise {currentExerciseIndex + 1} of {exercises.length}
         </div>
         <div className="exercise-title-row">
-          <h1 className="current-exercise-name">{currentExercise?.name}</h1>
+          <h1 className="current-exercise-name">
+            {currentExercise?.name}
+            {substitutedExercises[currentExerciseIndex] && (
+              <span className="substitution-badge" title={`Substituted from ${substitutedExercises[currentExerciseIndex].originalExerciseName}`}>
+                ⇄
+              </span>
+            )}
+          </h1>
           {currentExercise?.videoUrl && (
             <button
               onClick={() => setShowVideoModal(true)}
@@ -440,12 +511,23 @@ function WorkoutLogger({ user }) {
             </button>
           )}
         </div>
+        {substitutedExercises[currentExerciseIndex] && (
+          <div className="substitution-info">
+            Substituted from: {substitutedExercises[currentExerciseIndex].originalExerciseName}
+          </div>
+        )}
         {currentExercise?.category === 'strength' && (
           <div className="target-volume">
             Target: {currentExercise.volume?.sets}x{currentExercise.volume?.reps}
             {currentExercise.volume?.rest && <span> • Rest: {currentExercise.volume?.rest}</span>}
           </div>
         )}
+        <button
+          onClick={() => setShowSubstitutionModal(true)}
+          className="btn-substitute"
+        >
+          ⇄ Find Substitute
+        </button>
       </div>
 
       {/* Sets Logger - Mobile Optimized */}

@@ -87,6 +87,41 @@ export const uploadExercises = async (userId, file) => {
   return res.json()
 }
 
+export const getExerciseSubstitutes = async (exerciseId, userId, equipment) => {
+  let url = `${API_BASE}/exercises/${exerciseId}/substitutes?userId=${userId}`
+  if (equipment) url += `&equipment=${equipment.join(',')}`
+
+  const res = await fetch(url, {
+    headers: getHeaders()
+  })
+  if (!res.ok) throw new Error('Failed to fetch exercise substitutes')
+  return res.json()
+}
+
+// Stretches
+export const getStretches = async (targetArea, difficulty, type) => {
+  let url = `${API_BASE}/exercises/stretches/all`
+  const params = []
+  if (targetArea) params.push(`targetArea=${targetArea}`)
+  if (difficulty) params.push(`difficulty=${difficulty}`)
+  if (type) params.push(`type=${type}`)
+  if (params.length > 0) url += `?${params.join('&')}`
+
+  const res = await fetch(url, {
+    headers: getHeaders()
+  })
+  if (!res.ok) throw new Error('Failed to fetch stretches')
+  return res.json()
+}
+
+export const getStretchById = async (stretchId) => {
+  const res = await fetch(`${API_BASE}/exercises/stretches/${stretchId}`, {
+    headers: getHeaders()
+  })
+  if (!res.ok) throw new Error('Failed to fetch stretch')
+  return res.json()
+}
+
 // Plans
 export const generatePlan = async (config) => {
   const res = await fetch(`${API_BASE}/plans/generate`, {

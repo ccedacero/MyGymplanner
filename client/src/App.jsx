@@ -10,6 +10,7 @@ import WeeklySchedule from './pages/WeeklySchedule'
 import Progress from './pages/Progress'
 import Settings from './pages/Settings'
 import ExerciseScanner from './pages/ExerciseScanner'
+import Stretches from './pages/Stretches'
 import Header from './components/Header'
 
 function App() {
@@ -131,6 +132,11 @@ function App() {
           <Route
             path="/scan-equipment"
             element={user ? <ExerciseScanner user={user} /> : <Navigate to="/login" />}
+          />
+
+          <Route
+            path="/stretches"
+            element={user ? <Stretches user={user} /> : <Navigate to="/login" />}
           />
 
           <Route

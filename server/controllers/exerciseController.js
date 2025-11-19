@@ -8,6 +8,7 @@ const { v4: uuidv4 } = require('uuid');
 const EXERCISES_DB_PATH = path.join(__dirname, '../data/exercises-database.json');
 const KNOWN_EXERCISES_PATH = path.join(__dirname, '../data/known-exercises.json');
 const CUSTOM_EXERCISES_PATH = path.join(__dirname, '../data/custom-exercises.json');
+const STRETCHES_DB_PATH = path.join(__dirname, '../data/stretches-database.json');
 const USERS_PATH = path.join(__dirname, '../data/users.json');
 
 // Initialize custom exercises file if it doesn't exist
@@ -380,5 +381,204 @@ exports.getUserCustomExercises = async (req, res) => {
   } catch (error) {
     console.error('Error fetching custom exercises:', error);
     res.status(500).json({ error: 'Failed to fetch custom exercises' });
+  }
+};
+
+// Get exercise substitutes (smart alternatives based on muscle groups, equipment, etc.)
+exports.getExerciseSubstitutes = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { userId, equipment } = req.query;
+
+    // Find the original exercise
+    let originalExercise = null;
+
+    // Check all exercise sources
+    const defaultData = await fs.readFile(EXERCISES_DB_PATH, 'utf8');
+    const defaultExercises = JSON.parse(defaultData);
+    originalExercise = defaultExercises.exercises.find(ex => ex.id === id);
+
+    if (!originalExercise) {
+      const knownData = await fs.readFile(KNOWN_EXERCISES_PATH, 'utf8');
+      const knownExercises = JSON.parse(knownData);
+      originalExercise = knownExercises.exercises.find(ex => ex.id === id);
+    }
+
+    if (!originalExercise && userId) {
+      const customData = await fs.readFile(CUSTOM_EXERCISES_PATH, 'utf8');
+      const custom = JSON.parse(customData);
+      originalExercise = custom.exercises.find(ex => ex.id === id);
+    }
+
+    if (!originalExercise) {
+      return res.status(404).json({ error: 'Original exercise not found' });
+    }
+
+    // Get user's exercise preference
+    const preference = await getUserExercisePreference(userId);
+
+    // Load all available exercises
+    let allExercises = await loadBuiltInExercises(preference);
+
+    // Add user's custom exercises
+    if (userId) {
+      const customData = await fs.readFile(CUSTOM_EXERCISES_PATH, 'utf8');
+      const custom = JSON.parse(customData);
+      const userCustom = custom.exercises.filter(ex => ex.userId === userId);
+      allExercises = [...allExercises, ...userCustom];
+    }
+
+    // Get user's available equipment
+    let userEquipment = [];
+    if (equipment) {
+      userEquipment = equipment.split(',').map(e => e.trim());
+    } else if (userId) {
+      // Load from user preferences
+      try {
+        const usersData = await fs.readFile(USERS_PATH, 'utf8');
+        const users = JSON.parse(usersData);
+        const user = users.users.find(u => u.id === userId);
+        userEquipment = user?.equipment || [];
+      } catch (error) {
+        console.error('Error loading user equipment:', error);
+      }
+    }
+
+    // Score and filter substitutes
+    const substitutes = allExercises
+      .filter(ex => ex.id !== id) // Exclude the original exercise
+      .map(ex => {
+        let score = 0;
+
+        // Score based on muscle group overlap (most important)
+        const muscleOverlap = ex.muscleGroups.filter(mg =>
+          originalExercise.muscleGroups.includes(mg)
+        ).length;
+        score += muscleOverlap * 10;
+
+        // Bonus for targeting the same primary muscle
+        if (muscleOverlap > 0 && ex.muscleGroups[0] === originalExercise.muscleGroups[0]) {
+          score += 5;
+        }
+
+        // Score based on same type (compound/isolation)
+        if (ex.type === originalExercise.type) {
+          score += 3;
+        }
+
+        // Score based on similar difficulty
+        const difficultyLevels = { beginner: 1, intermediate: 2, advanced: 3 };
+        const diffDifference = Math.abs(
+          (difficultyLevels[ex.difficulty] || 2) - (difficultyLevels[originalExercise.difficulty] || 2)
+        );
+        score += (3 - diffDifference);
+
+        // Score based on equipment availability
+        if (userEquipment.length > 0) {
+          const hasRequiredEquipment = ex.equipment.every(eq => userEquipment.includes(eq));
+          if (hasRequiredEquipment) {
+            score += 5;
+          } else {
+            score -= 10; // Penalize if equipment not available
+          }
+        }
+
+        // Score based on same category (strength/cardio)
+        if (ex.category === originalExercise.category) {
+          score += 2;
+        }
+
+        return {
+          ...ex,
+          score,
+          matchReasons: {
+            muscleGroupsMatched: muscleOverlap,
+            sameType: ex.type === originalExercise.type,
+            sameDifficulty: ex.difficulty === originalExercise.difficulty,
+            equipmentAvailable: userEquipment.length === 0 || ex.equipment.every(eq => userEquipment.includes(eq)),
+            sameCategory: ex.category === originalExercise.category
+          }
+        };
+      })
+      .filter(ex => ex.score > 0) // Only include exercises with positive scores
+      .sort((a, b) => b.score - a.score) // Sort by score (best first)
+      .slice(0, 20); // Limit to top 20 substitutes
+
+    res.json({
+      originalExercise,
+      substitutes,
+      count: substitutes.length,
+      metadata: {
+        preference,
+        equipmentFilter: userEquipment.length > 0 ? userEquipment : 'none'
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching exercise substitutes:', error);
+    res.status(500).json({ error: 'Failed to fetch exercise substitutes' });
+  }
+};
+
+// Get all stretches
+exports.getAllStretches = async (req, res) => {
+  try {
+    const { targetArea, difficulty, type } = req.query;
+
+    // Load stretches database
+    const stretchesData = await fs.readFile(STRETCHES_DB_PATH, 'utf8');
+    const stretchesDb = JSON.parse(stretchesData);
+    let stretches = stretchesDb.stretches || [];
+
+    // Filter by target area if provided
+    if (targetArea) {
+      stretches = stretches.filter(stretch =>
+        stretch.targetAreas.some(area => area.toLowerCase().includes(targetArea.toLowerCase()))
+      );
+    }
+
+    // Filter by difficulty if provided
+    if (difficulty) {
+      stretches = stretches.filter(stretch => stretch.difficulty === difficulty);
+    }
+
+    // Filter by type (static/dynamic) if provided
+    if (type) {
+      stretches = stretches.filter(stretch => stretch.type === type);
+    }
+
+    res.json({
+      stretches,
+      metadata: {
+        totalStretches: stretches.length,
+        filters: {
+          targetArea: targetArea || 'all',
+          difficulty: difficulty || 'all',
+          type: type || 'all'
+        }
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching stretches:', error);
+    res.status(500).json({ error: 'Failed to fetch stretches' });
+  }
+};
+
+// Get stretch by ID
+exports.getStretchById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const stretchesData = await fs.readFile(STRETCHES_DB_PATH, 'utf8');
+    const stretchesDb = JSON.parse(stretchesData);
+    const stretch = stretchesDb.stretches.find(s => s.id === id);
+
+    if (!stretch) {
+      return res.status(404).json({ error: 'Stretch not found' });
+    }
+
+    res.json(stretch);
+  } catch (error) {
+    console.error('Error fetching stretch:', error);
+    res.status(500).json({ error: 'Failed to fetch stretch' });
   }
 };
