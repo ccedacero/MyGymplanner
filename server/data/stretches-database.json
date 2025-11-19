@@ -4,7 +4,10 @@
       "id": "str001",
       "name": "Standing Hamstring Stretch",
       "category": "stretching",
-      "targetAreas": ["hamstrings", "lower back"],
+      "targetAreas": [
+        "hamstrings",
+        "lower back"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "static",
@@ -16,7 +19,10 @@
       "id": "str002",
       "name": "Quadriceps Standing Stretch",
       "category": "stretching",
-      "targetAreas": ["quadriceps", "hip flexors"],
+      "targetAreas": [
+        "quadriceps",
+        "hip flexors"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "static",
@@ -28,7 +34,10 @@
       "id": "str003",
       "name": "Calf Stretch",
       "category": "stretching",
-      "targetAreas": ["calves", "achilles"],
+      "targetAreas": [
+        "calves",
+        "achilles"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "static",
@@ -40,7 +49,10 @@
       "id": "str004",
       "name": "Hip Flexor Stretch",
       "category": "stretching",
-      "targetAreas": ["hip flexors", "quadriceps"],
+      "targetAreas": [
+        "hip flexors",
+        "quadriceps"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "static",
@@ -52,7 +64,11 @@
       "id": "str005",
       "name": "Seated Spinal Twist",
       "category": "stretching",
-      "targetAreas": ["spine", "obliques", "lower back"],
+      "targetAreas": [
+        "spine",
+        "obliques",
+        "lower back"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "static",
@@ -64,7 +80,11 @@
       "id": "str006",
       "name": "Child's Pose",
       "category": "stretching",
-      "targetAreas": ["back", "shoulders", "hips"],
+      "targetAreas": [
+        "back",
+        "shoulders",
+        "hips"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "static",
@@ -76,7 +96,11 @@
       "id": "str007",
       "name": "Cat-Cow Stretch",
       "category": "stretching",
-      "targetAreas": ["spine", "back", "core"],
+      "targetAreas": [
+        "spine",
+        "back",
+        "core"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "dynamic",
@@ -88,7 +112,10 @@
       "id": "str008",
       "name": "Chest Doorway Stretch",
       "category": "stretching",
-      "targetAreas": ["chest", "shoulders"],
+      "targetAreas": [
+        "chest",
+        "shoulders"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "static",
@@ -100,7 +127,10 @@
       "id": "str009",
       "name": "Shoulder Cross-Body Stretch",
       "category": "stretching",
-      "targetAreas": ["shoulders", "upper back"],
+      "targetAreas": [
+        "shoulders",
+        "upper back"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "static",
@@ -112,7 +142,10 @@
       "id": "str010",
       "name": "Triceps Overhead Stretch",
       "category": "stretching",
-      "targetAreas": ["triceps", "shoulders"],
+      "targetAreas": [
+        "triceps",
+        "shoulders"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "static",
@@ -124,7 +157,11 @@
       "id": "str011",
       "name": "Standing Side Bend",
       "category": "stretching",
-      "targetAreas": ["obliques", "lats", "core"],
+      "targetAreas": [
+        "obliques",
+        "lats",
+        "core"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "static",
@@ -136,7 +173,11 @@
       "id": "str012",
       "name": "Butterfly Stretch",
       "category": "stretching",
-      "targetAreas": ["inner thighs", "hips", "groin"],
+      "targetAreas": [
+        "inner thighs",
+        "hips",
+        "groin"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "static",
@@ -148,7 +189,11 @@
       "id": "str013",
       "name": "Pigeon Pose",
       "category": "stretching",
-      "targetAreas": ["hips", "glutes", "hip flexors"],
+      "targetAreas": [
+        "hips",
+        "glutes",
+        "hip flexors"
+      ],
       "equipment": [],
       "difficulty": "intermediate",
       "type": "static",
@@ -160,7 +205,11 @@
       "id": "str014",
       "name": "Lying Figure-4 Stretch",
       "category": "stretching",
-      "targetAreas": ["glutes", "hips", "piriformis"],
+      "targetAreas": [
+        "glutes",
+        "hips",
+        "piriformis"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "static",
@@ -172,7 +221,11 @@
       "id": "str015",
       "name": "Cobra Stretch",
       "category": "stretching",
-      "targetAreas": ["abs", "hip flexors", "chest"],
+      "targetAreas": [
+        "abs",
+        "hip flexors",
+        "chest"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "static",
@@ -184,7 +237,12 @@
       "id": "str016",
       "name": "Downward Dog",
       "category": "stretching",
-      "targetAreas": ["hamstrings", "calves", "shoulders", "back"],
+      "targetAreas": [
+        "hamstrings",
+        "calves",
+        "shoulders",
+        "back"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "static",
@@ -196,7 +254,10 @@
       "id": "str017",
       "name": "Neck Rolls",
       "category": "stretching",
-      "targetAreas": ["neck", "upper traps"],
+      "targetAreas": [
+        "neck",
+        "upper traps"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "dynamic",
@@ -208,7 +269,10 @@
       "id": "str018",
       "name": "Wrist Flexor Stretch",
       "category": "stretching",
-      "targetAreas": ["forearms", "wrists"],
+      "targetAreas": [
+        "forearms",
+        "wrists"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "static",
@@ -220,7 +284,11 @@
       "id": "str019",
       "name": "Thread the Needle",
       "category": "stretching",
-      "targetAreas": ["upper back", "shoulders", "spine"],
+      "targetAreas": [
+        "upper back",
+        "shoulders",
+        "spine"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "static",
@@ -232,19 +300,26 @@
       "id": "str020",
       "name": "Standing Quad Stretch with Support",
       "category": "stretching",
-      "targetAreas": ["quadriceps", "hip flexors"],
+      "targetAreas": [
+        "quadriceps",
+        "hip flexors"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "static",
       "description": "Hold onto wall or chair for balance, pull foot to glutes. Safer variation for beginners.",
-      "videoUrl": "https://www.youtube.com/watch?v=kPJbZ2QxLeM",
+      "videoUrl": "https://www.youtube.com/watch?v=Q8VbAwnZV38",
       "duration": "30 seconds per leg"
     },
     {
       "id": "str021",
       "name": "Leg Swings - Front to Back",
       "category": "stretching",
-      "targetAreas": ["hip flexors", "hamstrings", "glutes"],
+      "targetAreas": [
+        "hip flexors",
+        "hamstrings",
+        "glutes"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "dynamic",
@@ -256,19 +331,26 @@
       "id": "str022",
       "name": "Leg Swings - Side to Side",
       "category": "stretching",
-      "targetAreas": ["inner thighs", "outer hips", "glutes"],
+      "targetAreas": [
+        "inner thighs",
+        "outer hips",
+        "glutes"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "dynamic",
       "description": "Hold support, swing leg side to side across body. Excellent hip mobility drill.",
-      "videoUrl": "https://www.youtube.com/watch?v=4aoVbw8lFnw",
+      "videoUrl": "https://www.youtube.com/watch?v=E_e-yJ0yOSA",
       "duration": "10-15 swings per leg"
     },
     {
       "id": "str023",
       "name": "Arm Circles",
       "category": "stretching",
-      "targetAreas": ["shoulders", "upper back"],
+      "targetAreas": [
+        "shoulders",
+        "upper back"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "dynamic",
@@ -280,7 +362,12 @@
       "id": "str024",
       "name": "World's Greatest Stretch",
       "category": "stretching",
-      "targetAreas": ["hips", "hamstrings", "spine", "shoulders"],
+      "targetAreas": [
+        "hips",
+        "hamstrings",
+        "spine",
+        "shoulders"
+      ],
       "equipment": [],
       "difficulty": "intermediate",
       "type": "dynamic",
@@ -292,7 +379,11 @@
       "id": "str025",
       "name": "Lat Stretch on Floor",
       "category": "stretching",
-      "targetAreas": ["lats", "shoulders", "upper back"],
+      "targetAreas": [
+        "lats",
+        "shoulders",
+        "upper back"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "static",
@@ -304,7 +395,11 @@
       "id": "str026",
       "name": "Frog Stretch",
       "category": "stretching",
-      "targetAreas": ["inner thighs", "hips", "groin"],
+      "targetAreas": [
+        "inner thighs",
+        "hips",
+        "groin"
+      ],
       "equipment": [],
       "difficulty": "intermediate",
       "type": "static",
@@ -316,7 +411,11 @@
       "id": "str027",
       "name": "Seal Pose",
       "category": "stretching",
-      "targetAreas": ["abs", "hip flexors", "lower back"],
+      "targetAreas": [
+        "abs",
+        "hip flexors",
+        "lower back"
+      ],
       "equipment": [],
       "difficulty": "intermediate",
       "type": "static",
@@ -328,7 +427,11 @@
       "id": "str028",
       "name": "90/90 Hip Stretch",
       "category": "stretching",
-      "targetAreas": ["hips", "glutes", "hip flexors"],
+      "targetAreas": [
+        "hips",
+        "glutes",
+        "hip flexors"
+      ],
       "equipment": [],
       "difficulty": "intermediate",
       "type": "static",
@@ -340,8 +443,13 @@
       "id": "str029",
       "name": "Shoulder Dislocations",
       "category": "stretching",
-      "targetAreas": ["shoulders", "chest"],
-      "equipment": ["resistance band"],
+      "targetAreas": [
+        "shoulders",
+        "chest"
+      ],
+      "equipment": [
+        "resistance band"
+      ],
       "difficulty": "intermediate",
       "type": "dynamic",
       "description": "Hold band with wide grip, rotate arms overhead and behind back. Great shoulder mobility drill.",
@@ -352,7 +460,12 @@
       "id": "str030",
       "name": "Deep Squat Hold",
       "category": "stretching",
-      "targetAreas": ["hips", "ankles", "lower back", "calves"],
+      "targetAreas": [
+        "hips",
+        "ankles",
+        "lower back",
+        "calves"
+      ],
       "equipment": [],
       "difficulty": "intermediate",
       "type": "static",
@@ -364,19 +477,27 @@
       "id": "str031",
       "name": "Wrist Extensor Stretch",
       "category": "stretching",
-      "targetAreas": ["forearms", "wrists", "carpal tunnel prevention"],
+      "targetAreas": [
+        "forearms",
+        "wrists",
+        "carpal tunnel prevention"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "static",
       "description": "Extend arm forward with palm down, use other hand to gently pull fingers down. Essential for keyboard users and carpal tunnel prevention.",
-      "videoUrl": "https://www.youtube.com/watch?v=fdD7CgN5FGg",
+      "videoUrl": "https://www.youtube.com/watch?v=UPLfInVC3Yw",
       "duration": "20-30 seconds per wrist"
     },
     {
       "id": "str032",
       "name": "Prayer Stretch (Wrists)",
       "category": "stretching",
-      "targetAreas": ["wrists", "forearms", "carpal tunnel prevention"],
+      "targetAreas": [
+        "wrists",
+        "forearms",
+        "carpal tunnel prevention"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "static",
@@ -388,7 +509,12 @@
       "id": "str033",
       "name": "Reverse Prayer Stretch",
       "category": "stretching",
-      "targetAreas": ["wrists", "forearms", "shoulders", "carpal tunnel prevention"],
+      "targetAreas": [
+        "wrists",
+        "forearms",
+        "shoulders",
+        "carpal tunnel prevention"
+      ],
       "equipment": [],
       "difficulty": "intermediate",
       "type": "static",
@@ -400,7 +526,11 @@
       "id": "str034",
       "name": "Wrist Rotations",
       "category": "stretching",
-      "targetAreas": ["wrists", "forearms", "carpal tunnel prevention"],
+      "targetAreas": [
+        "wrists",
+        "forearms",
+        "carpal tunnel prevention"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "dynamic",
@@ -412,7 +542,11 @@
       "id": "str035",
       "name": "Finger Extensions",
       "category": "stretching",
-      "targetAreas": ["fingers", "hands", "carpal tunnel prevention"],
+      "targetAreas": [
+        "fingers",
+        "hands",
+        "carpal tunnel prevention"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "dynamic",
@@ -424,7 +558,11 @@
       "id": "str036",
       "name": "Thumb Stretch",
       "category": "stretching",
-      "targetAreas": ["thumbs", "hands", "carpal tunnel prevention"],
+      "targetAreas": [
+        "thumbs",
+        "hands",
+        "carpal tunnel prevention"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "static",
@@ -436,8 +574,14 @@
       "id": "str037",
       "name": "Desk Forearm Stretch",
       "category": "stretching",
-      "targetAreas": ["forearms", "wrists", "carpal tunnel prevention"],
-      "equipment": ["desk"],
+      "targetAreas": [
+        "forearms",
+        "wrists",
+        "carpal tunnel prevention"
+      ],
+      "equipment": [
+        "desk"
+      ],
       "difficulty": "beginner",
       "type": "static",
       "description": "Place palms flat on desk with fingers pointing toward body, gently lean back. Perfect desk stretch for office workers.",
@@ -448,19 +592,28 @@
       "id": "str038",
       "name": "Fist to Fan Stretch",
       "category": "stretching",
-      "targetAreas": ["hands", "fingers", "forearms", "carpal tunnel prevention"],
+      "targetAreas": [
+        "hands",
+        "fingers",
+        "forearms",
+        "carpal tunnel prevention"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "dynamic",
       "description": "Make a tight fist, then open hand wide spreading all fingers. Alternate slowly. Increases hand circulation and flexibility.",
-      "videoUrl": "https://www.youtube.com/watch?v=EiRC80FJbHU",
+      "videoUrl": "https://www.youtube.com/watch?v=mSZWSQSSEjE",
       "duration": "15-20 repetitions"
     },
     {
       "id": "str039",
       "name": "Finger Pulls",
       "category": "stretching",
-      "targetAreas": ["fingers", "hands", "carpal tunnel prevention"],
+      "targetAreas": [
+        "fingers",
+        "hands",
+        "carpal tunnel prevention"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "static",
@@ -472,20 +625,33 @@
       "id": "str040",
       "name": "Desk Push-Up (Wrist Mobility)",
       "category": "stretching",
-      "targetAreas": ["wrists", "forearms", "carpal tunnel prevention"],
-      "equipment": ["desk"],
+      "targetAreas": [
+        "wrists",
+        "forearms",
+        "carpal tunnel prevention"
+      ],
+      "equipment": [
+        "desk"
+      ],
       "difficulty": "beginner",
       "type": "dynamic",
       "description": "Hands on desk, fingers pointing at body, gently lean forward and back. Strengthens wrists while stretching flexors.",
-      "videoUrl": "https://www.youtube.com/watch?v=ClxBr100a5g",
+      "videoUrl": "https://www.youtube.com/watch?v=dLuCs3BvrLE",
       "duration": "10-15 repetitions"
     },
     {
       "id": "str041",
       "name": "Rubber Band Finger Extensions",
       "category": "stretching",
-      "targetAreas": ["fingers", "hands", "forearms", "carpal tunnel prevention"],
-      "equipment": ["resistance band"],
+      "targetAreas": [
+        "fingers",
+        "hands",
+        "forearms",
+        "carpal tunnel prevention"
+      ],
+      "equipment": [
+        "resistance band"
+      ],
       "difficulty": "beginner",
       "type": "dynamic",
       "description": "Place rubber band around fingers and thumb, open hand against resistance. Balances grip strength with extension strength.",
@@ -496,12 +662,16 @@
       "id": "str042",
       "name": "Forearm Pronation/Supination",
       "category": "stretching",
-      "targetAreas": ["forearms", "wrists", "carpal tunnel prevention"],
+      "targetAreas": [
+        "forearms",
+        "wrists",
+        "carpal tunnel prevention"
+      ],
       "equipment": [],
       "difficulty": "beginner",
       "type": "dynamic",
       "description": "Arms at sides, elbows bent 90 degrees, rotate forearms so palms face up then down. Improves forearm mobility for typing.",
-      "videoUrl": "https://www.youtube.com/watch?v=wYGfDCGrJ4A",
+      "videoUrl": "https://www.youtube.com/watch?v=LaJ4HdSZf2k",
       "duration": "15-20 repetitions"
     }
   ]

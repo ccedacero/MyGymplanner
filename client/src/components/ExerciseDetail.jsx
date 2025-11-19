@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './ExerciseDetail.css'
 
 function ExerciseDetail({ exercise, onClose }) {
+  const [videoError, setVideoError] = useState(false)
+
   if (!exercise) return null
 
   // Extract YouTube video ID from URL
@@ -30,7 +32,7 @@ function ExerciseDetail({ exercise, onClose }) {
           </div>
 
           {/* YouTube Video Embed */}
-          {videoId && (
+          {videoId && !videoError && (
             <div className="video-container">
               <iframe
                 src={`https://www.youtube.com/embed/${videoId}`}
@@ -38,7 +40,18 @@ function ExerciseDetail({ exercise, onClose }) {
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
+                onError={() => setVideoError(true)}
               ></iframe>
+            </div>
+          )}
+          {videoError && (
+            <div className="video-error">
+              <p>Video unavailable. <a href={exercise.videoUrl} target="_blank" rel="noopener noreferrer">Watch on YouTube</a></p>
+            </div>
+          )}
+          {!videoId && exercise.videoUrl && (
+            <div className="video-error">
+              <p>Invalid video URL. <a href={exercise.videoUrl} target="_blank" rel="noopener noreferrer">Try opening directly</a></p>
             </div>
           )}
 
