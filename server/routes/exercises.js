@@ -19,6 +19,12 @@ const upload = multer({
 // Get all exercises (with optional equipment filter)
 router.get('/', exerciseController.getAllExercises);
 
+// Get all stretches (must be before /:id to avoid conflicts)
+router.get('/stretches/all', exerciseController.getAllStretches);
+
+// Get stretch by ID (must be before general /:id route)
+router.get('/stretches/:id', exerciseController.getStretchById);
+
 // Get exercise substitutes (must be before /:id to avoid conflicts)
 router.get('/:id/substitutes', exerciseController.getExerciseSubstitutes);
 

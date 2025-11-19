@@ -8,6 +8,7 @@ const { v4: uuidv4 } = require('uuid');
 const EXERCISES_DB_PATH = path.join(__dirname, '../data/exercises-database.json');
 const KNOWN_EXERCISES_PATH = path.join(__dirname, '../data/known-exercises.json');
 const CUSTOM_EXERCISES_PATH = path.join(__dirname, '../data/custom-exercises.json');
+const STRETCHES_DB_PATH = path.join(__dirname, '../data/stretches-database.json');
 const USERS_PATH = path.join(__dirname, '../data/users.json');
 
 // Initialize custom exercises file if it doesn't exist
@@ -515,5 +516,69 @@ exports.getExerciseSubstitutes = async (req, res) => {
   } catch (error) {
     console.error('Error fetching exercise substitutes:', error);
     res.status(500).json({ error: 'Failed to fetch exercise substitutes' });
+  }
+};
+
+// Get all stretches
+exports.getAllStretches = async (req, res) => {
+  try {
+    const { targetArea, difficulty, type } = req.query;
+
+    // Load stretches database
+    const stretchesData = await fs.readFile(STRETCHES_DB_PATH, 'utf8');
+    const stretchesDb = JSON.parse(stretchesData);
+    let stretches = stretchesDb.stretches || [];
+
+    // Filter by target area if provided
+    if (targetArea) {
+      stretches = stretches.filter(stretch =>
+        stretch.targetAreas.some(area => area.toLowerCase().includes(targetArea.toLowerCase()))
+      );
+    }
+
+    // Filter by difficulty if provided
+    if (difficulty) {
+      stretches = stretches.filter(stretch => stretch.difficulty === difficulty);
+    }
+
+    // Filter by type (static/dynamic) if provided
+    if (type) {
+      stretches = stretches.filter(stretch => stretch.type === type);
+    }
+
+    res.json({
+      stretches,
+      metadata: {
+        totalStretches: stretches.length,
+        filters: {
+          targetArea: targetArea || 'all',
+          difficulty: difficulty || 'all',
+          type: type || 'all'
+        }
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching stretches:', error);
+    res.status(500).json({ error: 'Failed to fetch stretches' });
+  }
+};
+
+// Get stretch by ID
+exports.getStretchById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const stretchesData = await fs.readFile(STRETCHES_DB_PATH, 'utf8');
+    const stretchesDb = JSON.parse(stretchesData);
+    const stretch = stretchesDb.stretches.find(s => s.id === id);
+
+    if (!stretch) {
+      return res.status(404).json({ error: 'Stretch not found' });
+    }
+
+    res.json(stretch);
+  } catch (error) {
+    console.error('Error fetching stretch:', error);
+    res.status(500).json({ error: 'Failed to fetch stretch' });
   }
 };

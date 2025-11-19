@@ -37,6 +37,7 @@ function Header({ user, onLogout }) {
           <Link to="/schedule" className="nav-link">Schedule</Link>
           <Link to="/today" className="nav-link">Today</Link>
           <Link to="/progress" className="nav-link">Progress</Link>
+          <Link to="/stretches" className="nav-link">Stretches</Link>
           <Link to="/settings" className="nav-link">Settings</Link>
         </nav>
 
