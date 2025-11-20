@@ -127,6 +127,29 @@
   height: 100%;
 }
 
+/* Video Fallback Link */
+.video-fallback {
+  text-align: center;
+  margin-top: -0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.video-fallback a {
+  color: #3b82f6;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.video-fallback a:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
 /* Video Error */
 .video-error {
   padding: 2rem;

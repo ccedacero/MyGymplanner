@@ -1,9 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './ExerciseDetail.css'
 
 function ExerciseDetail({ exercise, onClose }) {
-  const [videoError, setVideoError] = useState(false)
-
   if (!exercise) return null
 
   // Extract YouTube video ID from URL
@@ -32,28 +30,28 @@ function ExerciseDetail({ exercise, onClose }) {
           </div>
 
           {/* YouTube Video Embed */}
-          {videoId && !videoError && (
-            <div className="video-container">
-              <iframe
-                src={`https://www.youtube.com/embed/${videoId}`}
-                title={`${exercise.name} Tutorial`}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                onError={() => setVideoError(true)}
-              ></iframe>
-            </div>
-          )}
-          {videoError && (
-            <div className="video-error">
-              <p>Video unavailable. <a href={exercise.videoUrl} target="_blank" rel="noopener noreferrer">Watch on YouTube</a></p>
-            </div>
-          )}
-          {!videoId && exercise.videoUrl && (
+          {videoId ? (
+            <>
+              <div className="video-container">
+                <iframe
+                  src={`https://www.youtube.com/embed/${videoId}`}
+                  title={`${exercise.name} Tutorial`}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+              <div className="video-fallback">
+                <a href={exercise.videoUrl} target="_blank" rel="noopener noreferrer">
+                  Can't see the video? Open directly on YouTube →
+                </a>
+              </div>
+            </>
+          ) : exercise.videoUrl ? (
             <div className="video-error">
               <p>Invalid video URL. <a href={exercise.videoUrl} target="_blank" rel="noopener noreferrer">Try opening directly</a></p>
             </div>
-          )}
+          ) : null}
 
           <div className="exercise-info">
             <div className="info-section">
