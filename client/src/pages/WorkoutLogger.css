@@ -315,6 +315,31 @@
   color: white;
 }
 
+.copy-set-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  font-size: 1.25rem;
+  line-height: 1;
+  padding: 0;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copy-set-btn:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  transform: translateY(2px);
+}
+
+.copy-set-btn:active {
+  transform: translateY(2px) scale(0.95);
+}
+
 .remove-set-btn {
   width: 32px;
   height: 32px;
