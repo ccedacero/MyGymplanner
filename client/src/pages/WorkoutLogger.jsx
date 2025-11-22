@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import * as api from '../services/api'
 import ExerciseSubstitution from '../components/ExerciseSubstitution'
@@ -12,7 +12,7 @@ function WorkoutLogger({ user }) {
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0)
   const [restTimer, setRestTimer] = useState(0)
   const [isResting, setIsResting] = useState(false)
-  const [workoutStartTime] = useState(Date.now())
+  const [workoutStartTime, setWorkoutStartTime] = useState(Date.now())
   const [notes, setNotes] = useState('')
   const [rpe, setRpe] = useState(5)
   const [loading, setLoading] = useState(true)
@@ -23,6 +23,11 @@ function WorkoutLogger({ user }) {
   const [showSubstitutionModal, setShowSubstitutionModal] = useState(false)
   const [userEquipment, setUserEquipment] = useState([])
   const [substitutedExercises, setSubstitutedExercises] = useState({})
+  const [autoSaveStatus, setAutoSaveStatus] = useState('') // 'saving' | 'saved' | ''
+  const [showResumeDraft, setShowResumeDraft] = useState(false)
+  const [draftData, setDraftData] = useState(null)
+  const autoSaveTimeoutRef = useRef(null)
+  const hasLoadedRef = useRef(false)
 
   // Extract YouTube video ID from URL
   const getYouTubeId = (url) => {
@@ -31,9 +36,108 @@ function WorkoutLogger({ user }) {
     return match ? match[1] : null
   }
 
+  // LocalStorage helpers for session persistence
+  const getStorageKey = () => {
+    const today = new Date().toISOString().split('T')[0] // YYYY-MM-DD
+    return `workout_draft_${planId}_${day}_${today}`
+  }
+
+  const saveDraftToStorage = (data) => {
+    try {
+      localStorage.setItem(getStorageKey(), JSON.stringify({
+        ...data,
+        savedAt: Date.now()
+      }))
+    } catch (error) {
+      console.error('Error saving draft to localStorage:', error)
+    }
+  }
+
+  const loadDraftFromStorage = () => {
+    try {
+      const saved = localStorage.getItem(getStorageKey())
+      return saved ? JSON.parse(saved) : null
+    } catch (error) {
+      console.error('Error loading draft from localStorage:', error)
+      return null
+    }
+  }
+
+  const clearDraftFromStorage = () => {
+    try {
+      localStorage.removeItem(getStorageKey())
+    } catch (error) {
+      console.error('Error clearing draft from localStorage:', error)
+    }
+  }
+
+  // Auto-save current state (debounced)
+  const autoSave = () => {
+    // Clear existing timeout
+    if (autoSaveTimeoutRef.current) {
+      clearTimeout(autoSaveTimeoutRef.current)
+    }
+
+    setAutoSaveStatus('saving')
+
+    // Debounce auto-save by 1 second
+    autoSaveTimeoutRef.current = setTimeout(() => {
+      const draftData = {
+        exercises,
+        currentExerciseIndex,
+        notes,
+        rpe,
+        workoutStartTime,
+        substitutedExercises
+      }
+      saveDraftToStorage(draftData)
+      setAutoSaveStatus('saved')
+
+      // Clear "saved" indicator after 2 seconds
+      setTimeout(() => setAutoSaveStatus(''), 2000)
+    }, 1000)
+  }
+
+  // Check for draft on initial load
   useEffect(() => {
+    const draft = loadDraftFromStorage()
+    if (draft && !hasLoadedRef.current) {
+      setDraftData(draft)
+      setShowResumeDraft(true)
+    }
     loadWorkout()
-  }, [planId, day]) // Add day to dependencies to reload when day changes
+  }, [planId, day])
+
+  // Auto-save when exercises, notes, rpe, or currentExerciseIndex change
+  useEffect(() => {
+    if (hasLoadedRef.current && exercises.length > 0) {
+      autoSave()
+    }
+  }, [exercises, notes, rpe, currentExerciseIndex, substitutedExercises])
+
+  // Warn before leaving page with unsaved data
+  useEffect(() => {
+    const handleBeforeUnload = (e) => {
+      if (exercises.length > 0 && !hasLoadedRef.current) {
+        // Check if there's any data entered
+        const hasData = exercises.some(ex => {
+          if (ex.category === 'cardio') {
+            return ex.cardioDuration || ex.cardioDistance
+          } else {
+            return ex.sets?.some(set => set.weight || set.reps || set.completed)
+          }
+        })
+
+        if (hasData) {
+          e.preventDefault()
+          e.returnValue = ''
+        }
+      }
+    }
+
+    window.addEventListener('beforeunload', handleBeforeUnload)
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload)
+  }, [exercises])
 
   // Rest timer countdown
   useEffect(() => {
@@ -110,12 +214,33 @@ function WorkoutLogger({ user }) {
         }
       })
       setExercises(exercisesWithSets)
+      hasLoadedRef.current = true
     } catch (error) {
       alert('Error loading workout: ' + error.message)
       navigate('/today')
     } finally {
       setLoading(false)
     }
+  }
+
+  const handleResumeDraft = () => {
+    if (draftData) {
+      setExercises(draftData.exercises)
+      setCurrentExerciseIndex(draftData.currentExerciseIndex)
+      setNotes(draftData.notes || '')
+      setRpe(draftData.rpe || 5)
+      setWorkoutStartTime(draftData.workoutStartTime || Date.now())
+      setSubstitutedExercises(draftData.substitutedExercises || {})
+      setShowResumeDraft(false)
+      hasLoadedRef.current = true
+    }
+  }
+
+  const handleStartFresh = () => {
+    clearDraftFromStorage()
+    setShowResumeDraft(false)
+    setDraftData(null)
+    hasLoadedRef.current = true
   }
 
   const handleSetChange = (exerciseIndex, setIndex, field, value) => {
@@ -220,6 +345,8 @@ function WorkoutLogger({ user }) {
 
     try {
       await api.logWorkout(logData)
+      // Clear draft from localStorage on successful completion
+      clearDraftFromStorage()
       alert('🎉 Workout logged successfully!')
       navigate('/dashboard')
     } catch (error) {
@@ -398,6 +525,40 @@ function WorkoutLogger({ user }) {
     )
   }
 
+  // Resume draft modal
+  if (showResumeDraft && draftData) {
+    const savedAt = new Date(draftData.savedAt)
+    const timeAgo = Math.round((Date.now() - draftData.savedAt) / 1000 / 60) // minutes ago
+
+    return (
+      <div className="modal-overlay">
+        <div className="modal-content" style={{ maxWidth: '400px' }}>
+          <h2>Resume Workout?</h2>
+          <p className="text-muted">
+            You have an in-progress workout from {timeAgo < 60 ? `${timeAgo} minutes ago` : `${Math.round(timeAgo / 60)} hours ago`}.
+          </p>
+          <p className="text-muted mb-3">
+            Exercise {draftData.currentExerciseIndex + 1} of {draftData.exercises.length}
+          </p>
+          <div style={{ display: 'flex', gap: '0.5rem', flexDirection: 'column' }}>
+            <button
+              onClick={handleResumeDraft}
+              className="btn btn-primary btn-block"
+            >
+              Resume Workout
+            </button>
+            <button
+              onClick={handleStartFresh}
+              className="btn btn-outline btn-block"
+            >
+              Start Fresh
+            </button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   const currentExercise = exercises[currentExerciseIndex]
   const isLastExercise = currentExerciseIndex === exercises.length - 1
   const isCompletionScreen = currentExerciseIndex >= exercises.length
@@ -535,6 +696,17 @@ function WorkoutLogger({ user }) {
       <div className="workout-logger-header">
         <div className="exercise-counter">
           Exercise {currentExerciseIndex + 1} of {exercises.length}
+          {autoSaveStatus && (
+            <span className="auto-save-indicator" style={{
+              marginLeft: '0.5rem',
+              fontSize: '0.875rem',
+              color: autoSaveStatus === 'saved' ? '#10B981' : '#6B7280',
+              opacity: autoSaveStatus ? 1 : 0,
+              transition: 'opacity 0.3s'
+            }}>
+              {autoSaveStatus === 'saving' ? 'Saving...' : '✓ Saved'}
+            </span>
+          )}
         </div>
         <div className="exercise-title-row">
           <h1 className="current-exercise-name">
