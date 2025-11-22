@@ -118,7 +118,7 @@ function WorkoutLogger({ user }) {
   // Warn before leaving page with unsaved data
   useEffect(() => {
     const handleBeforeUnload = (e) => {
-      if (exercises.length > 0 && !hasLoadedRef.current) {
+      if (exercises.length > 0 && hasLoadedRef.current) {
         // Check if there's any data entered
         const hasData = exercises.some(ex => {
           if (ex.category === 'cardio') {
