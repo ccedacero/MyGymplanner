@@ -336,6 +336,25 @@ function WorkoutLogger({ user }) {
     })
   }
 
+  const copyPreviousSet = (exerciseIndex, setIndex) => {
+    if (setIndex === 0) return // Can't copy if this is the first set
+
+    setExercises(prev => {
+      const newExercises = [...prev]
+      const currentSets = newExercises[exerciseIndex].sets
+      const previousSet = currentSets[setIndex - 1]
+
+      // Copy weight and reps from previous set
+      newExercises[exerciseIndex].sets[setIndex] = {
+        ...currentSets[setIndex],
+        weight: previousSet.weight,
+        reps: previousSet.reps
+      }
+
+      return newExercises
+    })
+  }
+
   const handleSubstitute = (substitute) => {
     const currentEx = currentExercise
     const originalExerciseId = currentEx.id
@@ -583,6 +602,15 @@ function WorkoutLogger({ user }) {
                     onFocus={(e) => e.target.select()}
                     inputMode="numeric"
                   />
+                  {setIndex > 0 && (
+                    <button
+                      onClick={() => copyPreviousSet(currentExerciseIndex, setIndex)}
+                      className="btn-icon copy-set-btn"
+                      title="Copy previous set"
+                    >
+                      ⬇️
+                    </button>
+                  )}
                   <button
                     onClick={() => handleSetComplete(currentExerciseIndex, setIndex)}
                     className={`complete-btn ${set.completed ? 'completed' : ''}`}
