@@ -48,6 +48,21 @@ function validatePassword(password) {
 
 // Database is initialized in db/database.js
 
+// Get all users
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = User.findAll();
+    const usersWithoutPasswords = users.map(user => {
+      const { password: _, ...userWithoutPassword } = user;
+      return userWithoutPassword;
+    });
+    res.json(usersWithoutPasswords);
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    res.status(500).json({ error: 'Failed to fetch users' });
+  }
+};
+
 // Register new user
 exports.register = async (req, res) => {
   try {
