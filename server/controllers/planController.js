@@ -2,32 +2,19 @@ const fs = require('fs').promises;
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const { generateAIWorkoutPlan } = require('../services/aiWorkoutGenerator');
+const Plan = require('../db/models/Plan');
+const User = require('../db/models/User');
+const CustomExercise = require('../db/models/CustomExercise');
 
 const EXERCISES_DB_PATH = path.join(__dirname, '../data/exercises-database.json');
 const KNOWN_EXERCISES_PATH = path.join(__dirname, '../data/known-exercises.json');
-const CUSTOM_EXERCISES_PATH = path.join(__dirname, '../data/custom-exercises.json');
-const USERS_PATH = path.join(__dirname, '../data/users.json');
-const PLANS_PATH = path.join(__dirname, '../data/plans.json');
-
-// Initialize plans file
-async function initPlans() {
-  try {
-    await fs.access(PLANS_PATH);
-  } catch {
-    await fs.writeFile(PLANS_PATH, JSON.stringify({ plans: [] }, null, 2));
-  }
-}
-
-initPlans();
 
 // Helper: Get user's exercise preference
-async function getUserExercisePreference(userId) {
+function getUserExercisePreference(userId) {
   if (!userId) return 'both';
 
   try {
-    const usersData = await fs.readFile(USERS_PATH, 'utf8');
-    const users = JSON.parse(usersData);
-    const user = users.users.find(u => u.id === userId);
+    const user = User.findById(userId);
     return user?.exercisePreference || 'both';
   } catch (error) {
     return 'both';
@@ -39,7 +26,7 @@ async function loadUserExercises(userId) {
   let exercises = [];
 
   // Get user's exercise preference
-  const preference = await getUserExercisePreference(userId);
+  const preference = getUserExercisePreference(userId);
 
   // Load built-in exercises based on preference
   if (preference === 'default' || preference === 'both') {
@@ -57,9 +44,7 @@ async function loadUserExercises(userId) {
   // Load custom exercises if userId provided
   if (userId) {
     try {
-      const customData = await fs.readFile(CUSTOM_EXERCISES_PATH, 'utf8');
-      const custom = JSON.parse(customData);
-      const userCustom = custom.exercises.filter(ex => ex.userId === userId);
+      const userCustom = CustomExercise.findByUserId(userId);
       exercises = [...exercises, ...userCustom];
     } catch (error) {
       // No custom exercises yet, that's okay
@@ -432,15 +417,15 @@ exports.generatePlan = async (req, res) => {
       try {
         const aiPlan = await generateAIWorkoutPlan(req.body);
 
-        // Save AI-generated plan
-        const plansData = await fs.readFile(PLANS_PATH, 'utf8');
-        const plans = JSON.parse(plansData);
-        plans.plans.push(aiPlan);
-        await fs.writeFile(PLANS_PATH, JSON.stringify(plans, null, 2));
+        // Save AI-generated plan (ensure it has all required fields)
+        const savedPlan = Plan.create({
+          ...aiPlan,
+          updatedAt: aiPlan.updatedAt || aiPlan.createdAt
+        });
 
         return res.status(201).json({
           message: 'AI-powered training plan generated successfully',
-          plan: aiPlan,
+          plan: savedPlan,
           aiGenerated: true
         });
       } catch (aiError) {
@@ -591,10 +576,12 @@ exports.generatePlan = async (req, res) => {
     }
 
     // Create plan object
-    const plan = {
+    const now = new Date().toISOString();
+    const plan = Plan.create({
       id: `plan-${uuidv4()}`,
       userId,
-      createdAt: new Date().toISOString(),
+      createdAt: now,
+      updatedAt: now,
       config: {
         daysPerWeek,
         sessionLength,
@@ -607,13 +594,7 @@ exports.generatePlan = async (req, res) => {
       weekSchedule,
       duration: '12 weeks',
       currentWeek: 1
-    };
-
-    // Save plan
-    const plansData = await fs.readFile(PLANS_PATH, 'utf8');
-    const plans = JSON.parse(plansData);
-    plans.plans.push(plan);
-    await fs.writeFile(PLANS_PATH, JSON.stringify(plans, null, 2));
+    });
 
     res.status(201).json({
       message: 'Training plan generated successfully',
@@ -633,10 +614,7 @@ exports.getUserPlans = async (req, res) => {
   try {
     const { userId } = req.params;
 
-    const plansData = await fs.readFile(PLANS_PATH, 'utf8');
-    const plans = JSON.parse(plansData);
-
-    const userPlans = plans.plans.filter(p => p.userId === userId);
+    const userPlans = Plan.findByUserId(userId);
 
     res.json({
       plans: userPlans,
@@ -653,10 +631,7 @@ exports.getPlanById = async (req, res) => {
   try {
     const { planId } = req.params;
 
-    const plansData = await fs.readFile(PLANS_PATH, 'utf8');
-    const plans = JSON.parse(plansData);
-
-    const plan = plans.plans.find(p => p.id === planId);
+    const plan = Plan.findById(planId);
 
     if (!plan) {
       return res.status(404).json({ error: 'Plan not found' });
@@ -674,27 +649,17 @@ exports.updatePlan = async (req, res) => {
   try {
     const { planId } = req.params;
 
-    const plansData = await fs.readFile(PLANS_PATH, 'utf8');
-    const plans = JSON.parse(plansData);
+    const plan = Plan.findById(planId);
 
-    const index = plans.plans.findIndex(p => p.id === planId);
-
-    if (index === -1) {
+    if (!plan) {
       return res.status(404).json({ error: 'Plan not found' });
     }
 
-    plans.plans[index] = {
-      ...plans.plans[index],
-      ...req.body,
-      id: planId, // Preserve ID
-      updatedAt: new Date().toISOString()
-    };
-
-    await fs.writeFile(PLANS_PATH, JSON.stringify(plans, null, 2));
+    const updatedPlan = Plan.update(planId, req.body);
 
     res.json({
       message: 'Plan updated successfully',
-      plan: plans.plans[index]
+      plan: updatedPlan
     });
   } catch (error) {
     console.error('Error updating plan:', error);
@@ -707,17 +672,11 @@ exports.deletePlan = async (req, res) => {
   try {
     const { planId } = req.params;
 
-    const plansData = await fs.readFile(PLANS_PATH, 'utf8');
-    const plans = JSON.parse(plansData);
+    const deleted = Plan.delete(planId);
 
-    const initialLength = plans.plans.length;
-    plans.plans = plans.plans.filter(p => p.id !== planId);
-
-    if (plans.plans.length === initialLength) {
+    if (!deleted) {
       return res.status(404).json({ error: 'Plan not found' });
     }
-
-    await fs.writeFile(PLANS_PATH, JSON.stringify(plans, null, 2));
 
     res.json({ message: 'Plan deleted successfully' });
   } catch (error) {

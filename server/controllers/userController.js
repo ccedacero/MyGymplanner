@@ -1,10 +1,7 @@
-const fs = require('fs').promises;
-const path = require('path');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { v4: uuidv4 } = require('uuid');
-
-const USERS_PATH = path.join(__dirname, '../data/users.json');
+const User = require('../db/models/User');
 
 // Validation functions
 function validateEmail(email) {
@@ -49,16 +46,7 @@ function validatePassword(password) {
   };
 }
 
-// Initialize users file
-async function initUsers() {
-  try {
-    await fs.access(USERS_PATH);
-  } catch {
-    await fs.writeFile(USERS_PATH, JSON.stringify({ users: [] }, null, 2));
-  }
-}
-
-initUsers();
+// Database is initialized in db/database.js
 
 // Register new user
 exports.register = async (req, res) => {
@@ -83,12 +71,8 @@ exports.register = async (req, res) => {
       });
     }
 
-    // Load existing users
-    const usersData = await fs.readFile(USERS_PATH, 'utf8');
-    const users = JSON.parse(usersData);
-
     // Check if user exists
-    const existingUser = users.users.find(u => u.email === email);
+    const existingUser = User.findByEmail(email);
     if (existingUser) {
       return res.status(400).json({ error: 'User already exists' });
     }
@@ -97,18 +81,17 @@ exports.register = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create user
-    const user = {
+    const now = new Date().toISOString();
+    const user = User.create({
       id: `user-${uuidv4()}`,
       email,
       password: hashedPassword,
       name: name || email.split('@')[0],
-      equipment: [], // User's available equipment
-      exercisePreference: 'both', // Default to using both default and known exercises
-      createdAt: new Date().toISOString()
-    };
-
-    users.users.push(user);
-    await fs.writeFile(USERS_PATH, JSON.stringify(users, null, 2));
+      equipment: [],
+      exercisePreference: 'both',
+      createdAt: now,
+      updatedAt: now
+    });
 
     // Generate JWT
     const token = jwt.sign(
@@ -140,12 +123,8 @@ exports.login = async (req, res) => {
       return res.status(400).json({ error: 'Email and password are required' });
     }
 
-    // Load users
-    const usersData = await fs.readFile(USERS_PATH, 'utf8');
-    const users = JSON.parse(usersData);
-
     // Find user
-    const user = users.users.find(u => u.email === email);
+    const user = User.findByEmail(email);
     if (!user) {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
@@ -182,10 +161,7 @@ exports.getUserProfile = async (req, res) => {
   try {
     const { userId } = req.params;
 
-    const usersData = await fs.readFile(USERS_PATH, 'utf8');
-    const users = JSON.parse(usersData);
-
-    const user = users.users.find(u => u.id === userId);
+    const user = User.findById(userId);
 
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
@@ -205,30 +181,18 @@ exports.updateUserProfile = async (req, res) => {
   try {
     const { userId } = req.params;
 
-    const usersData = await fs.readFile(USERS_PATH, 'utf8');
-    const users = JSON.parse(usersData);
+    const user = User.findById(userId);
 
-    const index = users.users.findIndex(u => u.id === userId);
-
-    if (index === -1) {
+    if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
 
     // Update user (don't allow password or email updates through this endpoint)
     const { password, email, ...updateData } = req.body;
 
-    users.users[index] = {
-      ...users.users[index],
-      ...updateData,
-      id: userId, // Preserve ID
-      email: users.users[index].email, // Preserve email
-      password: users.users[index].password, // Preserve password
-      updatedAt: new Date().toISOString()
-    };
+    const updatedUser = User.update(userId, updateData);
 
-    await fs.writeFile(USERS_PATH, JSON.stringify(users, null, 2));
-
-    const { password: _, ...userWithoutPassword } = users.users[index];
+    const { password: _, ...userWithoutPassword } = updatedUser;
 
     res.json({
       message: 'User updated successfully',
@@ -250,21 +214,15 @@ exports.updateEquipment = async (req, res) => {
       return res.status(400).json({ error: 'Equipment must be an array' });
     }
 
-    const usersData = await fs.readFile(USERS_PATH, 'utf8');
-    const users = JSON.parse(usersData);
+    const user = User.findById(userId);
 
-    const index = users.users.findIndex(u => u.id === userId);
-
-    if (index === -1) {
+    if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    users.users[index].equipment = equipment;
-    users.users[index].updatedAt = new Date().toISOString();
+    const updatedUser = User.update(userId, { equipment });
 
-    await fs.writeFile(USERS_PATH, JSON.stringify(users, null, 2));
-
-    const { password: _, ...userWithoutPassword } = users.users[index];
+    const { password: _, ...userWithoutPassword } = updatedUser;
 
     res.json({
       message: 'Equipment updated successfully',
@@ -290,21 +248,15 @@ exports.updateExercisePreference = async (req, res) => {
       });
     }
 
-    const usersData = await fs.readFile(USERS_PATH, 'utf8');
-    const users = JSON.parse(usersData);
+    const user = User.findById(userId);
 
-    const index = users.users.findIndex(u => u.id === userId);
-
-    if (index === -1) {
+    if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    users.users[index].exercisePreference = exercisePreference;
-    users.users[index].updatedAt = new Date().toISOString();
+    const updatedUser = User.update(userId, { exercisePreference });
 
-    await fs.writeFile(USERS_PATH, JSON.stringify(users, null, 2));
-
-    const { password: _, ...userWithoutPassword } = users.users[index];
+    const { password: _, ...userWithoutPassword } = updatedUser;
 
     res.json({
       message: 'Exercise preference updated successfully',
