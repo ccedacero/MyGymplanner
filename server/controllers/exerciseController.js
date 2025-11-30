@@ -3,34 +3,20 @@ const path = require('path');
 const csv = require('csv-parse/sync');
 const xlsx = require('xlsx');
 const { v4: uuidv4 } = require('uuid');
+const User = require('../db/models/User');
+const CustomExercise = require('../db/models/CustomExercise');
 
-// Load built-in exercise databases
+// Load built-in exercise databases (reference data - kept as JSON)
 const EXERCISES_DB_PATH = path.join(__dirname, '../data/exercises-database.json');
 const KNOWN_EXERCISES_PATH = path.join(__dirname, '../data/known-exercises.json');
-const CUSTOM_EXERCISES_PATH = path.join(__dirname, '../data/custom-exercises.json');
 const STRETCHES_DB_PATH = path.join(__dirname, '../data/stretches-database.json');
-const USERS_PATH = path.join(__dirname, '../data/users.json');
-
-// Initialize custom exercises file if it doesn't exist
-async function initCustomExercises() {
-  try {
-    await fs.access(CUSTOM_EXERCISES_PATH);
-  } catch {
-    await fs.writeFile(CUSTOM_EXERCISES_PATH, JSON.stringify({ exercises: [] }, null, 2));
-  }
-}
-
-initCustomExercises();
 
 // Helper: Get user's exercise preference
-async function getUserExercisePreference(userId) {
+function getUserExercisePreference(userId) {
   if (!userId) return 'both'; // Default if no userId
 
   try {
-    const usersData = await fs.readFile(USERS_PATH, 'utf8');
-    const users = JSON.parse(usersData);
-    const user = users.users.find(u => u.id === userId);
-
+    const user = User.findById(userId);
     return user?.exercisePreference || 'both'; // Default to 'both'
   } catch (error) {
     console.error('Error reading user preference:', error);
@@ -63,16 +49,14 @@ exports.getAllExercises = async (req, res) => {
     const { userId, equipment } = req.query;
 
     // Get user's exercise preference
-    const preference = await getUserExercisePreference(userId);
+    const preference = getUserExercisePreference(userId);
 
     // Load built-in exercises based on preference
     let exercises = await loadBuiltInExercises(preference);
 
     // Load custom exercises if userId provided
     if (userId) {
-      const customData = await fs.readFile(CUSTOM_EXERCISES_PATH, 'utf8');
-      const custom = JSON.parse(customData);
-      const userCustom = custom.exercises.filter(ex => ex.userId === userId);
+      const userCustom = CustomExercise.findByUserId(userId);
       exercises = [...exercises, ...userCustom];
     }
 
@@ -118,9 +102,7 @@ exports.getExerciseById = async (req, res) => {
 
     // If not found, check custom exercises
     if (!exercise) {
-      const customData = await fs.readFile(CUSTOM_EXERCISES_PATH, 'utf8');
-      const custom = JSON.parse(customData);
-      exercise = custom.exercises.find(ex => ex.id === id);
+      exercise = CustomExercise.findById(id);
     }
 
     if (!exercise) {
@@ -156,10 +138,8 @@ exports.filterByEquipment = async (req, res) => {
 
     // Add user's custom exercises if userId provided
     if (userId) {
-      const customData = await fs.readFile(CUSTOM_EXERCISES_PATH, 'utf8');
-      const custom = JSON.parse(customData);
-      const userCustom = custom.exercises.filter(ex => {
-        return ex.userId === userId && ex.equipment.some(eq => equipmentArray.includes(eq));
+      const userCustom = CustomExercise.findByUserId(userId).filter(ex => {
+        return ex.equipment.some(eq => equipmentArray.includes(eq));
       });
       exercises = [...exercises, ...userCustom];
     }
@@ -245,20 +225,29 @@ exports.uploadCustomExercises = async (req, res) => {
       return res.status(400).json({ error: 'No valid exercises found in file' });
     }
 
-    // Load existing custom exercises
-    const customData = await fs.readFile(CUSTOM_EXERCISES_PATH, 'utf8');
-    const custom = JSON.parse(customData);
-
-    // Add new exercises
-    custom.exercises.push(...validExercises);
-
-    // Save
-    await fs.writeFile(CUSTOM_EXERCISES_PATH, JSON.stringify(custom, null, 2));
+    // Save exercises to database
+    const now = new Date().toISOString();
+    const savedExercises = validExercises.map(ex => {
+      return CustomExercise.create({
+        id: ex.id,
+        userId,
+        name: ex.name,
+        category: ex.category,
+        muscleGroups: ex.muscleGroups,
+        equipment: ex.equipment,
+        difficulty: ex.difficulty,
+        type: ex.type,
+        description: ex.description,
+        videoUrl: '',
+        createdAt: now,
+        updatedAt: now
+      });
+    });
 
     res.json({
       message: 'Exercises uploaded successfully',
-      count: validExercises.length,
-      exercises: validExercises
+      count: savedExercises.length,
+      exercises: savedExercises
     });
   } catch (error) {
     console.error('Error uploading exercises:', error);
@@ -275,8 +264,10 @@ exports.addCustomExercise = async (req, res) => {
       return res.status(400).json({ error: 'name and userId are required' });
     }
 
-    const newExercise = {
+    const now = new Date().toISOString();
+    const newExercise = CustomExercise.create({
       id: `custom-${uuidv4()}`,
+      userId,
       name,
       category: category || 'strength',
       muscleGroups: muscleGroups || [],
@@ -284,15 +275,10 @@ exports.addCustomExercise = async (req, res) => {
       difficulty: difficulty || 'beginner',
       type: type || 'compound',
       description: description || '',
-      userId,
-      custom: true
-    };
-
-    const customData = await fs.readFile(CUSTOM_EXERCISES_PATH, 'utf8');
-    const custom = JSON.parse(customData);
-    custom.exercises.push(newExercise);
-
-    await fs.writeFile(CUSTOM_EXERCISES_PATH, JSON.stringify(custom, null, 2));
+      videoUrl: '',
+      createdAt: now,
+      updatedAt: now
+    });
 
     res.status(201).json({
       message: 'Exercise added successfully',
@@ -310,28 +296,17 @@ exports.updateCustomExercise = async (req, res) => {
     const { id } = req.params;
     const { userId } = req.body;
 
-    const customData = await fs.readFile(CUSTOM_EXERCISES_PATH, 'utf8');
-    const custom = JSON.parse(customData);
+    const exercise = CustomExercise.findById(id);
 
-    const index = custom.exercises.findIndex(ex => ex.id === id && ex.userId === userId);
-
-    if (index === -1) {
+    if (!exercise || exercise.userId !== userId) {
       return res.status(404).json({ error: 'Exercise not found or unauthorized' });
     }
 
-    custom.exercises[index] = {
-      ...custom.exercises[index],
-      ...req.body,
-      id,  // Preserve ID
-      userId,  // Preserve userId
-      custom: true  // Preserve custom flag
-    };
-
-    await fs.writeFile(CUSTOM_EXERCISES_PATH, JSON.stringify(custom, null, 2));
+    const updatedExercise = CustomExercise.update(id, req.body);
 
     res.json({
       message: 'Exercise updated successfully',
-      exercise: custom.exercises[index]
+      exercise: updatedExercise
     });
   } catch (error) {
     console.error('Error updating exercise:', error);
@@ -345,17 +320,17 @@ exports.deleteCustomExercise = async (req, res) => {
     const { id } = req.params;
     const { userId } = req.query;
 
-    const customData = await fs.readFile(CUSTOM_EXERCISES_PATH, 'utf8');
-    const custom = JSON.parse(customData);
+    const exercise = CustomExercise.findById(id);
 
-    const initialLength = custom.exercises.length;
-    custom.exercises = custom.exercises.filter(ex => !(ex.id === id && ex.userId === userId));
-
-    if (custom.exercises.length === initialLength) {
+    if (!exercise || exercise.userId !== userId) {
       return res.status(404).json({ error: 'Exercise not found or unauthorized' });
     }
 
-    await fs.writeFile(CUSTOM_EXERCISES_PATH, JSON.stringify(custom, null, 2));
+    const deleted = CustomExercise.delete(id);
+
+    if (!deleted) {
+      return res.status(404).json({ error: 'Exercise not found or unauthorized' });
+    }
 
     res.json({ message: 'Exercise deleted successfully' });
   } catch (error) {
@@ -369,10 +344,7 @@ exports.getUserCustomExercises = async (req, res) => {
   try {
     const { userId } = req.params;
 
-    const customData = await fs.readFile(CUSTOM_EXERCISES_PATH, 'utf8');
-    const custom = JSON.parse(customData);
-
-    const userExercises = custom.exercises.filter(ex => ex.userId === userId);
+    const userExercises = CustomExercise.findByUserId(userId);
 
     res.json({
       exercises: userExercises,
@@ -405,9 +377,7 @@ exports.getExerciseSubstitutes = async (req, res) => {
     }
 
     if (!originalExercise && userId) {
-      const customData = await fs.readFile(CUSTOM_EXERCISES_PATH, 'utf8');
-      const custom = JSON.parse(customData);
-      originalExercise = custom.exercises.find(ex => ex.id === id);
+      originalExercise = CustomExercise.findById(id);
     }
 
     if (!originalExercise) {
@@ -415,16 +385,14 @@ exports.getExerciseSubstitutes = async (req, res) => {
     }
 
     // Get user's exercise preference
-    const preference = await getUserExercisePreference(userId);
+    const preference = getUserExercisePreference(userId);
 
     // Load all available exercises
     let allExercises = await loadBuiltInExercises(preference);
 
     // Add user's custom exercises
     if (userId) {
-      const customData = await fs.readFile(CUSTOM_EXERCISES_PATH, 'utf8');
-      const custom = JSON.parse(customData);
-      const userCustom = custom.exercises.filter(ex => ex.userId === userId);
+      const userCustom = CustomExercise.findByUserId(userId);
       allExercises = [...allExercises, ...userCustom];
     }
 
@@ -435,9 +403,7 @@ exports.getExerciseSubstitutes = async (req, res) => {
     } else if (userId) {
       // Load from user preferences
       try {
-        const usersData = await fs.readFile(USERS_PATH, 'utf8');
-        const users = JSON.parse(usersData);
-        const user = users.users.find(u => u.id === userId);
+        const user = User.findById(userId);
         userEquipment = user?.equipment || [];
       } catch (error) {
         console.error('Error loading user equipment:', error);

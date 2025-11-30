@@ -1,20 +1,6 @@
-const fs = require('fs').promises;
-const path = require('path');
 const { v4: uuidv4 } = require('uuid');
-
-const WORKOUTS_PATH = path.join(__dirname, '../data/workouts.json');
-const PLANS_PATH = path.join(__dirname, '../data/plans.json');
-
-// Initialize workouts file
-async function initWorkouts() {
-  try {
-    await fs.access(WORKOUTS_PATH);
-  } catch {
-    await fs.writeFile(WORKOUTS_PATH, JSON.stringify({ workouts: [] }, null, 2));
-  }
-}
-
-initWorkouts();
+const Workout = require('../db/models/Workout');
+const Plan = require('../db/models/Plan');
 
 // Log a completed workout
 exports.logWorkout = async (req, res) => {
@@ -25,23 +11,19 @@ exports.logWorkout = async (req, res) => {
       return res.status(400).json({ error: 'userId and exercises are required' });
     }
 
-    const workout = {
+    const now = new Date().toISOString();
+    const workout = Workout.create({
       id: `workout-${uuidv4()}`,
       userId,
       planId,
-      date: date || new Date().toISOString(),
-      exercises, // Array of { exerciseId, sets: [{ weight, reps, completed }] }
+      date: date || now,
+      exercises,
       duration: duration || null,
       notes: notes || '',
       rpe: rpe || null,
-      createdAt: new Date().toISOString()
-    };
-
-    const workoutsData = await fs.readFile(WORKOUTS_PATH, 'utf8');
-    const workouts = JSON.parse(workoutsData);
-    workouts.workouts.push(workout);
-
-    await fs.writeFile(WORKOUTS_PATH, JSON.stringify(workouts, null, 2));
+      createdAt: now,
+      updatedAt: now
+    });
 
     res.status(201).json({
       message: 'Workout logged successfully',
@@ -59,26 +41,11 @@ exports.getUserWorkouts = async (req, res) => {
     const { userId } = req.params;
     const { limit, startDate, endDate } = req.query;
 
-    const workoutsData = await fs.readFile(WORKOUTS_PATH, 'utf8');
-    const workouts = JSON.parse(workoutsData);
-
-    let userWorkouts = workouts.workouts.filter(w => w.userId === userId);
-
-    // Filter by date range if provided
-    if (startDate) {
-      userWorkouts = userWorkouts.filter(w => new Date(w.date) >= new Date(startDate));
-    }
-    if (endDate) {
-      userWorkouts = userWorkouts.filter(w => new Date(w.date) <= new Date(endDate));
-    }
-
-    // Sort by date descending (most recent first)
-    userWorkouts.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-    // Limit results if specified
-    if (limit) {
-      userWorkouts = userWorkouts.slice(0, parseInt(limit));
-    }
+    const userWorkouts = Workout.findByUserId(userId, {
+      startDate,
+      endDate,
+      limit: limit ? parseInt(limit) : undefined
+    });
 
     res.json({
       workouts: userWorkouts,
@@ -96,9 +63,7 @@ exports.getTodaysWorkout = async (req, res) => {
     const { planId } = req.params;
 
     // Load the plan
-    const plansData = await fs.readFile(PLANS_PATH, 'utf8');
-    const plans = JSON.parse(plansData);
-    const plan = plans.plans.find(p => p.id === planId);
+    const plan = Plan.findById(planId);
 
     if (!plan) {
       return res.status(404).json({ error: 'Plan not found' });
@@ -132,10 +97,7 @@ exports.getWorkoutById = async (req, res) => {
   try {
     const { workoutId } = req.params;
 
-    const workoutsData = await fs.readFile(WORKOUTS_PATH, 'utf8');
-    const workouts = JSON.parse(workoutsData);
-
-    const workout = workouts.workouts.find(w => w.id === workoutId);
+    const workout = Workout.findById(workoutId);
 
     if (!workout) {
       return res.status(404).json({ error: 'Workout not found' });
@@ -153,27 +115,17 @@ exports.updateWorkout = async (req, res) => {
   try {
     const { workoutId } = req.params;
 
-    const workoutsData = await fs.readFile(WORKOUTS_PATH, 'utf8');
-    const workouts = JSON.parse(workoutsData);
+    const workout = Workout.findById(workoutId);
 
-    const index = workouts.workouts.findIndex(w => w.id === workoutId);
-
-    if (index === -1) {
+    if (!workout) {
       return res.status(404).json({ error: 'Workout not found' });
     }
 
-    workouts.workouts[index] = {
-      ...workouts.workouts[index],
-      ...req.body,
-      id: workoutId,
-      updatedAt: new Date().toISOString()
-    };
-
-    await fs.writeFile(WORKOUTS_PATH, JSON.stringify(workouts, null, 2));
+    const updatedWorkout = Workout.update(workoutId, req.body);
 
     res.json({
       message: 'Workout updated successfully',
-      workout: workouts.workouts[index]
+      workout: updatedWorkout
     });
   } catch (error) {
     console.error('Error updating workout:', error);
@@ -186,17 +138,11 @@ exports.deleteWorkout = async (req, res) => {
   try {
     const { workoutId } = req.params;
 
-    const workoutsData = await fs.readFile(WORKOUTS_PATH, 'utf8');
-    const workouts = JSON.parse(workoutsData);
+    const deleted = Workout.delete(workoutId);
 
-    const initialLength = workouts.workouts.length;
-    workouts.workouts = workouts.workouts.filter(w => w.id !== workoutId);
-
-    if (workouts.workouts.length === initialLength) {
+    if (!deleted) {
       return res.status(404).json({ error: 'Workout not found' });
     }
-
-    await fs.writeFile(WORKOUTS_PATH, JSON.stringify(workouts, null, 2));
 
     res.json({ message: 'Workout deleted successfully' });
   } catch (error) {
@@ -210,13 +156,8 @@ exports.getLastExerciseWorkout = async (req, res) => {
   try {
     const { userId, exerciseId } = req.params;
 
-    const workoutsData = await fs.readFile(WORKOUTS_PATH, 'utf8');
-    const workouts = JSON.parse(workoutsData);
-
-    // Get user's workouts, sorted by date descending
-    const userWorkouts = workouts.workouts
-      .filter(w => w.userId === userId)
-      .sort((a, b) => new Date(b.date) - new Date(a.date));
+    // Get user's workouts containing this exercise
+    const userWorkouts = Workout.findByExerciseId(userId, exerciseId);
 
     // Find the most recent workout containing this exercise
     for (const workout of userWorkouts) {
@@ -247,20 +188,19 @@ exports.getWorkoutStats = async (req, res) => {
     const { userId } = req.params;
     const { period } = req.query; // 'week', 'month', 'all'
 
-    const workoutsData = await fs.readFile(WORKOUTS_PATH, 'utf8');
-    const workouts = JSON.parse(workoutsData);
-
-    let userWorkouts = workouts.workouts.filter(w => w.userId === userId);
-
-    // Filter by period
+    // Calculate date range for filtering
     const now = new Date();
+    let startDate = null;
     if (period === 'week') {
       const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-      userWorkouts = userWorkouts.filter(w => new Date(w.date) >= weekAgo);
+      startDate = weekAgo.toISOString();
     } else if (period === 'month') {
       const monthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
-      userWorkouts = userWorkouts.filter(w => new Date(w.date) >= monthAgo);
+      startDate = monthAgo.toISOString();
     }
+
+    // Get workouts
+    const userWorkouts = Workout.findByUserId(userId, { startDate });
 
     // Calculate stats
     const totalWorkouts = userWorkouts.length;
