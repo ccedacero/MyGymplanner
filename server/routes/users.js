@@ -5,6 +5,9 @@ const userController = require('../controllers/userController');
 // List all users (for debugging)
 router.get('/', userController.getAllUsers);
 
+// Clear all users (DANGEROUS - for development only)
+router.delete('/clear-all', userController.clearAllUsers);
+
 // Register user
 router.post('/register', userController.register);
 

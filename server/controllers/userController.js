@@ -63,6 +63,27 @@ exports.getAllUsers = async (req, res) => {
   }
 };
 
+// Clear all users (DANGEROUS - development only)
+exports.clearAllUsers = async (req, res) => {
+  try {
+    const users = User.findAll();
+    let deletedCount = 0;
+
+    users.forEach(user => {
+      User.delete(user.id);
+      deletedCount++;
+    });
+
+    res.json({
+      message: 'All users deleted successfully',
+      deletedCount
+    });
+  } catch (error) {
+    console.error('Error clearing users:', error);
+    res.status(500).json({ error: 'Failed to clear users' });
+  }
+};
+
 // Register new user
 exports.register = async (req, res) => {
   try {
