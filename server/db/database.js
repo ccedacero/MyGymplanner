@@ -73,6 +73,34 @@ const createTables = () => {
     CREATE INDEX IF NOT EXISTS idx_workouts_user_date ON workouts(user_id, date);
   `);
 
+  // Workout sessions table (in-progress workouts)
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS workout_sessions (
+      id TEXT PRIMARY KEY,
+      user_id TEXT NOT NULL,
+      plan_id TEXT NOT NULL,
+      day TEXT NOT NULL,
+      session_date TEXT NOT NULL,
+      status TEXT NOT NULL CHECK(status IN ('in_progress', 'completed', 'abandoned')),
+      exercises TEXT NOT NULL,
+      current_exercise_index INTEGER NOT NULL DEFAULT 0,
+      notes TEXT DEFAULT '',
+      rpe INTEGER DEFAULT 5,
+      workout_start_time INTEGER NOT NULL,
+      substituted_exercises TEXT DEFAULT '{}',
+      sync_version INTEGER NOT NULL DEFAULT 1,
+      created_at TEXT NOT NULL,
+      updated_at TEXT NOT NULL,
+      FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+      FOREIGN KEY (plan_id) REFERENCES plans(id) ON DELETE CASCADE
+    );
+
+    CREATE UNIQUE INDEX IF NOT EXISTS idx_sessions_active_workout
+      ON workout_sessions(user_id, plan_id, day, session_date)
+      WHERE status = 'in_progress';
+    CREATE INDEX IF NOT EXISTS idx_sessions_user_status ON workout_sessions(user_id, status);
+  `);
+
   // Custom exercises table
   db.exec(`
     CREATE TABLE IF NOT EXISTS custom_exercises (

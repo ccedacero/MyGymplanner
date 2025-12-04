@@ -2470,6 +2470,1344 @@
       "duration": "12 weeks",
       "currentWeek": 1,
       "updatedAt": "2025-11-16T19:42:59.485Z"
+    },
+    {
+      "id": "plan-1a943ba7-dfa5-46a8-8eb9-8656c796acc2",
+      "userId": "user-b5c6e7e6-b652-41d8-9272-5ff00a81b4fb",
+      "createdAt": "2025-11-18T04:17:05.260Z",
+      "config": {
+        "daysPerWeek": 4,
+        "sessionLength": 60,
+        "goal": "muscle-building",
+        "strengthCardioRatio": "heavy-strength",
+        "experienceLevel": "intermediate",
+        "equipment": [
+          "barbell",
+          "bench",
+          "rack",
+          "pull-up-bar",
+          "dumbbells"
+        ]
+      },
+      "splitType": "upper-lower",
+      "weekSchedule": [
+        {
+          "day": "Monday",
+          "type": "upper",
+          "exercises": [
+            {
+              "id": "ex007",
+              "name": "Push-Ups",
+              "category": "strength",
+              "muscleGroups": [
+                "chest",
+                "triceps",
+                "shoulders",
+                "core"
+              ],
+              "equipment": [
+                "bodyweight"
+              ],
+              "difficulty": "beginner",
+              "type": "compound",
+              "description": "Bodyweight chest and triceps exercise",
+              "videoUrl": "https://www.youtube.com/watch?v=IODxDxX7oi4",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "ex026",
+              "name": "Pull-Ups",
+              "category": "strength",
+              "muscleGroups": [
+                "back",
+                "biceps"
+              ],
+              "equipment": [
+                "pull-up-bar"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "Bodyweight vertical pull",
+              "videoUrl": "https://www.youtube.com/watch?v=eGo4IYlbE5g",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "ex023",
+              "name": "Dumbbell Row",
+              "category": "strength",
+              "muscleGroups": [
+                "back",
+                "biceps"
+              ],
+              "equipment": [
+                "dumbbells",
+                "bench"
+              ],
+              "difficulty": "beginner",
+              "type": "compound",
+              "description": "Single-arm row for unilateral back development",
+              "videoUrl": "https://www.youtube.com/watch?v=roCP6wCXPqo",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "ex002",
+              "name": "Dumbbell Bench Press",
+              "category": "strength",
+              "muscleGroups": [
+                "chest",
+                "triceps",
+                "shoulders"
+              ],
+              "equipment": [
+                "dumbbells",
+                "bench"
+              ],
+              "difficulty": "beginner",
+              "type": "compound",
+              "description": "Dumbbell variation allowing greater range of motion",
+              "videoUrl": "https://www.youtube.com/watch?v=622ku8i0M14",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "ex037",
+              "name": "Barbell Curl",
+              "category": "strength",
+              "muscleGroups": [
+                "biceps"
+              ],
+              "equipment": [
+                "barbell"
+              ],
+              "difficulty": "beginner",
+              "type": "isolation",
+              "description": "Classic bicep exercise",
+              "videoUrl": "https://www.youtube.com/watch?v=kwG2ipFRgfo",
+              "volume": {
+                "sets": 3,
+                "reps": "10-12",
+                "rest": "90 sec"
+              }
+            }
+          ]
+        },
+        {
+          "day": "Tuesday",
+          "type": "lower",
+          "exercises": [
+            {
+              "id": "ex009",
+              "name": "Front Squat",
+              "category": "strength",
+              "muscleGroups": [
+                "quads",
+                "core",
+                "upper-back"
+              ],
+              "equipment": [
+                "barbell",
+                "rack"
+              ],
+              "difficulty": "advanced",
+              "type": "compound",
+              "description": "Quad-dominant squat variation with front rack position",
+              "videoUrl": "https://www.youtube.com/watch?v=uYumuL_G_V0",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "ex014",
+              "name": "Romanian Deadlift",
+              "category": "strength",
+              "muscleGroups": [
+                "hamstrings",
+                "glutes",
+                "lower-back"
+              ],
+              "equipment": [
+                "barbell"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "Hip-hinge movement targeting hamstrings and glutes",
+              "videoUrl": "https://www.youtube.com/watch?v=JCXUYuzwNrM",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "ex018",
+              "name": "Walking Lunges",
+              "category": "strength",
+              "muscleGroups": [
+                "quads",
+                "glutes",
+                "hamstrings",
+                "calves"
+              ],
+              "equipment": [
+                "dumbbells"
+              ],
+              "difficulty": "beginner",
+              "type": "compound",
+              "description": "Dynamic lunge movement",
+              "videoUrl": "https://www.youtube.com/watch?v=L8fvypPrzzs",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "ex061",
+              "name": "Glute Bridge",
+              "category": "strength",
+              "muscleGroups": [
+                "glutes",
+                "hamstrings"
+              ],
+              "equipment": [
+                "bodyweight"
+              ],
+              "difficulty": "beginner",
+              "type": "isolation",
+              "description": "Glute activation exercise",
+              "videoUrl": "https://www.youtube.com/watch?v=wPM8icPu6H8",
+              "volume": {
+                "sets": 3,
+                "reps": "10-12",
+                "rest": "90 sec"
+              }
+            },
+            {
+              "id": "ex018",
+              "name": "Walking Lunges",
+              "category": "strength",
+              "muscleGroups": [
+                "quads",
+                "glutes",
+                "hamstrings",
+                "calves"
+              ],
+              "equipment": [
+                "dumbbells"
+              ],
+              "difficulty": "beginner",
+              "type": "compound",
+              "description": "Dynamic lunge movement",
+              "videoUrl": "https://www.youtube.com/watch?v=L8fvypPrzzs",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            }
+          ]
+        },
+        {
+          "day": "Wednesday",
+          "type": "rest",
+          "exercises": []
+        },
+        {
+          "day": "Thursday",
+          "type": "upper",
+          "exercises": [
+            {
+              "id": "ex001",
+              "name": "Barbell Bench Press",
+              "category": "strength",
+              "muscleGroups": [
+                "chest",
+                "triceps",
+                "shoulders"
+              ],
+              "equipment": [
+                "barbell",
+                "bench"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "Classic upper body compound movement for chest development",
+              "videoUrl": "https://www.youtube.com/watch?v=rT7DgCr-3pg",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "ex026",
+              "name": "Pull-Ups",
+              "category": "strength",
+              "muscleGroups": [
+                "back",
+                "biceps"
+              ],
+              "equipment": [
+                "pull-up-bar"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "Bodyweight vertical pull",
+              "videoUrl": "https://www.youtube.com/watch?v=eGo4IYlbE5g",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "ex022",
+              "name": "Pendlay Row",
+              "category": "strength",
+              "muscleGroups": [
+                "back",
+                "biceps"
+              ],
+              "equipment": [
+                "barbell"
+              ],
+              "difficulty": "advanced",
+              "type": "compound",
+              "description": "Explosive row from floor with strict form",
+              "videoUrl": "https://www.youtube.com/watch?v=ZlRrIsoDpKg",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "ex064",
+              "name": "Clean and Press",
+              "category": "strength",
+              "muscleGroups": [
+                "full-body",
+                "shoulders",
+                "legs",
+                "back"
+              ],
+              "equipment": [
+                "barbell"
+              ],
+              "difficulty": "advanced",
+              "type": "compound",
+              "description": "Olympic lift variation",
+              "videoUrl": "https://www.youtube.com/watch?v=KwYJTpQ_x5A",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "ex037",
+              "name": "Barbell Curl",
+              "category": "strength",
+              "muscleGroups": [
+                "biceps"
+              ],
+              "equipment": [
+                "barbell"
+              ],
+              "difficulty": "beginner",
+              "type": "isolation",
+              "description": "Classic bicep exercise",
+              "videoUrl": "https://www.youtube.com/watch?v=kwG2ipFRgfo",
+              "volume": {
+                "sets": 3,
+                "reps": "10-12",
+                "rest": "90 sec"
+              }
+            }
+          ]
+        },
+        {
+          "day": "Friday",
+          "type": "lower",
+          "exercises": [
+            {
+              "id": "ex009",
+              "name": "Front Squat",
+              "category": "strength",
+              "muscleGroups": [
+                "quads",
+                "core",
+                "upper-back"
+              ],
+              "equipment": [
+                "barbell",
+                "rack"
+              ],
+              "difficulty": "advanced",
+              "type": "compound",
+              "description": "Quad-dominant squat variation with front rack position",
+              "videoUrl": "https://www.youtube.com/watch?v=uYumuL_G_V0",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "ex015",
+              "name": "Sumo Deadlift",
+              "category": "strength",
+              "muscleGroups": [
+                "hamstrings",
+                "glutes",
+                "quads",
+                "back"
+              ],
+              "equipment": [
+                "barbell"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "Wide-stance deadlift variation",
+              "videoUrl": "https://www.youtube.com/watch?v=4AObAU-EcYE",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "ex011",
+              "name": "Bulgarian Split Squat",
+              "category": "strength",
+              "muscleGroups": [
+                "quads",
+                "glutes",
+                "hamstrings"
+              ],
+              "equipment": [
+                "dumbbells",
+                "bench"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "Single-leg squat variation for unilateral strength",
+              "videoUrl": "https://www.youtube.com/watch?v=2C-uNgKwPLE",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "ex061",
+              "name": "Glute Bridge",
+              "category": "strength",
+              "muscleGroups": [
+                "glutes",
+                "hamstrings"
+              ],
+              "equipment": [
+                "bodyweight"
+              ],
+              "difficulty": "beginner",
+              "type": "isolation",
+              "description": "Glute activation exercise",
+              "videoUrl": "https://www.youtube.com/watch?v=wPM8icPu6H8",
+              "volume": {
+                "sets": 3,
+                "reps": "10-12",
+                "rest": "90 sec"
+              }
+            },
+            {
+              "id": "ex070",
+              "name": "Jump Squats",
+              "category": "strength",
+              "muscleGroups": [
+                "quads",
+                "glutes",
+                "calves",
+                "power"
+              ],
+              "equipment": [
+                "bodyweight"
+              ],
+              "difficulty": "intermediate",
+              "type": "plyometric",
+              "description": "Explosive squat variation",
+              "videoUrl": "https://www.youtube.com/watch?v=CVaEhXotL7M",
+              "volume": {
+                "sets": 3,
+                "reps": "10-12",
+                "rest": "90 sec"
+              }
+            }
+          ]
+        },
+        {
+          "day": "Saturday",
+          "type": "rest",
+          "exercises": []
+        },
+        {
+          "day": "Sunday",
+          "type": "rest",
+          "exercises": []
+        }
+      ],
+      "duration": "12 weeks",
+      "currentWeek": 1
+    },
+    {
+      "id": "plan-9dcef936-0113-4b3d-9d32-e87dcb36ba35",
+      "userId": "user-b5c6e7e6-b652-41d8-9272-5ff00a81b4fb",
+      "createdAt": "2025-11-18T04:18:45.005Z",
+      "config": {
+        "daysPerWeek": 4,
+        "sessionLength": 60,
+        "goal": "muscle-building",
+        "strengthCardioRatio": "heavy-strength",
+        "experienceLevel": "intermediate",
+        "equipment": [
+          "barbell",
+          "bench",
+          "rack",
+          "pull-up-bar",
+          "dumbbells"
+        ]
+      },
+      "splitType": "upper-lower",
+      "weekSchedule": [
+        {
+          "day": "Monday",
+          "type": "upper",
+          "exercises": [
+            {
+              "id": "known016",
+              "name": "Dumbbell Incline Bench Press",
+              "category": "strength",
+              "muscleGroups": [
+                "chest",
+                "shoulders",
+                "triceps"
+              ],
+              "equipment": [
+                "dumbbells",
+                "bench"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "Upper chest press with dumbbells. 4-5 sets × 6-12 reps, 90s rest",
+              "videoUrl": "",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "known008",
+              "name": "Barbell Underhand Row",
+              "category": "strength",
+              "muscleGroups": [
+                "back",
+                "lats",
+                "biceps"
+              ],
+              "equipment": [
+                "barbell"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "Underhand grip row emphasizing biceps and lower lats. 4 sets × 10-12 reps, 90s rest",
+              "videoUrl": "",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "known011",
+              "name": "Barbell Incline Bench Press",
+              "category": "strength",
+              "muscleGroups": [
+                "chest",
+                "shoulders",
+                "triceps"
+              ],
+              "equipment": [
+                "barbell",
+                "bench"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "Upper chest focused pressing. 3 sets × 8-12 reps, 90s rest",
+              "videoUrl": "",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "known014",
+              "name": "Barbell Bicep Curl",
+              "category": "strength",
+              "muscleGroups": [
+                "biceps"
+              ],
+              "equipment": [
+                "barbell"
+              ],
+              "difficulty": "beginner",
+              "type": "isolation",
+              "description": "Classic biceps builder. 50 total reps (rest as needed) in circuits",
+              "videoUrl": "",
+              "volume": {
+                "sets": 3,
+                "reps": "10-12",
+                "rest": "90 sec"
+              }
+            }
+          ]
+        },
+        {
+          "day": "Tuesday",
+          "type": "lower",
+          "exercises": [
+            {
+              "id": "known004",
+              "name": "Barbell Romanian Deadlift",
+              "category": "strength",
+              "muscleGroups": [
+                "hamstrings",
+                "glutes",
+                "lower-back"
+              ],
+              "equipment": [
+                "barbell"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "Hip hinge variation targeting hamstrings. 4 sets × 8-12 reps, 90s rest",
+              "videoUrl": "",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "known012",
+              "name": "Barbell Walking Lunges",
+              "category": "strength",
+              "muscleGroups": [
+                "quadriceps",
+                "glutes",
+                "hamstrings"
+              ],
+              "equipment": [
+                "barbell"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "Unilateral leg exercise with barbell. 3 sets × 10 reps/leg, 90s rest",
+              "videoUrl": "",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            }
+          ]
+        },
+        {
+          "day": "Wednesday",
+          "type": "rest",
+          "exercises": []
+        },
+        {
+          "day": "Thursday",
+          "type": "upper",
+          "exercises": [
+            {
+              "id": "known016",
+              "name": "Dumbbell Incline Bench Press",
+              "category": "strength",
+              "muscleGroups": [
+                "chest",
+                "shoulders",
+                "triceps"
+              ],
+              "equipment": [
+                "dumbbells",
+                "bench"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "Upper chest press with dumbbells. 4-5 sets × 6-12 reps, 90s rest",
+              "videoUrl": "",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "known022",
+              "name": "3-Point Single Arm Dumbbell Row",
+              "category": "strength",
+              "muscleGroups": [
+                "back",
+                "lats"
+              ],
+              "equipment": [
+                "dumbbells",
+                "bench"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "Unilateral row variation. 4 sets × 10-12 reps/arm, 90s rest",
+              "videoUrl": "",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "known016",
+              "name": "Dumbbell Incline Bench Press",
+              "category": "strength",
+              "muscleGroups": [
+                "chest",
+                "shoulders",
+                "triceps"
+              ],
+              "equipment": [
+                "dumbbells",
+                "bench"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "Upper chest press with dumbbells. 4-5 sets × 6-12 reps, 90s rest",
+              "videoUrl": "",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "known014",
+              "name": "Barbell Bicep Curl",
+              "category": "strength",
+              "muscleGroups": [
+                "biceps"
+              ],
+              "equipment": [
+                "barbell"
+              ],
+              "difficulty": "beginner",
+              "type": "isolation",
+              "description": "Classic biceps builder. 50 total reps (rest as needed) in circuits",
+              "videoUrl": "",
+              "volume": {
+                "sets": 3,
+                "reps": "10-12",
+                "rest": "90 sec"
+              }
+            }
+          ]
+        },
+        {
+          "day": "Friday",
+          "type": "lower",
+          "exercises": [
+            {
+              "id": "known004",
+              "name": "Barbell Romanian Deadlift",
+              "category": "strength",
+              "muscleGroups": [
+                "hamstrings",
+                "glutes",
+                "lower-back"
+              ],
+              "equipment": [
+                "barbell"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "Hip hinge variation targeting hamstrings. 4 sets × 8-12 reps, 90s rest",
+              "videoUrl": "",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "known020",
+              "name": "DB Walking Lunge",
+              "category": "strength",
+              "muscleGroups": [
+                "quadriceps",
+                "glutes",
+                "hamstrings"
+              ],
+              "equipment": [
+                "dumbbells"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "Walking lunges with dumbbells. 3 sets × 8-10 reps/leg, 90s rest",
+              "videoUrl": "",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            }
+          ]
+        },
+        {
+          "day": "Saturday",
+          "type": "rest",
+          "exercises": []
+        },
+        {
+          "day": "Sunday",
+          "type": "rest",
+          "exercises": []
+        }
+      ],
+      "duration": "12 weeks",
+      "currentWeek": 1
+    },
+    {
+      "id": "plan-89bd0800-2daf-457d-b725-6ef3eaa7fa97",
+      "userId": "user-b5c6e7e6-b652-41d8-9272-5ff00a81b4fb",
+      "createdAt": "2025-11-18T04:19:04.445Z",
+      "config": {
+        "daysPerWeek": 4,
+        "sessionLength": 60,
+        "goal": "muscle-building",
+        "strengthCardioRatio": "heavy-strength",
+        "experienceLevel": "intermediate",
+        "equipment": [
+          "barbell",
+          "bench",
+          "rack",
+          "pull-up-bar",
+          "dumbbells"
+        ]
+      },
+      "splitType": "upper-lower",
+      "weekSchedule": [
+        {
+          "day": "Monday",
+          "type": "upper",
+          "exercises": [
+            {
+              "id": "known054",
+              "name": "Slow Eccentric BB Incline Bench Press",
+              "category": "strength",
+              "muscleGroups": [
+                "chest",
+                "shoulders",
+                "triceps"
+              ],
+              "equipment": [
+                "barbell",
+                "bench"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "Tempo incline press. 4 sets × 10 reps, 90s rest",
+              "videoUrl": "",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "ex027",
+              "name": "Chin-Ups",
+              "category": "strength",
+              "muscleGroups": [
+                "back",
+                "biceps"
+              ],
+              "equipment": [
+                "pull-up-bar"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "Supinated grip pull-up emphasizing biceps",
+              "videoUrl": "https://www.youtube.com/watch?v=eGo4IYlbE5g",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "known062",
+              "name": "Landmine Row with Close Grip",
+              "category": "strength",
+              "muscleGroups": [
+                "back",
+                "lats"
+              ],
+              "equipment": [
+                "barbell"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "Landmine row variation. 4 sets × 8-12 reps, 90s rest",
+              "videoUrl": "",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "known016",
+              "name": "Dumbbell Incline Bench Press",
+              "category": "strength",
+              "muscleGroups": [
+                "chest",
+                "shoulders",
+                "triceps"
+              ],
+              "equipment": [
+                "dumbbells",
+                "bench"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "Upper chest press with dumbbells. 4-5 sets × 6-12 reps, 90s rest",
+              "videoUrl": "",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "ex038",
+              "name": "Dumbbell Curl",
+              "category": "strength",
+              "muscleGroups": [
+                "biceps"
+              ],
+              "equipment": [
+                "dumbbells"
+              ],
+              "difficulty": "beginner",
+              "type": "isolation",
+              "description": "Dumbbell bicep curl",
+              "videoUrl": "https://www.youtube.com/watch?v=sAq_ocpRh_I",
+              "volume": {
+                "sets": 3,
+                "reps": "10-12",
+                "rest": "90 sec"
+              }
+            }
+          ]
+        },
+        {
+          "day": "Tuesday",
+          "type": "lower",
+          "exercises": [
+            {
+              "id": "ex008",
+              "name": "Barbell Squat",
+              "category": "strength",
+              "muscleGroups": [
+                "quads",
+                "glutes",
+                "hamstrings",
+                "core"
+              ],
+              "equipment": [
+                "barbell",
+                "rack"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "King of leg exercises - full lower body development",
+              "videoUrl": "https://www.youtube.com/watch?v=ultWZbUMPL8",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "ex014",
+              "name": "Romanian Deadlift",
+              "category": "strength",
+              "muscleGroups": [
+                "hamstrings",
+                "glutes",
+                "lower-back"
+              ],
+              "equipment": [
+                "barbell"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "Hip-hinge movement targeting hamstrings and glutes",
+              "videoUrl": "https://www.youtube.com/watch?v=JCXUYuzwNrM",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "known056",
+              "name": "Front-foot Elevated Split Squats",
+              "category": "strength",
+              "muscleGroups": [
+                "quadriceps",
+                "glutes"
+              ],
+              "equipment": [
+                "bodyweight",
+                "box"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "Front foot elevated split squat. 3 sets × 8 reps/leg, 90s rest",
+              "videoUrl": "",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "ex061",
+              "name": "Glute Bridge",
+              "category": "strength",
+              "muscleGroups": [
+                "glutes",
+                "hamstrings"
+              ],
+              "equipment": [
+                "bodyweight"
+              ],
+              "difficulty": "beginner",
+              "type": "isolation",
+              "description": "Glute activation exercise",
+              "videoUrl": "https://www.youtube.com/watch?v=wPM8icPu6H8",
+              "volume": {
+                "sets": 3,
+                "reps": "10-12",
+                "rest": "90 sec"
+              }
+            },
+            {
+              "id": "ex059",
+              "name": "Box Jumps",
+              "category": "strength",
+              "muscleGroups": [
+                "quads",
+                "glutes",
+                "calves",
+                "power"
+              ],
+              "equipment": [
+                "box",
+                "bodyweight"
+              ],
+              "difficulty": "intermediate",
+              "type": "plyometric",
+              "description": "Explosive lower body power",
+              "videoUrl": "https://www.youtube.com/watch?v=NBY9-kTuHEk",
+              "volume": {
+                "sets": 3,
+                "reps": "10-12",
+                "rest": "90 sec"
+              }
+            }
+          ]
+        },
+        {
+          "day": "Wednesday",
+          "type": "rest",
+          "exercises": []
+        },
+        {
+          "day": "Thursday",
+          "type": "upper",
+          "exercises": [
+            {
+              "id": "ex003",
+              "name": "Incline Barbell Bench Press",
+              "category": "strength",
+              "muscleGroups": [
+                "chest",
+                "triceps",
+                "shoulders"
+              ],
+              "equipment": [
+                "barbell",
+                "bench"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "Targets upper chest with incline angle",
+              "videoUrl": "https://www.youtube.com/watch?v=SrqOu55lrYU",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "ex026",
+              "name": "Pull-Ups",
+              "category": "strength",
+              "muscleGroups": [
+                "back",
+                "biceps"
+              ],
+              "equipment": [
+                "pull-up-bar"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "Bodyweight vertical pull",
+              "videoUrl": "https://www.youtube.com/watch?v=eGo4IYlbE5g",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "ex023",
+              "name": "Dumbbell Row",
+              "category": "strength",
+              "muscleGroups": [
+                "back",
+                "biceps"
+              ],
+              "equipment": [
+                "dumbbells",
+                "bench"
+              ],
+              "difficulty": "beginner",
+              "type": "compound",
+              "description": "Single-arm row for unilateral back development",
+              "videoUrl": "https://www.youtube.com/watch?v=roCP6wCXPqo",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "known055",
+              "name": "Slow Eccentric BB Bench Press",
+              "category": "strength",
+              "muscleGroups": [
+                "chest",
+                "triceps",
+                "shoulders"
+              ],
+              "equipment": [
+                "barbell",
+                "bench"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "Tempo bench press. 4 sets × 8-10 reps, 60s rest",
+              "videoUrl": "",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "known014",
+              "name": "Barbell Bicep Curl",
+              "category": "strength",
+              "muscleGroups": [
+                "biceps"
+              ],
+              "equipment": [
+                "barbell"
+              ],
+              "difficulty": "beginner",
+              "type": "isolation",
+              "description": "Classic biceps builder. 50 total reps (rest as needed) in circuits",
+              "videoUrl": "",
+              "volume": {
+                "sets": 3,
+                "reps": "10-12",
+                "rest": "90 sec"
+              }
+            }
+          ]
+        },
+        {
+          "day": "Friday",
+          "type": "lower",
+          "exercises": [
+            {
+              "id": "ex011",
+              "name": "Bulgarian Split Squat",
+              "category": "strength",
+              "muscleGroups": [
+                "quads",
+                "glutes",
+                "hamstrings"
+              ],
+              "equipment": [
+                "dumbbells",
+                "bench"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "Single-leg squat variation for unilateral strength",
+              "videoUrl": "https://www.youtube.com/watch?v=2C-uNgKwPLE",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "ex015",
+              "name": "Sumo Deadlift",
+              "category": "strength",
+              "muscleGroups": [
+                "hamstrings",
+                "glutes",
+                "quads",
+                "back"
+              ],
+              "equipment": [
+                "barbell"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "Wide-stance deadlift variation",
+              "videoUrl": "https://www.youtube.com/watch?v=4AObAU-EcYE",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "known015",
+              "name": "Dumbbell Rear Foot Elevated Split Squat",
+              "category": "strength",
+              "muscleGroups": [
+                "quadriceps",
+                "glutes"
+              ],
+              "equipment": [
+                "dumbbells",
+                "bench"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "Bulgarian split squat. 3 sets × 8-10 reps/leg, 90s rest",
+              "videoUrl": "",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "ex020",
+              "name": "Hip Thrust",
+              "category": "strength",
+              "muscleGroups": [
+                "glutes",
+                "hamstrings"
+              ],
+              "equipment": [
+                "barbell",
+                "bench"
+              ],
+              "difficulty": "intermediate",
+              "type": "compound",
+              "description": "Primary glute-building exercise",
+              "videoUrl": "https://www.youtube.com/watch?v=xDmFkJxPzeM",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            },
+            {
+              "id": "ex018",
+              "name": "Walking Lunges",
+              "category": "strength",
+              "muscleGroups": [
+                "quads",
+                "glutes",
+                "hamstrings",
+                "calves"
+              ],
+              "equipment": [
+                "dumbbells"
+              ],
+              "difficulty": "beginner",
+              "type": "compound",
+              "description": "Dynamic lunge movement",
+              "videoUrl": "https://www.youtube.com/watch?v=L8fvypPrzzs",
+              "volume": {
+                "sets": 4,
+                "reps": "6-10",
+                "rest": "2 min"
+              }
+            }
+          ]
+        },
+        {
+          "day": "Saturday",
+          "type": "rest",
+          "exercises": []
+        },
+        {
+          "day": "Sunday",
+          "type": "rest",
+          "exercises": []
+        }
+      ],
+      "duration": "12 weeks",
+      "currentWeek": 1
     }
   ]
 }

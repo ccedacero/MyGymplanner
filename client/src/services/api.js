@@ -207,3 +207,51 @@ export const getLastExerciseWorkout = async (userId, exerciseId) => {
   }
   return res.json()
 }
+
+// Workout Sessions
+export const syncWorkoutSession = async (sessionData) => {
+  const res = await fetch(`${API_BASE}/workout-sessions/sync`, {
+    method: 'POST',
+    headers: getHeaders(),
+    body: JSON.stringify(sessionData)
+  })
+  if (!res.ok) {
+    if (res.status === 409) {
+      // Conflict - return the error data with server session
+      const errorData = await res.json()
+      const error = new Error(errorData.error)
+      error.conflict = true
+      error.serverSession = errorData.serverSession
+      throw error
+    }
+    throw new Error('Failed to sync workout session')
+  }
+  return res.json()
+}
+
+export const getActiveSession = async (userId) => {
+  const res = await fetch(`${API_BASE}/workout-sessions/active/${userId}`, {
+    headers: getHeaders()
+  })
+  if (!res.ok) throw new Error('Failed to fetch active session')
+  return res.json()
+}
+
+export const completeWorkoutSession = async (sessionId, data) => {
+  const res = await fetch(`${API_BASE}/workout-sessions/${sessionId}/complete`, {
+    method: 'POST',
+    headers: getHeaders(),
+    body: JSON.stringify(data)
+  })
+  if (!res.ok) throw new Error('Failed to complete workout session')
+  return res.json()
+}
+
+export const abandonSession = async (sessionId) => {
+  const res = await fetch(`${API_BASE}/workout-sessions/${sessionId}`, {
+    method: 'DELETE',
+    headers: getHeaders()
+  })
+  if (!res.ok) throw new Error('Failed to abandon session')
+  return res.json()
+}
