@@ -38,11 +38,13 @@ app.use(express.urlencoded({ extended: true }));
 const exerciseRoutes = require('./routes/exercises');
 const planRoutes = require('./routes/plans');
 const workoutRoutes = require('./routes/workouts');
+const workoutSessionRoutes = require('./routes/workoutSessions');
 const userRoutes = require('./routes/users');
 
 app.use('/api/exercises', exerciseRoutes);
 app.use('/api/plans', planRoutes);
 app.use('/api/workouts', workoutRoutes);
+app.use('/api/workout-sessions', workoutSessionRoutes);
 app.use('/api/users', userRoutes);
 
 // Health check

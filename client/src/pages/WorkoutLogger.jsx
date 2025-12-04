@@ -23,11 +23,17 @@ function WorkoutLogger({ user }) {
   const [showSubstitutionModal, setShowSubstitutionModal] = useState(false)
   const [userEquipment, setUserEquipment] = useState([])
   const [substitutedExercises, setSubstitutedExercises] = useState({})
-  const [autoSaveStatus, setAutoSaveStatus] = useState('') // 'saving' | 'saved' | ''
+  const [autoSaveStatus, setAutoSaveStatus] = useState('') // 'saving' | 'saved' | 'synced' | 'saved_locally'
   const [showResumeDraft, setShowResumeDraft] = useState(false)
   const [draftData, setDraftData] = useState(null)
   const autoSaveTimeoutRef = useRef(null)
   const hasLoadedRef = useRef(false)
+
+  // Session sync state
+  const [sessionId, setSessionId] = useState(null)
+  const [syncVersion, setSyncVersion] = useState(0)
+  const [isSyncing, setIsSyncing] = useState(false)
+  const [syncError, setSyncError] = useState(null)
 
   // Extract YouTube video ID from URL
   const getYouTubeId = (url) => {
@@ -71,8 +77,8 @@ function WorkoutLogger({ user }) {
     }
   }
 
-  // Auto-save current state (debounced)
-  const autoSave = () => {
+  // Auto-save current state (debounced) - hybrid localStorage + database sync
+  const autoSave = async () => {
     // Clear existing timeout
     if (autoSaveTimeoutRef.current) {
       clearTimeout(autoSaveTimeoutRef.current)
@@ -81,7 +87,7 @@ function WorkoutLogger({ user }) {
     setAutoSaveStatus('saving')
 
     // Debounce auto-save by 1 second
-    autoSaveTimeoutRef.current = setTimeout(() => {
+    autoSaveTimeoutRef.current = setTimeout(async () => {
       const draftData = {
         exercises,
         currentExerciseIndex,
@@ -90,22 +96,105 @@ function WorkoutLogger({ user }) {
         workoutStartTime,
         substitutedExercises
       }
-      saveDraftToStorage(draftData)
-      setAutoSaveStatus('saved')
 
-      // Clear "saved" indicator after 2 seconds
+      // 1. Save to localStorage immediately (offline-first)
+      saveDraftToStorage(draftData)
+
+      // 2. Sync to database if online
+      if (navigator.onLine && user) {
+        try {
+          if (isSyncing) {
+            console.log('Sync already in progress, skipping')
+            return
+          }
+
+          setIsSyncing(true)
+
+          const response = await api.syncWorkoutSession({
+            userId: user.id,
+            planId,
+            day,
+            sessionDate: new Date().toISOString().split('T')[0],
+            exercises,
+            currentExerciseIndex,
+            notes,
+            rpe,
+            workoutStartTime,
+            substitutedExercises,
+            lastSyncVersion: syncVersion || null
+          })
+
+          setSessionId(response.session.id)
+          setSyncVersion(response.session.syncVersion)
+          setSyncError(null)
+          setAutoSaveStatus('synced')
+        } catch (error) {
+          if (error.conflict) {
+            // Handle conflict - for now just show error, user can continue
+            console.warn('Sync conflict detected:', error)
+            setSyncError('Conflict: Another device updated this workout')
+            setAutoSaveStatus('saved_locally')
+          } else {
+            // Network error or other issue - data is still safe in localStorage
+            console.error('Sync error:', error)
+            setSyncError(error.message)
+            setAutoSaveStatus('saved_locally')
+          }
+        } finally {
+          setIsSyncing(false)
+        }
+      } else {
+        setAutoSaveStatus('saved_locally')
+      }
+
+      // Clear status indicator after 2 seconds
       setTimeout(() => setAutoSaveStatus(''), 2000)
     }, 1000)
   }
 
-  // Check for draft on initial load
+  // Check for active session or draft on initial load
   useEffect(() => {
-    const draft = loadDraftFromStorage()
-    if (draft && !hasLoadedRef.current) {
-      setDraftData(draft)
-      setShowResumeDraft(true)
+    const initializeWorkout = async () => {
+      // 1. Try database session first (if online)
+      if (navigator.onLine && user) {
+        try {
+          const sessionResponse = await api.getActiveSession(user.id)
+          if (sessionResponse.hasActiveSession) {
+            const session = sessionResponse.session
+            // Verify it matches current workout
+            if (session.planId === planId && session.day === day) {
+              // Load from database
+              setExercises(session.exercises)
+              setCurrentExerciseIndex(session.currentExerciseIndex)
+              setNotes(session.notes)
+              setRpe(session.rpe)
+              setWorkoutStartTime(session.workoutStartTime)
+              setSubstitutedExercises(session.substitutedExercises)
+              setSessionId(session.id)
+              setSyncVersion(session.syncVersion)
+              hasLoadedRef.current = true
+              setLoading(false)
+              return // Exit early, we've loaded from database
+            }
+          }
+        } catch (error) {
+          console.error('Error loading session from database:', error)
+          // Continue to localStorage check
+        }
+      }
+
+      // 2. Fall back to localStorage
+      const draft = loadDraftFromStorage()
+      if (draft && !hasLoadedRef.current) {
+        setDraftData(draft)
+        setShowResumeDraft(true)
+      }
+
+      // 3. Load fresh workout
+      loadWorkout()
     }
-    loadWorkout()
+
+    initializeWorkout()
   }, [planId, day])
 
   // Auto-save when exercises, notes, rpe, or currentExerciseIndex change
@@ -306,45 +395,55 @@ function WorkoutLogger({ user }) {
   const handleCompleteWorkout = async () => {
     const duration = Math.round((Date.now() - workoutStartTime) / 1000 / 60) // minutes
 
-    const logData = {
-      userId: user.id,
-      planId,
-      date: new Date().toISOString(),
-      exercises: exercises.map((ex, index) => {
-        const substitution = substitutedExercises[index]
-        const baseData = {
-          exerciseId: ex.id,
-          ...(substitution && {
-            originalExerciseId: substitution.originalExerciseId,
-            substituted: true
-          })
-        }
-
-        if (ex.category === 'cardio') {
-          return {
-            ...baseData,
-            cardioDuration: parseFloat(ex.cardioDuration) || 0,
-            cardioDistance: parseFloat(ex.cardioDistance) || 0,
-            completed: true
-          }
-        } else {
-          return {
-            ...baseData,
-            sets: ex.sets.map(s => ({
-              weight: parseFloat(s.weight) || 0,
-              reps: parseInt(s.reps) || 0,
-              completed: s.completed
-            }))
-          }
-        }
-      }),
-      duration,
-      notes,
-      rpe
-    }
-
     try {
-      await api.logWorkout(logData)
+      if (sessionId) {
+        // Complete session via API (creates workout + marks session complete)
+        await api.completeWorkoutSession(sessionId, {
+          duration,
+          notes,
+          rpe
+        })
+      } else {
+        // Fallback: direct workout log (for backwards compatibility)
+        const logData = {
+          userId: user.id,
+          planId,
+          date: new Date().toISOString(),
+          exercises: exercises.map((ex, index) => {
+            const substitution = substitutedExercises[index]
+            const baseData = {
+              exerciseId: ex.id,
+              ...(substitution && {
+                originalExerciseId: substitution.originalExerciseId,
+                substituted: true
+              })
+            }
+
+            if (ex.category === 'cardio') {
+              return {
+                ...baseData,
+                cardioDuration: parseFloat(ex.cardioDuration) || 0,
+                cardioDistance: parseFloat(ex.cardioDistance) || 0,
+                completed: true
+              }
+            } else {
+              return {
+                ...baseData,
+                sets: ex.sets.map(s => ({
+                  weight: parseFloat(s.weight) || 0,
+                  reps: parseInt(s.reps) || 0,
+                  completed: s.completed
+                }))
+              }
+            }
+          }),
+          duration,
+          notes,
+          rpe
+        }
+        await api.logWorkout(logData)
+      }
+
       // Clear draft from localStorage on successful completion
       clearDraftFromStorage()
       alert('🎉 Workout logged successfully!')
@@ -700,11 +799,24 @@ function WorkoutLogger({ user }) {
             <span className="auto-save-indicator" style={{
               marginLeft: '0.5rem',
               fontSize: '0.875rem',
-              color: autoSaveStatus === 'saved' ? '#10B981' : '#6B7280',
+              color: autoSaveStatus === 'synced' || autoSaveStatus === 'saved' ? '#10B981' : '#6B7280',
               opacity: autoSaveStatus ? 1 : 0,
               transition: 'opacity 0.3s'
             }}>
-              {autoSaveStatus === 'saving' ? 'Saving...' : '✓ Saved'}
+              {autoSaveStatus === 'saving' && 'Saving...'}
+              {autoSaveStatus === 'synced' && '✓ Synced'}
+              {autoSaveStatus === 'saved' && '✓ Saved'}
+              {autoSaveStatus === 'saved_locally' && '📱 Saved locally'}
+            </span>
+          )}
+          {syncError && (
+            <span className="sync-error-indicator" style={{
+              marginLeft: '0.5rem',
+              fontSize: '0.875rem',
+              color: '#EF4444',
+              cursor: 'help'
+            }} title={syncError}>
+              ⚠️ Sync failed
             </span>
           )}
         </div>
