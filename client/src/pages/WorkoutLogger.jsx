@@ -482,6 +482,27 @@ function WorkoutLogger({ user }) {
     })
   }
 
+  const fillDownFromFirstSet = (exerciseIndex) => {
+    setExercises(prev => {
+      const newExercises = [...prev]
+      const sets = newExercises[exerciseIndex].sets
+      const firstSet = sets[0]
+
+      // Only proceed if first set has values
+      if (!firstSet.weight || !firstSet.reps) return prev
+
+      // Copy to all sets that are empty
+      sets.forEach((set, index) => {
+        if (index > 0 && !set.weight && !set.reps) {
+          set.weight = firstSet.weight
+          set.reps = firstSet.reps
+        }
+      })
+
+      return newExercises
+    })
+  }
+
   const handleSubstitute = (substitute) => {
     const currentEx = currentExercise
     const originalExerciseId = currentEx.id
@@ -772,8 +793,26 @@ function WorkoutLogger({ user }) {
                     value={set.reps}
                     onChange={(e) => handleSetChange(currentExerciseIndex, setIndex, 'reps', e.target.value)}
                     onFocus={(e) => e.target.select()}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' && set.weight && set.reps) {
+                        e.preventDefault()
+                        const nextSet = currentExercise.sets[setIndex + 1]
+                        if (nextSet && !nextSet.weight && !nextSet.reps) {
+                          copyPreviousSet(currentExerciseIndex, setIndex + 1)
+                        }
+                      }
+                    }}
                     inputMode="numeric"
                   />
+                  {setIndex === 0 && set.weight && set.reps && (
+                    <button
+                      onClick={() => fillDownFromFirstSet(currentExerciseIndex)}
+                      className="btn-icon fill-down-btn"
+                      title="Copy to all remaining sets"
+                    >
+                      ⬇️⬇️
+                    </button>
+                  )}
                   {setIndex > 0 && (
                     <button
                       onClick={() => copyPreviousSet(currentExerciseIndex, setIndex)}

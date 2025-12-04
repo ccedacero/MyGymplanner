@@ -176,7 +176,7 @@
 
 .set-row {
   display: grid;
-  grid-template-columns: 50px 1fr 1fr 52px 32px;
+  grid-template-columns: 50px 1fr 1fr 44px 52px 32px;
   gap: 0.5rem;
   align-items: center;
   padding: 0.75rem;
@@ -338,6 +338,36 @@
 
 .copy-set-btn:active {
   transform: translateY(2px) scale(0.95);
+}
+
+/* Fill Down Button - Mobile First */
+.fill-down-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--secondary);
+  border: 2px solid var(--secondary);
+  color: white;
+  font-size: 1.125rem;
+  line-height: 1;
+  padding: 0;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.fill-down-btn:hover {
+  background: #059669;
+  border-color: #059669;
+  transform: scale(1.05);
+}
+
+.fill-down-btn:active {
+  transform: scale(0.95);
+  background: #047857;
 }
 
 .remove-set-btn {
@@ -566,6 +596,19 @@
   .complete-btn {
     width: 56px;
     height: 56px;
+  }
+
+  /* Mobile-optimized button sizes for better touch targets */
+  .fill-down-btn,
+  .copy-set-btn,
+  .remove-set-btn {
+    width: 56px;
+    height: 56px;
+    font-size: 1.25rem;
+  }
+
+  .set-row {
+    gap: 0.625rem;
   }
 
   .current-exercise-name {
