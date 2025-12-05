@@ -47,7 +47,7 @@ class Session {
   static findByUserId(userId, includeRevoked = false) {
     const query = includeRevoked
       ? 'SELECT * FROM sessions WHERE user_id = ? ORDER BY last_used_at DESC'
-      : 'SELECT * FROM sessions WHERE user_id = ? AND is_revoked = 0 AND datetime(expires_at) > datetime("now") ORDER BY last_used_at DESC';
+      : "SELECT * FROM sessions WHERE user_id = ? AND is_revoked = 0 AND datetime(expires_at) > datetime('now') ORDER BY last_used_at DESC";
 
     const stmt = db.prepare(query);
     return stmt.all(userId);
