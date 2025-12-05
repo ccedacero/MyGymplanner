@@ -29,78 +29,8 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Schedule token refresh 5 minutes before expiration
-  const scheduleTokenRefresh = useCallback((token) => {
-    const decoded = decodeToken(token);
-    if (!decoded || !decoded.exp) return;
-
-    const expiresAt = decoded.exp * 1000; // Convert to milliseconds
-    const now = Date.now();
-    const timeUntilExpiry = expiresAt - now;
-    const refreshTime = timeUntilExpiry - (5 * 60 * 1000); // 5 minutes before expiry
-
-    // Clear existing timeout
-    if (refreshTimeoutRef.current) {
-      clearTimeout(refreshTimeoutRef.current);
-    }
-
-    // Don't schedule if already expired or expires in less than 1 minute
-    if (refreshTime < 60000) {
-      console.log('Token expires soon, refreshing immediately');
-      refreshAccessToken();
-      return;
-    }
-
-    console.log(`Scheduling token refresh in ${Math.round(refreshTime / 1000 / 60)} minutes`);
-
-    refreshTimeoutRef.current = setTimeout(() => {
-      refreshAccessToken();
-    }, refreshTime);
-  }, []);
-
-  // Refresh access token
-  const refreshAccessToken = async () => {
-    try {
-      const refreshToken = localStorage.getItem('refreshToken');
-      const sessionId = localStorage.getItem('sessionId');
-
-      if (!refreshToken || !sessionId) {
-        logout();
-        return;
-      }
-
-      const data = await api.refreshToken(refreshToken, sessionId);
-
-      // Update tokens
-      setAccessToken(data.accessToken);
-      localStorage.setItem('refreshToken', data.refreshToken);
-      localStorage.setItem('sessionId', data.sessionId);
-
-      // Schedule next refresh
-      scheduleTokenRefresh(data.accessToken);
-
-      return data.accessToken;
-    } catch (error) {
-      console.error('Failed to refresh token:', error);
-      logout();
-      return null;
-    }
-  };
-
-  // Login
-  const login = (userData, tokens) => {
-    setUser(userData);
-    setAccessToken(tokens.accessToken);
-
-    localStorage.setItem('user', JSON.stringify(userData));
-    localStorage.setItem('refreshToken', tokens.refreshToken);
-    localStorage.setItem('sessionId', tokens.sessionId);
-
-    scheduleTokenRefresh(tokens.accessToken);
-  };
-
   // Logout
-  const logout = async () => {
+  const logout = useCallback(async () => {
     try {
       const sessionId = localStorage.getItem('sessionId');
       if (sessionId) {
@@ -120,7 +50,82 @@ export const AuthProvider = ({ children }) => {
         clearTimeout(refreshTimeoutRef.current);
       }
     }
-  };
+  }, []);
+
+  // Refresh access token
+  const refreshAccessToken = useCallback(async () => {
+    try {
+      const refreshToken = localStorage.getItem('refreshToken');
+      const sessionId = localStorage.getItem('sessionId');
+
+      if (!refreshToken || !sessionId) {
+        logout();
+        return;
+      }
+
+      const data = await api.refreshToken(refreshToken, sessionId);
+
+      // Update tokens
+      setAccessToken(data.accessToken);
+      localStorage.setItem('refreshToken', data.refreshToken);
+      localStorage.setItem('sessionId', data.sessionId);
+
+      return data.accessToken;
+    } catch (error) {
+      console.error('Failed to refresh token:', error);
+      logout();
+      return null;
+    }
+  }, [logout]);
+
+  // Schedule token refresh 5 minutes before expiration
+  const scheduleTokenRefresh = useCallback((token) => {
+    const decoded = decodeToken(token);
+    if (!decoded || !decoded.exp) return;
+
+    const expiresAt = decoded.exp * 1000; // Convert to milliseconds
+    const now = Date.now();
+    const timeUntilExpiry = expiresAt - now;
+    const refreshTime = timeUntilExpiry - (5 * 60 * 1000); // 5 minutes before expiry
+
+    // Clear existing timeout
+    if (refreshTimeoutRef.current) {
+      clearTimeout(refreshTimeoutRef.current);
+    }
+
+    // Don't schedule if already expired or expires in less than 1 minute
+    if (refreshTime < 60000) {
+      console.log('Token expires soon, refreshing immediately');
+      refreshAccessToken().then(newToken => {
+        if (newToken) {
+          scheduleTokenRefresh(newToken);
+        }
+      });
+      return;
+    }
+
+    console.log(`Scheduling token refresh in ${Math.round(refreshTime / 1000 / 60)} minutes`);
+
+    refreshTimeoutRef.current = setTimeout(() => {
+      refreshAccessToken().then(newToken => {
+        if (newToken) {
+          scheduleTokenRefresh(newToken);
+        }
+      });
+    }, refreshTime);
+  }, [refreshAccessToken]);
+
+  // Login
+  const login = useCallback((userData, tokens) => {
+    setUser(userData);
+    setAccessToken(tokens.accessToken);
+
+    localStorage.setItem('user', JSON.stringify(userData));
+    localStorage.setItem('refreshToken', tokens.refreshToken);
+    localStorage.setItem('sessionId', tokens.sessionId);
+
+    scheduleTokenRefresh(tokens.accessToken);
+  }, [scheduleTokenRefresh]);
 
   // Initialize auth state on mount
   useEffect(() => {
@@ -138,6 +143,7 @@ export const AuthProvider = ({ children }) => {
 
           if (newAccessToken) {
             setAccessToken(newAccessToken);
+            scheduleTokenRefresh(newAccessToken);
           }
         } catch (error) {
           console.error('Failed to restore session:', error);
@@ -156,7 +162,7 @@ export const AuthProvider = ({ children }) => {
         clearTimeout(refreshTimeoutRef.current);
       }
     };
-  }, []);
+  }, [refreshAccessToken, scheduleTokenRefresh, logout]);
 
   const value = {
     user,

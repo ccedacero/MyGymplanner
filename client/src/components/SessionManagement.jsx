@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import * as api from '../services/api';
 import './SessionManagement.css';
 
@@ -7,11 +7,7 @@ function SessionManagement({ userId }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    loadSessions();
-  }, [userId]);
-
-  const loadSessions = async () => {
+  const loadSessions = useCallback(async () => {
     try {
       setLoading(true);
       const data = await api.getSessions(userId);
@@ -22,7 +18,11 @@ function SessionManagement({ userId }) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [userId]);
+
+  useEffect(() => {
+    loadSessions();
+  }, [loadSessions]);
 
   const handleRevokeSession = async (sessionId) => {
     if (!confirm('Are you sure you want to logout this device? This action cannot be undone.')) {

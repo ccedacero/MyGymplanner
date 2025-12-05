@@ -53,9 +53,13 @@ function getTokenExpiration(expiryString) {
     case 'd':
       return new Date(now.getTime() + value * 24 * 60 * 60 * 1000);
     case 'm':
-      return new Date(now.setMonth(now.getMonth() + value));
+      const monthDate = new Date(now);
+      monthDate.setMonth(monthDate.getMonth() + value);
+      return monthDate;
     case 'y':
-      return new Date(now.setFullYear(now.getFullYear() + value));
+      const yearDate = new Date(now);
+      yearDate.setFullYear(yearDate.getFullYear() + value);
+      return yearDate;
     default:
       return now;
   }

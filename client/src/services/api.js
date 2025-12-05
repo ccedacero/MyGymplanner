@@ -153,40 +153,40 @@ export const getExercises = async (userId, equipment) => {
   let url = `${API_BASE}/exercises?userId=${userId}`
   if (equipment) url += `&equipment=${equipment.join(',')}`
 
-  const res = await fetch(url, {
-    headers: getHeaders()
-  })
-  if (!res.ok) throw new Error('Failed to fetch exercises')
-  return res.json()
-}
+  const res = await fetchWithRetry(url, {
+    method: 'GET'
+  });
+  if (!res.ok) throw new Error('Failed to fetch exercises');
+  return res.json();
+};
 
 export const uploadExercises = async (userId, file) => {
-  const formData = new FormData()
-  formData.append('file', file)
-  formData.append('userId', userId)
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('userId', userId);
 
-  const token = localStorage.getItem('token')
+  const headers = await getHeaders();
+  const { 'Content-Type': _, ...headersWithoutContentType } = headers;
+
   const res = await fetch(`${API_BASE}/exercises/upload`, {
     method: 'POST',
-    headers: {
-      ...(token && { 'Authorization': `Bearer ${token}` })
-    },
+    headers: headersWithoutContentType,
     body: formData
-  })
-  if (!res.ok) throw new Error('Failed to upload exercises')
-  return res.json()
-}
+  });
+  if (!res.ok) throw new Error('Failed to upload exercises');
+  return res.json();
+};
 
 export const getExerciseSubstitutes = async (exerciseId, userId, equipment) => {
   let url = `${API_BASE}/exercises/${exerciseId}/substitutes?userId=${userId}`
   if (equipment) url += `&equipment=${equipment.join(',')}`
 
-  const res = await fetch(url, {
-    headers: getHeaders()
-  })
-  if (!res.ok) throw new Error('Failed to fetch exercise substitutes')
-  return res.json()
-}
+  const res = await fetchWithRetry(url, {
+    method: 'GET'
+  });
+  if (!res.ok) throw new Error('Failed to fetch exercise substitutes');
+  return res.json();
+};
 
 // Stretches
 export const getStretches = async (targetArea, difficulty, type) => {
