@@ -1,62 +1,152 @@
 const API_BASE = import.meta.env.VITE_API_URL || '/api'
 
-const getHeaders = () => {
-  const token = localStorage.getItem('token')
+let accessTokenGetter = null;
+let refreshTokenHandler = null;
+
+// Allow auth context to inject token getter
+export const setAccessTokenGetter = (getter) => {
+  accessTokenGetter = getter;
+};
+
+export const setRefreshTokenHandler = (handler) => {
+  refreshTokenHandler = handler;
+};
+
+const getHeaders = async () => {
+  let token = null;
+
+  if (accessTokenGetter) {
+    token = accessTokenGetter();
+  } else {
+    // Fallback to old method for backward compatibility
+    token = localStorage.getItem('token');
+  }
+
+  const sessionId = localStorage.getItem('sessionId');
+
   return {
     'Content-Type': 'application/json',
-    ...(token && { 'Authorization': `Bearer ${token}` })
+    ...(token && { 'Authorization': `Bearer ${token}` }),
+    ...(sessionId && { 'X-Session-Id': sessionId })
+  };
+};
+
+// Helper to handle fetch with auto-retry on 401
+const fetchWithRetry = async (url, options, retryCount = 0) => {
+  const headers = await getHeaders();
+  const response = await fetch(url, {
+    ...options,
+    headers: { ...headers, ...options.headers }
+  });
+
+  // If 401 and we have a refresh handler, try to refresh once
+  if (response.status === 401 && refreshTokenHandler && retryCount === 0) {
+    const refreshed = await refreshTokenHandler();
+
+    if (refreshed) {
+      // Retry with new token
+      return fetchWithRetry(url, options, retryCount + 1);
+    }
   }
-}
+
+  return response;
+};
+
+// Auth endpoints
+export const refreshToken = async (refreshToken, sessionId) => {
+  const res = await fetch(`${API_BASE}/auth/refresh`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ refreshToken, sessionId })
+  });
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(errorData.error || 'Failed to refresh token');
+  }
+  return res.json();
+};
+
+export const getSessions = async (userId) => {
+  const res = await fetchWithRetry(`${API_BASE}/auth/sessions/${userId}`, {
+    method: 'GET'
+  });
+  if (!res.ok) throw new Error('Failed to fetch sessions');
+  return res.json();
+};
+
+export const revokeSession = async (sessionId) => {
+  const res = await fetchWithRetry(`${API_BASE}/auth/sessions/${sessionId}`, {
+    method: 'DELETE'
+  });
+  if (!res.ok) throw new Error('Failed to revoke session');
+  return res.json();
+};
+
+export const revokeAllOtherSessions = async (userId) => {
+  const res = await fetchWithRetry(`${API_BASE}/auth/sessions/${userId}/revoke-others`, {
+    method: 'POST'
+  });
+  if (!res.ok) throw new Error('Failed to revoke sessions');
+  return res.json();
+};
+
+export const logout = async (sessionId) => {
+  const res = await fetch(`${API_BASE}/users/logout`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ sessionId })
+  });
+  if (!res.ok) throw new Error('Logout failed');
+  return res.json();
+};
 
 // Users
 export const register = async (email, password, name) => {
   const res = await fetch(`${API_BASE}/users/register`, {
     method: 'POST',
-    headers: getHeaders(),
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password, name })
-  })
+  });
   if (!res.ok) {
-    const errorData = await res.json()
+    const errorData = await res.json();
     if (errorData.requirements && errorData.requirements.length > 0) {
-      throw new Error(`${errorData.error}:\n• ${errorData.requirements.join('\n• ')}`)
+      throw new Error(`${errorData.error}:\n• ${errorData.requirements.join('\n• ')}`);
     }
-    throw new Error(errorData.error || 'Registration failed')
+    throw new Error(errorData.error || 'Registration failed');
   }
-  return res.json()
-}
+  return res.json();
+};
 
 export const login = async (email, password) => {
   const res = await fetch(`${API_BASE}/users/login`, {
     method: 'POST',
-    headers: getHeaders(),
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password })
-  })
+  });
   if (!res.ok) {
-    const errorData = await res.json()
-    throw new Error(errorData.error || 'Login failed')
+    const errorData = await res.json();
+    throw new Error(errorData.error || 'Login failed');
   }
-  return res.json()
+  return res.json();
 }
 
 export const updateEquipment = async (userId, equipment) => {
-  const res = await fetch(`${API_BASE}/users/${userId}/equipment`, {
+  const res = await fetchWithRetry(`${API_BASE}/users/${userId}/equipment`, {
     method: 'PUT',
-    headers: getHeaders(),
     body: JSON.stringify({ equipment })
-  })
-  if (!res.ok) throw new Error('Failed to update equipment')
-  return res.json()
-}
+  });
+  if (!res.ok) throw new Error('Failed to update equipment');
+  return res.json();
+};
 
 export const updateExercisePreference = async (userId, exercisePreference) => {
-  const res = await fetch(`${API_BASE}/users/${userId}/exercise-preference`, {
+  const res = await fetchWithRetry(`${API_BASE}/users/${userId}/exercise-preference`, {
     method: 'PUT',
-    headers: getHeaders(),
     body: JSON.stringify({ exercisePreference })
-  })
-  if (!res.ok) throw new Error('Failed to update exercise preference')
-  return res.json()
-}
+  });
+  if (!res.ok) throw new Error('Failed to update exercise preference');
+  return res.json();
+};
 
 // Exercises
 export const getExercises = async (userId, equipment) => {

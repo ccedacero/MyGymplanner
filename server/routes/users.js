@@ -1,23 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
+const { authenticateToken } = require('../middleware/auth');
 
-// Register user
+// Public routes
 router.post('/register', userController.register);
-
-// Login user
 router.post('/login', userController.login);
+router.post('/logout', userController.logout);
 
-// Update user equipment (specific routes before generic ones)
-router.put('/:userId/equipment', userController.updateEquipment);
-
-// Update user exercise preference
-router.put('/:userId/exercise-preference', userController.updateExercisePreference);
-
-// Get user profile
-router.get('/:userId', userController.getUserProfile);
-
-// Update user profile
-router.put('/:userId', userController.updateUserProfile);
+// Protected routes (specific routes before generic ones)
+router.put('/:userId/equipment', authenticateToken, userController.updateEquipment);
+router.put('/:userId/exercise-preference', authenticateToken, userController.updateExercisePreference);
+router.get('/:userId', authenticateToken, userController.getUserProfile);
+router.put('/:userId', authenticateToken, userController.updateUserProfile);
 
 module.exports = router;

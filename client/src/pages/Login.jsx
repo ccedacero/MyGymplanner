@@ -69,7 +69,11 @@ function Login({ onLogin }) {
         localStorage.removeItem('rememberedEmail')
       }
 
-      onLogin(data.user, data.token)
+      onLogin(data.user, {
+        accessToken: data.accessToken,
+        refreshToken: data.refreshToken,
+        sessionId: data.sessionId
+      })
     } catch (err) {
       setError(err.message)
     } finally {

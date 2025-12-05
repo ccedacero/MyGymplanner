@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate, useLocat
 import { useState, useEffect } from 'react'
 import { Analytics } from '@vercel/analytics/react'
 import * as api from './services/api'
+import { AuthProvider, useAuth } from './contexts/AuthContext'
+import { setAccessTokenGetter, setRefreshTokenHandler } from './services/api'
 import Login from './pages/Login'
 import Onboarding from './pages/Onboarding'
 import Dashboard from './pages/Dashboard'
@@ -15,12 +17,19 @@ import Stretches from './pages/Stretches'
 import Header from './components/Header'
 
 // Inner component with access to navigate
-function AppContent({ user, setUser, loading, handleLogin, handleLogout }) {
+function AppContent() {
+  const { user, setUser, accessToken, loading, login, logout, refreshAccessToken } = useAuth();
   const navigate = useNavigate()
   const location = useLocation()
   const [isOnline, setIsOnline] = useState(navigator.onLine)
   const [staleSession, setStaleSession] = useState(null)
   const [showStaleSessionModal, setShowStaleSessionModal] = useState(false)
+
+  // Inject token getter and refresh handler into API service
+  useEffect(() => {
+    setAccessTokenGetter(() => accessToken);
+    setRefreshTokenHandler(refreshAccessToken);
+  }, [accessToken, refreshAccessToken])
 
   // Track online/offline status
   useEffect(() => {
@@ -92,9 +101,21 @@ function AppContent({ user, setUser, loading, handleLogin, handleLogout }) {
     }
   }
 
+  const handleLogin = (userData, tokens) => {
+    login(userData, {
+      accessToken: tokens.accessToken,
+      refreshToken: tokens.refreshToken,
+      sessionId: tokens.sessionId
+    });
+  };
+
+  if (loading) {
+    return <div className="loading">Loading...</div>;
+  }
+
   return (
     <div className="app">
-      {user && <Header user={user} onLogout={handleLogout} />}
+      {user && <Header user={user} onLogout={logout} />}
 
       {/* Offline Indicator */}
       {!isOnline && (
@@ -160,70 +181,12 @@ function AppContent({ user, setUser, loading, handleLogin, handleLogout }) {
 }
 
 function App() {
-  const [user, setUser] = useState(null)
-  const [loading, setLoading] = useState(true)
-
-  // Check if JWT token is expired
-  const isTokenExpired = (token) => {
-    try {
-      const base64Url = token.split('.')[1]
-      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
-      const payload = JSON.parse(window.atob(base64))
-
-      // Check if token has expired (exp is in seconds, Date.now() is in milliseconds)
-      return payload.exp * 1000 < Date.now()
-    } catch (error) {
-      // If token is malformed, consider it expired
-      return true
-    }
-  }
-
-  useEffect(() => {
-    // Check if user is logged in
-    const token = localStorage.getItem('token')
-    const userData = localStorage.getItem('user')
-
-    if (token && userData) {
-      // Check if token is expired
-      if (isTokenExpired(token)) {
-        // Token expired, clear storage
-        localStorage.removeItem('token')
-        localStorage.removeItem('user')
-        setUser(null)
-      } else {
-        setUser(JSON.parse(userData))
-      }
-    }
-
-    setLoading(false)
-  }, [])
-
-  const handleLogin = (userData, token) => {
-    setUser(userData)
-    localStorage.setItem('token', token)
-    localStorage.setItem('user', JSON.stringify(userData))
-  }
-
-  const handleLogout = () => {
-    setUser(null)
-    localStorage.removeItem('token')
-    localStorage.removeItem('user')
-  }
-
-  if (loading) {
-    return <div className="loading">Loading...</div>
-  }
-
   return (
-    <Router>
-      <AppContent
-        user={user}
-        setUser={setUser}
-        loading={loading}
-        handleLogin={handleLogin}
-        handleLogout={handleLogout}
-      />
-    </Router>
+    <AuthProvider>
+      <Router>
+        <AppContent />
+      </Router>
+    </AuthProvider>
   )
 }
 

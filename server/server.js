@@ -40,12 +40,14 @@ const planRoutes = require('./routes/plans');
 const workoutRoutes = require('./routes/workouts');
 const workoutSessionRoutes = require('./routes/workoutSessions');
 const userRoutes = require('./routes/users');
+const authRoutes = require('./routes/auth');
 
 app.use('/api/exercises', exerciseRoutes);
 app.use('/api/plans', planRoutes);
 app.use('/api/workouts', workoutRoutes);
 app.use('/api/workout-sessions', workoutSessionRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/auth', authRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

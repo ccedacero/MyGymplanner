@@ -123,6 +123,30 @@ const createTables = () => {
     CREATE INDEX IF NOT EXISTS idx_custom_exercises_category ON custom_exercises(category);
   `);
 
+  // Sessions table for refresh token management
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS sessions (
+      id TEXT PRIMARY KEY,
+      user_id TEXT NOT NULL,
+      refresh_token_hash TEXT NOT NULL,
+      device_name TEXT,
+      device_type TEXT,
+      user_agent TEXT,
+      ip_address TEXT,
+      last_used_at TEXT NOT NULL,
+      created_at TEXT NOT NULL,
+      expires_at TEXT NOT NULL,
+      is_revoked INTEGER DEFAULT 0,
+      FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    );
+
+    CREATE INDEX IF NOT EXISTS idx_sessions_user_id ON sessions(user_id);
+    CREATE INDEX IF NOT EXISTS idx_sessions_refresh_token ON sessions(refresh_token_hash);
+    CREATE INDEX IF NOT EXISTS idx_sessions_expires_at ON sessions(expires_at);
+    CREATE INDEX IF NOT EXISTS idx_sessions_user_active
+      ON sessions(user_id, is_revoked, expires_at);
+  `);
+
   console.log('Database tables created successfully');
 };
 
