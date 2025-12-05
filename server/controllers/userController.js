@@ -2,6 +2,14 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { v4: uuidv4 } = require('uuid');
 const User = require('../db/models/User');
+const Session = require('../db/models/Session');
+const {
+  generateAccessToken,
+  generateRefreshToken,
+  getTokenExpiration,
+  REFRESH_TOKEN_EXPIRY
+} = require('../utils/tokenUtils');
+const { parseUserAgent, getClientIp } = require('../utils/deviceUtils');
 
 // Validation functions
 function validateEmail(email) {
@@ -93,12 +101,27 @@ exports.register = async (req, res) => {
       updatedAt: now
     });
 
-    // Generate JWT
-    const token = jwt.sign(
-      { userId: user.id, email: user.email },
-      process.env.JWT_SECRET || 'dev-secret',
-      { expiresIn: '7d' }
-    );
+    // Generate tokens
+    const accessToken = generateAccessToken(user.id, user.email);
+    const refreshToken = generateRefreshToken();
+
+    // Create session
+    const userAgent = req.headers['user-agent'] || '';
+    const { deviceName, deviceType } = parseUserAgent(userAgent);
+    const ipAddress = getClientIp(req);
+
+    const sessionId = `session-${uuidv4()}`;
+    await Session.create({
+      id: sessionId,
+      userId: user.id,
+      refreshToken,
+      deviceName,
+      deviceType,
+      userAgent,
+      ipAddress,
+      createdAt: now,
+      expiresAt: getTokenExpiration(REFRESH_TOKEN_EXPIRY).toISOString()
+    });
 
     // Return user without password
     const { password: _, ...userWithoutPassword } = user;
@@ -106,7 +129,9 @@ exports.register = async (req, res) => {
     res.status(201).json({
       message: 'User registered successfully',
       user: userWithoutPassword,
-      token
+      accessToken,
+      refreshToken,
+      sessionId
     });
   } catch (error) {
     console.error('Error registering user:', error);
@@ -135,12 +160,28 @@ exports.login = async (req, res) => {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
-    // Generate JWT
-    const token = jwt.sign(
-      { userId: user.id, email: user.email },
-      process.env.JWT_SECRET || 'dev-secret',
-      { expiresIn: '7d' }
-    );
+    // Generate tokens
+    const accessToken = generateAccessToken(user.id, user.email);
+    const refreshToken = generateRefreshToken();
+
+    // Create session
+    const userAgent = req.headers['user-agent'] || '';
+    const { deviceName, deviceType } = parseUserAgent(userAgent);
+    const ipAddress = getClientIp(req);
+
+    const now = new Date().toISOString();
+    const sessionId = `session-${uuidv4()}`;
+    await Session.create({
+      id: sessionId,
+      userId: user.id,
+      refreshToken,
+      deviceName,
+      deviceType,
+      userAgent,
+      ipAddress,
+      createdAt: now,
+      expiresAt: getTokenExpiration(REFRESH_TOKEN_EXPIRY).toISOString()
+    });
 
     // Return user without password
     const { password: _, ...userWithoutPassword } = user;
@@ -148,7 +189,9 @@ exports.login = async (req, res) => {
     res.json({
       message: 'Login successful',
       user: userWithoutPassword,
-      token
+      accessToken,
+      refreshToken,
+      sessionId
     });
   } catch (error) {
     console.error('Error logging in:', error);
@@ -265,5 +308,21 @@ exports.updateExercisePreference = async (req, res) => {
   } catch (error) {
     console.error('Error updating exercise preference:', error);
     res.status(500).json({ error: 'Failed to update exercise preference' });
+  }
+};
+
+// Logout user
+exports.logout = async (req, res) => {
+  try {
+    const { sessionId } = req.body;
+
+    if (sessionId) {
+      Session.revoke(sessionId);
+    }
+
+    res.json({ message: 'Logged out successfully' });
+  } catch (error) {
+    console.error('Error logging out:', error);
+    res.status(500).json({ error: 'Failed to logout' });
   }
 };

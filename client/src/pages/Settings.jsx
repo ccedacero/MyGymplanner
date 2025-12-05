@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import * as api from '../services/api'
+import SessionManagement from '../components/SessionManagement'
 import './Settings.css'
 
 const EQUIPMENT_OPTIONS = [
@@ -162,6 +163,10 @@ function Settings({ user, setUser }) {
             </div>
           </label>
         </div>
+      </div>
+
+      <div className="card mt-4">
+        <SessionManagement userId={user.id} />
       </div>
 
       <div className="settings-actions">
