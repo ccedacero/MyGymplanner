@@ -147,6 +147,22 @@ const createTables = () => {
       ON sessions(user_id, is_revoked, expires_at);
   `);
 
+  // Backup codes table for account recovery
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS backup_codes (
+      id TEXT PRIMARY KEY,
+      user_id TEXT NOT NULL,
+      code_hash TEXT NOT NULL,
+      used INTEGER DEFAULT 0,
+      used_at TEXT,
+      created_at TEXT NOT NULL,
+      FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    );
+
+    CREATE INDEX IF NOT EXISTS idx_backup_codes_user_id ON backup_codes(user_id);
+    CREATE INDEX IF NOT EXISTS idx_backup_codes_user_unused ON backup_codes(user_id, used);
+  `);
+
   console.log('Database tables created successfully');
 };
 

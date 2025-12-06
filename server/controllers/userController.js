@@ -123,6 +123,22 @@ exports.register = async (req, res) => {
       expiresAt: getTokenExpiration(REFRESH_TOKEN_EXPIRY).toISOString()
     });
 
+    // Generate backup codes (one-time only during registration)
+    const BackupCode = require('../db/models/BackupCode');
+    const { generateBackupCodes, hashBackupCode } = require('../utils/backupCodeUtils');
+
+    const backupCodes = generateBackupCodes(10);
+    const codePromises = backupCodes.map(async (code) => {
+      const codeHash = await hashBackupCode(code);
+      BackupCode.create({
+        id: `backup-${uuidv4()}`,
+        userId: user.id,
+        codeHash,
+        createdAt: now
+      });
+    });
+    await Promise.all(codePromises);
+
     // Return user without password
     const { password: _, ...userWithoutPassword } = user;
 
@@ -131,7 +147,9 @@ exports.register = async (req, res) => {
       user: userWithoutPassword,
       accessToken,
       refreshToken,
-      sessionId
+      sessionId,
+      backupCodes,
+      backupCodesWarning: 'Save these backup codes in a secure location. They will only be shown once and can be used to recover your account if you forget your password.'
     });
   } catch (error) {
     console.error('Error registering user:', error);
