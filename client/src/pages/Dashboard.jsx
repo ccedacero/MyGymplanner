@@ -90,13 +90,6 @@ function Dashboard({ user }) {
     }
   }
 
-  // Check if user needs onboarding
-  useEffect(() => {
-    if (!user.equipment || user.equipment.length === 0) {
-      navigate('/onboarding')
-    }
-  }, [user, navigate])
-
   if (loading) {
     return (
       <div className="container">

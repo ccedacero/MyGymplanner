@@ -25,6 +25,11 @@ function AppContent() {
   const [staleSession, setStaleSession] = useState(null)
   const [showStaleSessionModal, setShowStaleSessionModal] = useState(false)
 
+  // Helper to check if user needs onboarding
+  const needsOnboarding = (user) => {
+    return user && (!user.equipment || user.equipment.length === 0)
+  }
+
   // Inject token getter and refresh handler into API service
   useEffect(() => {
     setAccessTokenGetter(() => accessToken);
@@ -162,10 +167,22 @@ function AppContent() {
       )}
 
       <Routes>
-        <Route path="/" element={user ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} />
-        <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <Login onLogin={handleLogin} />} />
+        <Route path="/" element={
+          user
+            ? (needsOnboarding(user) ? <Navigate to="/onboarding" /> : <Navigate to="/dashboard" />)
+            : <Navigate to="/login" />
+        } />
+        <Route path="/login" element={
+          user
+            ? (needsOnboarding(user) ? <Navigate to="/onboarding" /> : <Navigate to="/dashboard" />)
+            : <Login onLogin={handleLogin} />
+        } />
         <Route path="/onboarding" element={user ? <Onboarding user={user} setUser={setUser} /> : <Navigate to="/login" />} />
-        <Route path="/dashboard" element={user ? <Dashboard user={user} /> : <Navigate to="/login" />} />
+        <Route path="/dashboard" element={
+          user
+            ? (needsOnboarding(user) ? <Navigate to="/onboarding" /> : <Dashboard user={user} />)
+            : <Navigate to="/login" />
+        } />
         <Route path="/generate-plan" element={user ? <PlanGenerator user={user} /> : <Navigate to="/login" />} />
         <Route path="/today" element={user ? <TodaysWorkout user={user} /> : <Navigate to="/login" />} />
         <Route path="/log-workout/:planId/:day" element={user ? <WorkoutLogger user={user} /> : <Navigate to="/login" />} />
