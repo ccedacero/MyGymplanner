@@ -188,7 +188,7 @@ function AppContent() {
         <Route path="/log-workout/:planId/:day" element={user ? <WorkoutLogger user={user} /> : <Navigate to="/login" />} />
         <Route path="/schedule" element={user ? <WeeklySchedule user={user} /> : <Navigate to="/login" />} />
         <Route path="/progress" element={user ? <Progress user={user} /> : <Navigate to="/login" />} />
-        <Route path="/settings" element={user ? <Settings user={user} setUser={setUser} onLogout={handleLogout} /> : <Navigate to="/login" />} />
+        <Route path="/settings" element={user ? <Settings user={user} setUser={setUser} onLogout={logout} /> : <Navigate to="/login" />} />
         <Route path="/stretches" element={user ? <Stretches /> : <Navigate to="/login" />} />
       </Routes>
 

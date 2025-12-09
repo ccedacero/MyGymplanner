@@ -24,6 +24,8 @@ const getHeaders = async () => {
 
   const sessionId = localStorage.getItem('sessionId');
 
+  console.log('[API] Getting headers - token exists:', !!token, 'sessionId exists:', !!sessionId);
+
   return {
     'Content-Type': 'application/json',
     ...(token && { 'Authorization': `Bearer ${token}` }),
@@ -131,11 +133,20 @@ export const login = async (email, password) => {
 }
 
 export const updateEquipment = async (userId, equipment) => {
+  console.log('[updateEquipment] Called with userId:', userId, 'equipment:', equipment);
   const res = await fetchWithRetry(`${API_BASE}/users/${userId}/equipment`, {
     method: 'PUT',
     body: JSON.stringify({ equipment })
   });
-  if (!res.ok) throw new Error('Failed to update equipment');
+  console.log('[updateEquipment] Response status:', res.status, res.ok ? 'OK' : 'FAILED');
+  if (!res.ok) {
+    const errorData = await res.json().catch(() => ({ error: 'Failed to update equipment' }));
+    const errorMessage = errorData.details || errorData.error || 'Failed to update equipment';
+    console.error('[updateEquipment] Error:', errorMessage, 'Status:', res.status);
+    const error = new Error(errorMessage);
+    error.status = res.status;
+    throw error;
+  }
   return res.json();
 };
 
@@ -144,7 +155,11 @@ export const updateExercisePreference = async (userId, exercisePreference) => {
     method: 'PUT',
     body: JSON.stringify({ exercisePreference })
   });
-  if (!res.ok) throw new Error('Failed to update exercise preference');
+  if (!res.ok) {
+    const errorData = await res.json().catch(() => ({ error: 'Failed to update exercise preference' }));
+    const errorMessage = errorData.details || errorData.error || 'Failed to update exercise preference';
+    throw new Error(errorMessage);
+  }
   return res.json();
 };
 

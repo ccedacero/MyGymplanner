@@ -271,17 +271,24 @@ exports.updateEquipment = async (req, res) => {
     const { userId } = req.params;
     const { equipment } = req.body;
 
+    console.log('[updateEquipment] Request params:', { userId });
+    console.log('[updateEquipment] Request body:', { equipment });
+
     if (!Array.isArray(equipment)) {
+      console.log('[updateEquipment] Error: Equipment is not an array');
       return res.status(400).json({ error: 'Equipment must be an array' });
     }
 
     const user = User.findById(userId);
 
     if (!user) {
+      console.log('[updateEquipment] Error: User not found');
       return res.status(404).json({ error: 'User not found' });
     }
 
+    console.log('[updateEquipment] Found user:', user.id, user.email);
     const updatedUser = User.update(userId, { equipment });
+    console.log('[updateEquipment] Update successful');
 
     const { password: _, ...userWithoutPassword } = updatedUser;
 
@@ -290,8 +297,12 @@ exports.updateEquipment = async (req, res) => {
       user: userWithoutPassword
     });
   } catch (error) {
-    console.error('Error updating equipment:', error);
-    res.status(500).json({ error: 'Failed to update equipment' });
+    console.error('[updateEquipment] Error:', error);
+    console.error('[updateEquipment] Error stack:', error.stack);
+    res.status(500).json({
+      error: 'Failed to update equipment',
+      details: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
   }
 };
 
@@ -301,9 +312,13 @@ exports.updateExercisePreference = async (req, res) => {
     const { userId } = req.params;
     const { exercisePreference } = req.body;
 
+    console.log('[updateExercisePreference] Request params:', { userId });
+    console.log('[updateExercisePreference] Request body:', { exercisePreference });
+
     // Validate preference value
     const validPreferences = ['default', 'known', 'both'];
     if (!validPreferences.includes(exercisePreference)) {
+      console.log('[updateExercisePreference] Error: Invalid preference value');
       return res.status(400).json({
         error: `exercisePreference must be one of: ${validPreferences.join(', ')}`
       });
@@ -312,10 +327,13 @@ exports.updateExercisePreference = async (req, res) => {
     const user = User.findById(userId);
 
     if (!user) {
+      console.log('[updateExercisePreference] Error: User not found');
       return res.status(404).json({ error: 'User not found' });
     }
 
+    console.log('[updateExercisePreference] Found user:', user.id, user.email);
     const updatedUser = User.update(userId, { exercisePreference });
+    console.log('[updateExercisePreference] Update successful');
 
     const { password: _, ...userWithoutPassword } = updatedUser;
 
@@ -324,8 +342,12 @@ exports.updateExercisePreference = async (req, res) => {
       user: userWithoutPassword
     });
   } catch (error) {
-    console.error('Error updating exercise preference:', error);
-    res.status(500).json({ error: 'Failed to update exercise preference' });
+    console.error('[updateExercisePreference] Error:', error);
+    console.error('[updateExercisePreference] Error stack:', error.stack);
+    res.status(500).json({
+      error: 'Failed to update exercise preference',
+      details: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
   }
 };
 

@@ -66,7 +66,13 @@ function Settings({ user, setUser }) {
       setSaveSuccess(true)
       setTimeout(() => setSaveSuccess(false), 3000)
     } catch (err) {
-      alert('Failed to save settings: ' + err.message)
+      console.error('Error saving settings:', err)
+      // If unauthorized, suggest logging out and back in
+      if (err.status === 401) {
+        alert('Your session has expired. Please log out and log back in to continue.')
+      } else {
+        alert('Failed to save settings: ' + err.message)
+      }
     } finally {
       setLoading(false)
     }
