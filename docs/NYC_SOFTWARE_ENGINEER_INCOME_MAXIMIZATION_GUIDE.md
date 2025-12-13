@@ -1,0 +1,1108 @@
+# NYC Software Engineer Income Maximization Guide
+## For Engineers with 5 Years Experience + PM/Support Background
+
+---
+
+## Executive Summary
+
+With 5 years of software engineering experience and 3 years in project management/support, you're positioned in a unique hybrid role category that commands premium compensation in NYC. Your combined skillset qualifies you for:
+
+- **Senior Software Engineer**: $150K-$220K base + equity
+- **Technical Program Manager**: $160K-$240K base + equity
+- **Engineering Manager**: $180K-$260K base + equity
+- **Staff Engineer (IC track)**: $200K-$280K base + equity
+
+**Target Total Compensation Range**: $200K-$400K+ (base + equity + bonus)
+
+---
+
+## Part 1: Understanding Your Market Value
+
+### Current NYC Market Rates (2025)
+
+#### Software Engineer Levels
+- **Mid-Level (3-5 years)**: $130K-$180K base
+- **Senior (5-8 years)**: $160K-$230K base
+- **Staff/Principal**: $200K-$300K+ base
+
+#### Hybrid Roles (SWE + PM Experience)
+- **Technical Program Manager**: $160K-$240K base
+- **Engineering Manager**: $180K-$260K base
+- **Product Engineer**: $170K-$240K base
+
+### Company Tier Breakdown
+
+**Tier 1: FAANG/Big Tech**
+- Google, Meta, Amazon, Apple, Microsoft, Netflix
+- Total Comp: $300K-$500K+ (E5/L5 equivalent)
+- Equity: 30-50% of total comp
+- Signing Bonus: $50K-$150K
+
+**Tier 2: High-Growth Startups (Series C+)**
+- Stripe, Databricks, Figma, Notion, Ramp
+- Total Comp: $250K-$400K
+- Equity: High potential but riskier
+- Signing Bonus: $25K-$75K
+
+**Tier 3: Public Tech Companies**
+- Spotify, Uber, Airbnb, DoorDash, Coinbase
+- Total Comp: $220K-$380K
+- Equity: RSUs (more liquid)
+- Signing Bonus: $20K-$60K
+
+**Tier 4: Finance/Hedge Funds**
+- Jane Street, Two Sigma, Citadel, DE Shaw
+- Total Comp: $300K-$600K+ (if you can pass interviews)
+- Heavy base salary
+- Performance bonuses: 50-100% of base
+
+**Tier 5: Traditional Enterprise**
+- IBM, Oracle, Salesforce, Adobe
+- Total Comp: $180K-$280K
+- More stable, less upside
+- Better work-life balance
+
+---
+
+## Part 2: Your Competitive Advantages
+
+### Unique Value Proposition
+
+Your PM + SWE background makes you valuable for:
+
+1. **Bridge Roles**: Can translate between technical and business teams
+2. **Leadership Positions**: Ready for EM track faster than pure ICs
+3. **Product-Focused Engineering**: Can own features end-to-end
+4. **Technical Program Management**: Can drive complex cross-team initiatives
+5. **Stakeholder Management**: Support experience = excellent communication
+
+### Monetizable Skills to Highlight
+
+#### Technical Skills
+- System design experience
+- Production ownership and incident management
+- Cross-functional technical leadership
+- Architecture decisions
+- Code review and mentorship
+
+#### PM/Business Skills
+- Roadmap planning and execution
+- Stakeholder communication
+- Risk management and mitigation
+- Customer empathy (from support background)
+- Data-driven decision making
+- Project scoping and estimation
+
+---
+
+## Part 3: Short-Term Strategies (0-6 Months)
+
+### Strategy 1: Optimize Current Position
+
+**If Currently Employed:**
+
+1. **Request Compensation Review**
+   - Research market rates using Levels.fyi, Blind, Glassdoor
+   - Document your PM/technical hybrid contributions
+   - Request 15-25% increase if underpaid
+   - Timing: Q4 (budget planning) or after major wins
+
+2. **Negotiate Sign-On Retention Bonus**
+   - If you have competing offers or recruiters reaching out
+   - Ask for $25K-$75K retention bonus
+   - Tie to 12-18 month cliff
+
+3. **Maximize Current Year Bonus**
+   - Align on measurable goals with manager
+   - Document all cross-functional impact
+   - Volunteer for high-visibility projects
+
+**Action Items:**
+- [ ] Pull compensation data from Levels.fyi for your role
+- [ ] Schedule 1:1 with manager about career growth
+- [ ] Document 5 major technical/PM wins from past year
+- [ ] Research internal promotion timelines
+
+### Strategy 2: Build Your Interview Pipeline
+
+**Start Interviewing Strategically (Even if Happy)**
+
+1. **Target 2-3 Companies Per Tier**
+   - Tier 1: Google, Meta, Amazon
+   - Tier 2: 2 high-growth startups you're excited about
+   - Tier 3: 1 public company for backup offers
+
+2. **Interview Prep Timeline (3 months)**
+   - Month 1: LeetCode (2 problems/day, focus on Medium)
+   - Month 2: System design (1 session/week, use Educative.io)
+   - Month 3: Behavioral + PM scenarios (use your experience)
+   - Ongoing: Mock interviews (Pramp, Interviewing.io)
+
+3. **Optimize LinkedIn Profile**
+   - Update headline: "Software Engineer | Technical Program Manager"
+   - Highlight PM + Engineering hybrid wins
+   - Open to recruiters (set to "Open to Work" privately)
+
+**Action Items:**
+- [ ] Sign up for LeetCode Premium ($35/month)
+- [ ] Buy System Design course (Grokking or Educative)
+- [ ] Update LinkedIn with quantified achievements
+- [ ] Respond to 3-5 recruiter messages per week
+- [ ] Schedule 1 mock interview per week
+
+### Strategy 3: Side Income Streams
+
+**Immediate Revenue (Start This Month)**
+
+1. **Contract/Freelance Work ($100-$250/hour)**
+   - Upwork/Toptal for technical consulting
+   - Focus on: Technical advisory, code reviews, architecture consulting
+   - Time commitment: 5-10 hours/week = $2K-$10K/month extra
+
+2. **Technical Writing ($200-$1,000/article)**
+   - Medium Partner Program
+   - Dev.to sponsors
+   - Company engineering blogs (Stripe, Twilio pay well)
+   - Topics: System design, PM/Eng collaboration, incident management
+
+3. **Paid Speaking/Workshops ($500-$5,000/event)**
+   - Local meetups (start free, build reputation)
+   - Corporate training (PM skills for engineers)
+   - Conference talks (CFPs take 6 months but pay $2K-$5K)
+
+4. **Open Source Sponsorships ($500-$5,000/month)**
+   - If you maintain any OSS projects
+   - GitHub Sponsors, Open Collective
+   - Takes time to build but passive income
+
+**Action Items:**
+- [ ] Create Toptal or Upwork profile
+- [ ] Write first technical article this weekend
+- [ ] Apply to speak at 2 local meetups
+- [ ] Identify 3 OSS projects you could contribute to regularly
+
+---
+
+## Part 4: Medium-Term Strategies (6-18 Months)
+
+### Strategy 4: Position for Promotion/Level Jump
+
+**Option A: Engineering Manager Track**
+
+Your PM experience makes this faster:
+
+1. **Build Management Skills**
+   - Start mentoring 1-2 junior engineers
+   - Lead team rituals (retros, planning)
+   - Own hiring (interview coordination, candidate evaluation)
+   - Manage incidents and on-call
+
+2. **Demonstrate Leadership**
+   - Run cross-team projects
+   - Drive technical RFCs
+   - Present at company all-hands
+   - Improve team processes
+
+3. **Timeline to EM**
+   - Internal promotion: 12-18 months
+   - External hire as EM: 6-12 months (faster with PM background)
+   - Comp increase: +$30K-$80K base
+
+**Option B: Staff Engineer (IC Track)**
+
+1. **Build Technical Influence**
+   - Own critical system components
+   - Drive architectural decisions
+   - Mentor across teams
+   - Write technical strategy docs
+
+2. **Expand Scope**
+   - Lead multi-team initiatives
+   - Define technical standards
+   - On-call for critical systems
+   - Participate in RFCs from other teams
+
+3. **Timeline to Staff**
+   - Internal promotion: 18-24 months
+   - External hire: 12-18 months
+   - Comp increase: +$40K-$100K base
+
+**Option C: Technical Program Manager**
+
+Your easiest path given background:
+
+1. **Leverage Both Skills**
+   - Own end-to-end feature delivery
+   - Coordinate multi-team launches
+   - Drive quarterly planning
+   - Manage stakeholder communication
+
+2. **Build TPM Portfolio**
+   - Document 3-5 major cross-functional projects
+   - Show impact on revenue/efficiency
+   - Demonstrate risk mitigation
+   - Highlight technical decision-making
+
+3. **Timeline to TPM**
+   - Internal transition: 6-12 months
+   - External hire: 3-6 months (fastest path)
+   - Comp: Often higher than pure SWE at same level
+
+### Strategy 5: Strategic Job Hopping
+
+**The 18-Month Playbook**
+
+Job hopping is the fastest way to increase comp in tech:
+
+1. **First Jump (Months 6-12)**
+   - Target: +25-40% total comp increase
+   - Goal: $220K-$280K total comp
+   - Focus: Move to higher tier company or get title bump
+
+2. **Second Jump (Months 18-24)**
+   - Target: +20-30% total comp increase
+   - Goal: $280K-$350K total comp
+   - Focus: Senior or Staff level at top-tier company
+
+3. **Negotiation Strategy**
+   - Always get 3+ offers simultaneously
+   - Use offers to negotiate against each other
+   - Ask for sign-on bonus to cover equity cliff
+   - Negotiate start date for maximum payout
+
+**Industry Data:**
+- Staying 5+ years at one company: Average 3-5% annual raises
+- Switching every 2-3 years: Average 15-25% comp increases
+- Strategic switching can 2-3x compensation in 4-5 years
+
+### Strategy 6: Specialize in High-Value Domains
+
+**Pick 1-2 High-Demand Specializations:**
+
+1. **AI/ML Engineering** (Hottest in 2025)
+   - Learn: LLM integration, RAG, vector databases, prompt engineering
+   - Premium: +$30K-$80K over standard SWE
+   - Resources: Fast.ai, Hugging Face, OpenAI docs
+   - Time to proficiency: 6-9 months
+
+2. **Platform/Infrastructure Engineering**
+   - Learn: Kubernetes, Terraform, observability, cost optimization
+   - Premium: +$20K-$60K
+   - Resources: Cloud certs (AWS Solutions Architect)
+   - Time to proficiency: 6-12 months
+
+3. **Security Engineering**
+   - Learn: AppSec, threat modeling, security architecture
+   - Premium: +$30K-$70K (huge shortage)
+   - Resources: SANS, OWASP, bug bounties
+   - Time to proficiency: 12-18 months
+
+4. **Data Engineering**
+   - Learn: Spark, Airflow, data warehousing, ETL pipelines
+   - Premium: +$20K-$50K
+   - Resources: Databricks Academy, Snowflake
+   - Time to proficiency: 6-9 months
+
+5. **Fintech/Payments**
+   - Domain knowledge is valuable in NYC (finance hub)
+   - Premium: +$20K-$60K at finance companies
+   - Resources: Build projects, understand PCI compliance
+   - Time to proficiency: 6-12 months
+
+**Action Items:**
+- [ ] Choose 1 specialization based on interest + market demand
+- [ ] Commit 5 hours/week to learning
+- [ ] Build 2-3 portfolio projects
+- [ ] Contribute to relevant open source
+- [ ] Get certified if applicable (AWS, Kubernetes, etc.)
+
+---
+
+## Part 5: Long-Term Strategies (18+ Months)
+
+### Strategy 7: Build Personal Brand
+
+**Become Known in Your Niche**
+
+1. **Technical Blogging (Consistent Publishing)**
+   - Publish 2-4 articles per month
+   - Focus on hybrid PM/Eng topics (underserved niche)
+   - Guest post on high-traffic sites (FreeCodeCamp, Better Programming)
+   - Revenue: $500-$3,000/month from writing
+   - Career Impact: Recruiters come to you
+
+2. **Conference Speaking**
+   - Start: Local meetups (free)
+   - Next: Regional conferences ($1K-$3K speaking fee)
+   - Goal: Major conferences (React Summit, KubeCon) ($5K-$10K)
+   - Timeline: 18-36 months from unknown to paid speaker
+
+3. **YouTube/Educational Content**
+   - System design walkthroughs
+   - PM/Eng collaboration tips
+   - Career advice for hybrid roles
+   - Revenue: $500-$5,000/month (12-24 months to build)
+
+4. **Newsletter/Paid Community**
+   - Substack: PM/Eng leadership insights
+   - Pricing: $5-$15/month
+   - Goal: 500-1,000 subscribers = $2.5K-$15K/month
+   - Timeline: 18-24 months to build
+
+**Action Items:**
+- [ ] Start technical blog (set up Medium/Dev.to)
+- [ ] Publish first article within 2 weeks
+- [ ] Apply to speak at 1 local meetup
+- [ ] Create content calendar for next 3 months
+
+### Strategy 8: Equity & Wealth Building
+
+**Maximize Long-Term Wealth (Not Just Salary)**
+
+1. **Equity Negotiation**
+   - Always negotiate equity, not just base
+   - At startups: Ask for +20-30% more equity
+   - At public companies: RSUs are as good as cash
+   - Understand: 4-year vest, 1-year cliff, refresh grants
+
+2. **Strategic Company Selection**
+   - Pre-IPO companies (Series C-D): High risk, high reward
+   - Recently public (1-2 years): Stock growth potential
+   - Mature public: Stable, predictable RSU value
+
+3. **Exercise & Tax Strategy**
+   - Work with CPA familiar with equity comp
+   - Understand AMT (Alternative Minimum Tax)
+   - Consider 83(b) election for early-stage equity
+   - Plan for tax withholding on RSU vesting
+
+4. **Diversification**
+   - Don't hold more than 30% net worth in employer stock
+   - Sell and diversify RSUs as they vest
+   - Max out 401(k): $23,000/year (2025)
+   - Backdoor Roth IRA: $7,000/year
+
+**5-Year Wealth Target:**
+- Year 1: $50K savings/investments
+- Year 2: $75K savings/investments
+- Year 3: $100K savings/investments
+- Year 4: $125K savings/investments
+- Year 5: $150K+ savings/investments
+- **Total: $500K+ net worth** (achievable with discipline)
+
+### Strategy 9: Entrepreneurship/Consulting
+
+**Build Leverage Beyond Employment**
+
+1. **Independent Consulting (Months 18-24)**
+   - Once you have strong brand/network
+   - Rate: $150-$350/hour ($300K-$700K/year if full-time)
+   - NYC market: Huge demand for technical consultants
+   - Balance: Keep full-time job, consult 10-15 hours/week
+
+2. **Build SaaS Product (Passive Income)**
+   - Scratch your own itch or solve problem you know
+   - PM background helps with product market fit
+   - Engineering skills to build MVP
+   - Goal: $5K-$20K MRR (monthly recurring revenue)
+   - Timeline: 12-24 months to meaningful revenue
+
+3. **Acquisition/Talent Agency**
+   - Help companies hire technical talent
+   - Referral fees: $15K-$30K per placement
+   - Make 5-10 placements/year = $75K-$300K extra
+   - Low time commitment once network established
+
+### Strategy 10: Geographic Arbitrage
+
+**NYC-Specific Opportunities**
+
+1. **Remote Work for SF Companies**
+   - Many SF companies pay SF salaries for NYC
+   - SF Senior SWE: $200K-$280K base (vs NYC $160K-$230K)
+   - Target: Stripe, Airbnb, Uber, Coinbase (all have remote)
+   - Advantage: SF salary + NYC cost of living (lower than SF)
+
+2. **Negotiate Remote + Travel to NYC**
+   - Live in cheaper NYC suburbs (Jersey City, Hoboken, Queens)
+   - Rent: Save $1,000-$2,000/month
+   - Or: Live upstate/NJ, come to office 2-3 days/week
+   - Savings: $12K-$24K/year
+
+3. **International Remote**
+   - Some roles allow full remote from anywhere
+   - Could work from lower cost location while earning NYC salary
+   - Tax implications: Consult CPA
+   - Best for: Single, flexible lifestyle
+
+---
+
+## Part 6: Tactical Negotiation Playbook
+
+### Salary Negotiation Framework
+
+**When You Have Offer(s):**
+
+1. **Never Accept First Offer**
+   - First offer is always negotiable
+   - Companies expect 1-2 rounds of negotiation
+   - Silence is powerful (wait 24-48 hours)
+
+2. **Use Competing Offers**
+   - Get 3+ offers if possible
+   - Share numbers between companies
+   - "Company X is at $Y total comp, can you match?"
+   - Works best: Similar tier companies
+
+3. **Negotiate Total Comp, Not Just Base**
+   - Focus on: Base + Equity + Bonus + Sign-On
+   - Trade-offs: Higher base vs more equity
+   - Ask: "Can you increase the total package to $X?"
+
+4. **Specific Negotiation Scripts**
+
+**Script 1: Initial Response**
+```
+"Thank you for the offer. I'm excited about the opportunity. I'd like
+to take 24-48 hours to review the details and get back to you."
+```
+
+**Script 2: Counter Offer**
+```
+"I'm very interested in joining [Company]. Based on my research and
+other conversations I'm having, I was expecting total compensation
+in the range of $X-$Y. Is there flexibility to increase the offer?"
+```
+
+**Script 3: Leveraging Competing Offer**
+```
+"I have an offer from [Company X] at $Y total comp. Your company is
+my top choice because [specific reasons]. Can you match or exceed
+their offer?"
+```
+
+**Script 4: Equity Focus**
+```
+"I understand the base is fixed at this level. Could we increase the
+equity grant to bridge the gap? I'm committed to the company's long-term
+success and want to be properly aligned."
+```
+
+**Script 5: Sign-On Bonus**
+```
+"I'm leaving $X in unvested equity at my current company. Could we
+include a sign-on bonus of $Y to offset this? I could also be flexible
+on start date to align with your team's needs."
+```
+
+5. **What to Negotiate:**
+   - ✅ Base salary (+5-15%)
+   - ✅ Equity grant (+10-30%)
+   - ✅ Sign-on bonus ($20K-$100K)
+   - ✅ Performance bonus percentage
+   - ✅ Start date (for current equity vesting)
+   - ✅ Title/level (biggest long-term impact)
+   - ✅ Remote work flexibility
+   - ✅ Relocation assistance
+   - ✅ Learning/conference budget
+   - ❌ Vacation days (usually fixed)
+   - ❌ Health insurance (usually fixed)
+
+### Annual Raise/Promotion Negotiation
+
+**Preparing for Performance Review:**
+
+1. **Document Impact (Keep Brag Doc)**
+   - Weekly: Note accomplishments, metrics, wins
+   - Quarterly: Summarize major projects
+   - Annual: Compile evidence for promotion/raise
+
+2. **Brag Doc Template:**
+```
+Project: [Name]
+Impact: [Revenue, efficiency, users affected]
+Your Role: [What you specifically did]
+Skills Used: [Technical + PM skills]
+Outcome: [Quantified results]
+```
+
+3. **Present Business Case**
+```
+"Based on my contributions this year:
+- Led 3 cross-functional projects affecting 2M users
+- Reduced incident response time by 40%
+- Mentored 2 junior engineers to productivity
+- Market rate for my level is $X-$Y
+- Requesting: [Specific number] or promotion to [Level]"
+```
+
+4. **Timing Matters**
+   - Best: After major win/launch
+   - Good: Q4 (budget planning season)
+   - Okay: After annual review
+   - Bad: Random Tuesday with no preparation
+
+---
+
+## Part 7: NYC-Specific Considerations
+
+### Cost of Living Optimization
+
+**Typical NYC SWE Budget (After Tax):**
+
+Income: $180K base = ~$125K after tax
+- Rent: $30K-$48K/year ($2,500-$4,000/month)
+- Food: $12K-$18K/year
+- Transport: $3K-$6K/year (subway + occasional Uber)
+- Utilities: $2K-$4K/year
+- Entertainment: $6K-$12K/year
+- Savings: $40K-$60K/year
+
+**Optimization Strategies:**
+
+1. **Housing**
+   - Roommates: Save $1,500-$2,500/month
+   - Outer boroughs: Queens, Brooklyn cheaper than Manhattan
+   - Jersey City: PATH train, 30% cheaper rent
+   - Negotiate remote: Live anywhere
+
+2. **Transportation**
+   - Unlimited MetroCard: $132/month (vs on-demand)
+   - Bike: Free after initial investment
+   - Walk: Manhattan is walkable
+
+3. **Food**
+   - Cook: Save $500-$1,000/month vs eating out
+   - Meal prep Sundays
+   - Free office meals (if in office)
+
+4. **Taxes**
+   - NYC tax is brutal: City + State + Federal
+   - Effective tax rate: 30-35% on income
+   - Max 401(k) to reduce taxable income
+   - HSA contributions: $4,150/year (2025)
+   - Consider: Moving to NJ (no city tax, but property tax higher)
+
+### NYC Tech Scene Navigation
+
+**Best Companies in NYC (by comp + culture):**
+
+**Top Tier:**
+- Google NYC (Chelsea/Manhattan)
+- Meta NYC (Hudson Yards)
+- Amazon NYC (multiple offices)
+- Two Sigma (SoHo)
+- Jane Street (Financial District)
+
+**High Growth:**
+- Ramp (Manhattan)
+- Runway (SoHo)
+- Datadog (Times Square)
+- MongoDB (Midtown)
+- Cockroach Labs (various)
+
+**Fintech:**
+- Stripe (Manhattan)
+- Plaid (Manhattan)
+- Brex (Manhattan)
+- Ramp (Manhattan)
+
+**Media/Content:**
+- New York Times (Times Square)
+- Spotify (WTC)
+- Bloomberg (various)
+- Netflix (Manhattan)
+
+**Networking in NYC:**
+
+1. **Meetups (All Free)**
+   - NYC.js (JavaScript)
+   - Papers We Love NYC
+   - NYC Systems
+   - Brooklyn.js
+   - Product Manager Happy Hour
+   - NYC Tech Coffee (morning networking)
+
+2. **Co-working Spaces**
+   - WeWork (various)
+   - NeueHouse
+   - The Wing
+   - Great for: Meeting other professionals, finding opportunities
+
+3. **Events**
+   - TechCrunch Disrupt NYC (annual)
+   - Grace Hopper Celebration
+   - QCon New York
+   - Collision Conference
+
+---
+
+## Part 8: Action Plan & Timeline
+
+### Your 24-Month Roadmap
+
+#### Months 1-3: Foundation
+**Income Goal: Establish baseline**
+
+Week 1-2:
+- [ ] Audit current compensation vs market (Levels.fyi)
+- [ ] Update LinkedIn profile
+- [ ] Set up interview prep schedule (LeetCode, system design)
+- [ ] Create brag doc template and fill with past achievements
+
+Week 3-4:
+- [ ] Apply to 5-10 target companies
+- [ ] Start responding to recruiter messages
+- [ ] Begin LeetCode (2 problems/day)
+- [ ] Read 1 system design resource per week
+
+Month 2-3:
+- [ ] Complete 100 LeetCode problems
+- [ ] Do 10 mock interviews
+- [ ] Get first interview callback
+- [ ] Update resume with quantified PM/Eng achievements
+- [ ] Start technical blog (1st article published)
+
+**Expected Income Change: +$0** (building foundation)
+
+#### Months 4-6: First Moves
+**Income Goal: +$20K-$50K from new offer OR raise**
+
+- [ ] Interview at 5-8 companies
+- [ ] Get 2-3 offers
+- [ ] Negotiate aggressively using competing offers
+- [ ] Either: Accept new role OR use offers to negotiate raise
+- [ ] Launch side income (freelance/writing) target: $1K-$2K/month
+- [ ] Publish 6 technical articles
+- [ ] Speak at 1 local meetup
+
+**Expected Income Change: +$30K base OR +$50K total comp**
+**New Total: $230K-$280K**
+
+#### Months 7-12: Acceleration
+**Income Goal: Solidify new level, grow side income**
+
+- [ ] Excel in new role (or keep interviewing if stayed)
+- [ ] Take on high-visibility project
+- [ ] Mentor 1-2 junior engineers
+- [ ] Side income: $2K-$5K/month ($24K-$60K/year)
+- [ ] Publish 12 more articles (24 total)
+- [ ] Speak at 2-3 more events
+- [ ] Build portfolio of PM/Eng hybrid wins
+- [ ] Start specialization learning (AI/ML, Platform, etc.)
+
+**Expected Income Change: +$24K-$60K from side income**
+**New Total: $254K-$340K (salary + side income)**
+
+#### Months 13-18: Leveling Up
+**Income Goal: Promotion or strategic jump**
+
+- [ ] Push for promotion to Senior/Staff OR
+- [ ] Interview for next jump (+$50K-$100K)
+- [ ] Specialize: Build 2-3 projects in chosen domain
+- [ ] Side income: $5K-$10K/month ($60K-$120K/year)
+- [ ] Personal brand: 10K+ followers/readers
+- [ ] Conference speaking (1-2 paid talks)
+- [ ] Consulting inquiries coming inbound
+
+**Expected Income Change: +$50K-$100K from promotion/jump**
+**New Total: $360K-$520K (salary + equity + side income)**
+
+#### Months 19-24: Optimization
+**Income Goal: $400K+ total**
+
+- [ ] Senior/Staff level at top company OR
+- [ ] Engineering Manager OR
+- [ ] Full-time consulting ($200K+) while building SaaS
+- [ ] Side income: $10K-$20K/month ($120K-$240K/year)
+- [ ] Passive income streams established
+- [ ] Strong negotiating position for next move
+- [ ] Network: Know hiring managers at 10+ companies
+
+**Expected Income: $400K-$600K+ (all sources)**
+
+---
+
+## Part 9: Common Pitfalls to Avoid
+
+### Career Mistakes That Cost You Money
+
+1. **Staying Too Long**
+   - Don't stay 5+ years without big promotions
+   - 2-3 years is optimal tenure for comp growth
+   - Exception: Equity is vesting and worth staying
+
+2. **Not Interviewing Regularly**
+   - Interview at least 2x per year (even if happy)
+   - Keeps skills sharp
+   - Gives market data
+   - Creates optionality
+
+3. **Focusing Only on Base Salary**
+   - Total comp is what matters
+   - $20K more base but $50K less equity = bad deal
+   - Especially at pre-IPO companies
+
+4. **Accepting First Offer**
+   - Always negotiate
+   - Leave $10K-$50K on table if you don't
+
+5. **Ignoring Taxes**
+   - NYC has brutal taxes (city + state + federal)
+   - $300K salary ≠ $300K take home
+   - Plan for ~35% tax rate
+
+6. **Not Building Brand**
+   - Anonymous engineers cap out lower
+   - Personal brand = inbound opportunities
+   - Start early (takes 18+ months to build)
+
+7. **Lifestyle Inflation**
+   - Easy to spend everything in NYC
+   - Keep expenses reasonable
+   - Save/invest 30-40% of income
+
+8. **Neglecting Network**
+   - Most best opportunities come from network
+   - Spend 2-5 hours/week networking
+   - Help others (referrals, advice)
+
+9. **Wrong Specialization**
+   - Don't learn dying tech for higher pay
+   - Invest in growing domains (AI, cloud, etc.)
+   - Balance: Interest + market demand
+
+10. **Burning Bridges**
+    - Tech is small world, NYC tech even smaller
+    - Leave jobs gracefully (2 weeks notice)
+    - Stay in touch with former colleagues
+    - Your ex-coworker could be hiring manager later
+
+---
+
+## Part 10: Contingency Plans
+
+### What If Things Don't Go As Planned?
+
+#### Scenario 1: Can't Get Competing Offers
+
+**Backup Plan:**
+- Focus on internal promotion/raise
+- Build skills for 6 more months
+- Lower interview bar (more companies)
+- Consider adjacent roles (TPM, Product Engineer)
+- Work with recruiting agency
+
+#### Scenario 2: Get Laid Off
+
+**Immediate Actions:**
+- File for unemployment ($504/week max in NY)
+- Update LinkedIn/resume immediately
+- Message network same day
+- Apply to 10+ companies per week
+- Consider contract work ($100-$200/hour)
+- NYC has tons of opportunities, don't panic
+
+**NYC-Specific Resources:**
+- Built In NYC (job board)
+- NYC Tech Talent Pipeline
+- Tech:NYC job board
+- AngelList (startups)
+
+#### Scenario 3: Market Downturn
+
+**Defensive Strategies:**
+- Build 6-12 month emergency fund
+- Diversify income (side income crucial)
+- Become indispensable at current company
+- Focus on revenue-generating work
+- Avoid early-stage startups
+
+#### Scenario 4: Promotion Denied
+
+**Recovery Plan:**
+- Ask specific feedback on what's missing
+- Create 90-day plan to address gaps
+- Set clear metrics for next review
+- If still denied after 6 months: Start interviewing
+- Get promoted via job change
+
+#### Scenario 5: Relocation Required
+
+**Options:**
+- Negotiate remote from NYC
+- Ask for $20K-$50K relocation package
+- Consider it if comp increase is huge (40%+)
+- Temporary relocation (1-2 years, then transfer back)
+
+---
+
+## Part 11: Resources & Tools
+
+### Compensation Research
+- **Levels.fyi**: Best for FAANG/big tech comp data
+- **Blind**: Anonymous comp sharing, industry gossip
+- **Glassdoor**: Company reviews, rough salary ranges
+- **Payscale**: Basic salary calculator
+- **H1B Database**: Legal disclosures of actual salaries
+
+### Interview Prep
+- **LeetCode**: Coding problems (Premium: $35/month)
+- **AlgoExpert**: Curated problems ($99 lifetime)
+- **Educative.io**: System design courses ($20/month)
+- **Grokking the System Design Interview**: Classic course
+- **Pramp**: Free mock interviews
+- **Interviewing.io**: Paid mock interviews ($75/session)
+- **Exponent**: PM interview prep
+
+### Learning Platforms
+- **Coursera**: Online courses (many free)
+- **Udemy**: Cheap courses ($10-$20 on sale)
+- **Frontend Masters**: Deep web dev courses ($39/month)
+- **Pluralsight**: Enterprise training ($29/month)
+- **O'Reilly Learning**: Books + videos ($49/month)
+- **egghead.io**: Short practical tutorials
+
+### Networking
+- **Meetup.com**: Find local tech events
+- **Luma**: NYC tech events calendar
+- **LinkedIn**: Professional networking
+- **Blind**: Anonymous industry discussion
+- **Slack communities**: Find your niche communities
+
+### Side Income Platforms
+- **Toptal**: Premium freelancing (hard to get in)
+- **Upwork**: General freelancing
+- **Fiverr**: Gig-based work
+- **CodeMentor**: Paid mentoring/consulting
+- **MoonlightWork**: Freelance for vetted engineers
+
+### Content Creation
+- **Medium Partner Program**: Get paid to write
+- **Dev.to**: Developer community, some paid posts
+- **Hashnode**: Developer blogging
+- **Substack**: Newsletter platform
+- **ConvertKit**: Email marketing
+
+### Personal Finance
+- **Mint**: Budget tracking (free)
+- **Personal Capital**: Investment tracking (free)
+- **Carta**: Equity management (if your company uses it)
+- **TurboTax**: Tax filing (expect to pay $100-$200 for complex returns)
+- **Wealthfront/Betterment**: Robo-advisors for investing
+
+---
+
+## Part 12: Your Specific 30/60/90 Day Plan
+
+### Days 1-30: Assessment & Setup
+
+**Week 1:**
+- [ ] Monday: Pull data from Levels.fyi for your role/experience
+- [ ] Tuesday: Calculate current total comp (base + equity + bonus)
+- [ ] Wednesday: Update LinkedIn profile with hybrid PM/Eng focus
+- [ ] Thursday: Set up LeetCode account, do 2 easy problems
+- [ ] Friday: Create brag doc, add 10 achievements from past year
+
+**Week 2:**
+- [ ] Monday: Apply to 3 dream companies
+- [ ] Tuesday: Respond to 5 LinkedIn recruiter messages
+- [ ] Wednesday: Buy/start system design course
+- [ ] Thursday: Do first mock interview (Pramp)
+- [ ] Friday: Research 5 companies you'd want to work for
+
+**Week 3:**
+- [ ] Monday-Friday: LeetCode 2 problems/day (10 total)
+- [ ] Schedule coffee chat with 2 people in your network
+- [ ] Identify specialization to pursue (AI/ML, Platform, etc.)
+- [ ] Write outline for first technical blog post
+
+**Week 4:**
+- [ ] Complete first system design practice
+- [ ] Apply to 5 more companies
+- [ ] Publish first blog post
+- [ ] Set up profiles on Upwork or Toptal
+- [ ] Review month: Adjust plan based on learnings
+
+**Outcome: Foundation set, interviews starting to come in**
+
+### Days 31-60: Execution
+
+**Week 5-6:**
+- [ ] First round interviews (3-5 companies)
+- [ ] LeetCode: 40 problems total
+- [ ] System design: 4 practice sessions
+- [ ] Publish 2nd blog post
+- [ ] Apply to freelance gigs
+
+**Week 7-8:**
+- [ ] Later round interviews (2-3 companies)
+- [ ] Mock interviews: 4 total
+- [ ] Continue LeetCode: 60 problems total
+- [ ] Write 3rd blog post
+- [ ] First freelance client (if possible)
+
+**Outcome: Offers starting to come in, side income beginning**
+
+### Days 61-90: Negotiation & Decision
+
+**Week 9-10:**
+- [ ] Receive 2-3 offers (ideally)
+- [ ] Negotiate using competing offers
+- [ ] Share numbers between companies
+- [ ] Ask for more in base, equity, sign-on
+
+**Week 11-12:**
+- [ ] Make decision (new job or stay with raise)
+- [ ] Plan transition if leaving
+- [ ] Negotiate start date for equity optimization
+- [ ] Reflect on process, document learnings
+
+**Outcome: $30K-$100K comp increase, side income $1K-$3K/month**
+
+---
+
+## Summary: Your Path to $400K+
+
+### The Formula
+
+**Base Compensation: $200K-$300K**
+- Strategic job changes every 2-3 years
+- Negotiate aggressively with competing offers
+- Target high-paying companies (FAANG, finance, unicorns)
+- Push for promotions (Senior → Staff or EM track)
+
+**Side Income: $50K-$150K**
+- Freelance consulting: $2K-$10K/month
+- Technical writing: $500-$2K/month
+- Speaking: $500-$2K/month
+- SaaS/passive: $1K-$5K/month (longer-term)
+
+**Total: $250K-$450K within 24 months is achievable**
+
+### Your Advantages
+
+You're starting from a strong position:
+- ✅ 5 years SWE experience (prime level for Senior roles)
+- ✅ 3 years PM/support (unique differentiator)
+- ✅ NYC location (high-paying market)
+- ✅ Hybrid skills (bridge technical/business gap)
+
+### The Mindset
+
+1. **You are a business**: Maximize ROI on your time
+2. **Negotiate everything**: First offer is never final
+3. **Build in public**: Share knowledge, grow brand
+4. **Compound advantages**: Each move builds on last
+5. **Don't settle**: Market is huge, opportunities abundant
+6. **Help others**: Best opportunities come from network
+
+### Final Note
+
+This guide is aggressive but achievable. Not everyone will hit $400K+ in 24 months, but the framework works. The key is consistent execution:
+
+- Interview regularly (even when happy)
+- Always be learning (new skills = higher pay)
+- Build your brand (compound effect takes time)
+- Negotiate hard (90% don't, that's your edge)
+- Diversify income (don't rely only on salary)
+
+NYC is one of the best markets in the world for software engineers. With your hybrid PM/Eng background, you have a unique advantage. Use it.
+
+**Start today. Your future self will thank you.**
+
+---
+
+## Appendix: Templates
+
+### Email Template: Recruiter Response
+
+```
+Subject: Re: [Role] at [Company]
+
+Hi [Recruiter Name],
+
+Thanks for reaching out about the [Role] position at [Company]. I'm
+currently a Senior Software Engineer with 5 years of experience and
+a background in technical program management.
+
+I'm interested in learning more. A few quick questions:
+
+1. What's the salary range for this role?
+2. Is this position remote/hybrid/in-office?
+3. What's the team structure and tech stack?
+
+Based on my experience and the current market, I'm looking for
+opportunities in the $X-$Y total compensation range.
+
+Would love to schedule a brief call if there's alignment.
+
+Best,
+[Your Name]
+```
+
+### Email Template: Negotiation Counter
+
+```
+Subject: Re: Offer - [Your Name]
+
+Hi [Recruiter/Hiring Manager],
+
+Thank you again for the offer. I'm very excited about the opportunity
+to join [Company] and contribute to [specific project/mission].
+
+I've reviewed the offer details carefully. Based on my research, my
+experience with [specific relevant skills], and other conversations
+I'm currently having, I was expecting total compensation in the range
+of $X-$Y.
+
+Specifically, I'd like to discuss:
+- Base salary: $X (vs offered $Y)
+- Equity: Z shares (vs offered W)
+- Sign-on bonus: $A to offset unvested equity I'm leaving
+
+I'm confident I can deliver significant value in [specific areas].
+Is there flexibility to adjust the offer to better reflect the
+market and my experience?
+
+I'm happy to discuss further. Looking forward to finding a path
+forward that works for both of us.
+
+Best,
+[Your Name]
+```
+
+### Brag Doc Entry Template
+
+```
+## [Month] [Year]
+
+### Project: [Project Name]
+
+**Situation**: [What was the problem/context?]
+
+**Task**: [What were you responsible for?]
+
+**Action**: [What did you actually do? Be specific.]
+- Technical: [Languages, systems, architecture decisions]
+- PM Skills: [Stakeholder management, prioritization, planning]
+- Leadership: [Mentoring, unblocking others, driving consensus]
+
+**Result**: [What was the outcome? QUANTIFY.]
+- Impact: [Users affected, revenue generated, cost saved, time saved]
+- Metrics: [Specific numbers: latency reduced X%, adoption rate Y%]
+- Recognition: [Team/company acknowledgment, promotion, etc.]
+
+**Skills Demonstrated**: [List relevant skills for your next level]
+```
+
+---
+
+**Document Version**: 1.0
+**Last Updated**: November 2025
+**Author**: Comprehensive Career Planning Guide
+**Target Audience**: Software Engineers with PM/Support experience in NYC
+
+---
+
+*Good luck on your journey to maximizing your income. Remember: The market rewards those who continuously learn, negotiate fearlessly, and deliver consistent value. You've got this.*
