@@ -614,6 +614,11 @@ exports.getUserPlans = async (req, res) => {
   try {
     const { userId } = req.params;
 
+    // Authorization: Verify user can only access their own plans
+    if (req.user.userId !== userId) {
+      return res.status(403).json({ error: 'Forbidden: You can only access your own plans' });
+    }
+
     const userPlans = Plan.findByUserId(userId);
 
     res.json({
@@ -637,6 +642,11 @@ exports.getPlanById = async (req, res) => {
       return res.status(404).json({ error: 'Plan not found' });
     }
 
+    // Authorization: Verify user owns this plan
+    if (plan.userId !== req.user.userId) {
+      return res.status(403).json({ error: 'Forbidden: You can only access your own plans' });
+    }
+
     res.json(plan);
   } catch (error) {
     console.error('Error fetching plan:', error);
@@ -655,6 +665,11 @@ exports.updatePlan = async (req, res) => {
       return res.status(404).json({ error: 'Plan not found' });
     }
 
+    // Authorization: Verify user owns this plan
+    if (plan.userId !== req.user.userId) {
+      return res.status(403).json({ error: 'Forbidden: You can only modify your own plans' });
+    }
+
     const updatedPlan = Plan.update(planId, req.body);
 
     res.json({
@@ -671,6 +686,17 @@ exports.updatePlan = async (req, res) => {
 exports.deletePlan = async (req, res) => {
   try {
     const { planId } = req.params;
+
+    // First check if plan exists and user owns it
+    const plan = Plan.findById(planId);
+    if (!plan) {
+      return res.status(404).json({ error: 'Plan not found' });
+    }
+
+    // Authorization: Verify user owns this plan
+    if (plan.userId !== req.user.userId) {
+      return res.status(403).json({ error: 'Forbidden: You can only delete your own plans' });
+    }
 
     const deleted = Plan.delete(planId);
 
