@@ -213,7 +213,7 @@ export const getStretches = async (targetArea, difficulty, type) => {
   if (params.length > 0) url += `?${params.join('&')}`
 
   const res = await fetch(url, {
-    headers: getHeaders()
+    headers: await getHeaders()
   })
   if (!res.ok) throw new Error('Failed to fetch stretches')
   return res.json()
@@ -221,7 +221,7 @@ export const getStretches = async (targetArea, difficulty, type) => {
 
 export const getStretchById = async (stretchId) => {
   const res = await fetch(`${API_BASE}/exercises/stretches/${stretchId}`, {
-    headers: getHeaders()
+    headers: await getHeaders()
   })
   if (!res.ok) throw new Error('Failed to fetch stretch')
   return res.json()
@@ -231,7 +231,7 @@ export const getStretchById = async (stretchId) => {
 export const generatePlan = async (config) => {
   const res = await fetch(`${API_BASE}/plans/generate`, {
     method: 'POST',
-    headers: getHeaders(),
+    headers: await getHeaders(),
     body: JSON.stringify(config)
   })
   if (!res.ok) throw new Error('Failed to generate plan')
@@ -240,7 +240,7 @@ export const generatePlan = async (config) => {
 
 export const getUserPlans = async (userId) => {
   const res = await fetch(`${API_BASE}/plans/user/${userId}`, {
-    headers: getHeaders()
+    headers: await getHeaders()
   })
   if (!res.ok) throw new Error('Failed to fetch plans')
   return res.json()
@@ -248,7 +248,7 @@ export const getUserPlans = async (userId) => {
 
 export const getPlanById = async (planId) => {
   const res = await fetch(`${API_BASE}/plans/${planId}`, {
-    headers: getHeaders()
+    headers: await getHeaders()
   })
   if (!res.ok) throw new Error('Failed to fetch plan')
   return res.json()
@@ -257,7 +257,7 @@ export const getPlanById = async (planId) => {
 export const updatePlan = async (planId, updates) => {
   const res = await fetch(`${API_BASE}/plans/${planId}`, {
     method: 'PUT',
-    headers: getHeaders(),
+    headers: await getHeaders(),
     body: JSON.stringify(updates)
   })
   if (!res.ok) throw new Error('Failed to update plan')
@@ -268,7 +268,7 @@ export const updatePlan = async (planId, updates) => {
 export const logWorkout = async (workoutData) => {
   const res = await fetch(`${API_BASE}/workouts/log`, {
     method: 'POST',
-    headers: getHeaders(),
+    headers: await getHeaders(),
     body: JSON.stringify(workoutData)
   })
   if (!res.ok) throw new Error('Failed to log workout')
@@ -280,7 +280,7 @@ export const getUserWorkouts = async (userId, limit) => {
   if (limit) url += `?limit=${limit}`
 
   const res = await fetch(url, {
-    headers: getHeaders()
+    headers: await getHeaders()
   })
   if (!res.ok) throw new Error('Failed to fetch workouts')
   return res.json()
@@ -288,7 +288,7 @@ export const getUserWorkouts = async (userId, limit) => {
 
 export const getTodaysWorkout = async (planId) => {
   const res = await fetch(`${API_BASE}/workouts/today/${planId}`, {
-    headers: getHeaders()
+    headers: await getHeaders()
   })
   if (!res.ok) throw new Error('No workout scheduled for today')
   return res.json()
@@ -296,7 +296,7 @@ export const getTodaysWorkout = async (planId) => {
 
 export const getWorkoutStats = async (userId, period = 'month') => {
   const res = await fetch(`${API_BASE}/workouts/stats/${userId}?period=${period}`, {
-    headers: getHeaders()
+    headers: await getHeaders()
   })
   if (!res.ok) throw new Error('Failed to fetch stats')
   return res.json()
@@ -304,7 +304,7 @@ export const getWorkoutStats = async (userId, period = 'month') => {
 
 export const getLastExerciseWorkout = async (userId, exerciseId) => {
   const res = await fetch(`${API_BASE}/workouts/last/${userId}/${exerciseId}`, {
-    headers: getHeaders()
+    headers: await getHeaders()
   })
   if (!res.ok) {
     if (res.status === 404) return null // No previous workout
@@ -317,7 +317,7 @@ export const getLastExerciseWorkout = async (userId, exerciseId) => {
 export const syncWorkoutSession = async (sessionData) => {
   const res = await fetch(`${API_BASE}/workout-sessions/sync`, {
     method: 'POST',
-    headers: getHeaders(),
+    headers: await getHeaders(),
     body: JSON.stringify(sessionData)
   })
   if (!res.ok) {
@@ -336,7 +336,7 @@ export const syncWorkoutSession = async (sessionData) => {
 
 export const getActiveSession = async (userId) => {
   const res = await fetch(`${API_BASE}/workout-sessions/active/${userId}`, {
-    headers: getHeaders()
+    headers: await getHeaders()
   })
   if (!res.ok) throw new Error('Failed to fetch active session')
   return res.json()
@@ -345,7 +345,7 @@ export const getActiveSession = async (userId) => {
 export const completeWorkoutSession = async (sessionId, data) => {
   const res = await fetch(`${API_BASE}/workout-sessions/${sessionId}/complete`, {
     method: 'POST',
-    headers: getHeaders(),
+    headers: await getHeaders(),
     body: JSON.stringify(data)
   })
   if (!res.ok) throw new Error('Failed to complete workout session')
@@ -355,7 +355,7 @@ export const completeWorkoutSession = async (sessionId, data) => {
 export const abandonSession = async (sessionId) => {
   const res = await fetch(`${API_BASE}/workout-sessions/${sessionId}`, {
     method: 'DELETE',
-    headers: getHeaders()
+    headers: await getHeaders()
   })
   if (!res.ok) throw new Error('Failed to abandon session')
   return res.json()
