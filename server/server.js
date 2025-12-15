@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const rateLimit = require('express-rate-limit');
 
 // Initialize database on startup
 const db = require('./db/database');
@@ -12,7 +13,7 @@ const PORT = process.env.PORT || 3001;
 // Middleware
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://my-gymplanner-client-4jq9cdp43-devtzis-projects.vercel.app',
+  'http://localhost:5174', // Additional dev port
   'https://mygymplanner.vercel.app',
   process.env.CLIENT_URL
 ].filter(Boolean);
@@ -22,10 +23,11 @@ app.use(cors({
     // Allow requests with no origin (mobile apps, Postman, etc.)
     if (!origin) return callback(null, true);
 
-    // Check if origin is in allowed list or is a Vercel preview URL
-    if (allowedOrigins.includes(origin) || origin.includes('.vercel.app')) {
+    // Only allow exact matches from whitelist (no wildcards)
+    if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
+      console.warn(`CORS blocked request from unauthorized origin: ${origin}`);
       callback(new Error('Not allowed by CORS'));
     }
   },
@@ -33,6 +35,33 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Rate limiting middleware
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per windowMs
+  message: 'Too many requests from this IP, please try again later.',
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+});
+
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // Limit each IP to 5 auth attempts per 15 minutes
+  message: 'Too many authentication attempts, please try again after 15 minutes.',
+  standardHeaders: true,
+  legacyHeaders: false,
+  skipSuccessfulRequests: true, // Don't count successful requests
+});
+
+// Apply general rate limiting to all API routes
+app.use('/api/', apiLimiter);
+
+// Apply strict rate limiting to authentication routes
+app.use('/api/users/login', authLimiter);
+app.use('/api/users/register', authLimiter);
+app.use('/api/users/login-backup-code', authLimiter);
+app.use('/api/auth/refresh', authLimiter);
 
 // Routes
 const exerciseRoutes = require('./routes/exercises');

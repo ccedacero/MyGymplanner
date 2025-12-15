@@ -1,7 +1,16 @@
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'dev-secret';
+// JWT_SECRET is REQUIRED - application will not start without it
+const JWT_SECRET = process.env.JWT_SECRET;
+
+if (!JWT_SECRET) {
+  console.error('FATAL SECURITY ERROR: JWT_SECRET environment variable is not set!');
+  console.error('The application cannot start without a secure JWT secret.');
+  console.error('Please set JWT_SECRET in your .env file with a strong random value.');
+  process.exit(1);
+}
+
 const ACCESS_TOKEN_EXPIRY = '1h';
 const REFRESH_TOKEN_EXPIRY = '365d'; // 1 year
 
