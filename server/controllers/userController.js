@@ -222,6 +222,11 @@ exports.getUserProfile = async (req, res) => {
   try {
     const { userId } = req.params;
 
+    // Verify the authenticated user matches the requested userId
+    if (req.user.userId !== userId) {
+      return res.status(403).json({ error: 'Forbidden: You can only access your own data' });
+    }
+
     const user = User.findById(userId);
 
     if (!user) {
@@ -241,6 +246,11 @@ exports.getUserProfile = async (req, res) => {
 exports.updateUserProfile = async (req, res) => {
   try {
     const { userId } = req.params;
+
+    // Verify the authenticated user matches the requested userId
+    if (req.user.userId !== userId) {
+      return res.status(403).json({ error: 'Forbidden: You can only access your own data' });
+    }
 
     const user = User.findById(userId);
 
@@ -273,6 +283,12 @@ exports.updateEquipment = async (req, res) => {
 
     console.log('[updateEquipment] Request params:', { userId });
     console.log('[updateEquipment] Request body:', { equipment });
+
+    // Verify the authenticated user matches the requested userId
+    if (req.user.userId !== userId) {
+      console.log('[updateEquipment] Error: Forbidden - user mismatch');
+      return res.status(403).json({ error: 'Forbidden: You can only access your own data' });
+    }
 
     if (!Array.isArray(equipment)) {
       console.log('[updateEquipment] Error: Equipment is not an array');
@@ -314,6 +330,12 @@ exports.updateExercisePreference = async (req, res) => {
 
     console.log('[updateExercisePreference] Request params:', { userId });
     console.log('[updateExercisePreference] Request body:', { exercisePreference });
+
+    // Verify the authenticated user matches the requested userId
+    if (req.user.userId !== userId) {
+      console.log('[updateExercisePreference] Error: Forbidden - user mismatch');
+      return res.status(403).json({ error: 'Forbidden: You can only access your own data' });
+    }
 
     // Validate preference value
     const validPreferences = ['default', 'known', 'both'];
