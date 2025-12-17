@@ -58,4 +58,53 @@ Investigating a reported bug when saving changes in the MyGymplanner app.
   - `/server/db/models/User.js` - User database model
 
 ## Review Section
-(Will be filled after investigation and fix)
+
+### ✅ Investigation Complete - Bug Fixed
+
+**Root Cause Identified:**
+The `/generate-plan` route in `App.jsx` was missing the `needsOnboarding(user)` check that other protected routes have. This allowed users to access plan generation without setting up their equipment first.
+
+**Impact:**
+1. Users could navigate to `/generate-plan` with no equipment selected
+2. Frontend would send `equipment: []` (empty array) to backend
+3. Backend's `filterByEquipment()` function would only return bodyweight exercises
+4. If < 10 exercises available, backend returns error: "Not enough exercises available for your equipment"
+5. Users saw cryptic error and couldn't generate plans
+
+**The Fix:**
+Added `needsOnboarding(user)` check to `/generate-plan` route in `/client/src/App.jsx` (line 186-190)
+
+**Before:**
+```javascript
+<Route path="/generate-plan" element={user ? <PlanGenerator user={user} /> : <Navigate to="/login" />} />
+```
+
+**After:**
+```javascript
+<Route path="/generate-plan" element={
+  user
+    ? (needsOnboarding(user) ? <Navigate to="/onboarding" /> : <PlanGenerator user={user} />)
+    : <Navigate to="/login" />
+} />
+```
+
+**Code Impact:**
+- **Lines changed**: 4 lines (reformatted for consistency with other routes)
+- **Files modified**: 1 file (`client/src/App.jsx`)
+- **No breaking changes**: Existing users with equipment set up are unaffected
+- **Improved UX**: New users are now properly guided to set up equipment before plan generation
+
+**How it works now:**
+1. User tries to access `/generate-plan`
+2. App checks if user has equipment set up (`needsOnboarding(user)`)
+3. If no equipment: redirect to `/onboarding`
+4. If equipment exists: show plan generator
+5. Plan generation now always has valid equipment array
+6. Backend can successfully filter exercises and create plans
+
+**Testing:**
+- ✅ Route protection logic matches `/dashboard` pattern
+- ✅ Users without equipment will be redirected to onboarding
+- ✅ Users with equipment can access plan generator
+- ✅ Onboarding requires at least one equipment selection
+- ✅ Simple, minimal fix following "simplicity" principle
