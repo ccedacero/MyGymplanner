@@ -69,6 +69,11 @@ exports.getTodaysWorkout = async (req, res) => {
       return res.status(404).json({ error: 'Plan not found' });
     }
 
+    // Authorization: Verify user owns this plan
+    if (plan.userId !== req.user.userId) {
+      return res.status(403).json({ error: 'Forbidden: You can only access your own plans' });
+    }
+
     // Get current day of week (0 = Sunday, 1 = Monday, etc.)
     const today = new Date().getDay();
     const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -103,6 +108,11 @@ exports.getWorkoutById = async (req, res) => {
       return res.status(404).json({ error: 'Workout not found' });
     }
 
+    // Authorization: Verify user owns this workout
+    if (workout.userId !== req.user.userId) {
+      return res.status(403).json({ error: 'Forbidden: You can only access your own workouts' });
+    }
+
     res.json(workout);
   } catch (error) {
     console.error('Error fetching workout:', error);
@@ -119,6 +129,11 @@ exports.updateWorkout = async (req, res) => {
 
     if (!workout) {
       return res.status(404).json({ error: 'Workout not found' });
+    }
+
+    // Authorization: Verify user owns this workout
+    if (workout.userId !== req.user.userId) {
+      return res.status(403).json({ error: 'Forbidden: You can only modify your own workouts' });
     }
 
     const updatedWorkout = Workout.update(workoutId, req.body);
@@ -138,6 +153,17 @@ exports.deleteWorkout = async (req, res) => {
   try {
     const { workoutId } = req.params;
 
+    // First check if workout exists and user owns it
+    const workout = Workout.findById(workoutId);
+    if (!workout) {
+      return res.status(404).json({ error: 'Workout not found' });
+    }
+
+    // Authorization: Verify user owns this workout
+    if (workout.userId !== req.user.userId) {
+      return res.status(403).json({ error: 'Forbidden: You can only delete your own workouts' });
+    }
+
     const deleted = Workout.delete(workoutId);
 
     if (!deleted) {
@@ -155,6 +181,11 @@ exports.deleteWorkout = async (req, res) => {
 exports.getLastExerciseWorkout = async (req, res) => {
   try {
     const { userId, exerciseId } = req.params;
+
+    // Authorization: Verify user can only access their own workout history
+    if (req.user.userId !== userId) {
+      return res.status(403).json({ error: 'Forbidden: You can only access your own workout history' });
+    }
 
     // Get user's workouts containing this exercise
     const userWorkouts = Workout.findByExerciseId(userId, exerciseId);

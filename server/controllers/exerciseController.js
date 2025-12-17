@@ -294,7 +294,8 @@ exports.addCustomExercise = async (req, res) => {
 exports.updateCustomExercise = async (req, res) => {
   try {
     const { id } = req.params;
-    const { userId } = req.body;
+    // SECURITY FIX: Get userId from JWT token, not from user input
+    const userId = req.user.userId;
 
     const exercise = CustomExercise.findById(id);
 
@@ -318,7 +319,8 @@ exports.updateCustomExercise = async (req, res) => {
 exports.deleteCustomExercise = async (req, res) => {
   try {
     const { id } = req.params;
-    const { userId } = req.query;
+    // SECURITY FIX: Get userId from JWT token, not from query string
+    const userId = req.user.userId;
 
     const exercise = CustomExercise.findById(id);
 

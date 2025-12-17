@@ -222,6 +222,25 @@ class WorkoutSession {
 
   static deserialize(session) {
     if (!session) return null;
+
+    // Safely parse JSON fields with fallback values
+    let exercises = [];
+    let substitutedExercises = {};
+
+    try {
+      exercises = JSON.parse(session.exercises);
+    } catch (error) {
+      console.error('Error parsing workout session exercises JSON:', error);
+      exercises = [];
+    }
+
+    try {
+      substitutedExercises = JSON.parse(session.substituted_exercises);
+    } catch (error) {
+      console.error('Error parsing workout session substituted_exercises JSON:', error);
+      substitutedExercises = {};
+    }
+
     return {
       id: session.id,
       userId: session.user_id,
@@ -229,12 +248,12 @@ class WorkoutSession {
       day: session.day,
       sessionDate: session.session_date,
       status: session.status,
-      exercises: JSON.parse(session.exercises),
+      exercises,
       currentExerciseIndex: session.current_exercise_index,
       notes: session.notes,
       rpe: session.rpe,
       workoutStartTime: session.workout_start_time,
-      substitutedExercises: JSON.parse(session.substituted_exercises),
+      substitutedExercises,
       syncVersion: session.sync_version,
       createdAt: session.created_at,
       updatedAt: session.updated_at

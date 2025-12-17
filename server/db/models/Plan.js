@@ -86,12 +86,31 @@ class Plan {
 
   static deserialize(plan) {
     if (!plan) return null;
+
+    // Safely parse JSON fields with fallback values
+    let config = {};
+    let weekSchedule = [];
+
+    try {
+      config = JSON.parse(plan.config);
+    } catch (error) {
+      console.error('Error parsing plan config JSON:', error);
+      config = {};
+    }
+
+    try {
+      weekSchedule = JSON.parse(plan.week_schedule);
+    } catch (error) {
+      console.error('Error parsing plan week_schedule JSON:', error);
+      weekSchedule = [];
+    }
+
     return {
       id: plan.id,
       userId: plan.user_id,
-      config: JSON.parse(plan.config),
+      config,
       splitType: plan.split_type,
-      weekSchedule: JSON.parse(plan.week_schedule),
+      weekSchedule,
       duration: plan.duration,
       currentWeek: plan.current_week,
       createdAt: plan.created_at,

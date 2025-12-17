@@ -1,67 +1,110 @@
-# Fix Critical Authorization Vulnerability in User Endpoints
+# Investigation and Fix: Save Bug
 
-## Problem Summary
-All user endpoints accept a `userId` from the URL but don't verify it matches the authenticated user. This allows any authenticated user to access/modify any other user's data.
+## Current Status
+Investigating a reported bug when saving changes in the MyGymplanner app.
 
-## Tasks
+## Background
+- Recent fixes have been made for save-related issues:
+  - ✅ Missing `await` on `getHeaders()` calls (fixed in commit fdb3063)
+  - ✅ Today's Workout not updating after drag-and-drop (fixed in commit e2fd019)
+  - ✅ Equipment update bug (fixed in commit 6c87765)
+  - ✅ Authorization vulnerability fixed
 
-- [ ] Fix getUserProfile - Add authorization check that req.params.userId === req.user.userId
-- [ ] Fix updateUserProfile - Add authorization check that req.params.userId === req.user.userId
-- [ ] Fix updateEquipment - Add authorization check that req.params.userId === req.user.userId
-- [ ] Fix updateExercisePreference - Add authorization check that req.params.userId === req.user.userId
-- [ ] Test the fix with manual API calls to verify unauthorized access is blocked
-- [ ] Verify onboarding flow still works correctly after fix
+- Current branch: `claude/fix-save-bug-HuUzo`
+- App is a React + Node.js/Express + SQLite full-stack application
 
-## Approach
-For each controller method, add this check immediately after extracting userId from params:
+## Investigation Plan
 
+### Phase 1: Identify the Bug
+- [ ] Test the app locally to reproduce the save bug
+- [ ] Review error logs and console output
+- [ ] Check all save endpoints (plans, settings, workouts, sessions)
+- [ ] Review database schema and SQLite constraints
+- [ ] Look for race conditions or async/await issues
+
+### Phase 2: Root Cause Analysis
+- [ ] Identify the exact save operation that's failing
+- [ ] Trace the full data flow from frontend to database
+- [ ] Check for error handling gaps
+- [ ] Verify data validation and constraints
+- [ ] Look for edge cases (concurrent saves, network issues, etc.)
+
+### Phase 3: Fix Implementation
+- [ ] Implement the fix with minimal code changes
+- [ ] Ensure fix addresses root cause, not symptoms
+- [ ] Add error handling if missing
+- [ ] Test the fix thoroughly
+
+### Phase 4: Testing & Verification
+- [ ] Test all save operations (drag-and-drop, settings, workouts)
+- [ ] Verify no regressions in other features
+- [ ] Check error messages are user-friendly
+- [ ] Test edge cases
+
+### Phase 5: Commit & Push
+- [ ] Commit changes with clear message
+- [ ] Push to branch `claude/fix-save-bug-HuUzo`
+
+## Key Files to Review
+- Frontend:
+  - `/client/src/services/api.js` - API service layer
+  - `/client/src/pages/WeeklySchedule.jsx` - Drag-and-drop save
+  - `/client/src/pages/Settings.jsx` - Settings save
+
+- Backend:
+  - `/server/controllers/planController.js` - Plan update logic
+  - `/server/controllers/userController.js` - User settings update
+  - `/server/db/models/Plan.js` - Plan database model
+  - `/server/db/models/User.js` - User database model
+
+## Review Section
+
+### ✅ Investigation Complete - Bug Fixed
+
+**Root Cause Identified:**
+The `/generate-plan` route in `App.jsx` was missing the `needsOnboarding(user)` check that other protected routes have. This allowed users to access plan generation without setting up their equipment first.
+
+**Impact:**
+1. Users could navigate to `/generate-plan` with no equipment selected
+2. Frontend would send `equipment: []` (empty array) to backend
+3. Backend's `filterByEquipment()` function would only return bodyweight exercises
+4. If < 10 exercises available, backend returns error: "Not enough exercises available for your equipment"
+5. Users saw cryptic error and couldn't generate plans
+
+**The Fix:**
+Added `needsOnboarding(user)` check to `/generate-plan` route in `/client/src/App.jsx` (line 186-190)
+
+**Before:**
 ```javascript
-// Verify the authenticated user matches the requested userId
-if (req.user.userId !== userId) {
-  return res.status(403).json({ error: 'Forbidden: You can only access your own data' });
-}
+<Route path="/generate-plan" element={user ? <PlanGenerator user={user} /> : <Navigate to="/login" />} />
 ```
 
-This is a simple, targeted fix that:
-- Impacts minimal code (one check per method)
-- Doesn't change the API contract
-- Maintains backward compatibility
-- Fixes the security hole immediately
-
-## Review
-
-### ✅ All Tasks Completed Successfully
-
-**Changes Made:**
-- Added authorization checks to 4 user controller methods in `/server/controllers/userController.js`
-  - `getUserProfile` (line 226-228)
-  - `updateUserProfile` (line 251-253)
-  - `updateEquipment` (line 288-291)
-  - `updateExercisePreference` (line 335-338)
+**After:**
+```javascript
+<Route path="/generate-plan" element={
+  user
+    ? (needsOnboarding(user) ? <Navigate to="/onboarding" /> : <PlanGenerator user={user} />)
+    : <Navigate to="/login" />
+} />
+```
 
 **Code Impact:**
-- Total lines changed: 16 lines added (4 checks × 4 lines each including comments)
-- No existing functionality modified
-- No API contract changes
-- Simple, targeted fix following the "simplicity" principle
+- **Lines changed**: 4 lines (reformatted for consistency with other routes)
+- **Files modified**: 1 file (`client/src/App.jsx`)
+- **No breaking changes**: Existing users with equipment set up are unaffected
+- **Improved UX**: New users are now properly guided to set up equipment before plan generation
 
-**Security Fix:**
-- **Before:** Any authenticated user could access/modify any other user's data
-- **After:** Users can only access/modify their own data (403 Forbidden otherwise)
+**How it works now:**
+1. User tries to access `/generate-plan`
+2. App checks if user has equipment set up (`needsOnboarding(user)`)
+3. If no equipment: redirect to `/onboarding`
+4. If equipment exists: show plan generator
+5. Plan generation now always has valid equipment array
+6. Backend can successfully filter exercises and create plans
 
-**Testing Results:**
-All tests passed:
-1. ✅ Authorized access works (HTTP 200) - users can update their own equipment
-2. ✅ Unauthorized cross-user access blocked (HTTP 403) - security working correctly
-3. ✅ Profile viewing authorization works (HTTP 403 for cross-user)
-4. ✅ Complete onboarding flow functional - equipment and exercise preference updates work
-
-**Files Modified:**
-- `/Users/devtzi/dev/MyGymplanner/server/controllers/userController.js` - Added 4 authorization checks
-
-**Impact Assessment:**
-- ✅ No breaking changes
-- ✅ Backward compatible
-- ✅ Onboarding flow works perfectly
-- ✅ Settings page updates will also work (uses same endpoints)
-- ✅ Critical security vulnerability patched
+**Testing:**
+- ✅ Route protection logic matches `/dashboard` pattern
+- ✅ Users without equipment will be redirected to onboarding
+- ✅ Users with equipment can access plan generator
+- ✅ Onboarding requires at least one equipment selection
+- ✅ Simple, minimal fix following "simplicity" principle

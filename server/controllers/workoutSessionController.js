@@ -85,6 +85,11 @@ exports.getActiveSession = async (req, res) => {
   try {
     const { userId } = req.params;
 
+    // Authorization: Verify user can only access their own sessions
+    if (req.user.userId !== userId) {
+      return res.status(403).json({ error: 'Forbidden: You can only access your own sessions' });
+    }
+
     const session = WorkoutSession.findActiveByUserId(userId);
 
     if (!session) {
@@ -118,6 +123,11 @@ exports.completeSession = async (req, res) => {
       return res.status(404).json({ error: 'Session not found' });
     }
 
+    // Authorization: Verify user owns this session
+    if (session.userId !== req.user.userId) {
+      return res.status(403).json({ error: 'Forbidden: You can only complete your own workout sessions' });
+    }
+
     if (session.status !== 'in_progress') {
       return res.status(400).json({ error: 'Session is not in progress' });
     }
@@ -149,6 +159,11 @@ exports.abandonSession = async (req, res) => {
 
     if (!session) {
       return res.status(404).json({ error: 'Session not found' });
+    }
+
+    // Authorization: Verify user owns this session
+    if (session.userId !== req.user.userId) {
+      return res.status(403).json({ error: 'Forbidden: You can only abandon your own workout sessions' });
     }
 
     const abandoned = WorkoutSession.abandon(sessionId);

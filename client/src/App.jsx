@@ -183,7 +183,11 @@ function AppContent() {
             ? (needsOnboarding(user) ? <Navigate to="/onboarding" /> : <Dashboard user={user} />)
             : <Navigate to="/login" />
         } />
-        <Route path="/generate-plan" element={user ? <PlanGenerator user={user} /> : <Navigate to="/login" />} />
+        <Route path="/generate-plan" element={
+          user
+            ? (needsOnboarding(user) ? <Navigate to="/onboarding" /> : <PlanGenerator user={user} />)
+            : <Navigate to="/login" />
+        } />
         <Route path="/today" element={user ? <TodaysWorkout user={user} /> : <Navigate to="/login" />} />
         <Route path="/log-workout/:planId/:day" element={user ? <WorkoutLogger user={user} /> : <Navigate to="/login" />} />
         <Route path="/schedule" element={user ? <WeeklySchedule user={user} /> : <Navigate to="/login" />} />
