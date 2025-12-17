@@ -101,13 +101,32 @@ class CustomExercise {
 
   static deserialize(exercise) {
     if (!exercise) return null;
+
+    // Safely parse JSON fields with fallback values
+    let muscleGroups = [];
+    let equipment = [];
+
+    try {
+      muscleGroups = JSON.parse(exercise.muscle_groups);
+    } catch (error) {
+      console.error('Error parsing custom exercise muscle_groups JSON:', error);
+      muscleGroups = [];
+    }
+
+    try {
+      equipment = JSON.parse(exercise.equipment);
+    } catch (error) {
+      console.error('Error parsing custom exercise equipment JSON:', error);
+      equipment = [];
+    }
+
     return {
       id: exercise.id,
       userId: exercise.user_id,
       name: exercise.name,
       category: exercise.category,
-      muscleGroups: JSON.parse(exercise.muscle_groups),
-      equipment: JSON.parse(exercise.equipment),
+      muscleGroups,
+      equipment,
       difficulty: exercise.difficulty,
       type: exercise.type,
       description: exercise.description,

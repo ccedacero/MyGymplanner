@@ -69,7 +69,10 @@ class Workout {
       ORDER BY date DESC
       LIMIT 10
     `);
-    const workouts = stmt.all(userId, `%"exerciseId":"${exerciseId}"%`);
+    // Escape exerciseId for JSON to prevent injection - properly quote it as JSON value
+    const escapedExerciseId = JSON.stringify(exerciseId).slice(1, -1); // Remove outer quotes
+    const likePattern = `%"exerciseId":"${escapedExerciseId}"%`;
+    const workouts = stmt.all(userId, likePattern);
     return workouts.map(workout => this.deserialize(workout));
   }
 
@@ -151,12 +154,22 @@ class Workout {
 
   static deserialize(workout) {
     if (!workout) return null;
+
+    // Safely parse exercises JSON with fallback to empty array
+    let exercises = [];
+    try {
+      exercises = JSON.parse(workout.exercises);
+    } catch (error) {
+      console.error('Error parsing workout exercises JSON:', error);
+      exercises = [];
+    }
+
     return {
       id: workout.id,
       userId: workout.user_id,
       planId: workout.plan_id,
       date: workout.date,
-      exercises: JSON.parse(workout.exercises),
+      exercises,
       duration: workout.duration,
       notes: workout.notes,
       rpe: workout.rpe,

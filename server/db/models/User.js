@@ -85,12 +85,22 @@ class User {
 
   static deserialize(user) {
     if (!user) return null;
+
+    // Safely parse equipment JSON with fallback to empty array
+    let equipment = [];
+    try {
+      equipment = JSON.parse(user.equipment);
+    } catch (error) {
+      console.error('Error parsing user equipment JSON:', error);
+      equipment = [];
+    }
+
     return {
       id: user.id,
       email: user.email,
       password: user.password,
       name: user.name,
-      equipment: JSON.parse(user.equipment),
+      equipment,
       exercisePreference: user.exercise_preference,
       createdAt: user.created_at,
       updatedAt: user.updated_at
