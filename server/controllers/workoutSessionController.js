@@ -24,6 +24,11 @@ exports.syncSession = async (req, res) => {
       });
     }
 
+    // Authorization: Verify user can only sync their own sessions
+    if (req.user.userId !== userId) {
+      return res.status(403).json({ error: 'Forbidden: You can only sync your own workout sessions' });
+    }
+
     try {
       const session = WorkoutSession.upsert({
         userId,

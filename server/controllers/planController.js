@@ -602,10 +602,8 @@ exports.generatePlan = async (req, res) => {
     });
   } catch (error) {
     console.error('Error generating plan:', error);
-    res.status(500).json({
-      error: 'Failed to generate plan',
-      details: error.message
-    });
+    // SECURITY FIX: Don't expose error details to prevent information disclosure
+    res.status(500).json({ error: 'Failed to generate plan' });
   }
 };
 
