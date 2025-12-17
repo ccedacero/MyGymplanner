@@ -315,10 +315,8 @@ exports.updateEquipment = async (req, res) => {
   } catch (error) {
     console.error('[updateEquipment] Error:', error);
     console.error('[updateEquipment] Error stack:', error.stack);
-    res.status(500).json({
-      error: 'Failed to update equipment',
-      details: process.env.NODE_ENV === 'development' ? error.message : undefined
-    });
+    // SECURITY FIX: Don't expose error details even in development
+    res.status(500).json({ error: 'Failed to update equipment' });
   }
 };
 
@@ -366,10 +364,8 @@ exports.updateExercisePreference = async (req, res) => {
   } catch (error) {
     console.error('[updateExercisePreference] Error:', error);
     console.error('[updateExercisePreference] Error stack:', error.stack);
-    res.status(500).json({
-      error: 'Failed to update exercise preference',
-      details: process.env.NODE_ENV === 'development' ? error.message : undefined
-    });
+    // SECURITY FIX: Don't expose error details even in development
+    res.status(500).json({ error: 'Failed to update exercise preference' });
   }
 };
 

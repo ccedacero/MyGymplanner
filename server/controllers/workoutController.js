@@ -5,10 +5,12 @@ const Plan = require('../db/models/Plan');
 // Log a completed workout
 exports.logWorkout = async (req, res) => {
   try {
-    const { userId, planId, date, exercises, duration, notes, rpe } = req.body;
+    // SECURITY FIX: Get userId from JWT token, not from user input (prevents mass assignment)
+    const userId = req.user.userId;
+    const { planId, date, exercises, duration, notes, rpe } = req.body;
 
-    if (!userId || !exercises) {
-      return res.status(400).json({ error: 'userId and exercises are required' });
+    if (!exercises) {
+      return res.status(400).json({ error: 'exercises are required' });
     }
 
     const now = new Date().toISOString();
@@ -40,6 +42,11 @@ exports.getUserWorkouts = async (req, res) => {
   try {
     const { userId } = req.params;
     const { limit, startDate, endDate } = req.query;
+
+    // Authorization: Verify user can only access their own workout history
+    if (req.user.userId !== userId) {
+      return res.status(403).json({ error: 'Forbidden: You can only access your own workout history' });
+    }
 
     const userWorkouts = Workout.findByUserId(userId, {
       startDate,
@@ -218,6 +225,11 @@ exports.getWorkoutStats = async (req, res) => {
   try {
     const { userId } = req.params;
     const { period } = req.query; // 'week', 'month', 'all'
+
+    // Authorization: Verify user can only access their own statistics
+    if (req.user.userId !== userId) {
+      return res.status(403).json({ error: 'Forbidden: You can only access your own workout statistics' });
+    }
 
     // Calculate date range for filtering
     const now = new Date();

@@ -251,7 +251,8 @@ exports.uploadCustomExercises = async (req, res) => {
     });
   } catch (error) {
     console.error('Error uploading exercises:', error);
-    res.status(500).json({ error: 'Failed to upload exercises', details: error.message });
+    // SECURITY FIX: Don't expose error details to prevent information disclosure
+    res.status(500).json({ error: 'Failed to upload exercises' });
   }
 };
 
